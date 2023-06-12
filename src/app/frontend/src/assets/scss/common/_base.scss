@@ -1,0 +1,353 @@
+@use '~/assets/scss/global' as *;
+
+/* 共通 ========== */
+
+/* リセット */
+* {
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  background: $palette-blue-charcoal;
+  color: $palette-white;
+  height: 100%;
+  line-height: 1;
+  width: 100%;
+}
+
+body {
+  background-attachment: fixed;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0;
+  font-family: $font-main;
+  font-weight: $font-medium;
+  line-height: 1.6;
+  margin: 0;
+  overflow-y: auto;
+  padding: 0;
+  text-size-adjust: 100%;
+  width: 100%;
+
+  @include mxGetFontSize(16);
+
+  &.Body--fixed {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+html,
+body,
+.ScrollTarget {
+  scroll-margin-top: 96px;
+
+  @include mxMediaQuerySm {
+    scroll-margin-top: 120px;
+  }
+
+  @include mxMediaQueryLg {
+    scroll-margin-top: 136px;
+  }
+}
+
+/* stylelint-disable */
+article,
+aside,
+details,
+figcaption,
+include,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary,
+figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+/* stylelint-enable */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+p,
+blockquote,
+ul,
+ol,
+li {
+  margin: 0;
+  -webkit-overflow-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0;
+  vertical-align: baseline;
+  -webkit-word-wrap: break-word;
+  word-wrap: break-word;
+
+  @include mxGetFontSize(16);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+figcaption,
+span {
+  -webkit-overflow-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden],
+template {
+  display: none;
+}
+
+a {
+  color: $palette-sky-blue;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.3s color, 0.3s opacity, 0.3s background-color, 0.3s border-color;
+
+  &:link,
+  &:visited {
+    color: $palette-sky-blue;
+    text-decoration: underline;
+  }
+
+  @include mxMediaHover {
+    &:hover,
+    &:active {
+      color: $palette-heliotrope;
+      text-decoration: underline;
+    }
+  }
+}
+
+button {
+  cursor: pointer;
+  font-family: $font-main;
+  font-weight: $font-medium;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+i,
+em,
+address {
+  font-style: normal;
+}
+
+b,
+strong,
+em {
+  font-weight: $font-bold;
+}
+
+dfn {
+  font-style: italic;
+}
+
+mark {
+  background-color: $palette-white;
+  color: $palette-black;
+}
+
+small {
+  font-size: 100%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+  // stylelint-disable-next-line property-no-unknown
+  interpolation-mode: bicubic;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+pre {
+  overflow: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: $font-main;
+
+  @include mxGetFontSize(10);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+@include mxMediaQuerySm {
+  body {
+    @include mxGetFontSize(18);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  dl,
+  dt,
+  dd,
+  p,
+  blockquote,
+  ul,
+  ol,
+  li {
+    @include mxGetFontSize(18);
+  }
+
+  p {
+    @include mxGetFontSize(18);
+  }
+}
+
+/* サイト内共通 ========== */
+
+/* clearfix */
+.Clearfix {
+  display: block;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+/* obj */
+.Obj--sm:not(:root) {
+  display: none;
+}
+
+.Obj--md:not(:root) {
+  display: none;
+}
+
+.Obj--lg:not(:root) {
+  display: none;
+}
+
+.Obj--xl:not(:root) {
+  display: none;
+}
+
+.Obj--xs:not(:root) {
+  display: block;
+}
+
+@include mxMediaQueryXs {
+  .Obj--xs:not(:root) {
+    display: none;
+  }
+
+  .Obj--sm:not(:root) {
+    display: block;
+  }
+}
+
+@include mxMediaQuerySm {
+  .Obj--sm:not(:root) {
+    display: none;
+  }
+
+  .Obj--md:not(:root) {
+    display: block;
+  }
+}
+
+@include mxMediaQueryMd {
+  .Obj--md:not(:root) {
+    display: none;
+  }
+
+  .Obj--lg:not(:root) {
+    display: block;
+  }
+}
+
+@include mxMediaQueryLg {
+  .Obj--lg:not(:root) {
+    display: none;
+  }
+
+  .Obj--xl:not(:root) {
+    display: block;
+  }
+}
