@@ -41,4 +41,3 @@ jobs:
       - name: build
         run: |
           yarn run build
-        env:
