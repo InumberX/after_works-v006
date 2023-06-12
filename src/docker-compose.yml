@@ -1,0 +1,12 @@
+version: '3'
+services:
+  frontend:
+    build: node
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./app/frontend:/src
+    working_dir: /src
+    tty: true

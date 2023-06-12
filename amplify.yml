@@ -1,0 +1,23 @@
+version: 1
+applications:
+  - appRoot: src/app/frontend
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - yarn install
+        test:
+          commands:
+            - yarn prettier
+            - yarn stylelint
+            - yarn lint:husky
+        build:
+          commands:
+            - yarn build
+      artifacts:
+        baseDirectory: out
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
