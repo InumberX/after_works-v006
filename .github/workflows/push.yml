@@ -14,8 +14,8 @@ jobs:
         working-directory: src/app/frontend
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: develop
+        # with:
+        # ref: develop
 
       - name: Setup Node
         uses: actions/setup-node@v1
