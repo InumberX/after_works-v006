@@ -1,0 +1,13 @@
+{
+  "plugins": ["stylelint-order", "stylelint-scss"],
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "selector-class-pattern": "^[a-z0-9\\-_]+$",
+    "scss/at-mixin-pattern": "^[a-z]+([A-Z][a-z0-9]+)*$",
+    "no-descending-specificity": null
+  },
+  "ignoreFiles": ["**/node_modules/**"]
+}
