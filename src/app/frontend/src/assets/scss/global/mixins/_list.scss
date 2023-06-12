@@ -1,0 +1,10 @@
+@use '../variables' as *;
+
+// Lists
+@mixin mxGetMarginListItems($margin-top, $margin-left) {
+  margin: (-$margin-top) 0 0 (-$margin-left);
+}
+
+@mixin mxGetPaddingListItem($padding-top, $padding-left) {
+  padding: $padding-top 0 0 $padding-left;
+}
