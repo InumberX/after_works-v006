@@ -1,0 +1,58 @@
+@use '~/assets/scss/global' as *;
+
+.LayoutSvgPainter {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+
+  // stylelint-disable-next-line
+  :global {
+    #svg-painter-gradient-primary-top {
+      .stop {
+        &:nth-child(1) {
+          stop-color: $palette-sky-blue;
+        }
+
+        &:nth-child(2) {
+          stop-color: $palette-heliotrope;
+        }
+      }
+    }
+
+    #svg-painter-gradient-primary-right {
+      .stop {
+        &:nth-child(1) {
+          stop-color: $palette-heliotrope;
+        }
+
+        &:nth-child(2) {
+          stop-color: $palette-sky-blue;
+        }
+      }
+    }
+
+    #svg-painter-gradient-primary-bottom {
+      .stop {
+        &:nth-child(1) {
+          stop-color: $palette-heliotrope;
+        }
+
+        &:nth-child(2) {
+          stop-color: $palette-sky-blue;
+        }
+      }
+    }
+
+    #svg-painter-gradient-primary-left {
+      .stop {
+        &:nth-child(1) {
+          stop-color: $palette-sky-blue;
+        }
+
+        &:nth-child(2) {
+          stop-color: $palette-heliotrope;
+        }
+      }
+    }
+  }
+}
