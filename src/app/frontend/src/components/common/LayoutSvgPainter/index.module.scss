@@ -1,14 +1,14 @@
 @use '~/assets/scss/global' as *;
 
 .LayoutSvgPainter {
+  height: 0;
   visibility: hidden;
   width: 0;
-  height: 0;
 
   // stylelint-disable-next-line
   :global {
     #svg-painter-gradient-primary-top {
-      .stop {
+      .Stop {
         &:nth-child(1) {
           stop-color: $palette-sky-blue;
         }
@@ -20,7 +20,7 @@
     }
 
     #svg-painter-gradient-primary-right {
-      .stop {
+      .Stop {
         &:nth-child(1) {
           stop-color: $palette-heliotrope;
         }
@@ -32,7 +32,7 @@
     }
 
     #svg-painter-gradient-primary-bottom {
-      .stop {
+      .Stop {
         &:nth-child(1) {
           stop-color: $palette-heliotrope;
         }
@@ -44,7 +44,7 @@
     }
 
     #svg-painter-gradient-primary-left {
-      .stop {
+      .Stop {
         &:nth-child(1) {
           stop-color: $palette-sky-blue;
         }

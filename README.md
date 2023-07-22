@@ -45,7 +45,7 @@ docker compose down
 ### Syntax Check
 
 ```shell
-yarn lint
+docker compose exec frontend yarn lint
 ```
 
 ### Formatter
@@ -53,13 +53,13 @@ yarn lint
 #### Check
 
 ```shell
-yarn prettier
+docker compose exec frontend yarn prettier
 ```
 
 #### Check and Format
 
 ```shell
-yarn prettier:fix
+docker compose exec frontend yarn prettier:fix
 ```
 
 ### Formatter (SCSS)
@@ -67,11 +67,11 @@ yarn prettier:fix
 #### Check
 
 ```shell
-yarn stylelint
+docker compose exec frontend yarn stylelint
 ```
 
 #### Check and Format
 
 ```shell
-yarn stylelint:fix
+docker compose exec frontend yarn stylelint:fix
 ```

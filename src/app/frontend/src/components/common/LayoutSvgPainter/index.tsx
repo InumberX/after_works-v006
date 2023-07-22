@@ -11,8 +11,8 @@ export const LayoutSvgPainter = () => {
           x2='0%'
           y2='100%'
         >
-          <stop className='stop' offset='0%' />
-          <stop className='stop' offset='100%' />
+          <stop className='Stop' offset='0%' />
+          <stop className='Stop' offset='100%' />
         </linearGradient>
 
         <linearGradient
@@ -22,8 +22,8 @@ export const LayoutSvgPainter = () => {
           x2='100%'
           y2='50%'
         >
-          <stop className='stop' offset='0%' />
-          <stop className='stop' offset='100%' />
+          <stop className='Stop' offset='0%' />
+          <stop className='Stop' offset='100%' />
         </linearGradient>
 
         <linearGradient
@@ -33,8 +33,8 @@ export const LayoutSvgPainter = () => {
           x2='0%'
           y2='100%'
         >
-          <stop className='stop' offset='0%' />
-          <stop className='stop' offset='100%' />
+          <stop className='Stop' offset='0%' />
+          <stop className='Stop' offset='100%' />
         </linearGradient>
 
         <linearGradient
@@ -44,8 +44,8 @@ export const LayoutSvgPainter = () => {
           x2='100%'
           y2='50%'
         >
-          <stop className='stop' offset='0%' />
-          <stop className='stop' offset='100%' />
+          <stop className='Stop' offset='0%' />
+          <stop className='Stop' offset='100%' />
         </linearGradient>
       </svg>
     </div>
