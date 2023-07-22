@@ -10,7 +10,7 @@ applications:
           commands:
             - yarn prettier
             - yarn stylelint
-            - yarn lint:husky
+            - yarn lint:quiet
         preBuild:
           commands:
             - yarn install
