@@ -16,7 +16,7 @@ applications:
             - yarn install
         build:
           commands:
-            - yarn start
+            - yarn build
       artifacts:
         baseDirectory: .next
         files:
