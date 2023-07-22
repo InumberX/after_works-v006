@@ -1,0 +1,16 @@
+@use '~/assets/scss/global' as *;
+
+.LayoutPageBackground {
+  background-image: url('#{$static-image-dir}/assets/img/img-page_background.png');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-minus-1;
+}
