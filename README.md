@@ -41,3 +41,37 @@ Execute the following command to stop the container.
 ```shell
 docker compose down
 ```
+
+### Syntax Check
+
+```shell
+yarn lint
+```
+
+### Formatter
+
+#### Check
+
+```shell
+yarn prettier
+```
+
+#### Check and Format
+
+```shell
+yarn prettier:fix
+```
+
+### Formatter (SCSS)
+
+#### Check
+
+```shell
+yarn stylelint
+```
+
+#### Check and Format
+
+```shell
+yarn stylelint:fix
+```
