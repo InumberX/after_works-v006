@@ -3,7 +3,7 @@ applications:
   - appRoot: src/app/frontend
     frontend:
       phases:
-        preBuild:
+        preTest:
           commands:
             - yarn install
         test:
@@ -11,6 +11,9 @@ applications:
             - yarn prettier
             - yarn stylelint
             - yarn lint:quiet
+        preBuild:
+          commands:
+            - yarn install
         build:
           commands:
             - yarn build
