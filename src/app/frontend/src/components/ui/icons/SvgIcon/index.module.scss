@@ -1,0 +1,137 @@
+@use '~/assets/scss/global' as *;
+
+.SvgIcon {
+  display: inline-flex;
+
+  &::before {
+    content: '';
+    display: block;
+    mask-position: center;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-size: contain;
+    transition: 0.3s background-color;
+  }
+}
+
+.SvgIcon--arrowTop {
+  &::before {
+    background-color: $palette-white;
+    height: 13px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_top.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_top.svg');
+    width: 22px;
+  }
+}
+
+.SvgIcon--arrowRight {
+  &::before {
+    background-color: $palette-white;
+    height: 22px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_right.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_right.svg');
+    width: 13px;
+  }
+}
+
+.SvgIcon--arrowBottom {
+  &::before {
+    background-color: $palette-white;
+    height: 13px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_bottom.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_bottom.svg');
+    width: 22px;
+  }
+}
+
+.SvgIcon--arrowLeft {
+  &::before {
+    background-color: $palette-white;
+    height: 22px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_left.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_left.svg');
+    width: 13px;
+  }
+}
+
+.SvgIcon--twitter {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-twitter.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-twitter.svg');
+    width: 25px;
+  }
+}
+
+.SvgIcon--instagram {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-instagram.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-instagram.svg');
+    width: 21px;
+  }
+}
+
+.SvgIcon--github {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-github.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-github.svg');
+    width: 21px;
+  }
+}
+
+.SvgIcon--youtube {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-youtube.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-youtube.svg');
+    width: 29px;
+  }
+}
+
+.SvgIcon--qiita {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-qiita.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-qiita.svg');
+    width: 26px;
+  }
+}
+
+.SvgIcon--note {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-note.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-note.svg');
+    width: 20px;
+  }
+}
+
+.SvgIcon--behance {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-behance.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-behance.svg');
+    width: 33px;
+  }
+}
+
+.SvgIcon--pixiv {
+  &::before {
+    background-color: $palette-white;
+    height: 20px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-pixiv.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-pixiv.svg');
+    width: 22px;
+  }
+}
