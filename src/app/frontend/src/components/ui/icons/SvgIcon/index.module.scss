@@ -1,5 +1,6 @@
 @use '~/assets/scss/global' as *;
 
+/* stylelint-disable declaration-block-no-duplicate-properties */
 .SvgIcon {
   display: inline-flex;
 
@@ -135,3 +136,4 @@
     width: 22px;
   }
 }
+/* stylelint-enable */
