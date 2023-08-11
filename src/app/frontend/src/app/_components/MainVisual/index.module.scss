@@ -1,0 +1,57 @@
+@use '~/assets/scss/global' as *;
+
+.MainVisual {
+  overflow: hidden;
+  position: relative;
+}
+
+.MainVisualBackground {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: -40px;
+  width: 100%;
+  z-index: $z-index-1;
+}
+
+.MainVisualBackground__image {
+  &:not(:root) {
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.MainVisual__wrapper {
+  padding-top: 64px;
+  position: relative;
+  z-index: $z-index-2;
+}
+
+.MainVisual__container {
+  align-items: center;
+  display: flex;
+  height: calc(100vh - 64px);
+  height: calc(100svh - 64px);
+  justify-content: center;
+  max-height: 720px;
+  min-height: 400px;
+  padding: 80px 0;
+}
+
+.MainVisualTitle__text {
+  text-align: center;
+
+  @include mxGetFontSize(40);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(48);
+  }
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(56);
+  }
+
+  @include mxMediaQueryLg {
+    @include mxGetFontSize(64);
+  }
+}
