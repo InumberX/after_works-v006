@@ -1,0 +1,35 @@
+@use '~/assets/scss/global' as *;
+
+.CircleButton {
+  &:not(:root) {
+    align-items: center;
+    background: linear-gradient(90deg, $gradation-primary);
+    border: none;
+    border-radius: 64px;
+    display: flex;
+    height: 48px;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    transition: 0.3s box-shadow;
+    width: 48px;
+
+    @include mxMediaQuerySm {
+      height: 56px;
+      width: 56px;
+    }
+
+    @include mxMediaQueryMd {
+      height: 64px;
+      width: 64px;
+    }
+
+    @include mxMediaHover {
+      &:hover {
+        box-shadow:
+          0 0 12px rgba($palette-sky-blue, 0.64),
+          0 0 12px rgba($palette-sky-blue, 0.64);
+      }
+    }
+  }
+}

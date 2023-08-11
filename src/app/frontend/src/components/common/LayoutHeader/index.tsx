@@ -84,29 +84,31 @@ export const LayoutHeader = () => {
   }
 
   const movePage = ({ url, id }: { url: string; id?: string }) => {
-    if (isShowMenu) {
-      hideMenu()
-    }
-
     if (id && document.querySelector(`#${id}`)) {
       if (!isShowMenu) {
         actSmoothScroll(`#${id}`)
         return
       }
 
-      setTimeout(() => {
-        actSmoothScroll(`#${id}`)
-      }, 610)
-    } else {
-      if (!isShowMenu) {
-        router.push(url)
-        return
-      }
+      hideMenu()
 
       setTimeout(() => {
-        router.push(url)
+        actSmoothScroll(`#${id}`)
       }, 310)
+
+      return
     }
+
+    if (!isShowMenu) {
+      router.push(url)
+      return
+    }
+
+    hideMenu()
+
+    setTimeout(() => {
+      router.push(url)
+    }, 310)
   }
 
   const isShowSmallMenu = useMemo(() => {
