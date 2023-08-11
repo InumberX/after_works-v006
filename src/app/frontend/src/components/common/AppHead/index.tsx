@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { SITE_URL } from '~/config/env'
+import { SITE_URL, SITE_NAME } from '~/config/env'
 
 type Props = {
   title?: string
@@ -12,8 +12,9 @@ type Props = {
   next?: string
 }
 
-const siteName = ''
-const baseDescription = ''
+const siteName = SITE_NAME
+const baseDescription =
+  '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。'
 
 export const AppHead = ({
   title,
@@ -39,7 +40,7 @@ export const AppHead = ({
     },
     title: titleText,
     description: descriptionText,
-    themeColor: '#ffffff',
+    themeColor: '#000911',
     twitter: {
       card: 'summary_large_image',
       images: ogImageUrl,
