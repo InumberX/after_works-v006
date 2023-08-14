@@ -1,0 +1,35 @@
+@use '~/assets/scss/global' as *;
+
+.Contact__contents {
+  margin-top: 40px;
+}
+
+.Contact__message {
+  text-align: center;
+
+  @include mxGetFontSize(16);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(18);
+  }
+}
+
+.ContactButton {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.ContactButton__button {
+  &:not(:root) {
+    max-width: 320px;
+  }
+}
+
+.ContactButton__icon {
+  &:not(:root) {
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+}
