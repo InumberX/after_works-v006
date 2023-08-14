@@ -1,0 +1,79 @@
+@use '~/assets/scss/global' as *;
+
+.Lead__wrapper {
+  position: relative;
+}
+
+.LeadImage {
+  display: block;
+  height: 80%;
+  left: 30%;
+  position: absolute;
+  top: 0;
+  width: 70%;
+  z-index: $z-index-1;
+
+  @include mxMediaQuerySm {
+    height: 100%;
+  }
+
+  &::after {
+    background-color: rgba($color: $palette-black, $alpha: 40%);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $z-index-2;
+  }
+}
+
+.LeadImage__image {
+  &:not(:root) {
+    object-fit: cover;
+    object-position: top center;
+    z-index: $z-index-1;
+  }
+}
+
+.Lead__container {
+  padding-top: 80px;
+  position: relative;
+  z-index: $z-index-2;
+
+  @include mxMediaQuerySm {
+    padding: 120px 0;
+  }
+
+  @include mxMediaQueryMd {
+    padding: 160px 0;
+  }
+}
+
+.LeadMessage {
+  padding-right: 20%;
+
+  @include mxMediaQuerySm {
+    padding-right: 0;
+  }
+}
+
+.LeadMessage__paragraph {
+  @include mxGetFontSize(18);
+
+  font-weight: $font-bold;
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(22);
+  }
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(26);
+  }
+
+  @include mxMediaQueryLg {
+    @include mxGetFontSize(32);
+  }
+}

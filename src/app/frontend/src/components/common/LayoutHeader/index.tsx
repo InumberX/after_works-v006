@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import { routes } from '~/config/routes'
 import { STATIC_IMAGE_DIR, SITE_NAME } from '~/config/env'
-import { LayoutInner } from '~/components/common/LayoutInner'
+import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import styles from './index.module.scss'
 import { actSmoothScroll } from '~/utils/actSmoothScroll'
 import {
