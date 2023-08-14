@@ -17,7 +17,7 @@
 .MainVisualBackground__image {
   &:not(:root) {
     object-fit: cover;
-    object-position: top center;
+    object-position: bottom center;
   }
 }
 
