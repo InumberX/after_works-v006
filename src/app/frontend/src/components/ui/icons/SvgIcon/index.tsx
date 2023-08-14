@@ -15,13 +15,25 @@ type Props = {
     | 'note'
     | 'behance'
     | 'pixiv'
+    | 'palette'
+    | 'star'
+    | 'laptop'
+    | 'person'
+  color?: 'primary'
+  size?: 'large'
   className?: string
 }
 
-export const SvgIcon = ({ className, variant }: Props) => {
+export const SvgIcon = ({ className, variant, color, size }: Props) => {
   return (
     <i
-      className={clsx(styles.SvgIcon, className, styles[`SvgIcon--${variant}`])}
+      className={clsx(
+        styles.SvgIcon,
+        className,
+        styles[`SvgIcon--${variant}`],
+        styles[`SvgIcon--${color}`],
+        styles[`SvgIcon--${size}`],
+      )}
     />
   )
 }

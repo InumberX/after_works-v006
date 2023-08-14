@@ -1,0 +1,117 @@
+@use '~/assets/scss/global' as *;
+
+.ServiceCard {
+  height: 100%;
+  padding: 1px;
+  position: relative;
+
+  &::after {
+    background-clip: border-box;
+    background-image: linear-gradient(90deg, $gradation-primary);
+    background-origin: border-box;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    /* stylelint-disable declaration-block-no-duplicate-properties */
+    mask-clip: padding-box, border-box;
+    mask-clip: padding-box, border-box;
+    mask-composite: destination-out;
+    mask-composite: exclude;
+    mask-image: linear-gradient($palette-white 0 0),
+      linear-gradient($palette-white 0 0);
+    mask-image: linear-gradient($palette-white 0 0),
+      linear-gradient($palette-white 0 0);
+    /* stylelint-enable */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $z-index-1;
+
+    @include mxMediaQuerySm {
+      border-radius: 24px;
+    }
+
+    @include mxMediaQueryMd {
+      border-radius: 32px;
+    }
+
+    @include mxMediaQueryLg {
+      border-radius: 40px;
+    }
+  }
+}
+
+.ServiceCard__container {
+  backdrop-filter: blur(20px);
+  background-color: rgba($palette-blue-charcoal, 0.32);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  position: relative;
+  z-index: $z-index-2;
+
+  @include mxMediaQuerySm {
+    border-radius: 24px;
+    padding: 24px;
+  }
+
+  @include mxMediaQueryMd {
+    border-radius: 32px;
+    padding: 32px;
+  }
+
+  @include mxMediaQueryLg {
+    border-radius: 40px;
+    padding: 40px;
+  }
+}
+
+.ServiceCardIcon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.ServiceCardTitle__text {
+  color: $palette-white;
+  font-weight: $font-bold;
+  text-align: center;
+
+  @include mxGetFontSize(20);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(24);
+  }
+}
+
+.ServiceCardDescription {
+  margin-top: 16px;
+}
+
+.ServiceCardDescription__text {
+  @include mxGetFontSize(14);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(16);
+  }
+}
+
+.ServiceCardButton {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.ServiceCardButton__button {
+  &:not(:root) {
+    max-width: 320px;
+  }
+}
