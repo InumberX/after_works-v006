@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
+import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 
 type Props = {
   className?: string
@@ -9,26 +10,23 @@ type Props = {
   titleTag?: keyof JSX.IntrinsicElements
 }
 
-export const SectionTitle = ({
-  className,
-  title,
-  subTitle,
-  titleTag,
-}: Props) => {
-  const Title = titleTag ?? 'h2'
+export const PageTitle = ({ className, title, subTitle, titleTag }: Props) => {
+  const Title = titleTag ?? 'h1'
 
   return (
-    <div className={clsx(styles.SectionTitle, className)}>
-      <div className={styles.SectionTitle__container}>
-        {subTitle && (
-          <span className={styles.SectionTitleSub}>
-            <span className={styles.SectionTitleSub__text}>{subTitle}</span>
+    <div className={clsx(styles.PageTitle, className)}>
+      <LayoutInner>
+        <div className={styles.PageTitle__container}>
+          {subTitle && (
+            <span className={styles.PageTitleSub}>
+              <span className={styles.PageTitleSub__text}>{subTitle}</span>
+            </span>
+          )}
+          <span className={styles.PageTitleMain}>
+            <Title className={styles.PageTitleMain__text}>{title}</Title>
           </span>
-        )}
-        <span className={styles.SectionTitleMain}>
-          <Title className={styles.SectionTitleMain__text}>{title}</Title>
-        </span>
-      </div>
+        </div>
+      </LayoutInner>
     </div>
   )
 }

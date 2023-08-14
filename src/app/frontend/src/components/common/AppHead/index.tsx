@@ -26,7 +26,7 @@ export const AppHead = ({
   prev,
   next,
 }: Props): Metadata => {
-  const titleText = title ? `${title}|${siteName}` : siteName
+  const titleText = title ? `${title} | ${siteName}` : siteName
   const descriptionText = description ?? baseDescription
   const ogImageUrl = ogImage ?? `${SITE_URL}/assets/img/img-ogp.png`
   const canonicalUrl = canonical ?? SITE_URL
