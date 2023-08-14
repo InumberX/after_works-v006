@@ -197,4 +197,13 @@
     width: 24px;
   }
 }
+
+.SvgIcon--mail {
+  &::before {
+    height: 24px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-mail.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-mail.svg');
+    width: 24px;
+  }
+}
 /* stylelint-enable */

@@ -19,6 +19,7 @@ type Props = {
     | 'star'
     | 'laptop'
     | 'person'
+    | 'mail'
   color?: 'primary'
   size?: 'large'
   className?: string
