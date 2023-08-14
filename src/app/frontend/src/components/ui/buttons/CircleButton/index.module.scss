@@ -27,8 +27,8 @@
     @include mxMediaHover {
       &:hover {
         box-shadow:
-          0 0 12px rgba($palette-sky-blue, 0.64),
-          0 0 12px rgba($palette-sky-blue, 0.64);
+          0 0 24px rgba($palette-heliotrope, 0.64),
+          0 0 24px rgba($palette-sky-blue, 0.64);
       }
     }
   }

@@ -1,10 +1,47 @@
 @use '~/assets/scss/global' as *;
 
 /* stylelint-disable declaration-block-no-duplicate-properties */
+.SvgIcon.SvgIcon--primary {
+  &::before {
+    background-color: $palette-sky-blue;
+  }
+}
+
+.SvgIcon.SvgIcon--large {
+  &.SvgIcon--palette {
+    &::before {
+      height: 80px;
+      width: 80px;
+    }
+  }
+
+  &.SvgIcon--star {
+    &::before {
+      height: 80px;
+      width: 80px;
+    }
+  }
+
+  &.SvgIcon--laptop {
+    &::before {
+      height: 80px;
+      width: 80px;
+    }
+  }
+
+  &.SvgIcon--person {
+    &::before {
+      height: 80px;
+      width: 80px;
+    }
+  }
+}
+
 .SvgIcon {
   display: inline-flex;
 
   &::before {
+    background-color: $palette-white;
     content: '';
     display: block;
     mask-position: center;
@@ -19,7 +56,6 @@
 
 .SvgIcon--arrowTop {
   &::before {
-    background-color: $palette-white;
     height: 13px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_top.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_top.svg');
@@ -29,7 +65,6 @@
 
 .SvgIcon--arrowRight {
   &::before {
-    background-color: $palette-white;
     height: 22px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_right.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_right.svg');
@@ -39,7 +74,6 @@
 
 .SvgIcon--arrowBottom {
   &::before {
-    background-color: $palette-white;
     height: 13px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_bottom.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_bottom.svg');
@@ -49,7 +83,6 @@
 
 .SvgIcon--arrowLeft {
   &::before {
-    background-color: $palette-white;
     height: 22px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_left.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_left.svg');
@@ -59,7 +92,6 @@
 
 .SvgIcon--twitter {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-twitter.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-twitter.svg');
@@ -69,7 +101,6 @@
 
 .SvgIcon--instagram {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-instagram.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-instagram.svg');
@@ -79,7 +110,6 @@
 
 .SvgIcon--github {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-github.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-github.svg');
@@ -89,7 +119,6 @@
 
 .SvgIcon--youtube {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-youtube.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-youtube.svg');
@@ -99,7 +128,6 @@
 
 .SvgIcon--qiita {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-qiita.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-qiita.svg');
@@ -109,7 +137,6 @@
 
 .SvgIcon--note {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-note.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-note.svg');
@@ -119,7 +146,6 @@
 
 .SvgIcon--behance {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-behance.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-behance.svg');
@@ -129,11 +155,46 @@
 
 .SvgIcon--pixiv {
   &::before {
-    background-color: $palette-white;
     height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-pixiv.svg');
     mask-image: url('#{$static-image-dir}/assets/img/icon-pixiv.svg');
     width: 22px;
+  }
+}
+
+.SvgIcon--palette {
+  &::before {
+    height: 24px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-palette.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-palette.svg');
+    width: 24px;
+  }
+}
+
+.SvgIcon--star {
+  &::before {
+    height: 24px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-star.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-star.svg');
+    width: 24px;
+  }
+}
+
+.SvgIcon--laptop {
+  &::before {
+    height: 24px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-laptop.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-laptop.svg');
+    width: 24px;
+  }
+}
+
+.SvgIcon--person {
+  &::before {
+    height: 24px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-person.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-person.svg');
+    width: 24px;
   }
 }
 /* stylelint-enable */

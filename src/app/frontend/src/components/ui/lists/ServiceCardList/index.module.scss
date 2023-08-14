@@ -1,0 +1,12 @@
+@use '~/assets/scss/global' as *;
+
+.ServiceCardList__items {
+  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 40px;
+
+  @include mxMediaQuerySm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
