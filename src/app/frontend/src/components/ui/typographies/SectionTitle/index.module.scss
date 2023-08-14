@@ -1,0 +1,49 @@
+@use '~/assets/scss/global' as *;
+
+.SectionTitleSub {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.SectionTitleSub__text {
+  background: linear-gradient(90deg, $gradation-primary);
+  background-clip: text;
+  color: $palette-sky-blue;
+  display: inline-block;
+  text-align: center;
+  -webkit-text-fill-color: transparent;
+
+  @include mxGetFontSize(16);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(20);
+  }
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(24);
+  }
+}
+
+.SectionTitleMain {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.SectionTitleMain__text {
+  color: $palette-white;
+  font-weight: $font-bold;
+  text-align: center;
+
+  @include mxGetFontSize(24);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(32);
+  }
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(40);
+  }
+}

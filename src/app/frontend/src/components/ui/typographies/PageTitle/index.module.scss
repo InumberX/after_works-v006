@@ -1,25 +1,20 @@
 @use '~/assets/scss/global' as *;
 
-.SectionTitleSub {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+.PageTitle {
+  padding-top: 64px;
+}
+
+.PageTitle__container {
+  padding: 40px 0;
+}
+
+.PageTitleSub {
+  display: block;
   margin-bottom: 4px;
 }
 
-.SectionTitleSub__text {
-  background: linear-gradient(90deg, $gradation-primary);
-  background-clip: text;
-  color: $palette-sky-blue;
-  display: inline-block;
-  text-align: center;
-  -webkit-text-fill-color: transparent;
-}
-
-.SectionTitleMain {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+.PageTitleSub__text {
+  display: block;
 
   @include mxGetFontSize(16);
 
@@ -32,10 +27,13 @@
   }
 }
 
-.SectionTitleMain__text {
+.PageTitleMain {
+  display: block;
+}
+
+.PageTitleMain__text {
   color: $palette-white;
   font-weight: $font-bold;
-  text-align: center;
 
   @include mxGetFontSize(24);
 
