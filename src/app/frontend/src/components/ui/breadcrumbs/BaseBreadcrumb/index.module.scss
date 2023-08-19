@@ -1,0 +1,81 @@
+@use '~/assets/scss/global' as *;
+
+.BaseBreadcrumb {
+  padding: 16px 0;
+}
+
+.BaseBreadcrumb__wrapper {
+  overflow-x: auto;
+
+  @include mxMediaQuerySm {
+    overflow: hidden;
+  }
+}
+
+.BaseBreadcrumb__items {
+  display: flex;
+
+  @include mxGetMarginListItems(8px, 8px);
+
+  @include mxMediaQuerySm {
+    flex-wrap: wrap;
+  }
+
+  > .BaseBreadcrumb__item {
+    &:last-of-type {
+      padding-right: 4vw;
+
+      @include mxMediaQuerySm {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.BaseBreadcrumb__item {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  @include mxGetPaddingListItem(8px, 8px);
+
+  @include mxMediaQuerySm {
+    flex-shrink: 1;
+    white-space: normal;
+  }
+}
+
+.BaseBreadcrumb__icon {
+  &:not(:root) {
+    flex-shrink: 0;
+    margin-right: 8px;
+    padding-top: 3px;
+
+    &::before {
+      height: 12px;
+      width: 7px;
+    }
+  }
+}
+
+.BaseBreadcrumb__link {
+  &:not(:root) {
+    color: $palette-white;
+    display: block;
+    text-decoration: none;
+
+    @include mxGetFontSize(12);
+
+    @include mxMediaHover {
+      &:hover {
+        color: $palette-sky-blue;
+      }
+    }
+  }
+}
+
+.BaseBreadcrumb__name {
+  display: block;
+
+  @include mxGetFontSize(12);
+}
