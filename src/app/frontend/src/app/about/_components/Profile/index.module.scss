@@ -1,0 +1,110 @@
+@use '~/assets/scss/global' as *;
+
+.ProfileTitle {
+  align-items: center;
+  display: flex;
+}
+
+.ProfileTitleImage {
+  border-radius: 120px;
+  flex-shrink: 0;
+  height: 80px;
+  overflow: hidden;
+  width: 80px;
+
+  @include mxMediaQuerySm {
+    height: 120px;
+    width: 120px;
+  }
+}
+
+.ProfileTitleImage__image {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.ProfileTitle__paragraph {
+  align-items: center;
+  display: flex;
+  margin-left: 16px;
+
+  @include mxMediaQuerySm {
+    margin-left: 40px;
+    padding: 40px 0;
+  }
+}
+
+.ProfileTitle__main {
+  @include mxGetFontSize(24);
+
+  font-weight: $font-bold;
+  margin-right: 8px;
+}
+
+.ProfileTitle__sub {
+  @include mxGetFontSize(14);
+}
+
+.ProfileInfo {
+  margin-top: 24px;
+
+  @include mxMediaQuerySm {
+    margin-top: -24px;
+    padding-left: 160px;
+  }
+
+  > .ProfileInfo__contents {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.ProfileInfo__contents {
+  display: flex;
+  margin-top: 24px;
+}
+
+.ProfileInfoTitle {
+  flex-shrink: 0;
+  margin-right: 8px;
+  min-width: 72px;
+}
+
+.ProfileInfoTitle__text {
+  @include mxGetFontSize(18);
+
+  font-weight: $font-bold;
+}
+
+.ProfileInfoDescription {
+  padding-top: 2px;
+}
+
+.ProfileInfoDescription__items {
+  > .ProfileInfoDescription__item {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.ProfileInfoDescription__item {
+  margin-top: 16px;
+  padding-left: 16px;
+  position: relative;
+
+  &::before {
+    background: linear-gradient(90deg, $gradation-primary);
+    border-radius: 8px;
+    content: '';
+    display: block;
+    height: 8px;
+    left: 0;
+    position: absolute;
+    top: 8px;
+    width: 8px;
+  }
+}
