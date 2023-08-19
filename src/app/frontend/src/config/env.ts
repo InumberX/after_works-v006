@@ -8,3 +8,10 @@ export const STATIC_IMAGE_DIR =
 
 export const SITE_NAME =
   process.env.NEXT_PUBLIC_SITE_NAME || 'AfterWorks.（開発）'
+
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  'https://afterworks.g.kuroco.app/rcms-api/6'
+
+export const GOOGLE_ANALYTICS_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || 'G-XVVDZTWTWS'

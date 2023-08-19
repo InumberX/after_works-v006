@@ -1,5 +1,11 @@
 @use '~/assets/scss/global' as *;
 
+.LayoutInner.LayoutInner--small {
+  max-width: calc(
+    $layout-inner-max-width-small + ($layout-inner-padding-md * 2)
+  );
+}
+
 .LayoutInner {
   margin: 0 auto;
   max-width: calc($layout-inner-max-width + ($layout-inner-padding-md * 2));
