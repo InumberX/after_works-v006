@@ -1,5 +1,17 @@
 @use '~/assets/scss/global' as *;
 
+.LayoutSection.LayoutSection--first {
+  padding-top: 24px;
+
+  @include mxMediaQuerySm {
+    padding-top: 32px;
+  }
+
+  @include mxMediaQueryMd {
+    padding-top: 40px;
+  }
+}
+
 .LayoutSection {
   padding: 40px 0;
 

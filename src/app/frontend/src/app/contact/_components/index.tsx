@@ -1,6 +1,6 @@
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
-import { Contact } from '~/components/common/Contact'
 import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
+import { Message } from './Message'
 
 export const Index = () => {
   return (
@@ -13,7 +13,7 @@ export const Index = () => {
           },
         ]}
       />
-      <Contact />
+      <Message />
     </>
   )
 }

@@ -5,8 +5,19 @@ import clsx from 'clsx'
 type Props = {
   children: ReactNode
   className?: string
+  size?: 'small'
 }
 
-export const LayoutInner = ({ children, className }: Props) => {
-  return <div className={clsx(styles.LayoutInner, className)}>{children}</div>
+export const LayoutInner = ({ children, className, size }: Props) => {
+  return (
+    <div
+      className={clsx(
+        styles.LayoutInner,
+        className,
+        size && styles[`LayoutInner--${size}`],
+      )}
+    >
+      {children}
+    </div>
+  )
 }
