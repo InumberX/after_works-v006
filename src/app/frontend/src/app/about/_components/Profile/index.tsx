@@ -4,7 +4,7 @@ import styles from './index.module.scss'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 
-type Props = {
+export type ProfileProps = {
   certifications: {
     name: string
     url: string
@@ -12,7 +12,7 @@ type Props = {
   skills: string[]
 }
 
-export const Profile = ({ certifications, skills }: Props) => {
+export const Profile = ({ certifications, skills }: ProfileProps) => {
   return (
     <LayoutSection className={styles.Profile}>
       <LayoutInner size='small'>

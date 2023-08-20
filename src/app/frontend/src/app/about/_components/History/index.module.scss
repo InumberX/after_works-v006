@@ -1,0 +1,223 @@
+@use '~/assets/scss/global' as *;
+
+.History__parallel {
+  display: flex;
+}
+
+.History__side {
+  flex-shrink: 0;
+}
+
+.HistoryYear {
+  left: 0;
+  position: sticky;
+  top: 80px;
+}
+
+.HistoryYear__items {
+  > .HistoryYear__item {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.HistoryYear__item {
+  margin-top: 24px;
+}
+
+.HistoryYear__title.HistoryYear__title--active {
+  .HistoryYear__button {
+    &:not(:root) {
+      background: linear-gradient(90deg, $gradation-primary);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.HistoryYear__button {
+  &:not(:root) {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    color: $palette-white;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+
+    @include mxGetFontSize(20);
+
+    @include mxMediaHover {
+      &:hover {
+        background: linear-gradient(90deg, $gradation-primary);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    @include mxMediaQuerySm {
+      @include mxGetFontSize(26);
+    }
+
+    @include mxMediaQueryMd {
+      @include mxGetFontSize(32);
+    }
+  }
+}
+
+.History__main {
+  flex-grow: 1;
+  padding-left: 40px;
+
+  @include mxMediaQuerySm {
+    padding-left: 64px;
+  }
+
+  @include mxMediaQueryMd {
+    padding-left: 80px;
+  }
+}
+
+.HistoryContens__items {
+  > .HistoryContens__item {
+    &:first-of-type {
+      margin-top: 0;
+
+      &::after {
+        height: calc(100% + 12px);
+        top: 12px;
+
+        @include mxMediaQuerySm {
+          height: calc(100% + 16px);
+          top: 16px;
+        }
+
+        @include mxMediaQueryMd {
+          height: calc(100% + 20px);
+          top: 20px;
+        }
+      }
+    }
+  }
+}
+
+.HistoryContens__item {
+  margin-top: 24px;
+  position: relative;
+
+  @include mxMediaQuerySm {
+    margin-top: 32px;
+  }
+
+  @include mxMediaQueryMd {
+    margin-top: 40px;
+  }
+
+  &::before {
+    background-color: $palette-heliotrope;
+    border-radius: 8px;
+    content: '';
+    display: block;
+    height: 8px;
+    left: -23px;
+    position: absolute;
+    top: 10px;
+    width: 8px;
+    z-index: $z-index-2;
+
+    @include mxMediaQuerySm {
+      left: -32px;
+      top: 12px;
+    }
+
+    @include mxMediaQueryMd {
+      left: -40px;
+      top: 14px;
+    }
+  }
+
+  &::after {
+    background-color: $palette-sky-blue;
+    content: '';
+    display: block;
+    height: calc(100% + 24px);
+    left: -20px;
+    position: absolute;
+    top: -24px;
+    width: 2px;
+    z-index: $z-index-1;
+
+    @include mxMediaQuerySm {
+      height: calc(100% + 32px);
+      left: -29px;
+      top: -32px;
+    }
+
+    @include mxMediaQueryMd {
+      height: calc(100% + 40px);
+      left: -37px;
+      top: -40px;
+    }
+  }
+}
+
+.HistoryContensDate {
+  align-items: center;
+  display: flex;
+  font-weight: $font-bold;
+  margin-bottom: 8px;
+
+  @include mxGetFontSize(18);
+
+  @include mxMediaQuerySm {
+    @include mxGetFontSize(20);
+
+    margin-bottom: 16px;
+  }
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(24);
+  }
+}
+
+.HistoryContensTitle__text {
+  font-weight: $font-medium;
+
+  @include mxGetFontSize(16);
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(18);
+  }
+}
+
+.HistoryContensTag {
+  margin-top: 8px;
+  padding-left: 24px;
+}
+
+.HistoryContensTagText__items {
+  display: flex;
+  flex-wrap: wrap;
+
+  > .HistoryContensTagText__item {
+    &:last-of-type {
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+.HistoryContensTagText__item {
+  @include mxGetFontSize(14);
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(16);
+  }
+
+  &::after {
+    content: '、';
+  }
+}
