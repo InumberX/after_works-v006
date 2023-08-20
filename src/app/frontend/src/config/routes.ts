@@ -56,4 +56,9 @@ export const routes: {
     id: 'contactFinish',
     url: () => `${SITE_ROOT}/contact/finish`,
   },
+  // 404
+  notFound: {
+    id: 'notFound',
+    url: () => `${SITE_ROOT}/404`,
+  },
 }
