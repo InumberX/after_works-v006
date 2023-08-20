@@ -1,0 +1,87 @@
+@use '~/assets/scss/global' as *;
+
+.ArticleCard {
+  &:not(:root) {
+    backdrop-filter: blur(20px);
+    background-color: rgba($palette-blue-charcoal, 0.32);
+    border: none;
+    border-radius: 16px;
+    color: $palette-white;
+    display: block;
+    height: 100%;
+    padding: 16px;
+    text-decoration: none;
+    transition:
+      0.3s color,
+      0.3s background-color,
+      0.3s border-radius;
+
+    @include mxGetFontSize(16);
+
+    @include mxMediaHover {
+      &:hover {
+        background-color: rgba($palette-blue-charcoal, 0.64);
+        border-radius: 32px;
+        color: $palette-sky-blue;
+
+        .ArticleCardMainVisual {
+          border-radius: 24px;
+        }
+      }
+    }
+  }
+}
+
+.ArticleCard__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ArticleCardMainVisual {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.3s border-radius;
+}
+
+.ArticleCardMainVisual__image {
+  &:not(:root) {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+}
+
+.ArticleCardDate {
+  align-items: center;
+  color: $palette-white;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+
+  @include mxGetFontSize(14);
+}
+
+.ArticleCardTitle {
+  display: block;
+}
+
+.ArticleCardTitle__text {
+  @include mxGetFontSize(16);
+
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  font-weight: $font-medium;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.ArticleCardTag {
+  margin-top: auto;
+  padding-top: 16px;
+}

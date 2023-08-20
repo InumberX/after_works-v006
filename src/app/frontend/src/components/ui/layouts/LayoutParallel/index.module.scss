@@ -1,0 +1,24 @@
+@use '~/assets/scss/global' as *;
+
+.LayoutParallel__container {
+  @include mxMediaQueryLg {
+    display: flex;
+  }
+}
+
+.LayoutParallel__main {
+  @include mxMediaQueryLg {
+    flex-grow: 1;
+  }
+}
+
+.LayoutParallel__side {
+  margin-top: 80px;
+
+  @include mxMediaQueryLg {
+    flex-shrink: 0;
+    margin-left: 40px;
+    margin-top: 0;
+    width: 300px;
+  }
+}

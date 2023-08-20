@@ -180,7 +180,7 @@ export const History = ({
 
     setTimeout(() => {
       setIsSending(false)
-    }, 1000)
+    }, 100)
   }
 
   return (
