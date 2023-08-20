@@ -1,0 +1,11 @@
+@use '~/assets/scss/global' as *;
+
+.BaseTag {
+  background-color: $palette-emperor;
+  border-radius: 100px;
+  color: $palette-mercury;
+  display: block;
+  padding: 4px 8px;
+
+  @include mxGetFontSize(12);
+}

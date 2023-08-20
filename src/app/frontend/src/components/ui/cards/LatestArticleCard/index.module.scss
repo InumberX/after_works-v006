@@ -1,0 +1,79 @@
+@use '~/assets/scss/global' as *;
+
+.LatestArticleCard {
+  &:not(:root) {
+    border: none;
+    border-radius: 0;
+    color: $palette-white;
+    display: block;
+    padding: 16px 0;
+    text-decoration: none;
+    transition: 0.3s color;
+
+    @include mxGetFontSize(14);
+
+    @include mxMediaHover {
+      &:hover {
+        color: $palette-sky-blue;
+
+        .LatestArticleCardMainVisual {
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+}
+
+.LatestArticleCard__container {
+  align-items: flex-start;
+  display: flex;
+}
+
+.LatestArticleCardMainVisual {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  display: block;
+  flex-shrink: 0;
+  margin-right: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.3s border-radius;
+  width: 96px;
+}
+
+.LatestArticleCardMainVisual__image {
+  &:not(:root) {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+}
+
+.LatestArticleCard__contents {
+  flex-grow: 1;
+}
+
+.LatestArticleCardDate {
+  align-items: center;
+  color: $palette-white;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+
+  @include mxGetFontSize(12);
+}
+
+.LatestArticleCardTitle {
+  display: block;
+}
+
+.LatestArticleCardTitle__text {
+  @include mxGetFontSize(14);
+
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  font-weight: $font-medium;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

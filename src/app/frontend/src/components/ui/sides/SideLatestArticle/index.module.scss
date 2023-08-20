@@ -1,0 +1,18 @@
+@use '~/assets/scss/global' as *;
+
+.SideLatestArticle {
+  backdrop-filter: blur(20px);
+  background-color: rgba($palette-blue-charcoal, 0.32);
+  border-radius: 16px;
+  padding: 24px 16px;
+}
+
+.SideLatestArticleTitle__text {
+  @include mxGetFontSize(20);
+
+  font-weight: $font-bold;
+}
+
+.SideLatestArticle__contents {
+  margin-top: 16px;
+}
