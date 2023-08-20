@@ -3,11 +3,11 @@ import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
 
-type Props = {
+export type LeadProps = {
   lead: string
 }
 
-export const Lead = ({ lead }: Props) => {
+export const Lead = ({ lead }: LeadProps) => {
   return (
     <LayoutSection className={styles.Lead} isFirst tag='div'>
       <LayoutInner size='small'>

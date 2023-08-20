@@ -6,9 +6,16 @@ import {
 
 export type ResponseGetAboutInfo = ApiResponseAboutData | undefined
 
-export const getAboutInfo = async (): Promise<ResponseGetAboutInfo> => {
-  const response = await fetch(`${API_URL}/about`, {
-    cache: 'no-cache',
+export const getAboutInfo = async ({
+  cnt,
+  page,
+}: {
+  cnt?: number
+  page?: number
+}): Promise<ResponseGetAboutInfo> => {
+  const param = [`cnt=${cnt || 1}`, `pageID=${page || 1}`].join('&')
+  const response = await fetch(`${API_URL}/about?${param}`, {
+    cache: 'no-store',
   })
 
   if (!response.ok) {

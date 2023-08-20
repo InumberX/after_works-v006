@@ -13,8 +13,8 @@ export const generateMetadata = (): Metadata => {
   })
 }
 
-const HomePage = () => {
+const WorksPage = () => {
   return <Index />
 }
 
-export default HomePage
+export default WorksPage
