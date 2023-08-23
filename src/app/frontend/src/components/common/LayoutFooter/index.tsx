@@ -139,6 +139,7 @@ export const LayoutFooter = () => {
         <div className={styles.LayoutFooterBackToTop__container}>
           <CircleButton
             className={styles.LayoutFooterBackToTop__button}
+            title='ページトップに戻る'
             onClick={() => {
               actSmoothScroll('#')
             }}

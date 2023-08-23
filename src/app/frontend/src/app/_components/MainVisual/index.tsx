@@ -8,7 +8,7 @@ export const MainVisual = () => {
     <div className={styles.MainVisual}>
       <figure className={styles.MainVisualBackground}>
         <Image
-          src={`${STATIC_IMAGE_DIR}/img-top-main_visual.png`}
+          src={`${STATIC_IMAGE_DIR}/img-top-main_visual.webp`}
           alt=''
           fill
           className={styles.MainVisualBackground__image}

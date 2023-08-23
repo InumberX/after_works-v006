@@ -6,7 +6,7 @@ import { GoogleAnalytics } from '~/components/common/GoogleAnalytics'
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     // eslint-disable-next-line react/no-unknown-property
-    <html lang='jp' prefix='og: http://ogp.me/ns#'>
+    <html lang='ja' prefix='og: http://ogp.me/ns#'>
       <head>
         <GoogleAnalytics />
       </head>
