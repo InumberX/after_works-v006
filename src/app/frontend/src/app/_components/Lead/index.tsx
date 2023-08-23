@@ -10,7 +10,7 @@ export const Lead = () => {
       <div className={styles.Lead__wrapper}>
         <figure className={styles.LeadImage}>
           <Image
-            src={`${STATIC_IMAGE_DIR}/img-top-lead.jpg`}
+            src={`${STATIC_IMAGE_DIR}/img-top-lead.webp`}
             alt=''
             fill
             className={styles.LeadImage__image}
