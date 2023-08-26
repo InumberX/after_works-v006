@@ -100,8 +100,12 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
       defaultPage={
         searchParams && searchParams.page ? parseInt(searchParams.page, 10) : 1
       }
+      defaultTotalPage={
+        responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0
+      }
       defaultArticleInfos={defaultBlogInfos}
       latestArticleInfos={latestBlogInfos}
+      tagPositionInfos={tagPositionInfos}
     />
   )
 }

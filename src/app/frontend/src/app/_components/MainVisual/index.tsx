@@ -12,6 +12,7 @@ export const MainVisual = () => {
           alt=''
           fill
           className={styles.MainVisualBackground__image}
+          priority
         />
       </figure>
       <div className={styles.MainVisual__wrapper}>

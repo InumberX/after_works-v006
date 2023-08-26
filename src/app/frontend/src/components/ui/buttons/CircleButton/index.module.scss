@@ -1,11 +1,81 @@
 @use '~/assets/scss/global' as *;
 
+.CircleButton.CircleButton--small {
+  &:not(:root) {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.CircleButton.CircleButton--outlined {
+  &:not(:root) {
+    background: none;
+    box-shadow: none;
+    padding: 1px;
+    position: relative;
+
+    @include mxMediaHover {
+      &:hover {
+        box-shadow: none;
+
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &::after {
+      background-clip: border-box;
+      background-image: linear-gradient(90deg, $gradation-primary);
+      background-origin: border-box;
+      border: 1px solid transparent;
+      border-radius: 100px;
+      content: '';
+      display: block;
+      height: 100%;
+      left: 0;
+      /* stylelint-disable declaration-block-no-duplicate-properties */
+      mask-clip: padding-box, border-box;
+      mask-clip: padding-box, border-box;
+      mask-composite: destination-out;
+      mask-composite: exclude;
+      mask-image: linear-gradient($palette-white 0 0),
+        linear-gradient($palette-white 0 0);
+      mask-image: linear-gradient($palette-white 0 0),
+        linear-gradient($palette-white 0 0);
+      opacity: 0;
+      /* stylelint-enable */
+      position: absolute;
+      top: 0;
+      transition: 0.3s opacity;
+      width: 100%;
+      z-index: $z-index-1;
+    }
+
+    .CircleButton__container {
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background-color: rgba($palette-blue-charcoal, 0.32);
+      border-radius: 100px;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      overflow: hidden;
+      padding: 4px;
+      position: relative;
+      width: 100%;
+      z-index: $z-index-2;
+    }
+  }
+}
+
 .CircleButton {
   &:not(:root) {
     align-items: center;
     background: linear-gradient(90deg, $gradation-primary);
     border: none;
-    border-radius: 64px;
+    border-radius: 100px;
+    color: $palette-white;
     display: flex;
     height: 48px;
     justify-content: center;
@@ -13,6 +83,8 @@
     position: relative;
     transition: 0.3s box-shadow;
     width: 48px;
+
+    @include mxGetFontSize(14);
 
     @include mxMediaQuerySm {
       height: 56px;
@@ -32,4 +104,13 @@
       }
     }
   }
+}
+
+.CircleButton__container {
+  align-items: center;
+  border-radius: 100px;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }

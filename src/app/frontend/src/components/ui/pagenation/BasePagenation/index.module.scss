@@ -1,0 +1,83 @@
+@use '~/assets/scss/global' as *;
+
+.BasePagenation__items {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.BasePagenation__item {
+  padding: 0 4px;
+
+  @include mxMediaQuerySm {
+    padding: 0 8px;
+  }
+}
+
+.BasePagenationCurrent {
+  align-items: center;
+  border-radius: 100px;
+  display: flex;
+  font-weight: $font-bold;
+  height: 40px;
+  justify-content: center;
+  padding: 1px;
+  position: relative;
+  width: 40px;
+
+  @include mxGetFontSize(14);
+
+  &::after {
+    background-clip: border-box;
+    background-image: linear-gradient(90deg, $gradation-primary);
+    background-origin: border-box;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    /* stylelint-disable declaration-block-no-duplicate-properties */
+    mask-clip: padding-box, border-box;
+    mask-clip: padding-box, border-box;
+    mask-composite: destination-out;
+    mask-composite: exclude;
+    mask-image: linear-gradient($palette-white 0 0),
+      linear-gradient($palette-white 0 0);
+    mask-image: linear-gradient($palette-white 0 0),
+      linear-gradient($palette-white 0 0);
+    /* stylelint-enable */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $z-index-1;
+  }
+}
+
+.BasePagenationCurrent__container {
+  align-items: center;
+  backdrop-filter: blur(20px);
+  background-color: rgba($palette-blue-charcoal, 0.32);
+  border-radius: 100px;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px;
+  position: relative;
+  width: 100%;
+  z-index: $z-index-2;
+}
+
+.BasePagenation__separator {
+  align-items: center;
+  display: block;
+  justify-content: center;
+  text-align: center;
+
+  @include mxGetFontSize(14);
+
+  &::before {
+    content: '…';
+  }
+}

@@ -13,7 +13,7 @@ export const actSmoothScroll = (target: string) => {
   const winY: number = window.pageYOffset || document.documentElement.scrollTop
 
   window.scrollTo({
-    top: targetPosition + winY,
+    top: targetPosition + winY - 80,
     behavior: 'smooth',
   })
 }

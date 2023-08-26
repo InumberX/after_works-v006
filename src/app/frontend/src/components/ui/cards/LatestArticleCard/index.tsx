@@ -71,7 +71,7 @@ export const LatestArticleCard = ({
             />
           ) : (
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-empty.jpg`}
+              src={`${STATIC_IMAGE_DIR}/img-empty.webp`}
               alt='After Works.'
               fill
               className={styles.LatestArticleCardMainVisual__image}
