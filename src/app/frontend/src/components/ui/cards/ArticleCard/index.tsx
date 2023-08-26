@@ -75,7 +75,7 @@ export const ArticleCard = ({
             />
           ) : (
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-empty.jpg`}
+              src={`${STATIC_IMAGE_DIR}/img-empty.webp`}
               alt='After Works.'
               fill
               className={styles.ArticleCardMainVisual__image}

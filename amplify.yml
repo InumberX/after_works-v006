@@ -5,7 +5,7 @@ applications:
       phases:
         preTest:
           commands:
-            - yarn install
+            - yarn install --frozen-lockfile
         test:
           commands:
             - yarn prettier
@@ -13,7 +13,7 @@ applications:
             - yarn lint:quiet
         preBuild:
           commands:
-            - yarn install
+            - yarn install --frozen-lockfile
         build:
           commands:
             - yarn build

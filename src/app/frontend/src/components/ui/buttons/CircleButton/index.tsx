@@ -8,6 +8,8 @@ import { EventTypes } from '~/types/event'
 import styles from './index.module.scss'
 
 type Props = {
+  variant?: 'contained' | 'outlined'
+  size?: 'small' | 'medium' | 'large'
   url?: string
   target?: AnchorTarget
   rel?: AnchorRel
@@ -20,6 +22,8 @@ type Props = {
 }
 
 export const CircleButton = ({
+  variant,
+  size,
   url,
   target,
   rel,
@@ -40,33 +44,48 @@ export const CircleButton = ({
       href={url}
       target={target}
       rel={rel}
-      className={clsx(styles.CircleButton, className)}
+      className={clsx(
+        styles.CircleButton,
+        className,
+        variant && styles[`CircleButton--${variant}`],
+        size && styles[`CircleButton--${size}`],
+      )}
       title={title}
       aria-label={title}
     >
-      {children}
+      <span className={styles.CircleButton__container}>{children}</span>
     </a>
   ) : url ? (
     <Link
       href={url}
       target={target}
       rel={rel}
-      className={clsx(styles.CircleButton, className)}
+      className={clsx(
+        styles.CircleButton,
+        className,
+        variant && styles[`CircleButton--${variant}`],
+        size && styles[`CircleButton--${size}`],
+      )}
       title={title}
       aria-label={title}
     >
-      {children}
+      <span className={styles.CircleButton__container}>{children}</span>
     </Link>
   ) : (
     <button
       type={buttonType ?? 'button'}
       onClick={onClick}
       disabled={isDisabled}
-      className={clsx(styles.CircleButton, className)}
+      className={clsx(
+        styles.CircleButton,
+        className,
+        variant && styles[`CircleButton--${variant}`],
+        size && styles[`CircleButton--${size}`],
+      )}
       title={title}
       aria-label={title}
     >
-      {children}
+      <span className={styles.CircleButton__container}>{children}</span>
     </button>
   )
 }
