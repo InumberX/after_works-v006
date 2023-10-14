@@ -81,3 +81,25 @@
     content: '…';
   }
 }
+
+.BasePagenation__prev {
+  .BasePagenation__icon:not(:root) {
+    margin-left: -2px;
+
+    &::before {
+      height: 16px;
+      width: 10px;
+    }
+  }
+}
+
+.BasePagenation__next {
+  .BasePagenation__icon:not(:root) {
+    margin-right: -2px;
+
+    &::before {
+      height: 16px;
+      width: 10px;
+    }
+  }
+}

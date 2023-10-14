@@ -1,8 +1,8 @@
 import styles from './index.module.scss'
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR } from '~/config/env'
-import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR } from '@/config/env'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 
 export const Lead = () => {
   return (

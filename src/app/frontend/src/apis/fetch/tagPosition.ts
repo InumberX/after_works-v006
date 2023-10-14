@@ -1,8 +1,8 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseTagPosition,
   ApiResponseTagPositionTag,
-} from '~/types/apis/fetch/tagPosition'
+} from '@/types/apis/fetch/tagPosition'
 
 export type ResponseGetTagPositionInfos = ApiResponseTagPositionTag[]
 

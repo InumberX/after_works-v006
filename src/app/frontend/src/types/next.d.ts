@@ -1,6 +1,6 @@
 export type NextPageProps = {
   params?: {
-    num?: string
+    [key: string]: string
   }
   searchParams?: {
     [key: string]: string

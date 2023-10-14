@@ -1,8 +1,8 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseAbout,
   ApiResponseAboutData,
-} from '~/types/apis/fetch/about'
+} from '@/types/apis/fetch/about'
 
 export type ResponseGetAboutInfo = ApiResponseAboutData | undefined
 

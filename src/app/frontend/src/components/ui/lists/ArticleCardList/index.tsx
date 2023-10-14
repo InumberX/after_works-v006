@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import {
   ArticleCard,
   ArticleCardProps,
-} from '~/components/ui/cards/ArticleCard'
+} from '@/components/ui/cards/ArticleCard'
 
 type Props = {
   className?: string

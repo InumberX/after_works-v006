@@ -1,5 +1,5 @@
-import { PageTitle } from '~/components/ui/typographies/PageTitle'
-import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
+import { PageTitle } from '@/components/ui/typographies/PageTitle'
+import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
 import { Message } from './Message'
 
 export const Index = () => {

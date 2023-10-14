@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR } from '~/config/env'
+import { STATIC_IMAGE_DIR } from '@/config/env'
 import styles from './index.module.scss'
-import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 
 export type ProfileProps = {
   certifications: {

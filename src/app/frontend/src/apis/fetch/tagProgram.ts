@@ -1,8 +1,8 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseTagProgram,
   ApiResponseTagProgramTag,
-} from '~/types/apis/fetch/tagProgram'
+} from '@/types/apis/fetch/tagProgram'
 
 export type ResponseGetTagProgramInfos = ApiResponseTagProgramTag[]
 

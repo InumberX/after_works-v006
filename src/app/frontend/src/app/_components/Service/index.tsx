@@ -1,9 +1,9 @@
 import styles from './index.module.scss'
-import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
-import { SectionTitle } from '~/components/ui/typographies/SectionTitle'
-import { ServiceCardList } from '~/components/ui/lists/ServiceCardList'
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
+import { ServiceCardList } from '@/components/ui/lists/ServiceCardList'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 
 export const Service = () => {
   return (

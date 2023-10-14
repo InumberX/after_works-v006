@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { SITE_URL, SITE_NAME } from '~/config/env'
+import { SITE_URL, SITE_NAME } from '@/config/env'
 
 type Props = {
   title?: string

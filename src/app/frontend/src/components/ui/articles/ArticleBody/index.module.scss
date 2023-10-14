@@ -1,0 +1,169 @@
+@use '~/assets/scss/global' as *;
+
+.ArticleBody__body {
+  > * {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1,
+  h2 {
+    border-top: 4px solid $palette-emperor;
+    font-weight: $font-bold;
+    margin-top: 40px;
+    padding: 16px 0 0;
+    position: relative;
+
+    @include mxGetFontSize(22);
+
+    &::before {
+      background: linear-gradient(90deg, $gradation-primary);
+      content: '';
+      display: block;
+      height: 4px;
+      left: 0;
+      position: absolute;
+      top: -4px;
+      width: 64px;
+      z-index: $z-index-1;
+    }
+  }
+
+  h3 {
+    font-weight: $font-bold;
+    margin-top: 40px;
+
+    @include mxGetFontSize(20);
+  }
+
+  h4 {
+    font-weight: $font-bold;
+    margin-top: 40px;
+
+    @include mxGetFontSize(18);
+  }
+
+  h5 {
+    font-weight: $font-bold;
+    margin-top: 40px;
+
+    @include mxGetFontSize(16);
+  }
+
+  h6 {
+    font-weight: $font-bold;
+    margin-top: 40px;
+
+    @include mxGetFontSize(16);
+  }
+
+  p {
+    margin-top: 16px;
+  }
+
+  i {
+    font-style: italic;
+    font-weight: $font-medium;
+  }
+
+  strong {
+    font-weight: $font-bold;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style: disc;
+    margin-top: 16px;
+    padding-left: 24px;
+
+    li {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    margin-top: 16px;
+    padding-left: 24px;
+
+    li {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  li {
+    margin-top: 8px;
+  }
+
+  pre {
+    background-color: $palette-emperor;
+    border: 1px solid $palette-silver-chalice;
+    display: block;
+    font-weight: $font-medium;
+    margin: 16px 0 0;
+    padding: 16px;
+
+    @include mxGetFontSize(14);
+
+    code {
+      margin-top: 0;
+
+      @include mxGetFontSize(14);
+    }
+  }
+
+  blockquote {
+    background-color: $palette-emperor;
+    border-left: 8px solid $palette-silver-chalice;
+    display: block;
+    font-weight: $font-medium;
+    margin: 16px 0 0;
+    padding: 16px;
+
+    @include mxGetFontSize(14);
+
+    p {
+      margin-top: 0;
+
+      @include mxGetFontSize(14);
+    }
+  }
+
+  img {
+    margin-top: 16px;
+  }
+
+  table {
+    background-color: $palette-emperor;
+    border: 1px solid$palette-silver-chalice;
+    margin-top: 16px;
+    width: 100%;
+
+    tbody {
+      > tr {
+        border-bottom: 1px solid $palette-silver-chalice;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        > td {
+          border-right: 1px solid $palette-silver-chalice;
+          padding: 4px;
+
+          &:last-of-type {
+            border-right: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
-import { AppHead } from '~/components/common/AppHead'
+import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '~/config/env'
-import { routes } from '~/config/routes'
+import { SITE_URL } from '@/config/env'
+import { routes } from '@/config/routes'
 
 export const generateMetadata = (): Metadata => {
   return AppHead({

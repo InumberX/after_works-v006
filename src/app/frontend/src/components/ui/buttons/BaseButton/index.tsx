@@ -1,12 +1,12 @@
 'use client'
 
 import { ReactNode, useMemo } from 'react'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
+import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
 import Link from 'next/link'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { EventTypes } from '~/types/event'
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { EventTypes } from '@/types/event'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 
 export type BaseButtonProps = {
   url?: string

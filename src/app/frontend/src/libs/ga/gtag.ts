@@ -1,4 +1,4 @@
-import { GOOGLE_ANALYTICS_ID } from '~/config/env'
+import { GOOGLE_ANALYTICS_ID } from '@/config/env'
 
 export const isActiveGA = GOOGLE_ANALYTICS_ID !== ''
 

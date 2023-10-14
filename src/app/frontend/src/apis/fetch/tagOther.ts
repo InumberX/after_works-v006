@@ -1,8 +1,8 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseTagOther,
   ApiResponseTagOtherTag,
-} from '~/types/apis/fetch/tagOther'
+} from '@/types/apis/fetch/tagOther'
 
 export type ResponseGetTagOtherInfos = ApiResponseTagOtherTag[]
 

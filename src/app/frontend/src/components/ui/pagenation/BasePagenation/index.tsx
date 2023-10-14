@@ -3,8 +3,8 @@
 import { useMemo, Fragment } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { CircleButton } from '~/components/ui/buttons/CircleButton'
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { CircleButton } from '@/components/ui/buttons/CircleButton'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 
 type Props = {
   className?: string
@@ -82,6 +82,7 @@ export const BasePagenation = ({
             <CircleButton
               className={styles.BasePagenation__prev}
               size='small'
+              variant='outlined'
               isDisabled={currentPage === 1}
               title='前のページに戻る'
               onClick={() => handleChangePage(currentPage - 1)}
@@ -231,6 +232,7 @@ export const BasePagenation = ({
             <CircleButton
               className={styles.BasePagenation__next}
               size='small'
+              variant='outlined'
               isDisabled={currentPage >= totalPage || totalPage <= 1}
               title='次のページに進む'
               onClick={() => handleChangePage(currentPage + 1)}

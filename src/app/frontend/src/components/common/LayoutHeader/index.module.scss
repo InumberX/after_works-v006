@@ -6,17 +6,6 @@
   top: 0;
   width: 100%;
   z-index: $z-index-header-1;
-
-  &::after {
-    background: linear-gradient(90deg, $gradation-primary);
-    bottom: 0;
-    content: '';
-    display: block;
-    height: 1px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
 }
 
 .LayoutHeader__wrapper {

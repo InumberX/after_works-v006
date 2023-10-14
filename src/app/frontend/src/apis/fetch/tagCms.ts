@@ -1,8 +1,8 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseTagCms,
   ApiResponseTagCmsTag,
-} from '~/types/apis/fetch/tagCms'
+} from '@/types/apis/fetch/tagCms'
 
 export type ResponseGetTagCmsInfos = ApiResponseTagCmsTag[]
 

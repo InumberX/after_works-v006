@@ -9,6 +9,7 @@
 .LayoutParallel__main {
   @include mxMediaQueryLg {
     flex-grow: 1;
+    min-width: 1px;
   }
 }
 

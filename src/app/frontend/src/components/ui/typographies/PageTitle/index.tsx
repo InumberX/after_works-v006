@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 
 type Props = {
   className?: string

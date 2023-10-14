@@ -7,17 +7,17 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
-import { routes } from '~/config/routes'
-import { STATIC_IMAGE_DIR, SITE_NAME } from '~/config/env'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { routes } from '@/config/routes'
+import { STATIC_IMAGE_DIR, SITE_NAME } from '@/config/env'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import styles from './index.module.scss'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
+import { actSmoothScroll } from '@/utils/actSmoothScroll'
 import {
   isBreakpointMdAtom,
   isBreakpointLgAtom,
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
-} from '~/store/breakpoints'
+} from '@/store/breakpoints'
 
 export const LayoutHeader = () => {
   const [isShowMenu, setIsShowMenu] = useState(false)
