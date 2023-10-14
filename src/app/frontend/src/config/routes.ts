@@ -1,9 +1,9 @@
-import { SITE_ROOT } from '~/config/env'
+import { SITE_ROOT } from '@/config/env'
 
 export const routes: {
   [key: string]: {
     id: string
-    url: ({ id }: { id?: number }) => string
+    url: ({ id }: { id?: string }) => string
   }
 } = {
   // トップ

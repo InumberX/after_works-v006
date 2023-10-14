@@ -1,8 +1,8 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseAboutHistory,
   ApiResponseAboutHistoryData,
-} from '~/types/apis/fetch/aboutHistory'
+} from '@/types/apis/fetch/aboutHistory'
 
 export type ResponseGetAboutHistoryInfo =
   | ApiResponseAboutHistoryData[]

@@ -1,7 +1,7 @@
 import styles from './index.module.scss'
-import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
-import { BaseButton } from '~/components/ui/buttons/BaseButton'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { BaseButton } from '@/components/ui/buttons/BaseButton'
 
 export const Message = () => {
   return (

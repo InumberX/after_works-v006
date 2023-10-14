@@ -1,14 +1,14 @@
 import { Metadata } from 'next'
-import { NextPageProps } from '~/types/next'
-import { AppHead } from '~/components/common/AppHead'
+import { NextPageProps } from '@/types/next'
+import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '~/config/env'
-import { routes } from '~/config/routes'
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
-import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
-import { BaseTagProps } from '~/components/ui/tags/BaseTag'
-import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import { SITE_URL } from '@/config/env'
+import { routes } from '@/config/routes'
+import { getBlogsInfos } from '@/apis/fetch/blogs'
+import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
+import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
+import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 
 export const generateMetadata = (): Metadata => {
   return AppHead({
@@ -56,7 +56,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
 
         return {
           url: routes.blogsDetail.url({
-            id: info.topics_id,
+            id: String(info.topics_id),
           }),
           ...(info.main_visual &&
             info.main_visual.url && {
@@ -80,7 +80,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
     ? responseLatestBlogInfos.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
-            id: info.topics_id,
+            id: String(info.topics_id),
           }),
           ...(info.main_visual &&
             info.main_visual.url && {

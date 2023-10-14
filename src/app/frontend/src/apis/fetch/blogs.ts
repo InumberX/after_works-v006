@@ -1,9 +1,9 @@
-import { API_URL } from '~/config/env'
+import { API_URL } from '@/config/env'
 import {
   ApiResponseBlogs,
   ApiResponseBlogsData,
   ApiResponseBlogsPageInfo,
-} from '~/types/apis/fetch/blogs'
+} from '@/types/apis/fetch/blogs'
 
 export type ResponseGetBlogsInfos =
   | {

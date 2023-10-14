@@ -166,7 +166,8 @@
 }
 
 .LayoutFooter__copy {
-  background: linear-gradient(90deg, $gradation-primary);
+  backdrop-filter: blur(20px);
+  background-color: rgba($palette-blue-charcoal, 0.8);
   padding: 24px;
 }
 
@@ -174,4 +175,12 @@
   text-align: center;
 
   @include mxGetFontSize(12);
+}
+
+.LayoutFooterCopy__text {
+  background: linear-gradient(90deg, $gradation-primary);
+  background-clip: text;
+  color: $palette-sky-blue;
+  display: inline-block;
+  -webkit-text-fill-color: transparent;
 }

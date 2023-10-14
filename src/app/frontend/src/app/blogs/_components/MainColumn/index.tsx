@@ -3,16 +3,16 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './index.module.scss'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
-import { ArticleCardList } from '~/components/ui/lists/ArticleCardList'
-import { BasePagenation } from '~/components/ui/pagenation/BasePagenation'
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { BaseTagProps } from '~/components/ui/tags/BaseTag'
-import { routes } from '~/config/routes'
-import { ApiResponseTagPositionTag } from '~/types/apis/fetch/tagPosition'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
+import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
+import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
+import { BasePagenation } from '@/components/ui/pagenation/BasePagenation'
+import { getBlogsInfos } from '@/apis/fetch/blogs'
+import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { routes } from '@/config/routes'
+import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+import { actSmoothScroll } from '@/utils/actSmoothScroll'
 
-export type ProfileProps = {
+type Props = {
   defaultArticleInfos: ArticleCardProps[]
   defaultPage: number
   defaultTotalPage: number
@@ -24,7 +24,7 @@ export const MainColumn = ({
   defaultPage,
   defaultTotalPage,
   tagPositionInfos,
-}: ProfileProps) => {
+}: Props) => {
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
   const [articleInfos, setArticleInfos] = useState(defaultArticleInfos)
@@ -70,7 +70,7 @@ export const MainColumn = ({
 
           return {
             url: routes.blogsDetail.url({
-              id: info.topics_id,
+              id: String(info.topics_id),
             }),
             ...(info.main_visual &&
               info.main_visual.url && {

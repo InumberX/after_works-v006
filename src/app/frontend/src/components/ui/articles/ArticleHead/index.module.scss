@@ -1,0 +1,103 @@
+@use '~/assets/scss/global' as *;
+
+.ArticleHeadMainVisual {
+  border-radius: 16px;
+  margin-bottom: 24px;
+  overflow: hidden;
+
+  @include mxMediaQueryMd {
+    border-radius: 24px;
+    margin-bottom: 40px;
+  }
+}
+
+.ArticleHeadMainVisual__container {
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+
+.ArticleHeadMainVisual__image {
+  &:not(:root) {
+    height: auto !important;
+    position: static !important;
+    width: 100% !important;
+  }
+}
+
+.ArticleHeadTitle__text {
+  @include mxGetFontSize(24);
+
+  font-weight: $font-bold;
+
+  @include mxMediaQueryMd {
+    @include mxGetFontSize(32);
+  }
+}
+
+.ArticleHeadInfo {
+  margin-top: 16px;
+}
+
+.ArticleHeadDate {
+  display: flex;
+
+  @include mxGetFontSize(14);
+}
+
+.ArticleHeadDate__title {
+  display: block;
+  flex-shrink: 0;
+
+  &::after {
+    content: '：';
+  }
+}
+
+.ArticleHeadDate__contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ArticleHeadDate__text {
+  display: block;
+}
+
+.ArticleHeadDate__separator {
+  display: block;
+}
+
+.ArticleHeadTag {
+  margin-top: 16px;
+}
+
+.ArticleHeadTag__items {
+  > .ArticleHeadTag__item {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.ArticleHeadTag__item {
+  margin-top: 16px;
+}
+
+.ArticleHeadTag__container {
+  display: flex;
+}
+
+.ArticleHeadTagTitle {
+  flex-shrink: 0;
+  font-weight: $font-bold;
+
+  @include mxGetFontSize(14);
+}
+
+.ArticleHeadTagTitle__text {
+  display: block;
+}
+
+.ArticleHeadTag__list {
+  flex-grow: 1;
+}

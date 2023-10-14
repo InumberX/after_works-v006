@@ -4,12 +4,12 @@ import { ReactNode } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
-import { routes } from '~/config/routes'
-import { snsInfos } from '~/config/sns'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
-import { CircleButton } from '~/components/ui/buttons/CircleButton'
+import { routes } from '@/config/routes'
+import { snsInfos } from '@/config/sns'
+import { actSmoothScroll } from '@/utils/actSmoothScroll'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import styles from './index.module.scss'
 
 export const LayoutFooter = () => {
@@ -143,6 +143,7 @@ export const LayoutFooter = () => {
             onClick={() => {
               actSmoothScroll('#')
             }}
+            variant='outlined'
           >
             <SvgIcon
               variant='arrowTop'

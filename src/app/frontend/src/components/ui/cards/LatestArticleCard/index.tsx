@@ -1,13 +1,13 @@
 'use client'
 
 import { useMemo } from 'react'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
+import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
 import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { EventTypes } from '~/types/event'
-import { STATIC_IMAGE_DIR } from '~/config/env'
+import { EventTypes } from '@/types/event'
+import { STATIC_IMAGE_DIR } from '@/config/env'
 import { format } from 'date-fns'
 
 export type LatestArticleCardProps = {

@@ -1,7 +1,7 @@
 import styles from './index.module.scss'
-import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
-import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 
 export type LeadProps = {
   lead: string

@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
-import { SectionTitle } from '~/components/ui/typographies/SectionTitle'
-import { BaseButton } from '~/components/ui/buttons/BaseButton'
-import { routes } from '~/config/routes'
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
+import { BaseButton } from '@/components/ui/buttons/BaseButton'
+import { routes } from '@/config/routes'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 
 export type Props = {
   className?: string

@@ -1,5 +1,9 @@
 @use '~/assets/scss/global' as *;
 
+.BaseBreadcrumb.BaseBreadcrumb--top {
+  padding-top: 80px;
+}
+
 .BaseBreadcrumb {
   padding: 16px 0;
 }

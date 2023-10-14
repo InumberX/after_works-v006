@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import {
   ServiceCard,
   ServiceCardProps,
-} from '~/components/ui/cards/ServiceCard'
+} from '@/components/ui/cards/ServiceCard'
 
 export type Props = {
   className?: string

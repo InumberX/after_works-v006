@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { routes } from '~/config/routes'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { routes } from '@/config/routes'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 
 type Props = {
   className?: string
@@ -11,11 +11,18 @@ type Props = {
     url?: string
     name: string
   }[]
+  isTop?: boolean
 }
 
-export const BaseBreadcrumb = ({ className, infos }: Props) => {
+export const BaseBreadcrumb = ({ className, infos, isTop }: Props) => {
   return (
-    <div className={clsx(styles.BaseBreadcrumb, className)}>
+    <div
+      className={clsx(
+        styles.BaseBreadcrumb,
+        className,
+        isTop && styles['BaseBreadcrumb--top'],
+      )}
+    >
       <div className={styles.BaseBreadcrumb__wrapper}>
         <LayoutInner>
           <div className={styles.BaseBreadcrumb__container}>

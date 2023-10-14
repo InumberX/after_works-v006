@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { BaseButton, BaseButtonProps } from '~/components/ui/buttons/BaseButton'
+import { BaseButton, BaseButtonProps } from '@/components/ui/buttons/BaseButton'
 
 export type ServiceCardProps = {
   className?: string

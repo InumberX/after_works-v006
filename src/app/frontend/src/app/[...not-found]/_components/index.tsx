@@ -1,5 +1,5 @@
-import { PageTitle } from '~/components/ui/typographies/PageTitle'
-import { Contact } from '~/components/common/Contact'
+import { PageTitle } from '@/components/ui/typographies/PageTitle'
+import { Contact } from '@/components/common/Contact'
 import { Message } from './Message'
 
 export const Index = () => {

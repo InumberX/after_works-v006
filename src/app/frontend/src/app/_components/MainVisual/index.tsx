@@ -1,7 +1,7 @@
 import styles from './index.module.scss'
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR } from '~/config/env'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR } from '@/config/env'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 
 export const MainVisual = () => {
   return (
