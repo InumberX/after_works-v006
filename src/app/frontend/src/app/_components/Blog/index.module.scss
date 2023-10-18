@@ -1,0 +1,22 @@
+@use '~/assets/scss/global' as *;
+
+.BlogSlider {
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.BlogButton {
+  margin-top: 40px;
+}
+
+.BlogButton__container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.BlogButton__button {
+  &:not(:root) {
+    max-width: 320px;
+  }
+}
