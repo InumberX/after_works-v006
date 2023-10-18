@@ -1,10 +1,9 @@
 @use '~/assets/scss/global' as *;
 
 .ArticleCardList__items {
-  column-gap: 24px;
   display: grid;
+  gap: 24px 24px;
   grid-template-columns: repeat(1, 1fr);
-  row-gap: 24px;
 
   @include mxMediaQuerySm {
     grid-template-columns: repeat(2, 1fr);
@@ -15,12 +14,10 @@
   }
 
   @include mxMediaQueryLg {
-    column-gap: 32px;
-    row-gap: 32px;
+    gap: 32px 32px;
   }
 
   @include mxMediaQueryXl {
-    column-gap: 40px;
-    row-gap: 40px;
+    gap: 40px 40px;
   }
 }
