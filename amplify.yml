@@ -5,7 +5,6 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm install -s 18.18.2
             - node -v
             - yarn install --frozen-lockfile
         test:
@@ -15,7 +14,6 @@ applications:
             - yarn lint:quiet
         preBuild:
           commands:
-            - nvm install -s 18.18.2
             - node -v
             - yarn install --frozen-lockfile
         build:
