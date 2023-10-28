@@ -5,6 +5,7 @@ applications:
       phases:
         preTest:
           commands:
+            - nvm use $VERSION_NODE_17
             - node -v
             - yarn install --frozen-lockfile
         test:
@@ -14,6 +15,7 @@ applications:
             - yarn lint:quiet
         preBuild:
           commands:
+            - nvm use $VERSION_NODE_17
             - node -v
             - yarn install --frozen-lockfile
         build:
