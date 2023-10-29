@@ -92,7 +92,7 @@ export const MainColumn = ({
       responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
     )
 
-    router.push(`${routes.blogs.url({})}?page=${newPage}`, {
+    router.push(`${routes.works.url({})}?page=${newPage}`, {
       scroll: false,
     })
 
