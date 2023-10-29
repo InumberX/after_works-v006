@@ -10,7 +10,7 @@ export const SideColumn = ({ latestArticleInfos }: Props) => {
   return (
     <div className={styles.SideColumn}>
       <div className={styles.SideColumn__container}>
-        <SideLatestArticle title='最近の実績' infos={latestArticleInfos} />
+        <SideLatestArticle title='最近の趣味' infos={latestArticleInfos} />
       </div>
     </div>
   )
