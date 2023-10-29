@@ -5,11 +5,10 @@ import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
 import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
-import { getBlogsInfos } from '@/apis/fetch/blogs'
-import { getBlogsDetailInfo } from '@/apis/fetch/blogsDetail'
+import { getHobbyInfos } from '@/apis/fetch/hobby'
+import { getHobbyDetailInfo } from '@/apis/fetch/hobbyDetail'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
-import { getTagNewsInfos } from '@/apis/fetch/tagNews'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { getTagProgramInfos } from '@/apis/fetch/tagProgram'
 import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
@@ -26,49 +25,47 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const responseBlogsDetailInfo = await getBlogsDetailInfo({
+  const responseHobbyDetailInfo = await getHobbyDetailInfo({
     id: String(id),
   })
 
-  if (!responseBlogsDetailInfo) {
+  if (!responseHobbyDetailInfo) {
     notFound()
   }
 
   return AppHead({
-    title: `${responseBlogsDetailInfo.subject} - ブログ`,
+    title: `${responseHobbyDetailInfo.subject} - 趣味`,
     description:
-      responseBlogsDetailInfo.description ??
-      `東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、${responseBlogsDetailInfo.subject}の記事を閲覧できます。`,
-    canonical: `${SITE_URL}${routes.blogsDetail.url({
+      responseHobbyDetailInfo.description ??
+      `東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、${responseHobbyDetailInfo.subject}の記事を閲覧できます。`,
+    canonical: `${SITE_URL}${routes.hobbyDetail.url({
       id: String(id),
     })}`,
-    ogImage: responseBlogsDetailInfo.main_visual.url,
+    ogImage: responseHobbyDetailInfo.main_visual.url,
   })
 }
 
-const BlogsDetailPage = async ({ params }: NextPageProps) => {
+const HobbyDetailPage = async ({ params }: NextPageProps) => {
   const id = params?.id
 
   if (!id) {
     notFound()
   }
 
-  const tagNewsInfos = await getTagNewsInfos()
   const tagPositionInfos = await getTagPositionInfos()
   const tagProgramInfos = await getTagProgramInfos()
   const tagDesignInfos = await getTagDesignInfos()
   const tagCmsInfos = await getTagCmsInfos()
   const tagOtherInfos = await getTagOtherInfos()
 
-  const responseBlogsDetailInfo = await getBlogsDetailInfo({
+  const responseHobbyDetailInfo = await getHobbyDetailInfo({
     id: String(id),
   })
 
-  if (!responseBlogsDetailInfo) {
+  if (!responseHobbyDetailInfo) {
     notFound()
   }
 
-  const tagNews: BaseTagProps[] = []
   const tagPosition: BaseTagProps[] = []
   const tagProgram: BaseTagProps[] = []
   const tagDesign: BaseTagProps[] = []
@@ -76,23 +73,11 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   const tagOther: BaseTagProps[] = []
 
   for (
-    let i = 0, iLength = responseBlogsDetailInfo.tags.length;
+    let i = 0, iLength = responseHobbyDetailInfo.tags.length;
     i < iLength;
     i = i + 1
   ) {
-    const tag = responseBlogsDetailInfo.tags[i]
-
-    for (let j = 0, jLength = tagNewsInfos.length; j < jLength; j = j + 1) {
-      const target = tagNewsInfos[j]
-
-      if (tag.tag_id === target.tag_id) {
-        tagNews.push({
-          id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-        })
-        break
-      }
-    }
+    const tag = responseHobbyDetailInfo.tags[i]
 
     for (let j = 0, jLength = tagPositionInfos.length; j < jLength; j = j + 1) {
       const target = tagPositionInfos[j]
@@ -156,43 +141,43 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   }
 
   const articleInfo: BaseArticleInfo = {
-    id: String(responseBlogsDetailInfo.topics_id),
-    ...(responseBlogsDetailInfo.main_visual && {
+    id: String(responseHobbyDetailInfo.topics_id),
+    ...(responseHobbyDetailInfo.main_visual && {
       mainVisual: {
-        src: responseBlogsDetailInfo.main_visual.url,
-        alt: responseBlogsDetailInfo.main_visual.desc,
+        src: responseHobbyDetailInfo.main_visual.url,
+        alt: responseHobbyDetailInfo.main_visual.desc,
       },
     }),
-    title: responseBlogsDetailInfo.subject,
-    body: responseBlogsDetailInfo.contents,
-    dateTitle: '投稿日',
-    startedAt: responseBlogsDetailInfo.ymd,
+    title: responseHobbyDetailInfo.subject,
+    body: responseHobbyDetailInfo.contents,
+    dateTitle: '制作期間',
+    startedAt: responseHobbyDetailInfo.started_at,
+    endedAt: responseHobbyDetailInfo.ended_at,
+    url: responseHobbyDetailInfo.url,
     bottomLink: {
-      url: routes.blogs.url({}),
-      text: 'ブログ一覧に戻る',
+      url: routes.hobby.url({}),
+      text: '趣味一覧に戻る',
     },
     tags: [
       {
-        items: [
-          ...tagNews,
-          ...tagPosition,
-          ...tagProgram,
-          ...tagDesign,
-          ...tagCms,
-          ...tagOther,
-        ],
+        title: '担当箇所',
+        items: [...tagPosition],
+      },
+      {
+        title: '使用技術',
+        items: [...tagProgram, ...tagDesign, ...tagCms, ...tagOther],
       },
     ],
   }
 
-  const responseLatestBlogInfos = await getBlogsInfos({
+  const responseLatestBlogInfos = await getHobbyInfos({
     cnt: 5,
   })
 
   const latestBlogInfos: LatestArticleCardProps[] = responseLatestBlogInfos
     ? responseLatestBlogInfos.list.map((info) => {
         return {
-          url: routes.blogsDetail.url({
+          url: routes.worksDetail.url({
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -213,4 +198,4 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   )
 }
 
-export default BlogsDetailPage
+export default HobbyDetailPage

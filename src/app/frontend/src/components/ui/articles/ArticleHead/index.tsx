@@ -20,11 +20,12 @@ type Props = {
       title?: string
       items: BaseTagProps[]
     }[]
+    url?: string
   }
 }
 
 export const ArticleHead = ({ className, info }: Props) => {
-  const { mainVisual, title, dateTitle, startedAt, endedAt, tags } = info
+  const { mainVisual, title, dateTitle, startedAt, endedAt, tags, url } = info
 
   const startedAtText = startedAt
     ? format(new Date(startedAt), 'yyyy/MM/dd')
@@ -82,6 +83,23 @@ export const ArticleHead = ({ className, info }: Props) => {
                 </time>
               )}
             </div>
+          </div>
+        )}
+
+        {url && (
+          <div className={styles.ArticleHeadUrl}>
+            <span className={styles.ArticleHeadUrl__title}>URL</span>
+
+            <span className={styles.ArticleHeadUrl__contents}>
+              <a
+                className={styles.ArticleHeadUrl__link}
+                href={url}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <span className={styles.ArticleHeadUrl__text}>{url}</span>
+              </a>
+            </span>
           </div>
         )}
       </div>

@@ -6,24 +6,24 @@ import styles from './index.module.scss'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
 import { BasePagenation } from '@/components/ui/pagenation/BasePagenation'
-import { getBlogsInfos } from '@/apis/fetch/blogs'
+import { getHobbyInfos } from '@/apis/fetch/hobby'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
-import { ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
+import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]
   defaultPage: number
   defaultTotalPage: number
-  tagNewsInfos: ApiResponseTagNewsTag[]
+  tagPositionInfos: ApiResponseTagPositionTag[]
 }
 
 export const MainColumn = ({
   defaultArticleInfos,
   defaultPage,
   defaultTotalPage,
-  tagNewsInfos,
+  tagPositionInfos,
 }: Props) => {
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
@@ -37,7 +37,7 @@ export const MainColumn = ({
 
     setIsSending(true)
 
-    const responseBlogInfos = await getBlogsInfos({
+    const responseBlogInfos = await getHobbyInfos({
       page: newPage,
     })
 
@@ -49,11 +49,11 @@ export const MainColumn = ({
             const tag = info.tags[i]
 
             for (
-              let j = 0, jLength = tagNewsInfos.length;
+              let j = 0, jLength = tagPositionInfos.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagNewsInfos[j]
+              const target = tagPositionInfos[j]
 
               if (tag.tag_id === target.tag_id) {
                 tagPosition.push({
@@ -69,7 +69,7 @@ export const MainColumn = ({
           }
 
           return {
-            url: routes.blogsDetail.url({
+            url: routes.hobbyDetail.url({
               id: String(info.topics_id),
             }),
             ...(info.main_visual &&
@@ -92,7 +92,7 @@ export const MainColumn = ({
       responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
     )
 
-    router.push(`${routes.blogs.url({})}?page=${newPage}`, {
+    router.push(`${routes.hobby.url({})}?page=${newPage}`, {
       scroll: false,
     })
 
