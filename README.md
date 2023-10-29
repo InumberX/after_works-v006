@@ -1,5 +1,65 @@
 # After Works.
 
+## Development with Node.js
+
+Start a shell such as PoworShell and navigate to the root of the project.
+
+### Installing packages
+
+Install the Node.js package.
+
+```shell
+yarn install
+```
+
+### Execution of development tasks
+
+Execute the following command.
+
+```shell
+yarn dev
+```
+
+The following URL will take you to the screen.
+
+http://localhost:3000/
+
+- Press "Ctrl + C" to stop
+
+### Syntax Check
+
+```shell
+yarn lint
+```
+
+### Formatter
+
+#### Check
+
+```shell
+yarn prettier
+```
+
+#### Check and Format
+
+```shell
+yarn prettier:fix
+```
+
+### Formatter (SCSS)
+
+#### Check
+
+```shell
+yarn stylelint
+```
+
+#### Check and Format
+
+```shell
+yarn stylelint:fix
+```
+
 ## Development with Docker
 
 Start a shell such as PoworShell and navigate to the root of the project.
