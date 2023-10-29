@@ -41,6 +41,7 @@ export const generateMetadata = async ({
     canonical: `${SITE_URL}${routes.worksDetail.url({
       id: String(id),
     })}`,
+    ogImage: responseWorksDetailInfo.main_visual.url,
   })
 }
 

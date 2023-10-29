@@ -41,6 +41,7 @@ export const generateMetadata = async ({
     canonical: `${SITE_URL}${routes.hobbyDetail.url({
       id: String(id),
     })}`,
+    ogImage: responseHobbyDetailInfo.main_visual.url,
   })
 }
 
