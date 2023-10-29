@@ -8,14 +8,14 @@ import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { MainColumn } from './MainColumn'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { SideColumn } from './SideColumn'
-import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+import { ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
 
 type Props = {
   defaultPage: number
   defaultTotalPage: number
   defaultArticleInfos: ArticleCardProps[]
   latestArticleInfos: LatestArticleCardProps[]
-  tagPositionInfos: ApiResponseTagPositionTag[]
+  tagNewsInfos: ApiResponseTagNewsTag[]
 }
 
 export const Index = ({
@@ -23,7 +23,7 @@ export const Index = ({
   defaultTotalPage,
   defaultArticleInfos,
   latestArticleInfos,
-  tagPositionInfos,
+  tagNewsInfos,
 }: Props) => {
   return (
     <>
@@ -45,7 +45,7 @@ export const Index = ({
                 defaultPage={defaultPage}
                 defaultTotalPage={defaultTotalPage}
                 defaultArticleInfos={defaultArticleInfos}
-                tagPositionInfos={tagPositionInfos}
+                tagNewsInfos={tagNewsInfos}
               />
             }
             sideColumn={<SideColumn latestArticleInfos={latestArticleInfos} />}

@@ -24,6 +24,7 @@ export type BaseArticleInfo = {
     url: string
     text: string
   }
+  url?: string
 }
 
 type Props = {
@@ -44,6 +45,7 @@ export const BaseArticle = ({ className, info }: Props) => {
             startedAt: info.startedAt,
             endedAt: info.endedAt,
             tags: info.tags,
+            url: info.url,
           }}
         />
 

@@ -5,11 +5,10 @@ import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
 import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
-import { getBlogsInfos } from '@/apis/fetch/blogs'
-import { getBlogsDetailInfo } from '@/apis/fetch/blogsDetail'
+import { getWorksInfos } from '@/apis/fetch/works'
+import { getWorksDetailInfo } from '@/apis/fetch/worksDetail'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
-import { getTagNewsInfos } from '@/apis/fetch/tagNews'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { getTagProgramInfos } from '@/apis/fetch/tagProgram'
 import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
@@ -26,48 +25,46 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const responseBlogsDetailInfo = await getBlogsDetailInfo({
+  const responseWorksDetailInfo = await getWorksDetailInfo({
     id: String(id),
   })
 
-  if (!responseBlogsDetailInfo) {
+  if (!responseWorksDetailInfo) {
     notFound()
   }
 
   return AppHead({
-    title: `${responseBlogsDetailInfo.subject} - ブログ`,
+    title: `${responseWorksDetailInfo.subject} - 実績`,
     description:
-      responseBlogsDetailInfo.description ??
-      `東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、${responseBlogsDetailInfo.subject}の記事を閲覧できます。`,
-    canonical: `${SITE_URL}${routes.blogsDetail.url({
+      responseWorksDetailInfo.description ??
+      `東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、${responseWorksDetailInfo.subject}の記事を閲覧できます。`,
+    canonical: `${SITE_URL}${routes.worksDetail.url({
       id: String(id),
     })}`,
   })
 }
 
-const BlogsDetailPage = async ({ params }: NextPageProps) => {
+const WorksDetailPage = async ({ params }: NextPageProps) => {
   const id = params?.id
 
   if (!id) {
     notFound()
   }
 
-  const tagNewsInfos = await getTagNewsInfos()
   const tagPositionInfos = await getTagPositionInfos()
   const tagProgramInfos = await getTagProgramInfos()
   const tagDesignInfos = await getTagDesignInfos()
   const tagCmsInfos = await getTagCmsInfos()
   const tagOtherInfos = await getTagOtherInfos()
 
-  const responseBlogsDetailInfo = await getBlogsDetailInfo({
+  const responseWorksDetailInfo = await getWorksDetailInfo({
     id: String(id),
   })
 
-  if (!responseBlogsDetailInfo) {
+  if (!responseWorksDetailInfo) {
     notFound()
   }
 
-  const tagNews: BaseTagProps[] = []
   const tagPosition: BaseTagProps[] = []
   const tagProgram: BaseTagProps[] = []
   const tagDesign: BaseTagProps[] = []
@@ -75,23 +72,11 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   const tagOther: BaseTagProps[] = []
 
   for (
-    let i = 0, iLength = responseBlogsDetailInfo.tags.length;
+    let i = 0, iLength = responseWorksDetailInfo.tags.length;
     i < iLength;
     i = i + 1
   ) {
-    const tag = responseBlogsDetailInfo.tags[i]
-
-    for (let j = 0, jLength = tagNewsInfos.length; j < jLength; j = j + 1) {
-      const target = tagNewsInfos[j]
-
-      if (tag.tag_id === target.tag_id) {
-        tagNews.push({
-          id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-        })
-        break
-      }
-    }
+    const tag = responseWorksDetailInfo.tags[i]
 
     for (let j = 0, jLength = tagPositionInfos.length; j < jLength; j = j + 1) {
       const target = tagPositionInfos[j]
@@ -155,43 +140,43 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   }
 
   const articleInfo: BaseArticleInfo = {
-    id: String(responseBlogsDetailInfo.topics_id),
-    ...(responseBlogsDetailInfo.main_visual && {
+    id: String(responseWorksDetailInfo.topics_id),
+    ...(responseWorksDetailInfo.main_visual && {
       mainVisual: {
-        src: responseBlogsDetailInfo.main_visual.url,
-        alt: responseBlogsDetailInfo.main_visual.desc,
+        src: responseWorksDetailInfo.main_visual.url,
+        alt: responseWorksDetailInfo.main_visual.desc,
       },
     }),
-    title: responseBlogsDetailInfo.subject,
-    body: responseBlogsDetailInfo.contents,
-    dateTitle: '投稿日',
-    startedAt: responseBlogsDetailInfo.ymd,
+    title: responseWorksDetailInfo.subject,
+    body: responseWorksDetailInfo.contents,
+    dateTitle: '制作期間',
+    startedAt: responseWorksDetailInfo.started_at,
+    endedAt: responseWorksDetailInfo.ended_at,
+    url: responseWorksDetailInfo.url,
     bottomLink: {
-      url: routes.blogs.url({}),
-      text: 'ブログ一覧に戻る',
+      url: routes.works.url({}),
+      text: '実績一覧に戻る',
     },
     tags: [
       {
-        items: [
-          ...tagNews,
-          ...tagPosition,
-          ...tagProgram,
-          ...tagDesign,
-          ...tagCms,
-          ...tagOther,
-        ],
+        title: '担当箇所',
+        items: [...tagPosition],
+      },
+      {
+        title: '使用技術',
+        items: [...tagProgram, ...tagDesign, ...tagCms, ...tagOther],
       },
     ],
   }
 
-  const responseLatestBlogInfos = await getBlogsInfos({
+  const responseLatestBlogInfos = await getWorksInfos({
     cnt: 5,
   })
 
   const latestBlogInfos: LatestArticleCardProps[] = responseLatestBlogInfos
     ? responseLatestBlogInfos.list.map((info) => {
         return {
-          url: routes.blogsDetail.url({
+          url: routes.worksDetail.url({
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -212,4 +197,4 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   )
 }
 
-export default BlogsDetailPage
+export default WorksDetailPage

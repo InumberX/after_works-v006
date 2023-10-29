@@ -1,52 +1,39 @@
-import { PageTitle } from '@/components/ui/typographies/PageTitle'
 import { Contact } from '@/components/common/Contact'
 import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutParallel } from '@/components/ui/layouts/LayoutParallel'
-import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { MainColumn } from './MainColumn'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { SideColumn } from './SideColumn'
-import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
+import { routes } from '@/config/routes'
 
 type Props = {
-  defaultPage: number
-  defaultTotalPage: number
-  defaultArticleInfos: ArticleCardProps[]
   latestArticleInfos: LatestArticleCardProps[]
-  tagPositionInfos: ApiResponseTagPositionTag[]
+  articleInfo: BaseArticleInfo
 }
 
-export const Index = ({
-  defaultPage,
-  defaultTotalPage,
-  defaultArticleInfos,
-  latestArticleInfos,
-  tagPositionInfos,
-}: Props) => {
+export const Index = ({ latestArticleInfos, articleInfo }: Props) => {
   return (
     <>
-      <PageTitle title='実績' subTitle='Works' />
       <BaseBreadcrumb
         infos={[
           {
             name: '実績',
+            url: routes.works.url({}),
+          },
+          {
+            name: articleInfo.title,
           },
         ]}
+        isTop={true}
       />
 
       <LayoutSection tag='div' isNotTopMargin>
         <LayoutInner>
           <LayoutParallel
-            mainColumn={
-              <MainColumn
-                defaultPage={defaultPage}
-                defaultTotalPage={defaultTotalPage}
-                defaultArticleInfos={defaultArticleInfos}
-                tagPositionInfos={tagPositionInfos}
-              />
-            }
+            mainColumn={<MainColumn articleInfo={articleInfo} />}
             sideColumn={<SideColumn latestArticleInfos={latestArticleInfos} />}
           />
         </LayoutInner>

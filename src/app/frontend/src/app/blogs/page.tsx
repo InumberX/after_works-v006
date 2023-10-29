@@ -6,7 +6,7 @@ import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
-import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
+import { getTagNewsInfos } from '@/apis/fetch/tagNews'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 
@@ -20,7 +20,7 @@ export const generateMetadata = (): Metadata => {
 }
 
 const BlogsPage = async ({ searchParams }: NextPageProps) => {
-  const tagPositionInfos = await getTagPositionInfos()
+  const tagNewsInfos = await getTagNewsInfos()
 
   const responseBlogInfos = await getBlogsInfos({
     ...(searchParams &&
@@ -37,11 +37,11 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
           const tag = info.tags[i]
 
           for (
-            let j = 0, jLength = tagPositionInfos.length;
+            let j = 0, jLength = tagNewsInfos.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagPositionInfos[j]
+            const target = tagNewsInfos[j]
 
             if (tag.tag_id === target.tag_id) {
               tagPosition.push({
@@ -105,7 +105,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
       }
       defaultArticleInfos={defaultBlogInfos}
       latestArticleInfos={latestBlogInfos}
-      tagPositionInfos={tagPositionInfos}
+      tagNewsInfos={tagNewsInfos}
     />
   )
 }

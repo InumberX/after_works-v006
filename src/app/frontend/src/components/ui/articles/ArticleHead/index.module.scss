@@ -67,6 +67,44 @@
   display: block;
 }
 
+.ArticleHeadUrl {
+  display: flex;
+  margin-top: 8px;
+
+  @include mxGetFontSize(14);
+}
+
+.ArticleHeadUrl__title {
+  display: block;
+  flex-shrink: 0;
+
+  &::after {
+    content: '：';
+  }
+}
+
+.ArticleHeadUrl__contents {
+  display: flex;
+}
+
+.ArticleHeadUrl__link {
+  &:not(:root) {
+    color: $palette-white;
+    display: block;
+    text-decoration: none;
+
+    @include mxMediaHover {
+      &:hover {
+        color: $palette-sky-blue;
+      }
+    }
+  }
+}
+
+.ArticleHeadUrl__text {
+  display: block;
+}
+
 .ArticleHeadTag {
   margin-top: 16px;
 }
@@ -90,6 +128,9 @@
 .ArticleHeadTagTitle {
   flex-shrink: 0;
   font-weight: $font-bold;
+  margin-right: 8px;
+  min-width: 72px;
+  padding-top: 2px;
 
   @include mxGetFontSize(14);
 }
