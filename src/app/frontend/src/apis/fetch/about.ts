@@ -13,7 +13,7 @@ export const getAboutInfo = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetAboutInfo> => {
-  const param = [`cnt=${cnt || 1}`, `pageID=${page || 1}`].join('&')
+  const param = [`cnt=${cnt ?? 1}`, `pageID=${page ?? 1}`].join('&')
   const response = await fetch(`${API_URL}/about?${param}`, {
     cache: 'no-store',
   })

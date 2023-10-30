@@ -19,8 +19,8 @@ export const getAboutHistoryInfo = async ({
 }): Promise<ResponseGetAboutHistoryInfo> => {
   const param = [
     `category_parent_id[]=${categoryId}`,
-    `cnt=${cnt || 0}`,
-    `pageID=${page || 1}`,
+    `cnt=${cnt ?? 0}`,
+    `pageID=${page ?? 1}`,
   ].join('&')
   const response = await fetch(`${API_URL}/about-history?${param}`, {
     cache: 'no-store',

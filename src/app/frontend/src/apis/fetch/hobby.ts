@@ -19,7 +19,7 @@ export const getHobbyInfos = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetHobbyInfos> => {
-  const param = [`cnt=${cnt || 12}`, `pageID=${page || 1}`].join('&')
+  const param = [`cnt=${cnt ?? 12}`, `pageID=${page ?? 1}`].join('&')
   const response = await fetch(`${API_URL}/hobby?${param}`, {
     cache: 'no-store',
   })

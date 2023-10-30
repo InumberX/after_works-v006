@@ -19,7 +19,7 @@ export const getWorksInfos = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetWorksInfos> => {
-  const param = [`cnt=${cnt || 12}`, `pageID=${page || 1}`].join('&')
+  const param = [`cnt=${cnt ?? 12}`, `pageID=${page ?? 1}`].join('&')
   const response = await fetch(`${API_URL}/works?${param}`, {
     cache: 'no-store',
   })
