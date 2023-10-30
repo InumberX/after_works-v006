@@ -22,15 +22,15 @@ export const generateMetadata = (): Metadata => {
 const WorksPage = async ({ searchParams }: NextPageProps) => {
   const tagPositionInfos = await getTagPositionInfos()
 
-  const responseBlogInfos = await getWorksInfos({
+  const responseWorksInfos = await getWorksInfos({
     ...(searchParams &&
       searchParams.page && {
         page: parseInt(searchParams.page, 10),
       }),
   })
 
-  const defaultBlogInfos: ArticleCardProps[] = responseBlogInfos
-    ? responseBlogInfos.list.map((info) => {
+  const defaultWorksInfos: ArticleCardProps[] = responseWorksInfos
+    ? responseWorksInfos.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -72,12 +72,12 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const responseLatestBlogInfos = await getWorksInfos({
+  const responseLatestWorksInfos = await getWorksInfos({
     cnt: 5,
   })
 
-  const latestBlogInfos: LatestArticleCardProps[] = responseLatestBlogInfos
-    ? responseLatestBlogInfos.list.map((info) => {
+  const latestWorksInfos: LatestArticleCardProps[] = responseLatestWorksInfos
+    ? responseLatestWorksInfos.list.map((info) => {
         return {
           url: routes.worksDetail.url({
             id: String(info.topics_id),
@@ -101,10 +101,10 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
         searchParams && searchParams.page ? parseInt(searchParams.page, 10) : 1
       }
       defaultTotalPage={
-        responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0
+        responseWorksInfos ? responseWorksInfos.pageInfo.totalPageCnt : 0
       }
-      defaultArticleInfos={defaultBlogInfos}
-      latestArticleInfos={latestBlogInfos}
+      defaultArticleInfos={defaultWorksInfos}
+      latestArticleInfos={latestWorksInfos}
       tagPositionInfos={tagPositionInfos}
     />
   )

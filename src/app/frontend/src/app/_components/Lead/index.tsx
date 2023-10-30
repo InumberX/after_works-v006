@@ -1,6 +1,6 @@
 import styles from './index.module.scss'
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR } from '@/config/env'
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 
@@ -10,7 +10,7 @@ export const Lead = () => {
       <div className={styles.Lead__wrapper}>
         <figure className={styles.LeadImage}>
           <Image
-            src={`${STATIC_IMAGE_DIR}/img-top-lead.webp`}
+            src={`${STATIC_IMAGE_DIR}/img-top-lead.webp?${CASH_BUSTER}`}
             alt=''
             fill
             className={styles.LeadImage__image}

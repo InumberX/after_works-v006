@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import { routes } from '@/config/routes'
-import { STATIC_IMAGE_DIR, SITE_NAME } from '@/config/env'
+import { STATIC_IMAGE_DIR, SITE_NAME, CASH_BUSTER } from '@/config/env'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import styles from './index.module.scss'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
@@ -135,7 +135,7 @@ export const LayoutHeader = () => {
                 className={styles.LayoutHeaderLogo__link}
               >
                 <Image
-                  src={`${STATIC_IMAGE_DIR}/img-logo.svg`}
+                  src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CASH_BUSTER}`}
                   alt={SITE_NAME}
                   width='160'
                   height='28'

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR } from '@/config/env'
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import styles from './index.module.scss'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
@@ -20,7 +20,7 @@ export const Profile = ({ certifications, skills }: ProfileProps) => {
           <div className={styles.ProfileTitle}>
             <figure className={styles.ProfileTitleImage}>
               <Image
-                src={`${STATIC_IMAGE_DIR}/img-profile.svg`}
+                src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CASH_BUSTER}`}
                 width={80}
                 height={80}
                 alt='N/NE'
