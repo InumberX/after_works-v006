@@ -7,7 +7,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import styles from './index.module.scss'
 import { EventTypes } from '@/types/event'
-import { STATIC_IMAGE_DIR } from '@/config/env'
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import { format } from 'date-fns'
 
 export type LatestArticleCardProps = {
@@ -71,7 +71,7 @@ export const LatestArticleCard = ({
             />
           ) : (
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-empty.webp`}
+              src={`${STATIC_IMAGE_DIR}/img-empty.webp?${CASH_BUSTER}`}
               alt='After Works.'
               fill
               className={styles.LatestArticleCardMainVisual__image}
@@ -145,7 +145,7 @@ export const LatestArticleCard = ({
             />
           ) : (
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-empty.jpg`}
+              src={`${STATIC_IMAGE_DIR}/img-empty.jpg?${CASH_BUSTER}`}
               alt='After Works.'
               fill
               className={styles.LatestArticleCardMainVisual__image}
@@ -219,7 +219,7 @@ export const LatestArticleCard = ({
             />
           ) : (
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-empty.jpg`}
+              src={`${STATIC_IMAGE_DIR}/img-empty.jpg?${CASH_BUSTER}`}
               alt='After Works.'
               fill
               className={styles.LatestArticleCardMainVisual__image}

@@ -22,15 +22,15 @@ export const generateMetadata = (): Metadata => {
 const HobbyPage = async ({ searchParams }: NextPageProps) => {
   const tagPositionInfos = await getTagPositionInfos()
 
-  const responseBlogInfos = await getHobbyInfos({
+  const responseHobbyInfos = await getHobbyInfos({
     ...(searchParams &&
       searchParams.page && {
         page: parseInt(searchParams.page, 10),
       }),
   })
 
-  const defaultBlogInfos: ArticleCardProps[] = responseBlogInfos
-    ? responseBlogInfos.list.map((info) => {
+  const defaultHobbyInfos: ArticleCardProps[] = responseHobbyInfos
+    ? responseHobbyInfos.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -72,12 +72,12 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const responseLatestBlogInfos = await getHobbyInfos({
+  const responseLatestHobbyInfos = await getHobbyInfos({
     cnt: 5,
   })
 
-  const latestBlogInfos: LatestArticleCardProps[] = responseLatestBlogInfos
-    ? responseLatestBlogInfos.list.map((info) => {
+  const latestHobbyInfos: LatestArticleCardProps[] = responseLatestHobbyInfos
+    ? responseLatestHobbyInfos.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
             id: String(info.topics_id),
@@ -101,10 +101,10 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
         searchParams && searchParams.page ? parseInt(searchParams.page, 10) : 1
       }
       defaultTotalPage={
-        responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0
+        responseHobbyInfos ? responseHobbyInfos.pageInfo.totalPageCnt : 0
       }
-      defaultArticleInfos={defaultBlogInfos}
-      latestArticleInfos={latestBlogInfos}
+      defaultArticleInfos={defaultHobbyInfos}
+      latestArticleInfos={latestHobbyInfos}
       tagPositionInfos={tagPositionInfos}
     />
   )

@@ -170,12 +170,12 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     ],
   }
 
-  const responseLatestBlogInfos = await getWorksInfos({
+  const responseLatestWorksInfos = await getWorksInfos({
     cnt: 5,
   })
 
-  const latestBlogInfos: LatestArticleCardProps[] = responseLatestBlogInfos
-    ? responseLatestBlogInfos.list.map((info) => {
+  const latestWorksInfos: LatestArticleCardProps[] = responseLatestWorksInfos
+    ? responseLatestWorksInfos.list.map((info) => {
         return {
           url: routes.worksDetail.url({
             id: String(info.topics_id),
@@ -194,7 +194,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     : []
 
   return (
-    <Index latestArticleInfos={latestBlogInfos} articleInfo={articleInfo} />
+    <Index latestArticleInfos={latestWorksInfos} articleInfo={articleInfo} />
   )
 }
 
