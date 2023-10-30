@@ -19,7 +19,7 @@ export const getBlogsInfos = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetBlogsInfos> => {
-  const param = [`cnt=${cnt || 12}`, `pageID=${page || 1}`].join('&')
+  const param = [`cnt=${cnt ?? 12}`, `pageID=${page ?? 1}`].join('&')
   const response = await fetch(`${API_URL}/blogs?${param}`, {
     cache: 'no-store',
   })

@@ -19,7 +19,7 @@ export const getCategoryAboutHistoryInfos = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetCategoryAboutHistory> => {
-  const param = [`cnt=${cnt || 0}`, `pageID=${page || 1}`].join('&')
+  const param = [`cnt=${cnt ?? 0}`, `pageID=${page ?? 1}`].join('&')
   const response = await fetch(`${API_URL}/categories/about-history?${param}`, {
     cache: 'no-store',
   })

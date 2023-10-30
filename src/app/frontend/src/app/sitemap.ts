@@ -39,17 +39,35 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     },
   ]
 
-  const responseBlogsInfos = await getBlogsInfos({
-    cnt: 0,
+  const responseBlogsTotalCnt = await getBlogsInfos({
+    cnt: 1,
   })
 
-  const responseWorksInfos = await getWorksInfos({
-    cnt: 0,
+  const responseBlogsInfos = responseBlogsTotalCnt
+    ? await getBlogsInfos({
+        cnt: responseBlogsTotalCnt.pageInfo.totalCnt,
+      })
+    : undefined
+
+  const responseWorksTotalCnt = await getWorksInfos({
+    cnt: 1,
   })
 
-  const responseHobbyInfos = await getHobbyInfos({
-    cnt: 0,
+  const responseWorksInfos = responseWorksTotalCnt
+    ? await getWorksInfos({
+        cnt: responseWorksTotalCnt.pageInfo.totalCnt,
+      })
+    : undefined
+
+  const responseHobbyTotalCnt = await getHobbyInfos({
+    cnt: 1,
   })
+
+  const responseHobbyInfos = responseHobbyTotalCnt
+    ? await getHobbyInfos({
+        cnt: responseHobbyTotalCnt.pageInfo.totalCnt,
+      })
+    : undefined
 
   if (responseBlogsInfos && responseBlogsInfos.list.length > 0) {
     for (
