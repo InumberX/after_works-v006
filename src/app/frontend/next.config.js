@@ -41,6 +41,14 @@ const nextConfig = {
     NEXT_PUBLIC_CASH_BUSTER: cashBuster,
     NEXT_PUBLIC_LASTMOD: lastmod,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/rss.xml',
+        destination: '/api/rss',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
