@@ -69,7 +69,7 @@ export const MainColumn = ({
           }
 
           return {
-            url: routes.blogsDetail.url({
+            url: routes.worksDetail.url({
               id: String(info.topics_id),
             }),
             ...(info.main_visual &&
