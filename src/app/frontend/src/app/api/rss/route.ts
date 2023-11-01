@@ -54,18 +54,18 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseBlogsInfos.list[i]
+      const url = `${SITE_URL}${routes.blogsDetail.url({
+        id: String(info.topics_id),
+      })}`
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
-      response.push(
-        `<link>${SITE_URL}${routes.blogsDetail.url({
-          id: String(info.topics_id),
-        })}</link>`,
-      )
+      response.push(`<link>${url}</link>`)
+      response.push(`<guid>${url}</guid>`)
       response.push(
         `<description>ブログ「${info.subject}」についての記事です。</description>`,
       )
-      response.push(`<pubDate>${info.inst_ymdhi}</pubDate>`)
+      response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
     }
   }
@@ -77,18 +77,18 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseWorksInfos.list[i]
+      const url = `<link>${SITE_URL}${routes.worksDetail.url({
+        id: String(info.topics_id),
+      })}</link>`
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
-      response.push(
-        `<link>${SITE_URL}${routes.worksDetail.url({
-          id: String(info.topics_id),
-        })}</link>`,
-      )
+      response.push(`<link>${url}</link>`)
+      response.push(`<guid>${url}</guid>`)
       response.push(
         `<description>実績「${info.subject}」についての記事です。</description>`,
       )
-      response.push(`<pubDate>${info.inst_ymdhi}</pubDate>`)
+      response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
     }
   }
@@ -100,18 +100,18 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseHobbyInfos.list[i]
+      const url = `<guid>${SITE_URL}${routes.hobbyDetail.url({
+        id: String(info.topics_id),
+      })}</guid>`
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
-      response.push(
-        `<link>${SITE_URL}${routes.hobbyDetail.url({
-          id: String(info.topics_id),
-        })}</link>`,
-      )
+      response.push(`<link>${url}</link>`)
+      response.push(`<guid>${url}</guid>`)
       response.push(
         `<description>趣味「${info.subject}」についての記事です。</description>`,
       )
-      response.push(`<pubDate>${info.inst_ymdhi}</pubDate>`)
+      response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
     }
   }
