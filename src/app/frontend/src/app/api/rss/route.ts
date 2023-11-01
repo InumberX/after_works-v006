@@ -77,9 +77,9 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseWorksInfos.list[i]
-      const url = `<link>${SITE_URL}${routes.worksDetail.url({
+      const url = `${SITE_URL}${routes.worksDetail.url({
         id: String(info.topics_id),
-      })}</link>`
+      })}`
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
@@ -100,9 +100,9 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseHobbyInfos.list[i]
-      const url = `<guid>${SITE_URL}${routes.hobbyDetail.url({
+      const url = `${SITE_URL}${routes.hobbyDetail.url({
         id: String(info.topics_id),
-      })}</guid>`
+      })}`
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
