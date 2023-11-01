@@ -13,7 +13,7 @@ type Props = {
 }
 
 const siteName = SITE_NAME
-const baseDescription =
+export const baseDescription =
   '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。'
 
 export const AppHead = ({
