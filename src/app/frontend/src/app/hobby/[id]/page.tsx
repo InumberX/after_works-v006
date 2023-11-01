@@ -177,7 +177,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
   const latestHobbyInfos: LatestArticleCardProps[] = responseLatestHobbyInfos
     ? responseLatestHobbyInfos.list.map((info) => {
         return {
-          url: routes.worksDetail.url({
+          url: routes.hobbyDetail.url({
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
