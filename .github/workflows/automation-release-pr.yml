@@ -18,7 +18,7 @@ jobs:
       - name: Check if pr exists
         id: check_pr
         run: |
-          pr_title='release'
+          pr_title='Release'
           base_branch='main'
           echo "::set-output name=count::$(gh pr list -S ${pr_title}' in:title' -B $base_branch | wc -l)"
           echo "::set-output name=pr_title::$pr_title"
