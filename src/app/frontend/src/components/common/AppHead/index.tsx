@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import { SITE_URL, SITE_NAME } from '@/config/env'
 
 type Props = {
@@ -35,14 +35,16 @@ export const AppHead = ({
 
   const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
+    /*
     viewport:
       'width=device-width, initial-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover',
+      */
     formatDetection: {
       telephone: false,
     },
     title: titleText,
     description: descriptionText,
-    themeColor: '#000911',
+    // themeColor: '#000911',
     twitter: {
       card: 'summary_large_image',
       images: ogImageUrl,
@@ -68,4 +70,12 @@ export const AppHead = ({
   }
 
   return metadata
+}
+
+export const viewport: Viewport = {
+  themeColor: '#000911',
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: 'cover',
 }
