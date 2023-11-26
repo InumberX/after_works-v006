@@ -1,3 +1,13 @@
+type SnsKey =
+  | 'x'
+  | 'instagram'
+  | 'github'
+  | 'youtube'
+  | 'qiita'
+  | 'note'
+  | 'behance'
+  | 'pixiv'
+
 type SnsInfo = {
   id: string
   url: string
@@ -5,12 +15,12 @@ type SnsInfo = {
 }
 
 export const snsInfos: {
-  [key: string]: SnsInfo
+  [key in SnsKey]: SnsInfo
 } = {
-  twitter: {
-    id: 'twitter',
+  x: {
+    id: 'x',
     url: 'https://twitter.com/InumberX/',
-    title: 'Twitter',
+    title: 'X',
   },
   instagram: {
     id: 'instagram',

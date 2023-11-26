@@ -10,8 +10,9 @@ $palette-emperor: #505050;
 $palette-sky-blue: #73d1ed;
 $palette-chambray: #2d507b;
 $palette-heliotrope: #e050f3;
-$palette-twitter: #1c9cef;
+$palette-x: #000;
 $palette-facebook: #1877f2;
 $palette-line: #00b900;
-$gradation-primary: $palette-heliotrope 0,
+$gradation-primary:
+  $palette-heliotrope 0,
   $palette-sky-blue 100%;

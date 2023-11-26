@@ -7,7 +7,7 @@ type Props = {
     | 'arrowRight'
     | 'arrowBottom'
     | 'arrowLeft'
-    | 'twitter'
+    | 'x'
     | 'instagram'
     | 'github'
     | 'youtube'

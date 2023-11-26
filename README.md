@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is my portfolio website.  
+This repository is my portfolio site.  
 https://afterworks.jp/
 
 ## Structure Diagram
