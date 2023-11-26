@@ -90,12 +90,12 @@
   }
 }
 
-.SvgIcon--twitter {
+.SvgIcon--x {
   &::before {
     height: 20px;
-    mask-image: url('#{$static-image-dir}/assets/img/icon-twitter.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-twitter.svg');
-    width: 25px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-x.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-x.svg');
+    width: 20px;
   }
 }
 
