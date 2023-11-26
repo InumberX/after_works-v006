@@ -61,12 +61,10 @@ export const LayoutFooter = () => {
     icon: ReactNode
   }[] = [
     {
-      id: snsInfos.twitter.id,
-      url: snsInfos.twitter.url,
-      title: snsInfos.twitter.title,
-      icon: (
-        <SvgIcon variant='twitter' className={styles.LayoutFooterSns__icon} />
-      ),
+      id: snsInfos.x.id,
+      url: snsInfos.x.url,
+      title: snsInfos.x.title,
+      icon: <SvgIcon variant='x' className={styles.LayoutFooterSns__icon} />,
     },
     {
       id: snsInfos.instagram.id,

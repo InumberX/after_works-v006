@@ -2,6 +2,15 @@
 
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/InumberX/after_works-v006) ![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/InumberX/after_works-v006) ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/InumberX/after_works-v006) ![GitHub issues](https://img.shields.io/github/issues/InumberX/after_works-v006) ![GitHub closed issues](https://img.shields.io/github/issues-closed/InumberX/after_works-v006) ![GitHub pull requests](https://img.shields.io/github/issues-pr/InumberX/after_works-v006) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/InumberX/after_works-v006)
 
+## Overview
+
+This repository is my portfolio site.  
+https://afterworks.jp/
+
+## Structure Diagram
+
+![Structure Diagram](readme/img/configuration_diagram.jpg)
+
 ## Development with Node.js
 
 Start a shell such as PoworShell and navigate to the root of the project.

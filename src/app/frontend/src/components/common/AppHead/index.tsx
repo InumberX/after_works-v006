@@ -46,7 +46,7 @@ export const AppHead = ({
     description: descriptionText,
     // themeColor: '#000911',
     twitter: {
-      card: 'summary_large_image',
+      card: 'summary',
       images: ogImageUrl,
       title: titleText,
       description: descriptionText,
