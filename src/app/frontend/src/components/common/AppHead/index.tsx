@@ -1,5 +1,6 @@
 import { Metadata, Viewport } from 'next'
 import { SITE_URL, SITE_NAME } from '@/config/env'
+import { getCurrentLocale } from '@/locales/server'
 
 type Props = {
   title?: string
@@ -13,8 +14,9 @@ type Props = {
 }
 
 const siteName = SITE_NAME
-export const baseDescription =
-  '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。'
+export const baseDescriptions = {
+  ja: '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。',
+}
 
 export const AppHead = ({
   title,
@@ -26,10 +28,11 @@ export const AppHead = ({
   prev,
   next,
 }: Props): Metadata => {
+  const locale = getCurrentLocale()
   const titleText = title
     ? `${title} | ${siteName}`
     : `${siteName} - N/NE's Portfolio Site`
-  const descriptionText = description ?? baseDescription
+  const descriptionText = description ?? baseDescriptions[locale]
   const ogImageUrl = ogImage ?? `${SITE_URL}/assets/img/img-ogp.png`
   const canonicalUrl = canonical ?? SITE_URL
 

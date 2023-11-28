@@ -23,9 +23,9 @@ export const LayoutFooter = () => {
     elmId?: string
   }[] = [
     {
-      id: routes.top.id,
+      id: routes.home.id,
       title: 'トップ',
-      url: routes.top.url({}),
+      url: routes.home.url({}),
     },
     {
       id: routes.blogs.id,
