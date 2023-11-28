@@ -34,9 +34,9 @@ export const LayoutHeader = () => {
     elmId?: string
   }[] = [
     {
-      id: routes.top.id,
+      id: routes.home.id,
       title: 'トップ',
-      url: routes.top.url({}),
+      url: routes.home.url({}),
     },
     {
       id: routes.blogs.id,
@@ -131,7 +131,7 @@ export const LayoutHeader = () => {
           <div className={styles.LayoutHeader__container}>
             <div className={styles.LayoutHeaderLogo}>
               <Link
-                href={routes.top.url({})}
+                href={routes.home.url({})}
                 className={styles.LayoutHeaderLogo__link}
               >
                 <Image

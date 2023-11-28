@@ -38,7 +38,7 @@ export const BaseBreadcrumb = ({ className, infos, isTop }: Props) => {
                 itemType='http://schema.org/ListItem'
               >
                 <Link
-                  href={routes.top.url({})}
+                  href={routes.home.url({})}
                   className={styles.BaseBreadcrumb__link}
                   itemProp='item'
                 >
