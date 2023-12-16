@@ -1,5 +1,6 @@
 export default {
   home: {
+    title: 'ホーム',
     blog: {
       title: 'ブログ',
       subTitle: 'Blog',
@@ -164,6 +165,22 @@ export default {
       text: `お探しのページは削除されたか、一時的にご利用できない可能性があります。
 お探しのページのURLが正しいかどうかご確認ください。`,
       buttonText: 'トップに戻る',
+    },
+  },
+  components: {
+    contact: {
+      title: 'お問い合わせ',
+      subTitle: 'Contact',
+      message: `「ランディングページを制作してほしい」、「WordPressを使って更新性の高いWebサイトを作りたい」、
+「JavaScriptを用いてWebサイトにリッチな表現を取り入れてほしい」などお客様の様々なご要望にお応えいたします。
+また、デザインのみ、コーディングのみ行ってほしいといったご依頼にも柔軟に対応できます。
+まずはお気軽にお問い合わせください。`,
+      buttonText: 'お問い合わせ',
+    },
+    basePagenation: {
+      buttonText: '{pageNumber}ページ目を表示する',
+      prevButtonText: '前のページに戻る',
+      nextButtonText: '次のページに進む',
     },
   },
 } as const
