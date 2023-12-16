@@ -11,8 +11,10 @@ import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import styles from './index.module.scss'
+import { useI18n } from '@/locales/client'
 
 export const LayoutFooter = () => {
+  const t = useI18n()
   const router = useRouter()
   const currentYear: number = new Date().getFullYear()
 
@@ -24,32 +26,32 @@ export const LayoutFooter = () => {
   }[] = [
     {
       id: routes.home.id,
-      title: 'トップ',
+      title: t('home.title'),
       url: routes.home.url({}),
     },
     {
       id: routes.blogs.id,
-      title: 'ブログ',
+      title: t('blogs.title'),
       url: routes.blogs.url({}),
     },
     {
       id: routes.about.id,
-      title: '経歴',
+      title: t('about.title'),
       url: routes.about.url({}),
     },
     {
       id: routes.works.id,
-      title: '実績',
+      title: t('works.title'),
       url: routes.works.url({}),
     },
     {
       id: routes.hobby.id,
-      title: '趣味',
+      title: t('hobby.title'),
       url: routes.hobby.url({}),
     },
     {
       id: routes.contact.id,
-      title: 'お問い合わせ',
+      title: t('contact.title'),
       url: routes.contact.url({}),
     },
   ]

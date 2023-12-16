@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import styles from './index.module.scss'
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { useI18n } from '@/locales/client'
 
 type Props = {
   className?: string
@@ -26,6 +27,8 @@ const BasePagenationItem = ({
   className?: string
   handleChangePage: (newPage: number) => void
 }) => {
+  const t = useI18n()
+
   return (
     <li
       className={clsx(
@@ -49,7 +52,9 @@ const BasePagenationItem = ({
           className={styles.BasePagenation__button}
           variant='outlined'
           size='small'
-          title={`${pageNumber}ページ目を表示する`}
+          title={t('components.basePagenation.buttonText', {
+            pageNumber,
+          })}
           onClick={() => handleChangePage(pageNumber)}
         >
           <span className={styles.BasePagenation__icon}>{pageNumber}</span>
@@ -65,6 +70,8 @@ export const BasePagenation = ({
   totalPage,
   handleChangePage,
 }: Props) => {
+  const t = useI18n()
+
   const totalPageArray = useMemo(() => {
     return [...(Array(totalPage) as number[])].map((_, i) => i + 1)
   }, [totalPage])
@@ -84,7 +91,7 @@ export const BasePagenation = ({
               size='small'
               variant='outlined'
               isDisabled={currentPage === 1}
-              title='前のページに戻る'
+              title={t('components.basePagenation.prevButtonText')}
               onClick={() => handleChangePage(currentPage - 1)}
             >
               <SvgIcon
@@ -234,7 +241,7 @@ export const BasePagenation = ({
               size='small'
               variant='outlined'
               isDisabled={currentPage >= totalPage || totalPage <= 1}
-              title='次のページに進む'
+              title={t('components.basePagenation.nextButtonText')}
               onClick={() => handleChangePage(currentPage + 1)}
             >
               <SvgIcon
