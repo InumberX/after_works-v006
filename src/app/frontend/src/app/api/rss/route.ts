@@ -4,7 +4,7 @@ import { routes } from '@/config/routes'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getWorksInfos } from '@/apis/fetch/works'
 import { getHobbyInfos } from '@/apis/fetch/hobby'
-import { baseDescription } from '@/components/common/AppHead'
+import { baseDescriptions } from '@/components/common/AppHead'
 
 export const GET = async () => {
   const response: string[] = [
@@ -13,7 +13,7 @@ export const GET = async () => {
     '<channel>',
     `<title>${SITE_NAME}</title>`,
     `<link>${SITE_URL}</link>`,
-    `<description>${baseDescription}</description>`,
+    `<description>${baseDescriptions.ja}</description>`,
     '<language>ja-JP</language>',
   ]
 

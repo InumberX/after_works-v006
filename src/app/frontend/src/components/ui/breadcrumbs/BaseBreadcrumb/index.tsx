@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 import { routes } from '@/config/routes'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { getI18n } from '@/locales/server'
 
 type Props = {
   className?: string
@@ -14,7 +15,9 @@ type Props = {
   isTop?: boolean
 }
 
-export const BaseBreadcrumb = ({ className, infos, isTop }: Props) => {
+export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
+  const t = await getI18n()
+
   return (
     <div
       className={clsx(
@@ -38,12 +41,12 @@ export const BaseBreadcrumb = ({ className, infos, isTop }: Props) => {
                 itemType='http://schema.org/ListItem'
               >
                 <Link
-                  href={routes.top.url({})}
+                  href={routes.home.url({})}
                   className={styles.BaseBreadcrumb__link}
                   itemProp='item'
                 >
                   <span className={styles.BaseBreadcrumb__name} itemProp='name'>
-                    トップ
+                    {t('home.title')}
                   </span>
                 </Link>
                 <meta itemProp='position' content='1' />

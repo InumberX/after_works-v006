@@ -18,8 +18,10 @@ import {
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
 } from '@/store/breakpoints'
+import { useI18n } from '@/locales/client'
 
 export const LayoutHeader = () => {
+  const t = useI18n()
   const [isShowMenu, setIsShowMenu] = useState(false)
   const router = useRouter()
   const [isBreakpointMd] = useAtom(isBreakpointMdAtom)
@@ -34,33 +36,33 @@ export const LayoutHeader = () => {
     elmId?: string
   }[] = [
     {
-      id: routes.top.id,
-      title: 'トップ',
-      url: routes.top.url({}),
+      id: routes.home.id,
+      title: t('home.title'),
+      url: routes.home.url({}),
     },
     {
       id: routes.blogs.id,
-      title: 'ブログ',
+      title: t('blogs.title'),
       url: routes.blogs.url({}),
     },
     {
       id: routes.about.id,
-      title: '経歴',
+      title: t('about.title'),
       url: routes.about.url({}),
     },
     {
       id: routes.works.id,
-      title: '実績',
+      title: t('works.title'),
       url: routes.works.url({}),
     },
     {
       id: routes.hobby.id,
-      title: '趣味',
+      title: t('hobby.title'),
       url: routes.hobby.url({}),
     },
     {
       id: routes.contact.id,
-      title: 'お問い合わせ',
+      title: t('contact.title'),
       url: routes.contact.url({}),
     },
   ]
@@ -131,7 +133,7 @@ export const LayoutHeader = () => {
           <div className={styles.LayoutHeader__container}>
             <div className={styles.LayoutHeaderLogo}>
               <Link
-                href={routes.top.url({})}
+                href={routes.home.url({})}
                 className={styles.LayoutHeaderLogo__link}
               >
                 <Image

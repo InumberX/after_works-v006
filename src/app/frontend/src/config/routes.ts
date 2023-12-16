@@ -1,14 +1,27 @@
 import { SITE_ROOT } from '@/config/env'
 
+type RouteKey =
+  | 'home'
+  | 'blogs'
+  | 'blogsDetail'
+  | 'about'
+  | 'works'
+  | 'worksDetail'
+  | 'hobby'
+  | 'hobbyDetail'
+  | 'contact'
+  | 'contactFinish'
+  | 'notFound'
+
 export const routes: {
-  [key: string]: {
+  [key in RouteKey]: {
     id: string
     url: ({ id }: { id?: string }) => string
   }
 } = {
   // トップ
-  top: {
-    id: 'top',
+  home: {
+    id: 'home',
     url: () => `${SITE_ROOT}/`,
   },
   // ブログ

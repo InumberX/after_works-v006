@@ -8,7 +8,7 @@ import { getHobbyInfos } from '@/apis/fetch/hobby'
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const sitemapInfos: MetadataRoute.Sitemap = [
     {
-      url: `${SITE_URL}${routes.top.url({})}`,
+      url: `${SITE_URL}${routes.home.url({})}`,
       lastModified: LASTMOD,
       priority: 1,
     },

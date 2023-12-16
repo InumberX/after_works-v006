@@ -6,34 +6,35 @@ import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { routes } from '@/config/routes'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { getScopedI18n } from '@/locales/server'
+import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 
 export type Props = {
   className?: string
 }
 
-export const Contact = ({ className }: Props) => {
+export const Contact = async ({ className }: Props) => {
+  const scopedT = await getScopedI18n('components.contact')
+
   return (
     <LayoutSection className={clsx(styles.Contact, className)}>
       <LayoutInner>
         <div className={styles.Contact__container}>
-          <SectionTitle subTitle='Contact' title='お問い合わせ' />
+          <SectionTitle
+            subTitle={scopedT('subTitle')}
+            title={scopedT('title')}
+          />
 
           <div className={styles.Contact__contents}>
             <p className={styles.Contact__message}>
-              「ランディングページを制作してほしい」、「WordPressを使って更新性の高いWebサイトを作りたい」、
-              <br />
-              「JavaScriptを用いてWebサイトにリッチな表現を取り入れてほしい」などお客様の様々なご要望にお応えいたします。
-              <br />
-              また、デザインのみ、コーディングのみ行ってほしいといったご依頼にも柔軟に対応できます。
-              <br />
-              まずはお気軽にお問い合わせください。
+              <ReplaceNewLineText text={scopedT('message')} />
             </p>
 
             <div className={styles.ContactButton}>
               <BaseButton
                 className={styles.ContactButton__button}
                 url={routes.contact.url({})}
-                text='お問い合わせ'
+                text={scopedT('buttonText')}
                 isRightArrow
                 leftElm={
                   <SvgIcon
