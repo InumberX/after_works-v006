@@ -11,6 +11,7 @@ import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
 import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
+import { useCurrentLocale } from '@/locales/client'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]
@@ -25,6 +26,7 @@ export const MainColumn = ({
   defaultTotalPage,
   tagPositionInfos,
 }: Props) => {
+  const locale = useCurrentLocale()
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
   const [articleInfos, setArticleInfos] = useState(defaultArticleInfos)
@@ -70,6 +72,7 @@ export const MainColumn = ({
 
           return {
             url: routes.hobbyDetail.url({
+              locale,
               id: String(info.topics_id),
             }),
             ...(info.main_visual &&
@@ -92,9 +95,14 @@ export const MainColumn = ({
       responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
     )
 
-    router.push(`${routes.hobby.url({})}?page=${newPage}`, {
-      scroll: false,
-    })
+    router.push(
+      `${routes.hobby.url({
+        locale,
+      })}?page=${newPage}`,
+      {
+        scroll: false,
+      },
+    )
 
     setTimeout(() => {
       actSmoothScroll('#main-column-container')

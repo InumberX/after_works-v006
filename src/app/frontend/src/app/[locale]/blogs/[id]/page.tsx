@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { NextPageProps } from '@/types/next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getBlogsDetailInfo } from '@/apis/fetch/blogsDetail'
@@ -16,7 +15,7 @@ import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async ({
   params,
@@ -44,9 +43,11 @@ export const generateMetadata = async ({
       scopedT('description', {
         title: responseBlogsDetailInfo.subject,
       }),
-    canonical: `${SITE_URL}${routes.blogsDetail.url({
+    canonical: routes.blogsDetail.url({
+      isFullPath: true,
+      locale: getCurrentLocale(),
       id: String(id),
-    })}`,
+    }),
     ogImage: responseBlogsDetailInfo.main_visual.url,
   })
 }
@@ -175,7 +176,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     dateTitle: scopedT('dateTitle'),
     startedAt: responseBlogsDetailInfo.ymd,
     bottomLink: {
-      url: routes.blogs.url({}),
+      url: routes.blogs.url({
+        locale: getCurrentLocale(),
+      }),
       text: scopedT('bottomLinkText'),
     },
     tags: [
@@ -200,6 +203,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     ? responseLatestBlogsInfos.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
+            locale: getCurrentLocale(),
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&

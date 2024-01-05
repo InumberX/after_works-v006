@@ -8,7 +8,7 @@ import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { SideColumn } from './SideColumn'
 import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
 import { routes } from '@/config/routes'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 type Props = {
   latestArticleInfos: LatestArticleCardProps[]
@@ -24,7 +24,9 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
         infos={[
           {
             name: blogsScopedT('pageTitle'),
-            url: routes.blogs.url({}),
+            url: routes.blogs.url({
+              locale: getCurrentLocale(),
+            }),
           },
           {
             name: articleInfo.title,

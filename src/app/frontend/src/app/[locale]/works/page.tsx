@@ -2,14 +2,13 @@ import { Metadata } from 'next'
 import { NextPageProps } from '@/types/next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getWorksInfos } from '@/apis/fetch/works'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const scopedT = await getScopedI18n('works')
@@ -17,7 +16,10 @@ export const generateMetadata = async (): Promise<Metadata> => {
   return AppHead({
     title: scopedT('title'),
     description: scopedT('description'),
-    canonical: `${SITE_URL}${routes.works.url({})}`,
+    canonical: routes.works.url({
+      isFullPath: true,
+      locale: getCurrentLocale(),
+    }),
   })
 }
 
@@ -58,6 +60,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
 
         return {
           url: routes.worksDetail.url({
+            locale: getCurrentLocale(),
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -82,6 +85,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
     ? responseLatestWorksInfos.list.map((info) => {
         return {
           url: routes.worksDetail.url({
+            locale: getCurrentLocale(),
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&

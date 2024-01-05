@@ -6,7 +6,7 @@ import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleSlider } from '@/components/ui/sliders/ArticleSlider'
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { routes } from '@/config/routes'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 type Props = {
   articleInfos: ArticleCardProps[]
@@ -41,7 +41,9 @@ export const Blog = async ({ articleInfos }: Props) => {
             <div className={styles.BlogButton__container}>
               <BaseButton
                 className={styles.BlogButton__button}
-                url={routes.blogs.url({})}
+                url={routes.blogs.url({
+                  locale: getCurrentLocale(),
+                })}
                 text={scopedT('listPageButtonText')}
                 isRightArrow
               />

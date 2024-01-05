@@ -128,8 +128,6 @@
 .ArticleHeadTagTitle {
   flex-shrink: 0;
   font-weight: $font-bold;
-  margin-right: 8px;
-  min-width: 72px;
   padding-top: 2px;
 
   @include mxGetFontSize(14);
@@ -137,6 +135,10 @@
 
 .ArticleHeadTagTitle__text {
   display: block;
+
+  &::after {
+    content: '：';
+  }
 }
 
 .ArticleHeadTag__list {

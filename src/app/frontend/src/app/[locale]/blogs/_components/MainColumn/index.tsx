@@ -11,6 +11,7 @@ import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
 import { ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
+import { useCurrentLocale } from '@/locales/client'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]
@@ -25,6 +26,7 @@ export const MainColumn = ({
   defaultTotalPage,
   tagNewsInfos,
 }: Props) => {
+  const locale = useCurrentLocale()
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
   const [articleInfos, setArticleInfos] = useState(defaultArticleInfos)
@@ -70,6 +72,7 @@ export const MainColumn = ({
 
           return {
             url: routes.blogsDetail.url({
+              locale,
               id: String(info.topics_id),
             }),
             ...(info.main_visual &&
@@ -92,9 +95,14 @@ export const MainColumn = ({
       responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
     )
 
-    router.push(`${routes.blogs.url({})}?page=${newPage}`, {
-      scroll: false,
-    })
+    router.push(
+      `${routes.blogs.url({
+        locale,
+      })}?page=${newPage}`,
+      {
+        scroll: false,
+      },
+    )
 
     setTimeout(() => {
       actSmoothScroll('#main-column-container')
