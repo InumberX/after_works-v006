@@ -6,6 +6,7 @@ import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { getCurrentLocale } from '@/locales/server'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,6 +48,8 @@ const HomePage = async () => {
 
         return {
           url: routes.blogsDetail.url({
+            isFullPath: true,
+            locale: getCurrentLocale(),
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&

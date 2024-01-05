@@ -54,16 +54,35 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseBlogsInfos.list[i]
-      const url = `${SITE_URL}${routes.blogsDetail.url({
-        id: String(info.topics_id),
-      })}`
+      const url = {
+        ja: routes.blogsDetail.url({
+          isFullPath: true,
+          locale: 'ja',
+          id: String(info.topics_id),
+        }),
+        en: routes.blogsDetail.url({
+          isFullPath: true,
+          locale: 'en',
+          id: String(info.topics_id),
+        }),
+      }
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
-      response.push(`<link>${url}</link>`)
-      response.push(`<guid>${url}</guid>`)
+      response.push(`<link>${url.ja}</link>`)
+      response.push(`<guid>${url.ja}</guid>`)
       response.push(
         `<description>ブログ「${info.subject}」についての記事です。</description>`,
+      )
+      response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
+      response.push('</item>')
+
+      response.push('<item>')
+      response.push(`<title>${info.subject}</title>`)
+      response.push(`<link>${url.en}</link>`)
+      response.push(`<guid>${url.en}</guid>`)
+      response.push(
+        `<description>This is an article about the blog '${info.subject}'.</description>`,
       )
       response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
@@ -77,16 +96,35 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseWorksInfos.list[i]
-      const url = `${SITE_URL}${routes.worksDetail.url({
-        id: String(info.topics_id),
-      })}`
+      const url = {
+        ja: routes.worksDetail.url({
+          isFullPath: true,
+          locale: 'ja',
+          id: String(info.topics_id),
+        }),
+        en: routes.worksDetail.url({
+          isFullPath: true,
+          locale: 'en',
+          id: String(info.topics_id),
+        }),
+      }
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
-      response.push(`<link>${url}</link>`)
-      response.push(`<guid>${url}</guid>`)
+      response.push(`<link>${url.ja}</link>`)
+      response.push(`<guid>${url.ja}</guid>`)
       response.push(
         `<description>実績「${info.subject}」についての記事です。</description>`,
+      )
+      response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
+      response.push('</item>')
+
+      response.push('<item>')
+      response.push(`<title>${info.subject}</title>`)
+      response.push(`<link>${url.en}</link>`)
+      response.push(`<guid>${url.en}</guid>`)
+      response.push(
+        `<description>This is an article about the achievement '${info.subject}'.</description>`,
       )
       response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
@@ -100,16 +138,35 @@ export const GET = async () => {
       i = i + 1
     ) {
       const info = responseHobbyInfos.list[i]
-      const url = `${SITE_URL}${routes.hobbyDetail.url({
-        id: String(info.topics_id),
-      })}`
+      const url = {
+        ja: routes.hobbyDetail.url({
+          isFullPath: true,
+          locale: 'ja',
+          id: String(info.topics_id),
+        }),
+        en: routes.hobbyDetail.url({
+          isFullPath: true,
+          locale: 'en',
+          id: String(info.topics_id),
+        }),
+      }
 
       response.push('<item>')
       response.push(`<title>${info.subject}</title>`)
-      response.push(`<link>${url}</link>`)
-      response.push(`<guid>${url}</guid>`)
+      response.push(`<link>${url.ja}</link>`)
+      response.push(`<guid>${url.ja}</guid>`)
       response.push(
         `<description>趣味「${info.subject}」についての記事です。</description>`,
+      )
+      response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
+      response.push('</item>')
+
+      response.push('<item>')
+      response.push(`<title>${info.subject}</title>`)
+      response.push(`<link>${url.en}</link>`)
+      response.push(`<guid>${url.en}</guid>`)
+      response.push(
+        `<description>This is an article about the hobby '${info.subject}'.</description>`,
       )
       response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')

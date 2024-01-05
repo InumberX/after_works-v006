@@ -17,7 +17,7 @@ export const PageTitle = ({ className, title, subTitle, titleTag }: Props) => {
     <div className={clsx(styles.PageTitle, className)}>
       <LayoutInner>
         <div className={styles.PageTitle__container}>
-          {subTitle && (
+          {subTitle && subTitle !== title && (
             <span className={styles.PageTitleSub}>
               <span className={styles.PageTitleSub__text}>{subTitle}</span>
             </span>

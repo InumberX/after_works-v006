@@ -20,7 +20,7 @@ export const SectionTitle = ({
   return (
     <div className={clsx(styles.SectionTitle, className)}>
       <div className={styles.SectionTitle__container}>
-        {subTitle && (
+        {subTitle && subTitle !== title && (
           <span className={styles.SectionTitleSub}>
             <span className={styles.SectionTitleSub__text}>{subTitle}</span>
           </span>

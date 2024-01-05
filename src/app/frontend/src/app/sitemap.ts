@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { SITE_URL, LASTMOD } from '@/config/env'
+import { LASTMOD } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getWorksInfos } from '@/apis/fetch/works'
@@ -8,32 +8,98 @@ import { getHobbyInfos } from '@/apis/fetch/hobby'
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const sitemapInfos: MetadataRoute.Sitemap = [
     {
-      url: `${SITE_URL}${routes.home.url({})}`,
+      url: routes.home.url({
+        isFullPath: true,
+        locale: 'ja',
+      }),
       lastModified: LASTMOD,
       priority: 1,
     },
     {
-      url: `${SITE_URL}${routes.blogs.url({})}`,
+      url: routes.home.url({
+        isFullPath: true,
+        locale: 'en',
+      }),
+      lastModified: LASTMOD,
+      priority: 1,
+    },
+    {
+      url: routes.blogs.url({
+        isFullPath: true,
+        locale: 'ja',
+      }),
       lastModified: LASTMOD,
       priority: 0.5,
     },
     {
-      url: `${SITE_URL}${routes.about.url({})}`,
+      url: routes.blogs.url({
+        isFullPath: true,
+        locale: 'en',
+      }),
       lastModified: LASTMOD,
       priority: 0.5,
     },
     {
-      url: `${SITE_URL}${routes.works.url({})}`,
+      url: routes.about.url({
+        isFullPath: true,
+        locale: 'ja',
+      }),
       lastModified: LASTMOD,
       priority: 0.5,
     },
     {
-      url: `${SITE_URL}${routes.hobby.url({})}`,
+      url: routes.about.url({
+        isFullPath: true,
+        locale: 'en',
+      }),
       lastModified: LASTMOD,
       priority: 0.5,
     },
     {
-      url: `${SITE_URL}${routes.contact.url({})}`,
+      url: routes.works.url({
+        isFullPath: true,
+        locale: 'ja',
+      }),
+      lastModified: LASTMOD,
+      priority: 0.5,
+    },
+    {
+      url: routes.works.url({
+        isFullPath: true,
+        locale: 'en',
+      }),
+      lastModified: LASTMOD,
+      priority: 0.5,
+    },
+    {
+      url: routes.hobby.url({
+        isFullPath: true,
+        locale: 'ja',
+      }),
+      lastModified: LASTMOD,
+      priority: 0.5,
+    },
+    {
+      url: routes.hobby.url({
+        isFullPath: true,
+        locale: 'en',
+      }),
+      lastModified: LASTMOD,
+      priority: 0.5,
+    },
+    {
+      url: routes.contact.url({
+        isFullPath: true,
+        locale: 'ja',
+      }),
+      lastModified: LASTMOD,
+      priority: 0.5,
+    },
+    {
+      url: routes.contact.url({
+        isFullPath: true,
+        locale: 'en',
+      }),
       lastModified: LASTMOD,
       priority: 0.5,
     },
@@ -78,9 +144,21 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       const info = responseBlogsInfos.list[i]
 
       sitemapInfos.push({
-        url: `${SITE_URL}${routes.blogsDetail.url({
+        url: routes.blogsDetail.url({
+          isFullPath: true,
+          locale: 'ja',
           id: String(info.topics_id),
-        })}`,
+        }),
+        lastModified: info.update_ymdhi,
+        priority: 0.5,
+      })
+
+      sitemapInfos.push({
+        url: routes.blogsDetail.url({
+          isFullPath: true,
+          locale: 'en',
+          id: String(info.topics_id),
+        }),
         lastModified: info.update_ymdhi,
         priority: 0.5,
       })
@@ -96,9 +174,21 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       const info = responseWorksInfos.list[i]
 
       sitemapInfos.push({
-        url: `${SITE_URL}${routes.worksDetail.url({
+        url: routes.worksDetail.url({
+          isFullPath: true,
+          locale: 'ja',
           id: String(info.topics_id),
-        })}`,
+        }),
+        lastModified: info.update_ymdhi,
+        priority: 0.5,
+      })
+
+      sitemapInfos.push({
+        url: routes.worksDetail.url({
+          isFullPath: true,
+          locale: 'en',
+          id: String(info.topics_id),
+        }),
         lastModified: info.update_ymdhi,
         priority: 0.5,
       })
@@ -114,9 +204,21 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       const info = responseHobbyInfos.list[i]
 
       sitemapInfos.push({
-        url: `${SITE_URL}${routes.hobbyDetail.url({
+        url: routes.hobbyDetail.url({
+          isFullPath: true,
+          locale: 'ja',
           id: String(info.topics_id),
-        })}`,
+        }),
+        lastModified: info.update_ymdhi,
+        priority: 0.5,
+      })
+
+      sitemapInfos.push({
+        url: routes.hobbyDetail.url({
+          isFullPath: true,
+          locale: 'en',
+          id: String(info.topics_id),
+        }),
         lastModified: info.update_ymdhi,
         priority: 0.5,
       })

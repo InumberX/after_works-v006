@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { NextPageProps } from '@/types/next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getHobbyInfos } from '@/apis/fetch/hobby'
 import { getHobbyDetailInfo } from '@/apis/fetch/hobbyDetail'
@@ -15,7 +14,7 @@ import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async ({
   params,
@@ -43,9 +42,11 @@ export const generateMetadata = async ({
       scopedT('description', {
         title: responseHobbyDetailInfo.subject,
       }),
-    canonical: `${SITE_URL}${routes.hobbyDetail.url({
+    canonical: routes.hobbyDetail.url({
+      isFullPath: true,
+      locale: getCurrentLocale(),
       id: String(id),
-    })}`,
+    }),
     ogImage: responseHobbyDetailInfo.main_visual.url,
   })
 }
@@ -162,7 +163,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     endedAt: responseHobbyDetailInfo.ended_at,
     url: responseHobbyDetailInfo.url,
     bottomLink: {
-      url: routes.hobby.url({}),
+      url: routes.hobby.url({
+        locale: getCurrentLocale(),
+      }),
       text: scopedT('bottomLinkText'),
     },
     tags: [
@@ -185,6 +188,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     ? responseLatestHobbyInfos.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
+            locale: getCurrentLocale(),
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&

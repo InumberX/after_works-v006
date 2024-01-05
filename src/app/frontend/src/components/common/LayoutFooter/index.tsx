@@ -11,9 +11,10 @@ import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import styles from './index.module.scss'
-import { useI18n } from '@/locales/client'
+import { useI18n, useCurrentLocale } from '@/locales/client'
 
 export const LayoutFooter = () => {
+  const locale = useCurrentLocale()
   const t = useI18n()
   const router = useRouter()
   const currentYear: number = new Date().getFullYear()
@@ -27,32 +28,44 @@ export const LayoutFooter = () => {
     {
       id: routes.home.id,
       title: t('home.title'),
-      url: routes.home.url({}),
+      url: routes.home.url({
+        locale,
+      }),
     },
     {
       id: routes.blogs.id,
       title: t('blogs.title'),
-      url: routes.blogs.url({}),
+      url: routes.blogs.url({
+        locale,
+      }),
     },
     {
       id: routes.about.id,
       title: t('about.title'),
-      url: routes.about.url({}),
+      url: routes.about.url({
+        locale,
+      }),
     },
     {
       id: routes.works.id,
       title: t('works.title'),
-      url: routes.works.url({}),
+      url: routes.works.url({
+        locale,
+      }),
     },
     {
       id: routes.hobby.id,
       title: t('hobby.title'),
-      url: routes.hobby.url({}),
+      url: routes.hobby.url({
+        locale,
+      }),
     },
     {
       id: routes.contact.id,
       title: t('contact.title'),
-      url: routes.contact.url({}),
+      url: routes.contact.url({
+        locale,
+      }),
     },
   ]
 

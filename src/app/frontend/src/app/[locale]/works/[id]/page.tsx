@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { NextPageProps } from '@/types/next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getWorksInfos } from '@/apis/fetch/works'
 import { getWorksDetailInfo } from '@/apis/fetch/worksDetail'
@@ -15,7 +14,7 @@ import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async ({
   params,
@@ -43,9 +42,11 @@ export const generateMetadata = async ({
       scopedT('description', {
         title: responseWorksDetailInfo.subject,
       }),
-    canonical: `${SITE_URL}${routes.worksDetail.url({
+    canonical: routes.worksDetail.url({
+      isFullPath: true,
+      locale: getCurrentLocale(),
       id: String(id),
-    })}`,
+    }),
     ogImage: responseWorksDetailInfo.main_visual.url,
   })
 }
@@ -162,7 +163,9 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     endedAt: responseWorksDetailInfo.ended_at,
     url: responseWorksDetailInfo.url,
     bottomLink: {
-      url: routes.works.url({}),
+      url: routes.works.url({
+        locale: getCurrentLocale(),
+      }),
       text: scopedT('bottomLinkText'),
     },
     tags: [
@@ -185,6 +188,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     ? responseLatestWorksInfos.list.map((info) => {
         return {
           url: routes.worksDetail.url({
+            locale: getCurrentLocale(),
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&

@@ -18,9 +18,10 @@ import {
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
 } from '@/store/breakpoints'
-import { useI18n } from '@/locales/client'
+import { useI18n, useCurrentLocale } from '@/locales/client'
 
 export const LayoutHeader = () => {
+  const locale = useCurrentLocale()
   const t = useI18n()
   const [isShowMenu, setIsShowMenu] = useState(false)
   const router = useRouter()
@@ -38,32 +39,44 @@ export const LayoutHeader = () => {
     {
       id: routes.home.id,
       title: t('home.title'),
-      url: routes.home.url({}),
+      url: routes.home.url({
+        locale,
+      }),
     },
     {
       id: routes.blogs.id,
       title: t('blogs.title'),
-      url: routes.blogs.url({}),
+      url: routes.blogs.url({
+        locale,
+      }),
     },
     {
       id: routes.about.id,
       title: t('about.title'),
-      url: routes.about.url({}),
+      url: routes.about.url({
+        locale,
+      }),
     },
     {
       id: routes.works.id,
       title: t('works.title'),
-      url: routes.works.url({}),
+      url: routes.works.url({
+        locale,
+      }),
     },
     {
       id: routes.hobby.id,
       title: t('hobby.title'),
-      url: routes.hobby.url({}),
+      url: routes.hobby.url({
+        locale,
+      }),
     },
     {
       id: routes.contact.id,
       title: t('contact.title'),
-      url: routes.contact.url({}),
+      url: routes.contact.url({
+        locale,
+      }),
     },
   ]
 
@@ -133,7 +146,9 @@ export const LayoutHeader = () => {
           <div className={styles.LayoutHeader__container}>
             <div className={styles.LayoutHeaderLogo}>
               <Link
-                href={routes.home.url({})}
+                href={routes.home.url({
+                  locale,
+                })}
                 className={styles.LayoutHeaderLogo__link}
               >
                 <Image
