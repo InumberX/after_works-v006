@@ -23,7 +23,10 @@
     position: relative;
     text-align: center;
     text-decoration: none;
-    transition: 0.3s box-shadow;
+    transform-style: preserve-3d;
+    transition:
+      0.3s box-shadow,
+      0.3s transform;
     width: 100%;
 
     @include mxGetFontSize(18);
@@ -41,6 +44,7 @@
         box-shadow:
           0 0 24px rgba($palette-heliotrope, 0.64),
           0 0 24px rgba($palette-sky-blue, 0.64);
+        transform: perspective(500px) rotateY(8deg);
       }
     }
   }

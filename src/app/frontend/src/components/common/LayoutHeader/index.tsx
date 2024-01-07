@@ -18,10 +18,12 @@ import {
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
 } from '@/store/breakpoints'
-import { useI18n, useCurrentLocale } from '@/locales/client'
+import { useI18n, useCurrentLocale, useChangeLocale } from '@/locales/client'
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 
 export const LayoutHeader = () => {
   const locale = useCurrentLocale()
+  const changeLocale = useChangeLocale()
   const t = useI18n()
   const [isShowMenu, setIsShowMenu] = useState(false)
   const router = useRouter()
@@ -29,6 +31,7 @@ export const LayoutHeader = () => {
   const [isBreakpointLg] = useAtom(isBreakpointLgAtom)
   const [isBreakpointXl] = useAtom(isBreakpointXlAtom)
   const [isBreakpointXxl] = useAtom(isBreakpointXxlAtom)
+  const [isShowLocalesMenu, setIsShowLocalesMenu] = useState(false)
 
   const headerMenuGlobalInfos: {
     id: string
@@ -80,6 +83,14 @@ export const LayoutHeader = () => {
     },
   ]
 
+  const showMenu = () => {
+    setIsShowMenu(true)
+  }
+
+  const hideMenu = () => {
+    setIsShowMenu(false)
+  }
+
   const toggleMenu = () => {
     if (!isShowMenu) {
       showMenu()
@@ -90,12 +101,22 @@ export const LayoutHeader = () => {
     hideMenu()
   }
 
-  const showMenu = () => {
-    setIsShowMenu(true)
+  const showLocalesMenu = () => {
+    setIsShowLocalesMenu(true)
   }
 
-  const hideMenu = () => {
-    setIsShowMenu(false)
+  const hideLocalesMenu = () => {
+    setIsShowLocalesMenu(false)
+  }
+
+  const toggleLocalesMenu = () => {
+    if (!isShowLocalesMenu) {
+      showLocalesMenu()
+
+      return
+    }
+
+    hideLocalesMenu()
   }
 
   const movePage = ({ url, id }: { url: string; id?: string }) => {
@@ -137,6 +158,7 @@ export const LayoutHeader = () => {
 
   useEffect(() => {
     hideMenu()
+    hideLocalesMenu()
   }, [isShowSmallMenu])
 
   return (
@@ -190,6 +212,106 @@ export const LayoutHeader = () => {
                 </nav>
               </div>
 
+              <div className={styles.LayoutHeaderLocales}>
+                <div className={styles.LayoutHeaderLocales__container}>
+                  <div className={styles.LayoutHeaderLocalesButton}>
+                    <button
+                      type='button'
+                      className={styles.LayoutHeaderLocalesButton__button}
+                      title={t('components.layoutHeader.locales.title')}
+                      aria-label={t('components.layoutHeader.locales.title')}
+                      onClick={() => {
+                        toggleLocalesMenu()
+                      }}
+                    >
+                      <SvgIcon
+                        variant='translate'
+                        className={styles.LayoutHeaderLocalesButton__icon}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                <AnimatePresence mode='wait'>
+                  {isShowLocalesMenu && (
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                      }}
+                      className={styles.LayoutHeaderLocalesMenu}
+                    >
+                      <div
+                        className={styles.LayoutHeaderLocalesMenu__container}
+                      >
+                        <ul className={styles.LayoutHeaderLocalesMenu__items}>
+                          <li className={styles.LayoutHeaderLocalesMenu__item}>
+                            <div
+                              className={
+                                styles.LayoutHeaderLocalesMenu__contents
+                              }
+                            >
+                              <button
+                                type='button'
+                                className={
+                                  styles.LayoutHeaderLocalesMenu__button
+                                }
+                                onClick={() => {
+                                  changeLocale('ja')
+                                  hideLocalesMenu()
+                                }}
+                              >
+                                <span
+                                  className={
+                                    styles.LayoutHeaderLocalesMenu__text
+                                  }
+                                >
+                                  日本語
+                                </span>
+                              </button>
+                            </div>
+                          </li>
+                          <li className={styles.LayoutHeaderLocalesMenu__item}>
+                            <div
+                              className={
+                                styles.LayoutHeaderLocalesMenu__contents
+                              }
+                            >
+                              <button
+                                type='button'
+                                className={
+                                  styles.LayoutHeaderLocalesMenu__button
+                                }
+                                onClick={() => {
+                                  changeLocale('en')
+                                  hideLocalesMenu()
+                                }}
+                              >
+                                <span
+                                  className={
+                                    styles.LayoutHeaderLocalesMenu__text
+                                  }
+                                >
+                                  English
+                                </span>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <div className={styles.LayoutHeaderMenuButton}>
                 <button
                   type='button'
@@ -203,7 +325,7 @@ export const LayoutHeader = () => {
                       <span className={styles.LayoutHeaderMenuButton__icon} />
                     </span>
                     <span className={styles.LayoutHeaderMenuButton__text}>
-                      メニュー
+                      {t('components.layoutHeader.menu.buttonText')}
                     </span>
                   </span>
                 </button>
@@ -252,7 +374,7 @@ export const LayoutHeader = () => {
                       <span className={styles.LayoutHeaderMenuButton__icon} />
                     </span>
                     <span className={styles.LayoutHeaderMenuButton__text}>
-                      閉じる
+                      {t('components.layoutHeader.menu.closeButtonText')}
                     </span>
                   </span>
                 </button>

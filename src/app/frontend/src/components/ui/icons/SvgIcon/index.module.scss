@@ -206,4 +206,13 @@
     width: 24px;
   }
 }
+
+.SvgIcon--translate {
+  &::before {
+    height: 24px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-translate.svg');
+    mask-image: url('#{$static-image-dir}/assets/img/icon-translate.svg');
+    width: 24px;
+  }
+}
 /* stylelint-enable */

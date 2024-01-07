@@ -75,6 +75,14 @@
         width: 22px;
       }
     }
+
+    .splide__arrow.splide__arrow--prev:not(:root) {
+      left: 0;
+    }
+
+    .splide__arrow.splide__arrow--next:not(:root) {
+      right: 0;
+    }
   }
   /* stylelint-enable */
 }
