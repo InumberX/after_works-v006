@@ -23,7 +23,12 @@ export const Service = async () => {
             infos={[
               {
                 icon: (
-                  <SvgIcon variant='palette' color='primary' size='large' />
+                  <SvgIcon
+                    variant='palette'
+                    color='primary'
+                    size='large'
+                    className={styles.ServiceServiceCardList__icon}
+                  />
                 ),
                 title: scopedT('design.title'),
                 description: (
@@ -31,7 +36,14 @@ export const Service = async () => {
                 ),
               },
               {
-                icon: <SvgIcon variant='laptop' color='primary' size='large' />,
+                icon: (
+                  <SvgIcon
+                    variant='laptop'
+                    color='primary'
+                    size='large'
+                    className={styles.ServiceServiceCardList__icon}
+                  />
+                ),
                 title: scopedT('coding.title'),
                 description: (
                   <ReplaceNewLineText text={scopedT('coding.description')} />
