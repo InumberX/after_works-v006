@@ -91,6 +91,8 @@ I can create various types of websites such as responsive sites that display opt
     message: {
       text: 'Please feel free to contact me using the form below.',
       buttonText: 'Contact',
+      buttonUrl:
+        'https://docs.google.com/forms/d/e/1FAIpQLSdl9eSdffNSyqMELqFAkLS1dfyDPRWzFxKacXdduVl7cMFTuw/viewform?usp=sf_link',
     },
   },
   hobby: {

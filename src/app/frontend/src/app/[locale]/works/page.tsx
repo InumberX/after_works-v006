@@ -11,6 +11,7 @@ import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('works')
 
   return AppHead({
@@ -18,12 +19,13 @@ export const generateMetadata = async (): Promise<Metadata> => {
     description: scopedT('description'),
     canonical: routes.works.url({
       isFullPath: true,
-      locale: getCurrentLocale(),
+      locale,
     }),
   })
 }
 
 const WorksPage = async ({ searchParams }: NextPageProps) => {
+  const locale = getCurrentLocale()
   const tagPositionInfos = await getTagPositionInfos()
 
   const responseWorksInfos = await getWorksInfos({
@@ -48,10 +50,22 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
             const target = tagPositionInfos[j]
 
             if (tag.tag_id === target.tag_id) {
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
               tagPosition.push({
                 id: String(target.tag_id),
-                name:
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+                name,
               })
               break
             }
@@ -60,7 +74,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
 
         return {
           url: routes.worksDetail.url({
-            locale: getCurrentLocale(),
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -71,7 +85,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
           tags: tagPosition,
         }
       })
@@ -85,7 +99,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
     ? responseLatestWorksInfos.list.map((info) => {
         return {
           url: routes.worksDetail.url({
-            locale: getCurrentLocale(),
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -96,7 +110,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
         }
       })
     : []

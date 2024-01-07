@@ -7,12 +7,11 @@ const apiResponseAboutList = {
   open_flg: 1,
   regular_flg: 0,
   inst_ymdhi: '2023-08-18T11:33:31+09:00',
-  update_ymdhi: '2023-08-18T11:41:26+09:00',
+  update_ymdhi: '2024-01-06T18:58:55+09:00',
   topics_group_id: 10,
   contents_type_expand: '0',
   slug: '',
   order_no: 0,
-  vector1536: null,
   group_nm: '経歴（開発）',
   group_description: '',
   contents_type_cnt: 1,
@@ -29,18 +28,22 @@ const apiResponseAboutList = {
   certifications: [
     {
       certification_name: '1級ウェブデザイン技能士',
+      certification_name_en: 'Level 1 Web Design Technician',
       certification_url: 'https://www.webdesign.gr.jp/',
     },
     {
       certification_name: '基本情報技術者',
+      certification_name_en: 'Fundamental Information Technology Engineer',
       certification_url: 'https://www.ipa.go.jp/shiken/kubun/list.html',
     },
     {
       certification_name: 'Webデザイナー検定ベーシック',
+      certification_name_en: 'Web Designer Certification Basic',
       certification_url: 'https://www.cgarts.or.jp/v1/kentei/about/web/',
     },
     {
       certification_name: 'CGクリエイター検定ベーシック',
+      certification_name_en: 'Basic CG Creator Certification',
       certification_url: 'https://www.cgarts.or.jp/v1/kentei/about/creator/',
     },
   ],
@@ -50,6 +53,8 @@ const apiResponseAboutList = {
     'PHP, Java',
     'Adobe Photoshop, Adobe Illustrator, Adobe XD, Adobe Fireworks, Docker',
   ],
+  lead_en:
+    'I am a Web Designer and Front-End Engineer based in Tokyo. Born in April 1992 in Tokyo, I studied programming languages like C and Java, as well as 3D computer graphics, during my university years, majoring in User Computer Interaction.\r\n\r\nI started working as a System Engineer at an SIer in April 2015, where I was involved in system development and maintenance using Java. In January 2017, I transitioned within the same company to take on dual roles as a Web Designer and Front-End Engineer.\r\n\r\nIn February 2022, I moved to Persol Innovation Co., Ltd. (eiicon company) as a Front-End Engineer. Currently, I work as a full-time employee, handling the front-end coding of our in-house services, while also engaging in web production as a freelancer. I specialize in front-end implementation using JavaScript.',
 }
 
 export type ApiResponseAboutData = typeof apiResponseAboutList
