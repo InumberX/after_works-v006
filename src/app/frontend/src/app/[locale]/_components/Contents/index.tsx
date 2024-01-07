@@ -22,7 +22,14 @@ export const Contents = async () => {
             className={styles.ContentsServiceCardList}
             infos={[
               {
-                icon: <SvgIcon variant='person' color='primary' size='large' />,
+                icon: (
+                  <SvgIcon
+                    variant='person'
+                    color='primary'
+                    size='large'
+                    className={styles.ContentsServiceCardList__icon}
+                  />
+                ),
                 title: scopedT('about.title'),
                 description: scopedT('about.description'),
                 buttonInfo: {
@@ -34,7 +41,14 @@ export const Contents = async () => {
                 },
               },
               {
-                icon: <SvgIcon variant='star' color='primary' size='large' />,
+                icon: (
+                  <SvgIcon
+                    variant='star'
+                    color='primary'
+                    size='large'
+                    className={styles.ContentsServiceCardList__icon}
+                  />
+                ),
                 title: scopedT('works.title'),
                 description: scopedT('works.description'),
                 buttonInfo: {

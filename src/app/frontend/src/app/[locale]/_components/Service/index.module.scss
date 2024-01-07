@@ -3,3 +3,9 @@
 .ServiceServiceCardList {
   margin-top: 40px;
 }
+
+.ServiceServiceCardList__icon {
+  &::before {
+    background: linear-gradient(90deg, $gradation-primary);
+  }
+}

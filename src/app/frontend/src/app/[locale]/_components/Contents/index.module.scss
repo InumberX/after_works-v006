@@ -3,3 +3,9 @@
 .ContentsServiceCardList {
   margin-top: 40px;
 }
+
+.ContentsServiceCardList__icon {
+  &::before {
+    background: linear-gradient(90deg, $gradation-primary);
+  }
+}
