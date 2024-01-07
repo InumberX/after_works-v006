@@ -48,29 +48,22 @@
 }
 
 .ProfileInfo {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   margin-top: 24px;
+  row-gap: 24px;
 
   @include mxMediaQuerySm {
     margin-top: -24px;
     padding-left: 160px;
   }
-
-  > .ProfileInfo__contents {
-    &:first-of-type {
-      margin-top: 0;
-    }
-  }
 }
 
 .ProfileInfo__contents {
-  display: flex;
-  margin-top: 24px;
-}
-
-.ProfileInfoTitle {
-  flex-shrink: 0;
-  margin-right: 8px;
-  min-width: 72px;
+  column-gap: 16px;
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: subgrid;
 }
 
 .ProfileInfoTitle__text {
@@ -106,5 +99,9 @@
     position: absolute;
     top: 8px;
     width: 8px;
+
+    @include mxMediaQuerySm {
+      top: 10px;
+    }
   }
 }

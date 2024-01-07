@@ -91,6 +91,8 @@ export default {
     message: {
       text: '下記フォームよりお気軽にお問い合わせください。',
       buttonText: 'お問い合わせ',
+      buttonUrl:
+        'https://docs.google.com/forms/d/e/1FAIpQLSfFvT-kuWDU1O45Nr-iq3ldDhH3gqRHO5XKpQlAD9Prw6UfLA/viewform?usp=sf_link',
     },
   },
   hobby: {

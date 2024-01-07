@@ -11,6 +11,7 @@ import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('blogs')
 
   return AppHead({
@@ -18,12 +19,13 @@ export const generateMetadata = async (): Promise<Metadata> => {
     description: scopedT('description'),
     canonical: routes.blogs.url({
       isFullPath: true,
-      locale: getCurrentLocale(),
+      locale,
     }),
   })
 }
 
 const BlogsPage = async ({ searchParams }: NextPageProps) => {
+  const locale = getCurrentLocale()
   const tagNewsInfos = await getTagNewsInfos()
 
   const responseBlogsInfos = await getBlogsInfos({
@@ -48,10 +50,22 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
             const target = tagNewsInfos[j]
 
             if (tag.tag_id === target.tag_id) {
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
               tagPosition.push({
                 id: String(target.tag_id),
-                name:
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+                name,
               })
               break
             }
@@ -60,7 +74,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
 
         return {
           url: routes.blogsDetail.url({
-            locale: getCurrentLocale(),
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -71,7 +85,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
           tags: tagPosition,
         }
       })
@@ -85,7 +99,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
     ? responseLatestBlogsInfos.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
-            locale: getCurrentLocale(),
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -96,7 +110,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
         }
       })
     : []

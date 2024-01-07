@@ -20,7 +20,7 @@ export const Message = async () => {
           <div className={styles.MessageLink}>
             <BaseButton
               text={scopedT('message.buttonText')}
-              url='https://docs.google.com/forms/d/e/1FAIpQLSfFvT-kuWDU1O45Nr-iq3ldDhH3gqRHO5XKpQlAD9Prw6UfLA/viewform?usp=sf_link'
+              url={scopedT('message.buttonUrl')}
               rel='noopener noreferrer'
               target='_blank'
               className={styles.MessageLink__button}
