@@ -11,7 +11,14 @@ import { getCurrentLocale } from '@/locales/server'
 export const dynamic = 'force-dynamic'
 
 export const generateMetadata = (): Metadata => {
-  return AppHead({})
+  const locale = getCurrentLocale()
+
+  return AppHead({
+    canonical: routes.home.url({
+      isFullPath: true,
+      locale,
+    }),
+  })
 }
 
 const HomePage = async () => {
