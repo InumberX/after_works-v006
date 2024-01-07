@@ -4,7 +4,7 @@ import styles from './index.module.scss'
 import { routes } from '@/config/routes'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { getI18n } from '@/locales/server'
+import { getI18n, getCurrentLocale } from '@/locales/server'
 
 type Props = {
   className?: string
@@ -41,7 +41,9 @@ export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
                 itemType='http://schema.org/ListItem'
               >
                 <Link
-                  href={routes.home.url({})}
+                  href={routes.home.url({
+                    locale: getCurrentLocale(),
+                  })}
                   className={styles.BaseBreadcrumb__link}
                   itemProp='item'
                 >

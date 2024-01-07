@@ -20,6 +20,7 @@ type Props = {
     | 'laptop'
     | 'person'
     | 'mail'
+    | 'translate'
   color?: 'primary'
   size?: 'large'
   className?: string

@@ -6,6 +6,7 @@ import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { getCurrentLocale } from '@/locales/server'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,6 +15,7 @@ export const generateMetadata = (): Metadata => {
 }
 
 const HomePage = async () => {
+  const locale = getCurrentLocale()
   const tagPositionInfos = await getTagPositionInfos()
 
   const responseLatestBlogInfos = await getBlogsInfos({
@@ -35,10 +37,22 @@ const HomePage = async () => {
             const target = tagPositionInfos[j]
 
             if (tag.tag_id === target.tag_id) {
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
               tagPosition.push({
                 id: String(target.tag_id),
-                name:
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+                name,
               })
               break
             }
@@ -47,6 +61,8 @@ const HomePage = async () => {
 
         return {
           url: routes.blogsDetail.url({
+            isFullPath: true,
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -57,7 +73,7 @@ const HomePage = async () => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
           tags: tagPosition,
         }
       })

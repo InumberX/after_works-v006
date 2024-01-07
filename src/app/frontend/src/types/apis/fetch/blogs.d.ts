@@ -10,11 +10,11 @@ const apiResponseBlogsList = {
   open_flg: 1,
   regular_flg: 0,
   inst_ymdhi: '2023-08-20T13:34:54+09:00',
-  update_ymdhi: '2023-08-20T17:02:05+09:00',
+  update_ymdhi: '2024-01-06T11:14:50+09:00',
   topics_group_id: 11,
+  post_time: '00:00:00',
   slug: '',
   order_no: 0,
-  vector1536: null,
   group_nm: 'ブログ（開発）',
   group_description: '',
   contents_type_cnt: 1,
@@ -31,8 +31,8 @@ const apiResponseBlogsList = {
     {
       tag_id: 35,
       tag_nm: 'ディレクション',
-      open_contents_cnt: 1,
-      all_contents_cnt: 1,
+      open_contents_cnt: 11,
+      all_contents_cnt: 11,
       inst_ymdhi: '2023-08-20T16:58:22+09:00',
       update_ymdhi: '2023-08-20T16:58:53+09:00',
       tag_category_id: 7,
@@ -52,8 +52,8 @@ const apiResponseBlogsList = {
     {
       tag_id: 11,
       tag_nm: 'デザイン',
-      open_contents_cnt: 10,
-      all_contents_cnt: 10,
+      open_contents_cnt: 31,
+      all_contents_cnt: 31,
       inst_ymdhi: '2023-08-18T19:17:13+09:00',
       update_ymdhi: '2023-08-18T21:05:23+09:00',
       tag_category_id: 7,
@@ -73,8 +73,8 @@ const apiResponseBlogsList = {
     {
       tag_id: 12,
       tag_nm: 'コーディング',
-      open_contents_cnt: 21,
-      all_contents_cnt: 21,
+      open_contents_cnt: 57,
+      all_contents_cnt: 57,
       inst_ymdhi: '2023-08-18T19:17:18+09:00',
       update_ymdhi: '2023-08-18T21:05:23+09:00',
       tag_category_id: 7,
@@ -99,6 +99,12 @@ const apiResponseBlogsList = {
     desc: '',
     url_org: 'https://afterworks.g.kuroco-img.app/files/topics/50_ext_1_0.jpg',
   },
+  description: '要約が入ります。',
+  subject_en:
+    'Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title',
+  description_en: 'description',
+  contents_en:
+    '<h1>Headline 1 Headline 1 Headline 1 Headline 1 Headline 1 Headline 1 Headline 1 Headline 1 Headline 1 Headline 1</h1><h2>Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2 Headline 2</h2><p>Text Text <strong>Bold Text</strong> Text <i>Italic Text</i> Text <u>Underline Text</u> Text <a href="https://www.google.co.jp/">Link Text</a> Text <a href="https://www.google.co.jp/" target="_blank" rel="noopener noreferrer">Link Text</a> Text Text Text Text Text Text</p><h3>Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3 Headline 3</h3><p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p><h4>Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4 Headline 4</h4><p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p><figure class="image"><img src="https://afterworks.g.kuroco-img.app/files/user/topics_img/11/ben-o-bro-wpU4veNGnHg-unsplash.jpg"></figure><p>Left-aligned Text</p><p style="text-align:center;">Center-aligned Text</p><p style="text-align:right;">Right-aligned Text</p><figure class="table"><table><tbody><tr><td>Cell 1-1</td><td>Cell 1-2</td><td>Cell 1-3</td><td>Cell 1-4</td></tr><tr><td>Cell 2-1</td><td>Cell 2-2</td><td>Cell 2-3</td><td>Cell 2-4</td></tr><tr><td>Cell 3-1</td><td>Cell 3-2</td><td>Cell 2-3</td><td>Cell 2-4</td></tr><tr><td>Cell 4-1</td><td>Cell 4-2</td><td>Cell 2-3</td><td>Cell 2-4</td></tr></tbody></table></figure><ul><li>List</li><li>List</li><li>List</li></ul><ol><li>Ordered List</li><li>Ordered List</li><li>Ordered List</li></ol><blockquote><p>Quote Quote Quote Quote Quote</p><p>Quote Quote Quote Quote Quote Quote Quote Quote Quote</p></blockquote><pre><code class="language-plaintext">Code Block Code Block Code Block Code Block Code Block Code Block\r\nCode Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block Code Block</code></pre><p>&nbsp;</p>',
 }
 
 const apiResponseBlogsPageInfo = {

@@ -91,6 +91,8 @@ export default {
     message: {
       text: '下記フォームよりお気軽にお問い合わせください。',
       buttonText: 'お問い合わせ',
+      buttonUrl:
+        'https://docs.google.com/forms/d/e/1FAIpQLSfFvT-kuWDU1O45Nr-iq3ldDhH3gqRHO5XKpQlAD9Prw6UfLA/viewform?usp=sf_link',
     },
   },
   hobby: {
@@ -181,6 +183,15 @@ export default {
       buttonText: '{pageNumber}ページ目を表示する',
       prevButtonText: '前のページに戻る',
       nextButtonText: '次のページに進む',
+    },
+    layoutHeader: {
+      menu: {
+        buttonText: 'メニュー',
+        closeButtonText: '閉じる',
+      },
+      locales: {
+        title: '言語を変更する',
+      },
     },
   },
 } as const

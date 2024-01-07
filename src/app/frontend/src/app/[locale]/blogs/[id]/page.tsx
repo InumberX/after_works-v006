@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { NextPageProps } from '@/types/next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getBlogsDetailInfo } from '@/apis/fetch/blogsDetail'
@@ -16,7 +15,7 @@ import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async ({
   params,
@@ -27,6 +26,7 @@ export const generateMetadata = async ({
     notFound()
   }
 
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('blogsDetail')
 
   const responseBlogsDetailInfo = await getBlogsDetailInfo({
@@ -37,16 +37,28 @@ export const generateMetadata = async ({
     notFound()
   }
 
+  const title =
+    locale === 'en'
+      ? responseBlogsDetailInfo.subject_en
+      : responseBlogsDetailInfo.subject
+
+  const description =
+    locale === 'en'
+      ? responseBlogsDetailInfo.description_en
+      : responseBlogsDetailInfo.description
+
   return AppHead({
-    title: `${responseBlogsDetailInfo.subject} - ${scopedT('title')}`,
+    title: `${title} - ${scopedT('title')}`,
     description:
-      responseBlogsDetailInfo.description ??
+      description ??
       scopedT('description', {
-        title: responseBlogsDetailInfo.subject,
+        title,
       }),
-    canonical: `${SITE_URL}${routes.blogsDetail.url({
+    canonical: routes.blogsDetail.url({
+      isFullPath: true,
+      locale,
       id: String(id),
-    })}`,
+    }),
     ogImage: responseBlogsDetailInfo.main_visual.url,
   })
 }
@@ -58,6 +70,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('blogsDetail')
 
   const tagNewsInfos = await getTagNewsInfos()
@@ -93,9 +106,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = tagNewsInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagNews.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -105,9 +129,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = tagPositionInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagPosition.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -117,9 +152,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = tagProgramInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagProgram.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -129,9 +175,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = tagDesignInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagDesign.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -141,9 +198,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = tagCmsInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagCms.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -153,9 +221,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = tagOtherInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagOther.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -170,12 +249,20 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
         alt: responseBlogsDetailInfo.main_visual.desc,
       },
     }),
-    title: responseBlogsDetailInfo.subject,
-    body: responseBlogsDetailInfo.contents,
+    title:
+      locale === 'en'
+        ? responseBlogsDetailInfo.subject_en
+        : responseBlogsDetailInfo.subject,
+    body:
+      locale === 'en'
+        ? responseBlogsDetailInfo.contents_en
+        : responseBlogsDetailInfo.contents,
     dateTitle: scopedT('dateTitle'),
     startedAt: responseBlogsDetailInfo.ymd,
     bottomLink: {
-      url: routes.blogs.url({}),
+      url: routes.blogs.url({
+        locale,
+      }),
       text: scopedT('bottomLinkText'),
     },
     tags: [
@@ -200,6 +287,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     ? responseLatestBlogsInfos.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -210,7 +298,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
         }
       })
     : []

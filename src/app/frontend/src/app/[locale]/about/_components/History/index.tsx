@@ -13,6 +13,7 @@ import { ApiResponseTagDesignTag } from '@/types/apis/fetch/tagDesign'
 import { ApiResponseTagOtherTag } from '@/types/apis/fetch/tagOther'
 import { format } from 'date-fns'
 import { getAboutHistoryInfo } from '@/apis/fetch/aboutHistory'
+import { useCurrentLocale } from '@/locales/client'
 
 export type HistoryItem = {
   title: string
@@ -46,6 +47,7 @@ export const History = ({
   tagDesignInfos,
   tagOtherInfos,
 }: HistoryProps) => {
+  const locale = useCurrentLocale()
   const router = useRouter()
   const pathname = usePathname()
   const [currentYearId, setCurrentYearId] = useState(defaultYearId)
@@ -78,9 +80,24 @@ export const History = ({
               const target = tagPositionInfos[j]
 
               if (tag.tag_id === target.tag_id) {
-                tagPosition.push(
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-                )
+                let name = ''
+
+                switch (locale) {
+                  case 'en':
+                    name =
+                      target.ext_col_02 !== ''
+                        ? target.ext_col_02
+                        : target.tag_nm
+                    break
+                  default:
+                    name =
+                      target.ext_col_01 !== ''
+                        ? target.ext_col_01
+                        : target.tag_nm
+                    break
+                }
+
+                tagPosition.push(name)
                 break
               }
             }
@@ -93,9 +110,24 @@ export const History = ({
               const target = tagProgramInfos[j]
 
               if (tag.tag_id === target.tag_id) {
-                tagSkill.push(
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-                )
+                let name = ''
+
+                switch (locale) {
+                  case 'en':
+                    name =
+                      target.ext_col_02 !== ''
+                        ? target.ext_col_02
+                        : target.tag_nm
+                    break
+                  default:
+                    name =
+                      target.ext_col_01 !== ''
+                        ? target.ext_col_01
+                        : target.tag_nm
+                    break
+                }
+
+                tagSkill.push(name)
                 break
               }
             }
@@ -108,9 +140,24 @@ export const History = ({
               const target = tagCmsInfos[j]
 
               if (tag.tag_id === target.tag_id) {
-                tagSkill.push(
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-                )
+                let name = ''
+
+                switch (locale) {
+                  case 'en':
+                    name =
+                      target.ext_col_02 !== ''
+                        ? target.ext_col_02
+                        : target.tag_nm
+                    break
+                  default:
+                    name =
+                      target.ext_col_01 !== ''
+                        ? target.ext_col_01
+                        : target.tag_nm
+                    break
+                }
+
+                tagSkill.push(name)
                 break
               }
             }
@@ -123,9 +170,24 @@ export const History = ({
               const target = tagDesignInfos[j]
 
               if (tag.tag_id === target.tag_id) {
-                tagSkill.push(
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-                )
+                let name = ''
+
+                switch (locale) {
+                  case 'en':
+                    name =
+                      target.ext_col_02 !== ''
+                        ? target.ext_col_02
+                        : target.tag_nm
+                    break
+                  default:
+                    name =
+                      target.ext_col_01 !== ''
+                        ? target.ext_col_01
+                        : target.tag_nm
+                    break
+                }
+
+                tagSkill.push(name)
                 break
               }
             }
@@ -138,9 +200,24 @@ export const History = ({
               const target = tagOtherInfos[j]
 
               if (tag.tag_id === target.tag_id) {
-                tagSkill.push(
-                  target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-                )
+                let name = ''
+
+                switch (locale) {
+                  case 'en':
+                    name =
+                      target.ext_col_02 !== ''
+                        ? target.ext_col_02
+                        : target.tag_nm
+                    break
+                  default:
+                    name =
+                      target.ext_col_01 !== ''
+                        ? target.ext_col_01
+                        : target.tag_nm
+                    break
+                }
+
+                tagSkill.push(name)
                 break
               }
             }
@@ -152,7 +229,7 @@ export const History = ({
           tagSkill.length > 0 && tags.push(tagSkill)
 
           return {
-            title: info.subject,
+            title: locale === 'en' ? info.subject_en : info.subject,
             startedAt: info.started_at,
             endedAt: info.ended_at,
             tags,
@@ -258,7 +335,10 @@ export const History = ({
                                   'yyyy-MM',
                                 )}
                               >
-                                {format(new Date(info.startedAt), 'M')}月
+                                {format(
+                                  new Date(info.startedAt),
+                                  locale === 'en' ? 'MMMM' : 'M月',
+                                )}
                               </time>
                             ) : (
                               <>
@@ -270,7 +350,10 @@ export const History = ({
                                       'yyyy-MM',
                                     )}
                                   >
-                                    {format(new Date(info.startedAt), 'M')}月
+                                    {format(
+                                      new Date(info.startedAt),
+                                      locale === 'en' ? 'MMMM' : 'M月',
+                                    )}
                                   </time>
                                 )}
 
@@ -279,7 +362,7 @@ export const History = ({
                                     styles.HistoryContensDate__separator
                                   }
                                 >
-                                  〜
+                                  {locale === 'en' ? ' - ' : '〜'}
                                 </span>
 
                                 {info.endedAt && (
@@ -290,7 +373,10 @@ export const History = ({
                                       'yyyy-MM',
                                     )}
                                   >
-                                    {format(new Date(info.endedAt), 'M')}月
+                                    {format(
+                                      new Date(info.endedAt),
+                                      locale === 'en' ? 'MMMM' : 'M月',
+                                    )}
                                   </time>
                                 )}
                               </>

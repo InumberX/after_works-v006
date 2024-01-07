@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { NextPageProps } from '@/types/next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { getHobbyInfos } from '@/apis/fetch/hobby'
 import { getHobbyDetailInfo } from '@/apis/fetch/hobbyDetail'
@@ -15,7 +14,7 @@ import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async ({
   params,
@@ -26,6 +25,7 @@ export const generateMetadata = async ({
     notFound()
   }
 
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('hobbyDetail')
 
   const responseHobbyDetailInfo = await getHobbyDetailInfo({
@@ -36,16 +36,28 @@ export const generateMetadata = async ({
     notFound()
   }
 
+  const title =
+    locale === 'en'
+      ? responseHobbyDetailInfo.subject_en
+      : responseHobbyDetailInfo.subject
+
+  const description =
+    locale === 'en'
+      ? responseHobbyDetailInfo.description_en
+      : responseHobbyDetailInfo.description
+
   return AppHead({
-    title: `${responseHobbyDetailInfo.subject} - ${scopedT('title')}`,
+    title: `${title} - ${scopedT('title')}`,
     description:
-      responseHobbyDetailInfo.description ??
+      description ??
       scopedT('description', {
-        title: responseHobbyDetailInfo.subject,
+        title,
       }),
-    canonical: `${SITE_URL}${routes.hobbyDetail.url({
+    canonical: routes.hobbyDetail.url({
+      isFullPath: true,
+      locale,
       id: String(id),
-    })}`,
+    }),
     ogImage: responseHobbyDetailInfo.main_visual.url,
   })
 }
@@ -57,6 +69,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('hobbyDetail')
 
   const tagPositionInfos = await getTagPositionInfos()
@@ -90,9 +103,20 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = tagPositionInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagPosition.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -102,9 +126,20 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = tagProgramInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagProgram.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -114,9 +149,20 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = tagDesignInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagDesign.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -126,9 +172,20 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = tagCmsInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagCms.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -138,9 +195,20 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = tagOtherInfos[j]
 
       if (tag.tag_id === target.tag_id) {
+        let name = ''
+
+        switch (locale) {
+          case 'en':
+            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+            break
+          default:
+            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+            break
+        }
+
         tagOther.push({
           id: String(target.tag_id),
-          name: target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
+          name,
         })
         break
       }
@@ -155,14 +223,22 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
         alt: responseHobbyDetailInfo.main_visual.desc,
       },
     }),
-    title: responseHobbyDetailInfo.subject,
-    body: responseHobbyDetailInfo.contents,
+    title:
+      locale === 'en'
+        ? responseHobbyDetailInfo.subject_en
+        : responseHobbyDetailInfo.subject,
+    body:
+      locale === 'en'
+        ? responseHobbyDetailInfo.contents_en
+        : responseHobbyDetailInfo.contents,
     dateTitle: scopedT('dateTitle'),
     startedAt: responseHobbyDetailInfo.started_at,
     endedAt: responseHobbyDetailInfo.ended_at,
     url: responseHobbyDetailInfo.url,
     bottomLink: {
-      url: routes.hobby.url({}),
+      url: routes.hobby.url({
+        locale,
+      }),
       text: scopedT('bottomLinkText'),
     },
     tags: [
@@ -185,6 +261,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     ? responseLatestHobbyInfos.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
+            locale,
             id: String(info.topics_id),
           }),
           ...(info.main_visual &&
@@ -195,7 +272,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
         }
       })
     : []

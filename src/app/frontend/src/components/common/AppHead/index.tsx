@@ -16,6 +16,7 @@ type Props = {
 const siteName = SITE_NAME
 export const baseDescriptions = {
   ja: '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。',
+  en: 'This is the portfolio website for N/NE (Nine), a Front-end Engineer based in Tokyo.',
 }
 
 export const AppHead = ({

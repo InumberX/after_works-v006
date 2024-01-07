@@ -11,6 +11,7 @@ import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
 import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
+import { useCurrentLocale } from '@/locales/client'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]
@@ -25,6 +26,7 @@ export const MainColumn = ({
   defaultTotalPage,
   tagPositionInfos,
 }: Props) => {
+  const locale = useCurrentLocale()
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
   const [articleInfos, setArticleInfos] = useState(defaultArticleInfos)
@@ -56,12 +58,26 @@ export const MainColumn = ({
               const target = tagPositionInfos[j]
 
               if (tag.tag_id === target.tag_id) {
+                let name = ''
+
+                switch (locale) {
+                  case 'en':
+                    name =
+                      target.ext_col_02 !== ''
+                        ? target.ext_col_02
+                        : target.tag_nm
+                    break
+                  default:
+                    name =
+                      target.ext_col_01 !== ''
+                        ? target.ext_col_01
+                        : target.tag_nm
+                    break
+                }
+
                 tagPosition.push({
                   id: String(target.tag_id),
-                  name:
-                    target.ext_col_01 !== ''
-                      ? target.ext_col_01
-                      : target.tag_nm,
+                  name,
                 })
                 break
               }
@@ -70,6 +86,7 @@ export const MainColumn = ({
 
           return {
             url: routes.worksDetail.url({
+              locale,
               id: String(info.topics_id),
             }),
             ...(info.main_visual &&
@@ -80,7 +97,7 @@ export const MainColumn = ({
                 },
               }),
             publishedAt: info.ymd,
-            title: info.subject,
+            title: locale === 'en' ? info.subject_en : info.subject,
             tags: tagPosition,
           }
         })
@@ -92,9 +109,14 @@ export const MainColumn = ({
       responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
     )
 
-    router.push(`${routes.works.url({})}?page=${newPage}`, {
-      scroll: false,
-    })
+    router.push(
+      `${routes.works.url({
+        locale,
+      })}?page=${newPage}`,
+      {
+        scroll: false,
+      },
+    )
 
     setTimeout(() => {
       actSmoothScroll('#main-column-container')

@@ -6,7 +6,7 @@ import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { routes } from '@/config/routes'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 
 export type Props = {
@@ -33,7 +33,9 @@ export const Contact = async ({ className }: Props) => {
             <div className={styles.ContactButton}>
               <BaseButton
                 className={styles.ContactButton__button}
-                url={routes.contact.url({})}
+                url={routes.contact.url({
+                  locale: getCurrentLocale(),
+                })}
                 text={scopedT('buttonText')}
                 isRightArrow
                 leftElm={

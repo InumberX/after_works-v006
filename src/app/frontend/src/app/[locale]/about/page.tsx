@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { AppHead } from '@/components/common/AppHead'
 import { Index } from './_components'
-import { SITE_URL } from '@/config/env'
 import { routes } from '@/config/routes'
 import { NextPageProps } from '@/types/next'
 import { getAboutInfo } from '@/apis/fetch/about'
@@ -12,25 +11,33 @@ import { getTagProgramInfos } from '@/apis/fetch/tagProgram'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
+  const locale = getCurrentLocale()
   const scopedT = await getScopedI18n('about')
 
   return AppHead({
     title: scopedT('title'),
     description: scopedT('description'),
-    canonical: `${SITE_URL}${routes.about.url({})}`,
+    canonical: routes.about.url({
+      isFullPath: true,
+      locale,
+    }),
   })
 }
 
 const HomePage = async ({ searchParams }: NextPageProps) => {
+  const locale = getCurrentLocale()
   const aboutInfo = await getAboutInfo({})
 
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
         return {
-          name: info.certification_name,
+          name:
+            locale === 'en'
+              ? info.certification_name_en
+              : info.certification_name,
           url: info.certification_url,
         }
       })
@@ -99,9 +106,20 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
             const target = tagPositionInfos[j]
 
             if (tag.tag_id === target.tag_id) {
-              tagPosition.push(
-                target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-              )
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
+              tagPosition.push(name)
               break
             }
           }
@@ -114,9 +132,20 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
             const target = tagProgramInfos[j]
 
             if (tag.tag_id === target.tag_id) {
-              tagSkill.push(
-                target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-              )
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
+              tagSkill.push(name)
               break
             }
           }
@@ -129,9 +158,20 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
             const target = tagCmsInfos[j]
 
             if (tag.tag_id === target.tag_id) {
-              tagSkill.push(
-                target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-              )
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
+              tagSkill.push(name)
               break
             }
           }
@@ -144,9 +184,20 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
             const target = tagDesignInfos[j]
 
             if (tag.tag_id === target.tag_id) {
-              tagSkill.push(
-                target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-              )
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
+              tagSkill.push(name)
               break
             }
           }
@@ -159,9 +210,20 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
             const target = tagOtherInfos[j]
 
             if (tag.tag_id === target.tag_id) {
-              tagSkill.push(
-                target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm,
-              )
+              let name = ''
+
+              switch (locale) {
+                case 'en':
+                  name =
+                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
+                  break
+                default:
+                  name =
+                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
+                  break
+              }
+
+              tagSkill.push(name)
               break
             }
           }
@@ -173,7 +235,7 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
         tagSkill.length > 0 && tags.push(tagSkill)
 
         return {
-          title: info.subject,
+          title: locale === 'en' ? info.subject_en : info.subject,
           startedAt: info.started_at,
           endedAt: info.ended_at,
           tags,
@@ -184,7 +246,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
   return (
     <Index
       leadInfo={{
-        lead: aboutInfo && aboutInfo.lead ? aboutInfo.lead : '',
+        lead: aboutInfo
+          ? locale === 'en'
+            ? aboutInfo.lead_en
+            : aboutInfo.lead
+          : '',
       }}
       profileInfo={{
         certifications,

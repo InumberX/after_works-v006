@@ -5,7 +5,7 @@ import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
 import { ServiceCardList } from '@/components/ui/lists/ServiceCardList'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { routes } from '@/config/routes'
-import { getScopedI18n } from '@/locales/server'
+import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const Contents = async () => {
   const scopedT = await getScopedI18n('home.contents')
@@ -26,7 +26,9 @@ export const Contents = async () => {
                 title: scopedT('about.title'),
                 description: scopedT('about.description'),
                 buttonInfo: {
-                  url: routes.about.url({}),
+                  url: routes.about.url({
+                    locale: getCurrentLocale(),
+                  }),
                   text: scopedT('about.buttonText'),
                   isRightArrow: true,
                 },
@@ -36,7 +38,9 @@ export const Contents = async () => {
                 title: scopedT('works.title'),
                 description: scopedT('works.description'),
                 buttonInfo: {
-                  url: routes.works.url({}),
+                  url: routes.works.url({
+                    locale: getCurrentLocale(),
+                  }),
                   text: scopedT('works.buttonText'),
                   isRightArrow: true,
                 },
