@@ -184,5 +184,14 @@ export default {
       prevButtonText: '前のページに戻る',
       nextButtonText: '次のページに進む',
     },
+    layoutHeader: {
+      menu: {
+        buttonText: 'メニュー',
+        closeButtonText: '閉じる',
+      },
+      locales: {
+        title: '言語を変更する',
+      },
+    },
   },
 } as const

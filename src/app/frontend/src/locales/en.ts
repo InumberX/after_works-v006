@@ -183,5 +183,14 @@ Please feel free to contact me.`,
       prevButtonText: 'Go back to previous page',
       nextButtonText: 'Go to next page',
     },
+    layoutHeader: {
+      menu: {
+        buttonText: 'Menu',
+        closeButtonText: 'Close',
+      },
+      locales: {
+        title: 'Change the language',
+      },
+    },
   },
 } as const
