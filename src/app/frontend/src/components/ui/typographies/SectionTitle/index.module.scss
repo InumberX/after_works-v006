@@ -1,41 +1,61 @@
 @use '~/assets/scss/global' as *;
 
+.SectionTitle__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
 .SectionTitleSub {
   align-items: center;
   display: flex;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   justify-content: center;
-  margin-bottom: 4px;
+  position: relative;
+  z-index: $z-index-1;
 }
 
 .SectionTitleSub__text {
-  background: linear-gradient(90deg, $gradation-primary);
-  background-clip: text;
-  color: $palette-sky-blue;
+  color: rgba($palette-blue-charcoal, 0.1);
   display: inline-block;
+  font-weight: $font-bold;
+  line-height: 1.2;
   text-align: center;
-  -webkit-text-fill-color: transparent;
 
-  @include mxGetFontSize(16);
+  @include mxGetFontSize(56);
 
   @include mxMediaQuerySm {
-    @include mxGetFontSize(20);
+    @include mxGetFontSize(72);
   }
 
   @include mxMediaQueryMd {
-    @include mxGetFontSize(24);
+    @include mxGetFontSize(88);
+  }
+
+  @include mxMediaQueryLg {
+    @include mxGetFontSize(104);
   }
 }
 
 .SectionTitleMain {
   align-items: center;
+  align-items: flex-end;
   display: flex;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   justify-content: center;
+  position: relative;
+  z-index: $z-index-2;
 }
 
 .SectionTitleMain__text {
-  color: $palette-white;
+  background: linear-gradient(90deg, $gradation-primary);
+  background-clip: text;
+  color: $palette-sky-blue;
   font-weight: $font-bold;
   text-align: center;
+  -webkit-text-fill-color: transparent;
 
   @include mxGetFontSize(24);
 
@@ -45,5 +65,9 @@
 
   @include mxMediaQueryMd {
     @include mxGetFontSize(40);
+  }
+
+  @include mxMediaQueryLg {
+    @include mxGetFontSize(48);
   }
 }
