@@ -24,7 +24,7 @@ const getUrl = ({
 }) => {
   return `${isFullPath ? SITE_URL : ''}${SITE_ROOT}${
     locale === 'ja' ? '' : '/' + locale
-  }${url}`
+  }${locale !== 'ja' && url === '/' ? '' : url}`
 }
 
 export const routes: {

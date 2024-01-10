@@ -98,7 +98,7 @@ const LatestArticleCardContainer = ({
             )}
 
             <span className={styles.LatestArticleCardDate__separator}>
-              {locale === 'en' ? ' - ' : '〜'}
+              {locale === 'en' ? '-' : '〜'}
             </span>
 
             {endedAt && (

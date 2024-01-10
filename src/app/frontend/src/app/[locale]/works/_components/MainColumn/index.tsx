@@ -96,7 +96,8 @@ export const MainColumn = ({
                   alt: info.main_visual.desc,
                 },
               }),
-            publishedAt: info.ymd,
+            startedAt: info.started_at,
+            endedAt: info.ended_at,
             title: locale === 'en' ? info.subject_en : info.subject,
             tags: tagPosition,
           }

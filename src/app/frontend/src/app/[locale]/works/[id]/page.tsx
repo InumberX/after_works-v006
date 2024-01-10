@@ -47,7 +47,7 @@ export const generateMetadata = async ({
       : responseWorksDetailInfo.description
 
   return AppHead({
-    title: `${title} - ${scopedT('title')}}`,
+    title: `${title} - ${scopedT('title')}`,
     description:
       description ??
       scopedT('description', {
@@ -271,7 +271,8 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
                 alt: info.main_visual.desc,
               },
             }),
-          publishedAt: info.ymd,
+          startedAt: info.started_at,
+          endedAt: info.ended_at,
           title: locale === 'en' ? info.subject_en : info.subject,
         }
       })
