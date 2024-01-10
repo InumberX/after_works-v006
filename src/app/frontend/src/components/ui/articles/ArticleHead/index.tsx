@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 import { format } from 'date-fns'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { BaseTagList } from '@/components/ui/lists/BaseTagList'
+import { getCurrentLocale } from '@/locales/server'
 
 type Props = {
   className?: string
@@ -26,12 +27,16 @@ type Props = {
 
 export const ArticleHead = ({ className, info }: Props) => {
   const { mainVisual, title, dateTitle, startedAt, endedAt, tags, url } = info
+  const locale = getCurrentLocale()
 
   const startedAtText = startedAt
-    ? format(new Date(startedAt), 'yyyy/MM/dd')
+    ? format(
+        new Date(startedAt),
+        locale === 'en' ? 'MMMM d, yyyy' : 'yyyy/MM/dd',
+      )
     : undefined
   const endedAtText = endedAt
-    ? format(new Date(endedAt), 'yyyy/MM/dd')
+    ? format(new Date(endedAt), locale === 'en' ? 'MMMM d, yyyy' : 'yyyy/MM/dd')
     : undefined
 
   return (
@@ -71,7 +76,9 @@ export const ArticleHead = ({ className, info }: Props) => {
               )}
 
               {startedAtText && endedAtText && (
-                <span className={styles.ArticleHeadDate__separator}>〜</span>
+                <span className={styles.ArticleHeadDate__separator}>
+                  {locale === 'en' ? '-' : '〜'}
+                </span>
               )}
 
               {endedAtText && (

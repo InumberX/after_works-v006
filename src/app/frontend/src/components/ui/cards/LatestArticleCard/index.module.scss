@@ -64,6 +64,10 @@
   @include mxGetFontSize(12);
 }
 
+.LatestArticleCardDate__separator {
+  margin: 0 4px;
+}
+
 .LatestArticleCardTitle {
   display: block;
 }

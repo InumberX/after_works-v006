@@ -101,7 +101,7 @@ const ArticleCardContainer = ({
           )}
 
           <span className={styles.ArticleCardDate__separator}>
-            {locale === 'en' ? ' - ' : '〜'}
+            {locale === 'en' ? '-' : '〜'}
           </span>
 
           {endedAt && (
