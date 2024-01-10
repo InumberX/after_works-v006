@@ -67,6 +67,10 @@
   @include mxGetFontSize(14);
 }
 
+.ArticleCardDate__separator {
+  margin: 0 4px;
+}
+
 .ArticleCardTitle {
   display: block;
 }

@@ -362,7 +362,7 @@ export const History = ({
                                     styles.HistoryContensDate__separator
                                   }
                                 >
-                                  {locale === 'en' ? ' - ' : '〜'}
+                                  {locale === 'en' ? '-' : '〜'}
                                 </span>
 
                                 {info.endedAt && (
