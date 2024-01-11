@@ -49,7 +49,7 @@
 
 .ProfileInfo {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: [column-1] auto [column-2] 1fr;
   margin-top: 24px;
   row-gap: 24px;
 
