@@ -39,17 +39,9 @@
 }
 
 .Lead__container {
-  padding-top: 80px;
+  padding: get-clamp-px(80, 120) 0;
   position: relative;
   z-index: $z-index-2;
-
-  @include mxMediaQuerySm {
-    padding: 120px 0;
-  }
-
-  @include mxMediaQueryMd {
-    padding: 160px 0;
-  }
 }
 
 .LeadMessage {
@@ -61,19 +53,6 @@
 }
 
 .LeadMessage__paragraph {
-  @include mxGetFontSize(18);
-
+  font-size: get-clamp-rem(18, 32);
   font-weight: $font-bold;
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(22);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(26);
-  }
-
-  @include mxMediaQueryLg {
-    @include mxGetFontSize(32);
-  }
 }

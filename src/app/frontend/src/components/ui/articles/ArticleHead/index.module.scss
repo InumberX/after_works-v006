@@ -26,13 +26,8 @@
 }
 
 .ArticleHeadTitle__text {
-  @include mxGetFontSize(24);
-
+  font-size: get-clamp-rem(24, 32);
   font-weight: $font-bold;
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(32);
-  }
 }
 
 .ArticleHeadInfo {

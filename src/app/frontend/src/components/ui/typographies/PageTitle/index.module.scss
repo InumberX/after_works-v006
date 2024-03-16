@@ -22,22 +22,9 @@
 .PageTitleSub__text {
   color: rgba($palette-blue-charcoal, 0.1);
   display: block;
+  font-size: get-clamp-rem(56, 104);
   font-weight: $font-bold;
   line-height: 1.2;
-
-  @include mxGetFontSize(56);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(72);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(88);
-  }
-
-  @include mxMediaQueryLg {
-    @include mxGetFontSize(104);
-  }
 }
 
 .PageTitleMain {
@@ -51,19 +38,6 @@
 
 .PageTitleMain__text {
   color: $palette-white;
+  font-size: get-clamp-rem(24, 48);
   font-weight: $font-bold;
-
-  @include mxGetFontSize(24);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(32);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(40);
-  }
-
-  @include mxMediaQueryLg {
-    @include mxGetFontSize(48);
-  }
 }
