@@ -15,6 +15,7 @@
     color: $palette-white;
     cursor: pointer;
     display: flex;
+    font-size: get-clamp-rem(18, 22);
     font-weight: $font-bold;
     height: 100%;
     justify-content: center;
@@ -28,7 +29,6 @@
       0.3s box-shadow,
       0.3s transform;
     width: 100%;
-    font-size: getClampRem(18, 22);
 
     @include mxMediaHover {
       &:hover {

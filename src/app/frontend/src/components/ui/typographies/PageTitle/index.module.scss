@@ -22,9 +22,9 @@
 .PageTitleSub__text {
   color: rgba($palette-blue-charcoal, 0.1);
   display: block;
+  font-size: get-clamp-rem(56, 104);
   font-weight: $font-bold;
   line-height: 1.2;
-  font-size: getClampRem(56, 104);
 }
 
 .PageTitleMain {
@@ -38,6 +38,6 @@
 
 .PageTitleMain__text {
   color: $palette-white;
+  font-size: get-clamp-rem(24, 48);
   font-weight: $font-bold;
-  font-size: getClampRem(24, 48);
 }

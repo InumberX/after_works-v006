@@ -26,8 +26,7 @@
 }
 
 .ArticleHeadTitle__text {
-  font-size: getClampRem(24, 32);
-
+  font-size: get-clamp-rem(24, 32);
   font-weight: $font-bold;
 }
 

@@ -5,8 +5,8 @@
 }
 
 .Contact__message {
+  font-size: get-clamp-rem(16, 18);
   text-align: center;
-  font-size: getClampRem(16, 18);
 }
 
 .ContactButton {

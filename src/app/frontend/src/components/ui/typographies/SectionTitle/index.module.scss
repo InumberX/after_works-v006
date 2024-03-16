@@ -19,10 +19,10 @@
 .SectionTitleSub__text {
   color: rgba($palette-blue-charcoal, 0.1);
   display: inline-block;
+  font-size: get-clamp-rem(56, 104);
   font-weight: $font-bold;
   line-height: 1.2;
   text-align: center;
-  font-size: getClampRem(56, 104);
 }
 
 .SectionTitleMain {
@@ -40,8 +40,8 @@
   background: linear-gradient(90deg, $gradation-primary);
   background-clip: text;
   color: $palette-sky-blue;
+  font-size: get-clamp-rem(24, 48);
   font-weight: $font-bold;
   text-align: center;
   -webkit-text-fill-color: transparent;
-  font-size: getClampRem(24, 48);
 }

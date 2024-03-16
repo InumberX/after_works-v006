@@ -44,9 +44,9 @@
     border-radius: 0;
     color: $palette-white;
     display: flex;
+    font-size: get-clamp-rem(20, 32);
     justify-content: center;
     padding: 0;
-    font-size: getClampRem(20, 32);
 
     @include mxMediaHover {
       &:hover {
@@ -60,7 +60,7 @@
 
 .History__main {
   flex-grow: 1;
-  padding-left: getClampPx(40, 80);
+  padding-left: get-clamp-px(40, 80);
 }
 
 .HistoryContens__items {
@@ -149,9 +149,9 @@
 .HistoryContensDate {
   align-items: center;
   display: flex;
+  font-size: get-clamp-rem(18, 24);
   font-weight: $font-bold;
   margin-bottom: 8px;
-  font-size: getClampRem(18, 24);
 
   @include mxMediaQuerySm {
     margin-bottom: 16px;
@@ -163,8 +163,8 @@
 }
 
 .HistoryContensTitle__text {
+  font-size: get-clamp-rem(16, 18);
   font-weight: $font-medium;
-  font-size: getClampRem(16, 18);
 }
 
 .HistoryContensTag {
@@ -186,7 +186,7 @@
 }
 
 .HistoryContensTagText__item {
-  font-size: getClampRem(14, 16);
+  font-size: get-clamp-rem(14, 16);
 
   &::after {
     content: '、';

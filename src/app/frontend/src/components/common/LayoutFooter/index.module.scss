@@ -28,7 +28,7 @@
 .LayoutFooter__contents {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
-  padding: getClampPx(40, 80) 0;
+  padding: get-clamp-px(40, 80) 0;
 }
 
 .LayoutFooterNavigation__items {

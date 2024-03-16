@@ -1,7 +1,7 @@
 @use '~/assets/scss/global' as *;
 
 .LayoutSection.LayoutSection--first {
-  padding-top: getClampPx(24, 40);
+  padding-top: get-clamp-px(24, 40);
 }
 
 .LayoutSection.LayoutSection--notTopMargin {
@@ -9,5 +9,5 @@
 }
 
 .LayoutSection {
-  padding: getClampPx(56, 96) 0;
+  padding: get-clamp-px(56, 96) 0;
 }

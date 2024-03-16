@@ -255,9 +255,8 @@ p,
 blockquote,
 ul,
 ol,
-li,
-p {
-  font-size: getClampRem(16, 18);
+li {
+  font-size: get-clamp-rem(16, 18);
 }
 
 /* サイト内共通 ========== */

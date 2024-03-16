@@ -39,6 +39,6 @@
 }
 
 .MainVisualTitle__text {
+  font-size: get-clamp-rem(40, 64);
   text-align: center;
-  font-size: getClampRem(40, 64);
 }

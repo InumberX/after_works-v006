@@ -8,14 +8,14 @@
 .ServiceCard__container {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
-  border-radius: getClampPx(16, 40);
+  border-radius: get-clamp-px(16, 40);
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 16px 16px 24px;
 
   @include mxMediaQuerySm {
-    padding: getClampPx(24, 40);
+    padding: get-clamp-px(24, 40);
   }
 }
 
@@ -28,9 +28,9 @@
 
 .ServiceCardTitle__text {
   color: $palette-white;
+  font-size: get-clamp-rem(20, 24);
   font-weight: $font-bold;
   text-align: center;
-  font-size: getClampRem(20, 24);
 }
 
 .ServiceCardDescription {
@@ -38,7 +38,7 @@
 }
 
 .ServiceCardDescription__text {
-  font-size: getClampRem(14, 16);
+  font-size: get-clamp-rem(14, 16);
 }
 
 .ServiceCardButton {

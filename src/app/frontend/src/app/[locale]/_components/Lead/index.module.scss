@@ -39,7 +39,7 @@
 }
 
 .Lead__container {
-  padding: getClampPx(80, 120) 0;
+  padding: get-clamp-px(80, 120) 0;
   position: relative;
   z-index: $z-index-2;
 }
@@ -53,6 +53,6 @@
 }
 
 .LeadMessage__paragraph {
-  font-size: getClampRem(18, 32);
+  font-size: get-clamp-rem(18, 32);
   font-weight: $font-bold;
 }

@@ -1,71 +1,73 @@
 @use '../variables' as *;
 @use 'sass:math';
 
-@function getClampPx(
-  $minSize,
-  $maxSize,
-  $minViewport: 360,
-  $maxViewport: 1400
+@function get-clamp-px(
+  $min-size,
+  $max-size,
+  $min-viewport: 360,
+  $max-viewport: 1400
 ) {
   // 最大サイズから最小サイズを減算しサイズの変化する幅を求める
-  $sizeRate: $maxSize - $minSize;
+  $size-rate: $max-size - $min-size;
+
   // 最大viewportから最小viewportを減算しウィンドウの変化する幅を求めておく
-  $viewportRate: $maxViewport - $minViewport;
+  $viewport-rate: $max-viewport - $min-viewport;
 
   // サイズが変化する量をvw単位にする計算(小数点２桁で丸める)
-  $changingSize: math.div(
-    math.round(math.div($sizeRate, $viewportRate) * 10000),
+  $changing-size: math.div(
+    math.round(math.div($size-rate, $viewport-rate) * 10000),
     100
   );
 
   // サイズが変化しない部分を計算
-  $fixedSize: math.round(
-    ($minSize - math.div($sizeRate, $viewportRate) * $minViewport)
+  $fixed-size: math.round(
+    ($min-size - math.div($size-rate, $viewport-rate) * $min-viewport)
   );
 
-  //出力
+  // 出力
   @return clamp(
-    #{$minSize}px,
-    #{$fixedSize}px + #{$changingSize}vw,
-    #{$maxSize}px
+    #{$min-size}px,
+    #{$fixed-size}px + #{$changing-size}vw,
+    #{$max-size}px
   );
 }
 
-@function getClampRem(
-  $minSize,
-  $maxSize,
-  $minViewport: 360,
-  $maxViewport: 1400
+@function get-clamp-rem(
+  $min-size,
+  $max-size,
+  $min-viewport: 360,
+  $max-viewport: 1400
 ) {
   // 最大サイズから最小サイズを減算しサイズの変化する幅を求める
-  $sizeRate: $maxSize - $minSize;
+  $size-rate: $max-size - $min-size;
+
   // 最大viewportから最小viewportを減算しウィンドウの変化する幅を求めておく
-  $viewportRate: $maxViewport - $minViewport;
+  $viewport-rate: $max-viewport - $min-viewport;
 
   // サイズが変化する量をvw単位にする計算(小数点２桁で丸める)
-  $changingSize: math.div(
-    math.round(math.div($sizeRate, $viewportRate) * 10000),
+  $changing-size: math.div(
+    math.round(math.div($size-rate, $viewport-rate) * 10000),
     100
   );
 
   // サイズが変化しない部分をrem単位にする計算
-  $fixedSize: math.div(
+  $fixed-size: math.div(
     math.round(
-      ($minSize - math.div($sizeRate, $viewportRate) * $minViewport) * 62.5
+      ($min-size - math.div($size-rate, $viewport-rate) * $min-viewport) * 62.5
     ),
     1000
   );
 
   // 最小フォントサイズをrem単位にする計算（小数点3桁で丸める）
-  $minRemSize: math.div(math.round($minSize * 62.5), 1000);
+  $min-rem-size: math.div(math.round($min-size * 62.5), 1000);
 
-  //最大フォントサイズをrem単位にする計算（小数点３桁で丸める）
-  $maxRemSize: math.div(math.round($maxSize * 62.5), 1000);
+  // 最大フォントサイズをrem単位にする計算（小数点３桁で丸める）
+  $max-rem-size: math.div(math.round($max-size * 62.5), 1000);
 
-  //出力
+  // 出力
   @return clamp(
-    #{$minRemSize}rem,
-    #{$fixedSize}rem + #{$changingSize}vw,
-    #{$maxRemSize}rem
+    #{$min-rem-size}rem,
+    #{$fixed-size}rem + #{$changing-size}vw,
+    #{$max-rem-size}rem
   );
 }
