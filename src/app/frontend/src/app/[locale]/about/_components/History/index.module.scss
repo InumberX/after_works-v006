@@ -60,15 +60,7 @@
 
 .History__main {
   flex-grow: 1;
-  padding-left: 40px;
-
-  @include mxMediaQuerySm {
-    padding-left: 64px;
-  }
-
-  @include mxMediaQueryMd {
-    padding-left: 80px;
-  }
+  padding-left: getClampPx(40, 80);
 }
 
 .HistoryContens__items {
@@ -159,7 +151,7 @@
   display: flex;
   font-weight: $font-bold;
   margin-bottom: 8px;
-  font-size: getClampRem(18, 624);
+  font-size: getClampRem(18, 24);
 
   @include mxMediaQuerySm {
     margin-bottom: 16px;
@@ -172,7 +164,7 @@
 
 .HistoryContensTitle__text {
   font-weight: $font-medium;
-  font-size: getClampRem(16 18);
+  font-size: getClampRem(16, 18);
 }
 
 .HistoryContensTag {

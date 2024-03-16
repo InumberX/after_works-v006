@@ -39,17 +39,9 @@
 }
 
 .Lead__container {
-  padding-top: 80px;
+  padding: getClampPx(80, 120) 0;
   position: relative;
   z-index: $z-index-2;
-
-  @include mxMediaQuerySm {
-    padding: 120px 0;
-  }
-
-  @include mxMediaQueryMd {
-    padding: 160px 0;
-  }
 }
 
 .LeadMessage {
