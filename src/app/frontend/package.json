@@ -49,5 +49,10 @@
     "stylelint-order": "^6.0.4",
     "stylelint-scss": "^6.2.1",
     "typescript": "5.4.2"
+  },
+  "resolutions": {
+    "lerna/**/string-width": "4",
+    "lerna/**/strip-ansi": "6",
+    "lerna/**/wrap-ansi": "7"
   }
 }
