@@ -44,10 +44,9 @@
     border-radius: 0;
     color: $palette-white;
     display: flex;
+    font-size: get-clamp-rem(20, 32);
     justify-content: center;
     padding: 0;
-
-    @include mxGetFontSize(20);
 
     @include mxMediaHover {
       &:hover {
@@ -56,28 +55,12 @@
         -webkit-text-fill-color: transparent;
       }
     }
-
-    @include mxMediaQuerySm {
-      @include mxGetFontSize(26);
-    }
-
-    @include mxMediaQueryMd {
-      @include mxGetFontSize(32);
-    }
   }
 }
 
 .History__main {
   flex-grow: 1;
-  padding-left: 40px;
-
-  @include mxMediaQuerySm {
-    padding-left: 64px;
-  }
-
-  @include mxMediaQueryMd {
-    padding-left: 80px;
-  }
+  padding-left: get-clamp-px(40, 80);
 }
 
 .HistoryContens__items {
@@ -166,19 +149,12 @@
 .HistoryContensDate {
   align-items: center;
   display: flex;
+  font-size: get-clamp-rem(18, 24);
   font-weight: $font-bold;
   margin-bottom: 8px;
 
-  @include mxGetFontSize(18);
-
   @include mxMediaQuerySm {
-    @include mxGetFontSize(20);
-
     margin-bottom: 16px;
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(24);
   }
 }
 
@@ -187,13 +163,8 @@
 }
 
 .HistoryContensTitle__text {
+  font-size: get-clamp-rem(16, 18);
   font-weight: $font-medium;
-
-  @include mxGetFontSize(16);
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(18);
-  }
 }
 
 .HistoryContensTag {
@@ -215,11 +186,7 @@
 }
 
 .HistoryContensTagText__item {
-  @include mxGetFontSize(14);
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(16);
-  }
+  font-size: get-clamp-rem(14, 16);
 
   &::after {
     content: '、';
