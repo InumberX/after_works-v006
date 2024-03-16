@@ -35,8 +35,6 @@ body {
   text-size-adjust: 100%;
   width: 100%;
 
-  @include mxGetFontSize(16);
-
   &.Body--fixed {
     height: 100%;
     left: 0;
@@ -94,8 +92,6 @@ li {
   vertical-align: baseline;
   -webkit-word-wrap: break-word;
   word-wrap: break-word;
-
-  @include mxGetFontSize(16);
 }
 
 ul,
@@ -245,31 +241,23 @@ th {
   padding: 0;
 }
 
-@include mxMediaQuerySm {
-  body {
-    @include mxGetFontSize(18);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  dl,
-  dt,
-  dd,
-  p,
-  blockquote,
-  ul,
-  ol,
-  li {
-    @include mxGetFontSize(18);
-  }
-
-  p {
-    @include mxGetFontSize(18);
-  }
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+p,
+blockquote,
+ul,
+ol,
+li,
+p {
+  font-size: getClampRem(16, 18);
 }
 
 /* サイト内共通 ========== */

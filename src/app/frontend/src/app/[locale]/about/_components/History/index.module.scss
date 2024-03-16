@@ -46,8 +46,7 @@
     display: flex;
     justify-content: center;
     padding: 0;
-
-    @include mxGetFontSize(20);
+    font-size: getClampRem(20, 32);
 
     @include mxMediaHover {
       &:hover {
@@ -55,14 +54,6 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-    }
-
-    @include mxMediaQuerySm {
-      @include mxGetFontSize(26);
-    }
-
-    @include mxMediaQueryMd {
-      @include mxGetFontSize(32);
     }
   }
 }
@@ -168,17 +159,10 @@
   display: flex;
   font-weight: $font-bold;
   margin-bottom: 8px;
-
-  @include mxGetFontSize(18);
+  font-size: getClampRem(18, 624);
 
   @include mxMediaQuerySm {
-    @include mxGetFontSize(20);
-
     margin-bottom: 16px;
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(24);
   }
 }
 
@@ -188,12 +172,7 @@
 
 .HistoryContensTitle__text {
   font-weight: $font-medium;
-
-  @include mxGetFontSize(16);
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(18);
-  }
+  font-size: getClampRem(16 18);
 }
 
 .HistoryContensTag {
@@ -215,11 +194,7 @@
 }
 
 .HistoryContensTagText__item {
-  @include mxGetFontSize(14);
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(16);
-  }
+  font-size: getClampRem(14, 16);
 
   &::after {
     content: '、';

@@ -40,18 +40,5 @@
 
 .MainVisualTitle__text {
   text-align: center;
-
-  @include mxGetFontSize(40);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(48);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(56);
-  }
-
-  @include mxMediaQueryLg {
-    @include mxGetFontSize(64);
-  }
+  font-size: getClampRem(40, 64);
 }

@@ -24,20 +24,7 @@
   display: block;
   font-weight: $font-bold;
   line-height: 1.2;
-
-  @include mxGetFontSize(56);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(72);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(88);
-  }
-
-  @include mxMediaQueryLg {
-    @include mxGetFontSize(104);
-  }
+  font-size: getClampRem(56, 104);
 }
 
 .PageTitleMain {
@@ -52,18 +39,5 @@
 .PageTitleMain__text {
   color: $palette-white;
   font-weight: $font-bold;
-
-  @include mxGetFontSize(24);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(32);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetFontSize(40);
-  }
-
-  @include mxMediaQueryLg {
-    @include mxGetFontSize(48);
-  }
+  font-size: getClampRem(24, 48);
 }

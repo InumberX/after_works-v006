@@ -13,7 +13,7 @@ import {
 } from '@/store/breakpoints'
 
 export const BREAKPOINTS = {
-  xs: 320,
+  xs: 360,
   sm: 576,
   md: 768,
   lg: 992,

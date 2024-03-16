@@ -6,12 +6,7 @@
 
 .Contact__message {
   text-align: center;
-
-  @include mxGetFontSize(16);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(18);
-  }
+  font-size: getClampRem(16, 18);
 }
 
 .ContactButton {

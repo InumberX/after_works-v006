@@ -1,0 +1,71 @@
+@use '../variables' as *;
+@use 'sass:math';
+
+@function getClampPx(
+  $minSize,
+  $maxSize,
+  $minViewport: 360,
+  $maxViewport: 1400
+) {
+  // 最大サイズから最小サイズを減算しサイズの変化する幅を求める
+  $sizeRate: $maxSize - $minSize;
+  // 最大viewportから最小viewportを減算しウィンドウの変化する幅を求めておく
+  $viewportRate: $maxViewport - $minViewport;
+
+  // サイズが変化する量をvw単位にする計算(小数点２桁で丸める)
+  $changingSize: math.div(
+    math.round(math.div($sizeRate, $viewportRate) * 10000),
+    100
+  );
+
+  // サイズが変化しない部分を計算
+  $fixedSize: math.round(
+    ($minSize - math.div($sizeRate, $viewportRate) * $minViewport)
+  );
+
+  //出力
+  @return clamp(
+    #{$minSize}px,
+    #{$fixedSize}px + #{$changingSize}vw,
+    #{$maxSize}px
+  );
+}
+
+@function getClampRem(
+  $minSize,
+  $maxSize,
+  $minViewport: 360,
+  $maxViewport: 1400
+) {
+  // 最大サイズから最小サイズを減算しサイズの変化する幅を求める
+  $sizeRate: $maxSize - $minSize;
+  // 最大viewportから最小viewportを減算しウィンドウの変化する幅を求めておく
+  $viewportRate: $maxViewport - $minViewport;
+
+  // サイズが変化する量をvw単位にする計算(小数点２桁で丸める)
+  $changingSize: math.div(
+    math.round(math.div($sizeRate, $viewportRate) * 10000),
+    100
+  );
+
+  // サイズが変化しない部分をrem単位にする計算
+  $fixedSize: math.div(
+    math.round(
+      ($minSize - math.div($sizeRate, $viewportRate) * $minViewport) * 62.5
+    ),
+    1000
+  );
+
+  // 最小フォントサイズをrem単位にする計算（小数点3桁で丸める）
+  $minRemSize: math.div(math.round($minSize * 62.5), 1000);
+
+  //最大フォントサイズをrem単位にする計算（小数点３桁で丸める）
+  $maxRemSize: math.div(math.round($maxSize * 62.5), 1000);
+
+  //出力
+  @return clamp(
+    #{$minRemSize}rem,
+    #{$fixedSize}rem + #{$changingSize}vw,
+    #{$maxRemSize}rem
+  );
+}

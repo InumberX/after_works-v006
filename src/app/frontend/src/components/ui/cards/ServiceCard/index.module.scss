@@ -41,12 +41,7 @@
   color: $palette-white;
   font-weight: $font-bold;
   text-align: center;
-
-  @include mxGetFontSize(20);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(24);
-  }
+  font-size: getClampRem(20, 24);
 }
 
 .ServiceCardDescription {
@@ -54,11 +49,7 @@
 }
 
 .ServiceCardDescription__text {
-  @include mxGetFontSize(14);
-
-  @include mxMediaQuerySm {
-    @include mxGetFontSize(16);
-  }
+  font-size: getClampRem(14, 16);
 }
 
 .ServiceCardButton {

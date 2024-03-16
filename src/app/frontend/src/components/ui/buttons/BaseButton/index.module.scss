@@ -28,16 +28,7 @@
       0.3s box-shadow,
       0.3s transform;
     width: 100%;
-
-    @include mxGetFontSize(18);
-
-    @include mxMediaQuerySm {
-      @include mxGetFontSize(20);
-    }
-
-    @include mxMediaQueryMd {
-      @include mxGetFontSize(22);
-    }
+    font-size: getClampRem(18, 22);
 
     @include mxMediaHover {
       &:hover {
