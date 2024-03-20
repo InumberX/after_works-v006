@@ -12,18 +12,15 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 16px 16px 24px;
-
-  @include mxMediaQuerySm {
-    padding: get-clamp-px(24, 40);
-  }
+  padding-block: get-clamp-px(16, 40);
+  padding-inline: get-clamp-px(16, 40);
 }
 
 .ServiceCardIcon {
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-block-end: 24px;
 }
 
 .ServiceCardTitle__text {
@@ -34,7 +31,7 @@
 }
 
 .ServiceCardDescription {
-  margin-top: 16px;
+  margin-block-start: 16px;
 }
 
 .ServiceCardDescription__text {
@@ -45,8 +42,8 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: auto;
-  padding-top: 24px;
+  margin-block-start: auto;
+  padding-block-start: 24px;
 }
 
 .ServiceCardButton__button {

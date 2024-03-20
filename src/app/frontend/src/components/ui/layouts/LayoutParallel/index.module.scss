@@ -14,12 +14,12 @@
 }
 
 .LayoutParallel__side {
-  margin-top: 80px;
+  margin-block-start: 80px;
 
   @include mxMediaQueryLg {
     flex-shrink: 0;
-    margin-left: 40px;
-    margin-top: 0;
+    margin-block-start: 0;
+    margin-inline-start: 40px;
     width: 300px;
   }
 }

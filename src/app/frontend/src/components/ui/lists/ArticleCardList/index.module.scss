@@ -2,7 +2,7 @@
 
 .ArticleCardList__items {
   display: grid;
-  gap: 24px 24px;
+  gap: get-clamp-px(24, 40) get-clamp-px(24, 40);
   grid-template-columns: repeat(1, 1fr);
 
   @include mxMediaQuerySm {
@@ -11,13 +11,5 @@
 
   @include mxMediaQueryMd {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include mxMediaQueryLg {
-    gap: 32px 32px;
-  }
-
-  @include mxMediaQueryXl {
-    gap: 40px 40px;
   }
 }

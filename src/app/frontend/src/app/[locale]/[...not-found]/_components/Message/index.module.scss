@@ -4,7 +4,8 @@
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
   border-radius: get-clamp-px(24, 40);
-  padding: get-clamp-px(24, 40);
+  padding-block: get-clamp-px(24, 40);
+  padding-inline: get-clamp-px(24, 40);
 }
 
 .Message__text {
@@ -15,15 +16,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: 24px;
-
-  @include mxMediaQuerySm {
-    margin-top: 32px;
-  }
-
-  @include mxMediaQueryMd {
-    margin-top: 40px;
-  }
+  margin-block-start: get-clamp-px(24, 40);
 }
 
 .MessageButton__button {

@@ -1,14 +1,15 @@
 @use '~/assets/scss/global' as *;
 
 .PageTitle {
-  padding-top: 64px;
+  padding-block-start: 64px;
 }
 
 .PageTitle__container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  padding: 40px 0;
+  padding-block: 40px;
+  padding-inline: 0;
 }
 
 .PageTitleSub {

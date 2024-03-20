@@ -20,24 +20,22 @@ export const Profile = async ({ certifications, skills }: ProfileProps) => {
     <LayoutSection className={styles.Profile}>
       <LayoutInner size='small'>
         <div className={styles.Profile__container}>
+          <figure className={styles.ProfileIcon}>
+            <Image
+              src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CASH_BUSTER}`}
+              width={80}
+              height={80}
+              alt={scopedT('title')}
+              className={styles.ProfileIcon__image}
+            />
+          </figure>
+
           <div className={styles.ProfileTitle}>
-            <figure className={styles.ProfileTitleImage}>
-              <Image
-                src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CASH_BUSTER}`}
-                width={80}
-                height={80}
-                alt={scopedT('title')}
-                className={styles.ProfileTitleImage__image}
-              />
-            </figure>
+            <h2 className={styles.ProfileTitle__main}>{scopedT('title')}</h2>
 
-            <div className={styles.ProfileTitle__paragraph}>
-              <h2 className={styles.ProfileTitle__main}>{scopedT('title')}</h2>
-
-              <span className={styles.ProfileTitle__sub}>
-                {scopedT('subTitle')}
-              </span>
-            </div>
+            <span className={styles.ProfileTitle__sub}>
+              {scopedT('subTitle')}
+            </span>
           </div>
 
           <div className={styles.ProfileInfo}>
