@@ -23,7 +23,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-block-end: 24px;
 }
 
 .ServiceCardTitle__text {
@@ -34,7 +34,7 @@
 }
 
 .ServiceCardDescription {
-  margin-top: 16px;
+  margin-block-start: 16px;
 }
 
 .ServiceCardDescription__text {
@@ -45,7 +45,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: auto;
+  margin-block-start: auto;
   padding-top: 24px;
 }
 

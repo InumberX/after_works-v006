@@ -20,7 +20,7 @@
 
 .LayoutHeaderLogo {
   flex-shrink: 0;
-  margin-right: 16px;
+  margin-inline-end: 16px;
 }
 
 .LayoutHeaderLogo__link {
@@ -177,7 +177,8 @@
 .LayoutHeaderMenuButton__icons {
   display: block;
   height: 16px;
-  margin: 0 auto;
+  margin-block: 0;
+  margin-inline: auto;
   position: relative;
   width: 24px;
 
@@ -187,7 +188,7 @@
     }
 
     &:nth-of-type(2) {
-      margin-top: -1px;
+      margin-block-start: -1px;
       top: 50%;
     }
 
@@ -212,7 +213,7 @@
   background: linear-gradient(90deg, $gradation-primary);
   background-clip: text;
   display: block;
-  margin-top: 6px;
+  margin-block-start: 6px;
   -webkit-text-fill-color: transparent;
   transition: 0.3s text-shadow;
 }
@@ -295,11 +296,11 @@
 
 .LayoutHeaderLocales {
   height: 100%;
-  margin-right: 16px;
+  margin-inline-end: 16px;
   position: relative;
 
   @include mxMediaQueryMd {
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 }
 

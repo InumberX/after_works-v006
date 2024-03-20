@@ -17,13 +17,13 @@
 .HistoryYear__items {
   > .HistoryYear__item {
     &:first-of-type {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 }
 
 .HistoryYear__item {
-  margin-top: 24px;
+  margin-block-start: 24px;
 }
 
 .HistoryYear__title.HistoryYear__title--active {
@@ -66,7 +66,7 @@
 .HistoryContens__items {
   > .HistoryContens__item {
     &:first-of-type {
-      margin-top: 0;
+      margin-block-start: 0;
 
       &::after {
         height: calc(100% + 12px);
@@ -87,16 +87,8 @@
 }
 
 .HistoryContens__item {
-  margin-top: 24px;
+  margin-block-start: get-clamp-px(24, 40);
   position: relative;
-
-  @include mxMediaQuerySm {
-    margin-top: 32px;
-  }
-
-  @include mxMediaQueryMd {
-    margin-top: 40px;
-  }
 
   &::before {
     background-color: $palette-heliotrope;
@@ -151,15 +143,12 @@
   display: flex;
   font-size: get-clamp-rem(18, 24);
   font-weight: $font-bold;
-  margin-bottom: 8px;
-
-  @include mxMediaQuerySm {
-    margin-bottom: 16px;
-  }
+  margin-block-end: get-clamp-px(8, 16);
 }
 
 .HistoryContensDate__separator {
-  margin: 0 4px;
+  margin-block: 0;
+  margin-inline: 4px;
 }
 
 .HistoryContensTitle__text {
@@ -168,7 +157,7 @@
 }
 
 .HistoryContensTag {
-  margin-top: 8px;
+  margin-block-start: 8px;
   padding-left: 24px;
 }
 

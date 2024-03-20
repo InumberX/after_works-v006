@@ -52,7 +52,7 @@
 .BaseBreadcrumb__icon {
   &:not(:root) {
     flex-shrink: 0;
-    margin-right: 8px;
+    margin-inline-end: 8px;
     padding-top: 3px;
 
     &::before {

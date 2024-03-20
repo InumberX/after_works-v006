@@ -15,15 +15,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: 24px;
-
-  @include mxMediaQuerySm {
-    margin-top: 32px;
-  }
-
-  @include mxMediaQueryMd {
-    margin-top: 40px;
-  }
+  margin-block-start: get-clamp-px(24, 40);
 }
 
 .MessageButton__button {

@@ -34,7 +34,7 @@
   border-radius: 8px;
   display: block;
   flex-shrink: 0;
-  margin-right: 16px;
+  margin-inline-end: 16px;
   overflow: hidden;
   position: relative;
   transition: 0.3s border-radius;
@@ -59,13 +59,14 @@
   color: $palette-white;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 
   @include mxGetFontSize(12);
 }
 
 .LatestArticleCardDate__separator {
-  margin: 0 4px;
+  margin-block: 0;
+  margin-inline: 4px;
 }
 
 .LatestArticleCardTitle {

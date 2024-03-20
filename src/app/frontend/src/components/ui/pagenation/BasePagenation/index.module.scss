@@ -84,7 +84,7 @@
 
 .BasePagenation__prev {
   .BasePagenation__icon:not(:root) {
-    margin-left: -2px;
+    margin-inline-start: -2px;
 
     &::before {
       height: 16px;
@@ -95,7 +95,7 @@
 
 .BasePagenation__next {
   .BasePagenation__icon:not(:root) {
-    margin-right: -2px;
+    margin-inline-end: -2px;
 
     &::before {
       height: 16px;

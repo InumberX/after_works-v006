@@ -1,7 +1,7 @@
 @use '~/assets/scss/global' as *;
 
 .Contact__contents {
-  margin-top: 40px;
+  margin-block-start: 40px;
 }
 
 .Contact__message {
@@ -13,7 +13,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-block-start: 40px;
 }
 
 .ContactButton__button {
@@ -25,6 +25,6 @@
 .ContactButton__icon {
   &:not(:root) {
     flex-shrink: 0;
-    margin-right: 8px;
+    margin-inline-end: 8px;
   }
 }

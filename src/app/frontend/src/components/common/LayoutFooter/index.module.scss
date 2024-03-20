@@ -1,7 +1,7 @@
 @use '~/assets/scss/global' as *;
 
 .LayoutFooter {
-  margin-top: auto;
+  margin-block-start: auto;
 }
 
 .LayoutFooterBackToTop {
@@ -21,7 +21,7 @@
 
 .LayoutFooterBackToTop__icon {
   &:not(:root) {
-    margin-bottom: 4px;
+    margin-block-end: 4px;
   }
 }
 
@@ -93,7 +93,7 @@
 .LayoutFooterNavigation__icon {
   &:not(:root) {
     flex-shrink: 0;
-    margin-right: 12px;
+    margin-inline-end: 12px;
     padding-top: 4px;
 
     &::before {
@@ -105,12 +105,8 @@
 }
 
 .LayoutFooterSns {
-  margin-top: 64px;
+  margin-block-start: get-clamp-px(64, 80);
   overflow: hidden;
-
-  @include mxMediaQueryMd {
-    margin-top: 80px;
-  }
 }
 
 .LayoutFooterSns__items {

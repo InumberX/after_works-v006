@@ -3,7 +3,7 @@
 .ArticleBody__body {
   > * {
     &:first-child {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 
@@ -11,7 +11,7 @@
   h2 {
     border-top: 4px solid $palette-emperor;
     font-weight: $font-bold;
-    margin-top: 40px;
+    margin-block-start: 40px;
     padding: 16px 0 0;
     position: relative;
 
@@ -32,34 +32,34 @@
 
   h3 {
     font-weight: $font-bold;
-    margin-top: 40px;
+    margin-block-start: 40px;
 
     @include mxGetFontSize(20);
   }
 
   h4 {
     font-weight: $font-bold;
-    margin-top: 40px;
+    margin-block-start: 40px;
 
     @include mxGetFontSize(18);
   }
 
   h5 {
     font-weight: $font-bold;
-    margin-top: 40px;
+    margin-block-start: 40px;
 
     @include mxGetFontSize(16);
   }
 
   h6 {
     font-weight: $font-bold;
-    margin-top: 40px;
+    margin-block-start: 40px;
 
     @include mxGetFontSize(16);
   }
 
   p {
-    margin-top: 16px;
+    margin-block-start: 16px;
   }
 
   i {
@@ -77,30 +77,30 @@
 
   ul {
     list-style: disc;
-    margin-top: 16px;
+    margin-block-start: 16px;
     padding-left: 24px;
 
     li {
       &:first-of-type {
-        margin-top: 0;
+        margin-block-start: 0;
       }
     }
   }
 
   ol {
     list-style: decimal;
-    margin-top: 16px;
+    margin-block-start: 16px;
     padding-left: 24px;
 
     li {
       &:first-of-type {
-        margin-top: 0;
+        margin-block-start: 0;
       }
     }
   }
 
   li {
-    margin-top: 8px;
+    margin-block-start: 8px;
   }
 
   pre {
@@ -108,13 +108,14 @@
     border: 1px solid $palette-silver-chalice;
     display: block;
     font-weight: $font-medium;
-    margin: 16px 0 0;
+    margin-block: 16px 0;
+    margin-inline: 0;
     padding: 16px;
 
     @include mxGetFontSize(14);
 
     code {
-      margin-top: 0;
+      margin-block-start: 0;
 
       @include mxGetFontSize(14);
     }
@@ -125,26 +126,27 @@
     border-left: 8px solid $palette-silver-chalice;
     display: block;
     font-weight: $font-medium;
-    margin: 16px 0 0;
+    margin-block: 16px 0;
+    margin-inline: 0;
     padding: 16px;
 
     @include mxGetFontSize(14);
 
     p {
-      margin-top: 0;
+      margin-block-start: 0;
 
       @include mxGetFontSize(14);
     }
   }
 
   img {
-    margin-top: 16px;
+    margin-block-start: 16px;
   }
 
   table {
     background-color: $palette-emperor;
     border: 1px solid$palette-silver-chalice;
-    margin-top: 16px;
+    margin-block-start: 16px;
     width: 100%;
 
     tbody {

@@ -28,10 +28,10 @@
 .ProfileTitle__paragraph {
   align-items: center;
   display: flex;
-  margin-left: 16px;
+  margin-inline-start: 16px;
 
   @include mxMediaQuerySm {
-    margin-left: 40px;
+    margin-inline-start: 40px;
     padding: 40px 0;
   }
 }
@@ -40,7 +40,7 @@
   @include mxGetFontSize(24);
 
   font-weight: $font-bold;
-  margin-right: 8px;
+  margin-inline-end: 8px;
 }
 
 .ProfileTitle__sub {
@@ -50,11 +50,11 @@
 .ProfileInfo {
   display: grid;
   grid-template-columns: [column-1] auto [column-2] 1fr;
-  margin-top: 24px;
+  margin-block-start: 24px;
   row-gap: 24px;
 
   @include mxMediaQuerySm {
-    margin-top: -24px;
+    margin-block-start: -24px;
     padding-left: 160px;
   }
 }
@@ -79,13 +79,13 @@
 .ProfileInfoDescription__items {
   > .ProfileInfoDescription__item {
     &:first-of-type {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 }
 
 .ProfileInfoDescription__item {
-  margin-top: 16px;
+  margin-block-start: 16px;
   padding-left: 16px;
   position: relative;
 

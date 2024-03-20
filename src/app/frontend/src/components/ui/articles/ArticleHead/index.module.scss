@@ -2,12 +2,11 @@
 
 .ArticleHeadMainVisual {
   border-radius: 16px;
-  margin-bottom: 24px;
+  margin-block-end: get-clamp-px(24, 40);
   overflow: hidden;
 
   @include mxMediaQueryMd {
     border-radius: 24px;
-    margin-bottom: 40px;
   }
 }
 
@@ -31,7 +30,7 @@
 }
 
 .ArticleHeadInfo {
-  margin-top: 16px;
+  margin-block-start: 16px;
 }
 
 .ArticleHeadDate {
@@ -46,7 +45,8 @@
 
   &::after {
     content: ':';
-    margin: 0 4px;
+    margin-block: 0;
+    margin-inline: 4px;
   }
 }
 
@@ -61,12 +61,13 @@
 
 .ArticleHeadDate__separator {
   display: block;
-  margin: 0 4px;
+  margin-block: 0;
+  margin-inline: 4px;
 }
 
 .ArticleHeadUrl {
   display: flex;
-  margin-top: 8px;
+  margin-block-start: 8px;
 
   @include mxGetFontSize(14);
 }
@@ -77,7 +78,8 @@
 
   &::after {
     content: ':';
-    margin: 0 4px;
+    margin-block: 0;
+    margin-inline: 4px;
   }
 }
 
@@ -104,19 +106,19 @@
 }
 
 .ArticleHeadTag {
-  margin-top: 16px;
+  margin-block-start: 16px;
 }
 
 .ArticleHeadTag__items {
   > .ArticleHeadTag__item {
     &:first-of-type {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 }
 
 .ArticleHeadTag__item {
-  margin-top: 16px;
+  margin-block-start: 16px;
 }
 
 .ArticleHeadTag__container {
@@ -136,7 +138,8 @@
 
   &::after {
     content: ':';
-    margin: 0 4px;
+    margin-block: 0;
+    margin-inline: 4px;
   }
 }
 
