@@ -128,7 +128,7 @@
 .ArticleHeadTagTitle {
   flex-shrink: 0;
   font-weight: $font-bold;
-  padding-top: 2px;
+  padding-block-start: 2px;
 
   @include mxGetFontSize(14);
 }

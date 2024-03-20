@@ -6,7 +6,8 @@
     border-radius: 0;
     color: $palette-white;
     display: block;
-    padding: 16px 0;
+    padding-block: 16px;
+    padding-inline: 0;
     text-decoration: none;
     transition: 0.3s color;
 

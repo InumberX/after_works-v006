@@ -7,5 +7,6 @@
 }
 
 @mixin mxGetPaddingListItem($padding-top, $padding-left) {
-  padding: $padding-top 0 0 $padding-left;
+  padding-block: $padding-top 0;
+  padding-inline: $padding-top 0;
 }

@@ -1,11 +1,12 @@
 @use '~/assets/scss/global' as *;
 
 .BaseBreadcrumb.BaseBreadcrumb--top {
-  padding-top: 80px;
+  padding-block-start: 80px;
 }
 
 .BaseBreadcrumb {
-  padding: 16px 0;
+  padding-block: 16px;
+  padding-inline: 0;
 }
 
 .BaseBreadcrumb__wrapper {
@@ -27,10 +28,10 @@
 
   > .BaseBreadcrumb__item {
     &:last-of-type {
-      padding-right: 4vw;
+      padding-inline-end: 4vw;
 
       @include mxMediaQuerySm {
-        padding-right: 0;
+        padding-inline-end: 0;
       }
     }
   }
@@ -53,7 +54,7 @@
   &:not(:root) {
     flex-shrink: 0;
     margin-inline-end: 8px;
-    padding-top: 3px;
+    padding-block-start: 3px;
 
     &::before {
       height: 12px;

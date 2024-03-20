@@ -7,11 +7,8 @@
 }
 
 .BasePagenation__item {
-  padding: 0 4px;
-
-  @include mxMediaQuerySm {
-    padding: 0 8px;
-  }
+  padding-block: 0;
+  padding-inline: get-clamp-px(4, 8);
 }
 
 .BasePagenationCurrent {
@@ -21,7 +18,8 @@
   font-weight: $font-bold;
   height: 40px;
   justify-content: center;
-  padding: 1px;
+  padding-block: 1px;
+  padding-inline: 1px;
   position: relative;
   width: 40px;
 
@@ -63,7 +61,8 @@
   height: 100%;
   justify-content: center;
   overflow: hidden;
-  padding: 4px;
+  padding-block: 4px;
+  padding-inline: 4px;
   position: relative;
   width: 100%;
   z-index: $z-index-2;

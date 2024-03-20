@@ -28,7 +28,8 @@
 .LayoutFooter__contents {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
-  padding: get-clamp-px(40, 80) 0;
+  padding-block: get-clamp-px(40, 80);
+  padding-inline: 0;
 }
 
 .LayoutFooterNavigation__items {
@@ -94,7 +95,7 @@
   &:not(:root) {
     flex-shrink: 0;
     margin-inline-end: 12px;
-    padding-top: 4px;
+    padding-block-start: 4px;
 
     &::before {
       background: linear-gradient(90deg, $gradation-primary);
@@ -156,7 +157,8 @@
 .LayoutFooter__copy {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.8);
-  padding: 24px;
+  padding-block: 24px;
+  padding-inline: 24px;
 }
 
 .LayoutFooterCopy__paragraph {

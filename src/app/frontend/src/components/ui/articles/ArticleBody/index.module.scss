@@ -12,7 +12,8 @@
     border-top: 4px solid $palette-emperor;
     font-weight: $font-bold;
     margin-block-start: 40px;
-    padding: 16px 0 0;
+    padding-block: 16px 0;
+    padding-inline: 0;
     position: relative;
 
     @include mxGetFontSize(22);
@@ -78,7 +79,7 @@
   ul {
     list-style: disc;
     margin-block-start: 16px;
-    padding-left: 24px;
+    padding-inline-start: 24px;
 
     li {
       &:first-of-type {
@@ -90,7 +91,7 @@
   ol {
     list-style: decimal;
     margin-block-start: 16px;
-    padding-left: 24px;
+    padding-inline-start: 24px;
 
     li {
       &:first-of-type {
@@ -110,7 +111,8 @@
     font-weight: $font-medium;
     margin-block: 16px 0;
     margin-inline: 0;
-    padding: 16px;
+    padding-block: 16px;
+    padding-inline: 16px;
 
     @include mxGetFontSize(14);
 
@@ -128,7 +130,8 @@
     font-weight: $font-medium;
     margin-block: 16px 0;
     margin-inline: 0;
-    padding: 16px;
+    padding-block: 16px;
+    padding-inline: 16px;
 
     @include mxGetFontSize(14);
 
@@ -159,7 +162,8 @@
 
         > td {
           border-right: 1px solid $palette-silver-chalice;
-          padding: 4px;
+          padding-block: 4px;
+          padding-inline: 4px;
 
           &:last-of-type {
             border-right: none;

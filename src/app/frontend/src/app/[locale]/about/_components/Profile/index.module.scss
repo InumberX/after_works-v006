@@ -32,7 +32,8 @@
 
   @include mxMediaQuerySm {
     margin-inline-start: 40px;
-    padding: 40px 0;
+    padding-block: 40px;
+    padding-inline: 0;
   }
 }
 
@@ -55,7 +56,7 @@
 
   @include mxMediaQuerySm {
     margin-block-start: -24px;
-    padding-left: 160px;
+    padding-inline-start: 160px;
   }
 }
 
@@ -73,7 +74,7 @@
 }
 
 .ProfileInfoDescription {
-  padding-top: 2px;
+  padding-block-start: 2px;
 }
 
 .ProfileInfoDescription__items {
@@ -86,7 +87,7 @@
 
 .ProfileInfoDescription__item {
   margin-block-start: 16px;
-  padding-left: 16px;
+  padding-inline-start: 16px;
   position: relative;
 
   &::before {

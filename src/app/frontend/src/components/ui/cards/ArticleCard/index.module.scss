@@ -9,7 +9,8 @@
     color: $palette-white;
     display: block;
     height: 100%;
-    padding: 16px;
+    padding-block: 16px;
+    padding-inline: 16px;
     text-decoration: none;
     transition:
       0.3s color,
@@ -88,5 +89,5 @@
 
 .ArticleCardTag {
   margin-block-start: auto;
-  padding-top: 16px;
+  padding-block-start: 16px;
 }

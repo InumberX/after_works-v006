@@ -39,16 +39,17 @@
 }
 
 .Lead__container {
-  padding: get-clamp-px(80, 120) 0;
+  padding-block: get-clamp-px(80, 120);
+  padding-inline: 0;
   position: relative;
   z-index: $z-index-2;
 }
 
 .LeadMessage {
-  padding-right: 20%;
+  padding-inline-end: 20%;
 
   @include mxMediaQuerySm {
-    padding-right: 0;
+    padding-inline-end: 0;
   }
 }
 
