@@ -176,9 +176,10 @@ export const LayoutHeader = () => {
                 <Image
                   src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CASH_BUSTER}`}
                   alt={SITE_NAME}
-                  width='160'
-                  height='28'
+                  width='140'
+                  height='25'
                   className={styles.LayoutHeaderLogo__image}
+                  priority
                 />
               </Link>
             </div>
