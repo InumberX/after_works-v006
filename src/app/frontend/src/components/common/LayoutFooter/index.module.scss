@@ -41,9 +41,9 @@
 }
 
 .LayoutFooterNavigation__item {
-  width: 50%;
   padding-block: 24px 0;
   padding-inline: get-clamp-px(24, 40) 0;
+  width: 50%;
 
   @include mxMediaQuerySm {
     width: auto;
