@@ -1,13 +1,9 @@
 @use '~/assets/scss/global' as *;
 
 .ArticleHeadMainVisual {
-  border-radius: 16px;
+  border-radius: get-clamp-px(16, 24);
   margin-block-end: get-clamp-px(24, 40);
   overflow: hidden;
-
-  @include mxMediaQueryMd {
-    border-radius: 24px;
-  }
 }
 
 .ArticleHeadMainVisual__container {

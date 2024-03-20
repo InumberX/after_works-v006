@@ -7,15 +7,15 @@
 .LayoutFooterBackToTop {
   bottom: 16px;
   position: fixed;
-  right: 4vw;
+  right: $layout-inner-padding-xs;
   z-index: $z-index-footer-1;
 
   @include mxMediaQuerySm {
-    right: 4.6vw;
+    right: $layout-inner-padding-sm;
   }
 
   @include mxMediaQueryMd {
-    right: 32px;
+    right: $layout-inner-padding-md;
   }
 }
 

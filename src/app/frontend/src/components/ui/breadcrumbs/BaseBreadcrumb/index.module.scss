@@ -28,7 +28,7 @@
 
   > .BaseBreadcrumb__item {
     &:last-of-type {
-      padding-inline-end: 4vw;
+      padding-inline-end: $layout-inner-padding-xs;
 
       @include mxMediaQuerySm {
         padding-inline-end: 0;

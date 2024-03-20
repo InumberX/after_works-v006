@@ -40,11 +40,7 @@
 
 .LayoutHeaderLogo__image {
   height: auto;
-  width: 140px;
-
-  @include mxMediaQuerySm {
-    width: 160px;
-  }
+  width: get-clamp-px(140, 160);
 }
 
 .LayoutHeaderMenu {
@@ -241,12 +237,12 @@
 .LayoutHeaderMenuOuterButton {
   height: auto;
   position: fixed;
-  right: 4vw;
+  right: $layout-inner-padding-xs;
   top: 16px;
   z-index: $z-index-header-4;
 
   @include mxMediaQuerySm {
-    right: 4.6vw;
+    right: $layout-inner-padding-sm;
   }
 }
 
@@ -260,7 +256,7 @@
     font-weight: $font-bold;
     justify-content: center;
     padding-block: 16px;
-    padding-inline: 4vw;
+    padding-inline: $layout-inner-padding-xs;
     position: relative;
     text-align: left;
     text-decoration: none;
@@ -281,7 +277,7 @@
     }
 
     @include mxMediaQuerySm {
-      padding-inline: 4.6vw;
+      padding-inline: $layout-inner-padding-sm;
     }
   }
 }
