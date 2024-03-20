@@ -7,16 +7,18 @@
 }
 
 .LayoutInner {
-  margin: 0 auto;
+  margin-block: 0;
+  margin-inline: auto;
   max-width: calc($layout-inner-max-width + ($layout-inner-padding-md * 2));
-  padding: 0 $layout-inner-padding-xs;
+  padding-block: 0;
+  padding-inline: $layout-inner-padding-xs;
   width: 100%;
 
   @include mxMediaQuerySm {
-    padding: 0 $layout-inner-padding-sm;
+    padding-inline: $layout-inner-padding-sm;
   }
 
   @include mxMediaQueryMd {
-    padding: 0 $layout-inner-padding-md;
+    padding-inline: $layout-inner-padding-md;
   }
 }

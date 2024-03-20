@@ -11,7 +11,8 @@
   &:not(:root) {
     background: none;
     box-shadow: none;
-    padding: 1px;
+    padding-block: 1px;
+    padding-inline: 1px;
     position: relative;
 
     @include mxMediaHover {
@@ -61,7 +62,8 @@
       height: 100%;
       justify-content: center;
       overflow: hidden;
-      padding: 4px;
+      padding-block: 4px;
+      padding-inline: 4px;
       position: relative;
       width: 100%;
       z-index: $z-index-2;
@@ -77,24 +79,15 @@
     border-radius: 100px;
     color: $palette-white;
     display: flex;
-    height: 48px;
+    height: get-clamp-px(48, 64);
     justify-content: center;
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
     position: relative;
     transition: 0.3s box-shadow;
-    width: 48px;
+    width: get-clamp-px(48, 64);
 
     @include mxGetFontSize(14);
-
-    @include mxMediaQuerySm {
-      height: 56px;
-      width: 56px;
-    }
-
-    @include mxMediaQueryMd {
-      height: 64px;
-      width: 64px;
-    }
 
     @include mxMediaHover {
       &:hover {

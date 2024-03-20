@@ -1,65 +1,52 @@
 @use '~/assets/scss/global' as *;
 
 .LayoutFooter {
-  margin-top: auto;
+  margin-block-start: auto;
 }
 
 .LayoutFooterBackToTop {
   bottom: 16px;
   position: fixed;
-  right: 4vw;
+  right: $layout-inner-padding-xs;
   z-index: $z-index-footer-1;
 
   @include mxMediaQuerySm {
-    right: 4.6vw;
+    right: $layout-inner-padding-sm;
   }
 
   @include mxMediaQueryMd {
-    right: 32px;
+    right: $layout-inner-padding-md;
   }
 }
 
 .LayoutFooterBackToTop__icon {
   &:not(:root) {
-    margin-bottom: 4px;
+    margin-block-end: 4px;
   }
 }
 
 .LayoutFooter__contents {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
-  padding: get-clamp-px(40, 80) 0;
+  padding-block: get-clamp-px(40, 80);
+  padding-inline: 0;
 }
 
 .LayoutFooterNavigation__items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  @include mxGetMarginListItems(24px, 24px);
-
-  @include mxMediaQuerySm {
-    @include mxGetMarginListItems(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetMarginListItems(24px, 40px);
-  }
+  margin-block: -24px 0;
+  margin-inline: get-clamp-px(-24, -40) 0;
 }
 
 .LayoutFooterNavigation__item {
+  padding-block: 24px 0;
+  padding-inline: get-clamp-px(24, 40) 0;
   width: 50%;
-
-  @include mxGetPaddingListItem(24px, 24px);
 
   @include mxMediaQuerySm {
     width: auto;
-
-    @include mxGetPaddingListItem(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetPaddingListItem(24px, 40px);
   }
 }
 
@@ -93,8 +80,8 @@
 .LayoutFooterNavigation__icon {
   &:not(:root) {
     flex-shrink: 0;
-    margin-right: 12px;
-    padding-top: 4px;
+    margin-inline-end: 12px;
+    padding-block-start: 4px;
 
     &::before {
       background: linear-gradient(90deg, $gradation-primary);
@@ -105,40 +92,21 @@
 }
 
 .LayoutFooterSns {
-  margin-top: 64px;
+  margin-block-start: get-clamp-px(64, 80);
   overflow: hidden;
-
-  @include mxMediaQueryMd {
-    margin-top: 80px;
-  }
 }
 
 .LayoutFooterSns__items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  @include mxGetMarginListItems(24px, 24px);
-
-  @include mxMediaQuerySm {
-    @include mxGetMarginListItems(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetMarginListItems(24px, 40px);
-  }
+  margin-block: -24px 0;
+  margin-inline: get-clamp-px(-24, -40) 0;
 }
 
 .LayoutFooterSns__item {
-  @include mxGetPaddingListItem(24px, 24px);
-
-  @include mxMediaQuerySm {
-    @include mxGetPaddingListItem(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetPaddingListItem(24px, 40px);
-  }
+  padding-block: 24px 0;
+  padding-inline: get-clamp-px(24, 40) 0;
 }
 
 .LayoutFooterSns__link {
@@ -160,7 +128,8 @@
 .LayoutFooter__copy {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.8);
-  padding: 24px;
+  padding-block: 24px;
+  padding-inline: 24px;
 }
 
 .LayoutFooterCopy__paragraph {

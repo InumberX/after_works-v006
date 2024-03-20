@@ -4,7 +4,8 @@
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
   border-radius: 16px;
-  padding: 24px 16px;
+  padding-block: 24px;
+  padding-inline: 16px;
 }
 
 .SideLatestArticleTitle__text {
@@ -14,5 +15,5 @@
 }
 
 .SideLatestArticle__contents {
-  margin-top: 16px;
+  margin-block-start: 16px;
 }

@@ -9,7 +9,8 @@
     color: $palette-white;
     display: block;
     height: 100%;
-    padding: 16px;
+    padding-block: 16px;
+    padding-inline: 16px;
     text-decoration: none;
     transition:
       0.3s color,
@@ -42,7 +43,7 @@
   aspect-ratio: 16 / 9;
   border-radius: 8px;
   display: block;
-  margin-bottom: 16px;
+  margin-block-end: 16px;
   overflow: hidden;
   position: relative;
   transition: 0.3s border-radius;
@@ -62,13 +63,14 @@
   color: $palette-white;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 
   @include mxGetFontSize(14);
 }
 
 .ArticleCardDate__separator {
-  margin: 0 4px;
+  margin-block: 0;
+  margin-inline: 4px;
 }
 
 .ArticleCardTitle {
@@ -86,6 +88,6 @@
 }
 
 .ArticleCardTag {
-  margin-top: auto;
-  padding-top: 16px;
+  margin-block-start: auto;
+  padding-block-start: 16px;
 }

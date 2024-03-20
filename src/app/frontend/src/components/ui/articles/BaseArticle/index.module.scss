@@ -4,13 +4,14 @@
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
   border-radius: get-clamp-px(24, 40);
-  padding: get-clamp-px(24, 40);
+  padding-block: get-clamp-px(24, 40);
+  padding-inline: get-clamp-px(24, 40);
 }
 
 .BaseArticle__body {
-  margin-top: 40px;
+  margin-block-start: 40px;
 }
 
 .BaseArticle__footer {
-  margin-top: 40px;
+  margin-block-start: 40px;
 }

@@ -17,13 +17,13 @@
 .HistoryYear__items {
   > .HistoryYear__item {
     &:first-of-type {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 }
 
 .HistoryYear__item {
-  margin-top: 24px;
+  margin-block-start: 24px;
 }
 
 .HistoryYear__title.HistoryYear__title--active {
@@ -46,7 +46,8 @@
     display: flex;
     font-size: get-clamp-rem(20, 32);
     justify-content: center;
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
 
     @include mxMediaHover {
       &:hover {
@@ -60,13 +61,13 @@
 
 .History__main {
   flex-grow: 1;
-  padding-left: get-clamp-px(40, 80);
+  padding-inline-start: get-clamp-px(40, 80);
 }
 
 .HistoryContens__items {
   > .HistoryContens__item {
     &:first-of-type {
-      margin-top: 0;
+      margin-block-start: 0;
 
       &::after {
         height: calc(100% + 12px);
@@ -87,16 +88,8 @@
 }
 
 .HistoryContens__item {
-  margin-top: 24px;
+  margin-block-start: get-clamp-px(24, 40);
   position: relative;
-
-  @include mxMediaQuerySm {
-    margin-top: 32px;
-  }
-
-  @include mxMediaQueryMd {
-    margin-top: 40px;
-  }
 
   &::before {
     background-color: $palette-heliotrope;
@@ -151,15 +144,12 @@
   display: flex;
   font-size: get-clamp-rem(18, 24);
   font-weight: $font-bold;
-  margin-bottom: 8px;
-
-  @include mxMediaQuerySm {
-    margin-bottom: 16px;
-  }
+  margin-block-end: get-clamp-px(8, 16);
 }
 
 .HistoryContensDate__separator {
-  margin: 0 4px;
+  margin-block: 0;
+  margin-inline: 4px;
 }
 
 .HistoryContensTitle__text {
@@ -168,8 +158,8 @@
 }
 
 .HistoryContensTag {
-  margin-top: 8px;
-  padding-left: 24px;
+  margin-block-start: 8px;
+  padding-inline-start: 24px;
 }
 
 .HistoryContensTagText__items {

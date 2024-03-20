@@ -1,12 +1,12 @@
 @use '~/assets/scss/global' as *;
 
 .BlogSlider {
-  margin-top: 40px;
+  margin-block-start: 40px;
   overflow: hidden;
 }
 
 .BlogButton {
-  margin-top: 40px;
+  margin-block-start: 40px;
 }
 
 .BlogButton__container {

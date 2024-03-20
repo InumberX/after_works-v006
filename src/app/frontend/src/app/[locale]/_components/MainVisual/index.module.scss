@@ -22,7 +22,7 @@
 }
 
 .MainVisual__wrapper {
-  padding-top: 64px;
+  padding-block-start: 64px;
   position: relative;
   z-index: $z-index-2;
 }
@@ -35,7 +35,8 @@
   justify-content: center;
   max-height: 720px;
   min-height: 400px;
-  padding: 80px 0 calc(80px + 64px);
+  padding-block: 80px calc(80px + 64px);
+  padding-inline: 0;
 }
 
 .MainVisualTitle__text {

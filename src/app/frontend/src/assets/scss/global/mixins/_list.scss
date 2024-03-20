@@ -2,9 +2,11 @@
 
 // Lists
 @mixin mxGetMarginListItems($margin-top, $margin-left) {
-  margin: (-$margin-top) 0 0 (-$margin-left);
+  margin-block: (-$margin-top) 0;
+  margin-inline: (-$margin-left) 0;
 }
 
 @mixin mxGetPaddingListItem($padding-top, $padding-left) {
-  padding: $padding-top 0 0 $padding-left;
+  padding-block: $padding-top 0;
+  padding-inline: $padding-top 0;
 }

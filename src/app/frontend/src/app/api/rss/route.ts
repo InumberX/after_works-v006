@@ -78,7 +78,7 @@ export const GET = async () => {
       response.push('</item>')
 
       response.push('<item>')
-      response.push(`<title>${info.subject}</title>`)
+      response.push(`<title>${info.subject_en}</title>`)
       response.push(`<link>${url.en}</link>`)
       response.push(`<guid>${url.en}</guid>`)
       response.push(
@@ -120,7 +120,7 @@ export const GET = async () => {
       response.push('</item>')
 
       response.push('<item>')
-      response.push(`<title>${info.subject}</title>`)
+      response.push(`<title>${info.subject_en}</title>`)
       response.push(`<link>${url.en}</link>`)
       response.push(`<guid>${url.en}</guid>`)
       response.push(
@@ -162,7 +162,7 @@ export const GET = async () => {
       response.push('</item>')
 
       response.push('<item>')
-      response.push(`<title>${info.subject}</title>`)
+      response.push(`<title>${info.subject_en}</title>`)
       response.push(`<link>${url.en}</link>`)
       response.push(`<guid>${url.en}</guid>`)
       response.push(
