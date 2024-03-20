@@ -36,31 +36,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  @include mxGetMarginListItems(24px, 24px);
-
-  @include mxMediaQuerySm {
-    @include mxGetMarginListItems(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetMarginListItems(24px, 40px);
-  }
+  margin-block: -24px 0;
+  margin-inline: get-clamp-px(-24, -40) 0;
 }
 
 .LayoutFooterNavigation__item {
   width: 50%;
-
-  @include mxGetPaddingListItem(24px, 24px);
+  padding-block: 24px 0;
+  padding-inline: get-clamp-px(24, 40) 0;
 
   @include mxMediaQuerySm {
     width: auto;
-
-    @include mxGetPaddingListItem(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetPaddingListItem(24px, 40px);
   }
 }
 
@@ -114,28 +100,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  @include mxGetMarginListItems(24px, 24px);
-
-  @include mxMediaQuerySm {
-    @include mxGetMarginListItems(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetMarginListItems(24px, 40px);
-  }
+  margin-block: -24px 0;
+  margin-inline: get-clamp-px(-24, -40) 0;
 }
 
 .LayoutFooterSns__item {
-  @include mxGetPaddingListItem(24px, 24px);
-
-  @include mxMediaQuerySm {
-    @include mxGetPaddingListItem(24px, 32px);
-  }
-
-  @include mxMediaQueryMd {
-    @include mxGetPaddingListItem(24px, 40px);
-  }
+  padding-block: 24px 0;
+  padding-inline: get-clamp-px(24, 40) 0;
 }
 
 .LayoutFooterSns__link {
