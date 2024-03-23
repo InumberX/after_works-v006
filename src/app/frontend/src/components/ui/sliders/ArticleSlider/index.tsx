@@ -29,7 +29,7 @@ export const ArticleSlider = ({ className, articleInfos }: Props) => {
             mediaQuery: 'min',
             focus: 'center',
             perPage: 1,
-            gap: '24px',
+            gap: '0px',
             width: '80%',
             breakpoints: {
               576: {
@@ -42,11 +42,9 @@ export const ArticleSlider = ({ className, articleInfos }: Props) => {
                 focus: 'center',
               },
               992: {
-                gap: '32px',
                 width: '96%',
               },
               1200: {
-                gap: '40px',
                 width: '100%',
               },
             },
@@ -54,10 +52,12 @@ export const ArticleSlider = ({ className, articleInfos }: Props) => {
         >
           {articleInfos.map((articleInfo, i) => (
             <SplideSlide key={i} className={styles.ArticleSlider__item}>
-              <ArticleCard
-                {...articleInfo}
-                className={styles.ArticleSlider__card}
-              />
+              <div className={styles.ArticleSlider__contents}>
+                <ArticleCard
+                  {...articleInfo}
+                  className={styles.ArticleSlider__card}
+                />
+              </div>
             </SplideSlide>
           ))}
         </Splide>

@@ -13,13 +13,13 @@ type Props = {
 export const LatestArticleCardList = ({ className, infos }: Props) => {
   return (
     <div className={clsx(styles.LatestArticleCardList, className)}>
-      <ul className={styles.LatestArticleCardList__items}>
+      <div className={styles.LatestArticleCardList__items}>
         {infos.map((info, i) => (
-          <li key={i} className={styles.LatestArticleCardList__item}>
+          <article key={i} className={styles.LatestArticleCardList__item}>
             <LatestArticleCard {...info} />
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
