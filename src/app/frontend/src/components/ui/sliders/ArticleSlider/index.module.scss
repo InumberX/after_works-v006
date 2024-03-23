@@ -87,3 +87,8 @@
   }
   /* stylelint-enable */
 }
+
+.ArticleSlider__contents {
+  height: 100%;
+  padding-inline: get-clamp-px(12, 20);
+}
