@@ -10,8 +10,8 @@ export type ResponseGetAboutHistoryInfo =
 
 export const getAboutHistoryInfo = async ({
   categoryId,
-  cnt,
-  page,
+  cnt = 0,
+  page = 1,
 }: {
   categoryId: string
   cnt?: number
@@ -19,8 +19,8 @@ export const getAboutHistoryInfo = async ({
 }): Promise<ResponseGetAboutHistoryInfo> => {
   const param = [
     `category_parent_id[]=${categoryId}`,
-    `cnt=${cnt ?? 0}`,
-    `pageID=${page ?? 1}`,
+    `cnt=${cnt}`,
+    `pageID=${page}`,
   ].join('&')
   const response = await fetch(`${API_URL}/about-history?${param}`, {
     cache: 'no-store',

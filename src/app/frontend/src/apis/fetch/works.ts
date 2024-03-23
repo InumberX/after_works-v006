@@ -13,13 +13,19 @@ export type ResponseGetWorksInfos =
   | undefined
 
 export const getWorksInfos = async ({
-  cnt,
-  page,
+  cnt = 12,
+  page = 1,
+  orderQuery = 'inst_ymdhi=DESC',
 }: {
   cnt?: number
   page?: number
+  orderQuery?: string
 }): Promise<ResponseGetWorksInfos> => {
-  const param = [`cnt=${cnt ?? 12}`, `pageID=${page ?? 1}`].join('&')
+  const param = [
+    `cnt=${cnt}`,
+    `pageID=${page}`,
+    `order_query=${orderQuery}`,
+  ].join('&')
   const response = await fetch(`${API_URL}/works?${param}`, {
     cache: 'no-store',
   })

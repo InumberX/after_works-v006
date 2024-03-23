@@ -7,13 +7,13 @@ import {
 export type ResponseGetAboutInfo = ApiResponseAboutData | undefined
 
 export const getAboutInfo = async ({
-  cnt,
-  page,
+  cnt = 1,
+  page = 1,
 }: {
   cnt?: number
   page?: number
 }): Promise<ResponseGetAboutInfo> => {
-  const param = [`cnt=${cnt ?? 1}`, `pageID=${page ?? 1}`].join('&')
+  const param = [`cnt=${cnt}`, `pageID=${page}`].join('&')
   const response = await fetch(`${API_URL}/about?${param}`, {
     cache: 'no-store',
   })
