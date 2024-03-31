@@ -40,7 +40,7 @@ export const GoogleAd = ({
     >
       <ins
         key={`${googleAdKey}-${slot}-ins`}
-        className={styles.GoogleAd__ins}
+        className={clsx(styles.GoogleAd__ins, 'adsbygoogle')}
         style={{
           display: 'inline-block',
           width: '300px',
