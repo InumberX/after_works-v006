@@ -1,0 +1,27 @@
+@use '~/assets/scss/global' as *;
+
+.GoogleAdList {
+  overflow: hidden;
+}
+
+.GoogleAdList__items {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include mxGetMarginListItems(24px, 24px);
+}
+
+.GoogleAdList__item {
+  align-items: center;
+  box-sizing: content-box;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  max-height: 300px;
+  max-width: 300px;
+  width: 300px;
+
+  @include mxGetPaddingListItem(24px, 24px);
+}

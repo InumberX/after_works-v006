@@ -2,6 +2,7 @@ import '~/styles/common.scss'
 import { AppProvider } from '@/providers/AppProvider'
 import { LayoutDefault } from '@/layouts/Default'
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics'
+import Script from 'next/script'
 
 const RootLayout = ({
   children,
@@ -23,6 +24,14 @@ const RootLayout = ({
         <AppProvider locale={params.locale}>
           <LayoutDefault>{children}</LayoutDefault>
         </AppProvider>
+        <Script
+          async
+          src={
+            'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6711167987812480'
+          }
+          crossOrigin='anonymous'
+          strategy='afterInteractive'
+        />
       </body>
     </html>
   )
