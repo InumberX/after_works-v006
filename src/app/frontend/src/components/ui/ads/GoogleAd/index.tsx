@@ -1,0 +1,56 @@
+'use client'
+
+import clsx from 'clsx'
+import styles from './index.module.scss'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+
+export type GoogleAdProps = {
+  className?: string
+  slot: string
+  responsive?: boolean
+  style?: object
+}
+
+export const GoogleAd = ({
+  className,
+  slot,
+  responsive = false,
+  style,
+}: GoogleAdProps) => {
+  const pathname = usePathname()
+  const [googleAdKey, setGoogleAdKey] = useState(pathname.replace(/\//g, '-'))
+
+  useEffect(() => {
+    setGoogleAdKey(pathname.replace(/\//g, '-'))
+    try {
+      /* eslint-disable */
+      // @ts-ignore
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+      /* eslint-enable */
+    } catch (error) {
+      console.error(error)
+    }
+  }, [pathname])
+
+  return (
+    <div
+      key={`${googleAdKey}-${slot}`}
+      className={clsx(styles.GoogleAd, className)}
+    >
+      <ins
+        key={`${googleAdKey}-${slot}-ins`}
+        className={styles.GoogleAd__ins}
+        style={{
+          display: 'inline-block',
+          width: '300px',
+          height: '300px',
+          ...style,
+        }}
+        data-ad-client='ca-pub-6711167987812480'
+        data-ad-slot={slot}
+        data-full-width-responsive={responsive}
+      />
+    </div>
+  )
+}
