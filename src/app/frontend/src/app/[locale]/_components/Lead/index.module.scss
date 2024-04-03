@@ -6,16 +6,12 @@
 
 .LeadImage {
   display: block;
-  height: 80%;
+  height: 100%;
   left: 30%;
   position: absolute;
   top: 0;
   width: 70%;
   z-index: $z-index-1;
-
-  @include mxMediaQuerySm {
-    height: 100%;
-  }
 
   &::after {
     background-color: rgba($color: $palette-black, $alpha: 40%);
