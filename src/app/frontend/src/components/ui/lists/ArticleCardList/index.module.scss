@@ -3,13 +3,5 @@
 .ArticleCardList__items {
   display: grid;
   gap: get-clamp-px(24, 40) get-clamp-px(24, 40);
-  grid-template-columns: repeat(1, 1fr);
-
-  @include mxMediaQuerySm {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include mxMediaQueryMd {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
