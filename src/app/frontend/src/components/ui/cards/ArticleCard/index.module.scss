@@ -9,8 +9,8 @@
     color: $palette-white;
     display: block;
     height: 100%;
-    padding-block: 16px;
-    padding-inline: 16px;
+    padding-block: get-clamp-px(16, 24);
+    padding-inline: get-clamp-px(16, 24);
     text-decoration: none;
     transition:
       0.3s color,
