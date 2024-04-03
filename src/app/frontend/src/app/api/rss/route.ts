@@ -82,7 +82,7 @@ export const GET = async () => {
       response.push(`<link>${url.en}</link>`)
       response.push(`<guid>${url.en}</guid>`)
       response.push(
-        `<description>This is an article about the blog '${info.subject}'.</description>`,
+        `<description>This is an article about the blog '${info.subject_en}'.</description>`,
       )
       response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
@@ -124,7 +124,7 @@ export const GET = async () => {
       response.push(`<link>${url.en}</link>`)
       response.push(`<guid>${url.en}</guid>`)
       response.push(
-        `<description>This is an article about the achievement '${info.subject}'.</description>`,
+        `<description>This is an article about the achievement '${info.subject_en}'.</description>`,
       )
       response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
@@ -166,7 +166,7 @@ export const GET = async () => {
       response.push(`<link>${url.en}</link>`)
       response.push(`<guid>${url.en}</guid>`)
       response.push(
-        `<description>This is an article about the hobby '${info.subject}'.</description>`,
+        `<description>This is an article about the hobby '${info.subject_en}'.</description>`,
       )
       response.push(`<pubDate>${new Date(info.ymd).toUTCString()}</pubDate>`)
       response.push('</item>')
