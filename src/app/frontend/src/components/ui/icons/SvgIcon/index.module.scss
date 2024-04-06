@@ -8,32 +8,8 @@
 }
 
 .SvgIcon.SvgIcon--large {
-  &.SvgIcon--palette {
-    &::before {
-      height: 80px;
-      width: 80px;
-    }
-  }
-
-  &.SvgIcon--star {
-    &::before {
-      height: 80px;
-      width: 80px;
-    }
-  }
-
-  &.SvgIcon--laptop {
-    &::before {
-      height: 80px;
-      width: 80px;
-    }
-  }
-
-  &.SvgIcon--person {
-    &::before {
-      height: 80px;
-      width: 80px;
-    }
+  &::before {
+    width: 80px;
   }
 }
 
@@ -41,178 +17,124 @@
   display: inline-flex;
 
   &::before {
+    aspect-ratio: 1 / 1;
     background-color: $palette-white;
     content: '';
     display: block;
-    mask-position: center;
+    height: auto;
     mask-position: center;
     mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-size: contain;
     mask-size: contain;
     transition: 0.3s background-color;
+    width: 24px;
   }
 }
 
 .SvgIcon--arrowTop {
   &::before {
-    height: 13px;
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_top.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_top.svg');
-    width: 22px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow-top.svg');
   }
 }
 
 .SvgIcon--arrowRight {
   &::before {
-    height: 22px;
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_right.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_right.svg');
-    width: 13px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow-right.svg');
   }
 }
 
 .SvgIcon--arrowBottom {
   &::before {
-    height: 13px;
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_bottom.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_bottom.svg');
-    width: 22px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow-bottom.svg');
   }
 }
 
 .SvgIcon--arrowLeft {
   &::before {
-    height: 22px;
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_left.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow_left.svg');
-    width: 13px;
+    mask-image: url('#{$static-image-dir}/assets/img/icon-arrow-left.svg');
   }
 }
 
 .SvgIcon--x {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-x.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-x.svg');
-    width: 20px;
   }
 }
 
 .SvgIcon--instagram {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-instagram.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-instagram.svg');
-    width: 21px;
   }
 }
 
 .SvgIcon--github {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-github.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-github.svg');
-    width: 21px;
   }
 }
 
 .SvgIcon--youtube {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-youtube.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-youtube.svg');
-    width: 29px;
   }
 }
 
 .SvgIcon--qiita {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-qiita.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-qiita.svg');
-    width: 26px;
   }
 }
 
 .SvgIcon--note {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-note.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-note.svg');
-    width: 20px;
   }
 }
 
 .SvgIcon--behance {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-behance.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-behance.svg');
-    width: 33px;
   }
 }
 
 .SvgIcon--pixiv {
   &::before {
-    height: 20px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-pixiv.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-pixiv.svg');
-    width: 22px;
   }
 }
 
 .SvgIcon--palette {
   &::before {
-    height: 24px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-palette.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-palette.svg');
-    width: 24px;
   }
 }
 
 .SvgIcon--star {
   &::before {
-    height: 24px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-star.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-star.svg');
-    width: 24px;
   }
 }
 
 .SvgIcon--laptop {
   &::before {
-    height: 24px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-laptop.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-laptop.svg');
-    width: 24px;
   }
 }
 
 .SvgIcon--person {
   &::before {
-    height: 24px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-person.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-person.svg');
-    width: 24px;
   }
 }
 
 .SvgIcon--mail {
   &::before {
-    height: 24px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-mail.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-mail.svg');
-    width: 24px;
   }
 }
 
 .SvgIcon--translate {
   &::before {
-    height: 24px;
     mask-image: url('#{$static-image-dir}/assets/img/icon-translate.svg');
-    mask-image: url('#{$static-image-dir}/assets/img/icon-translate.svg');
-    width: 24px;
   }
 }
 /* stylelint-enable */
