@@ -6,7 +6,7 @@ export const LayoutPageBackground = () => {
   return (
     <div className={styles.LayoutPageBackground}>
       <Image
-        src={`${STATIC_IMAGE_DIR}/img-page_background.webp?${CASH_BUSTER}`}
+        src={`${STATIC_IMAGE_DIR}/img-page-background.webp?${CASH_BUSTER}`}
         alt=''
         width='3840'
         height='2160'
