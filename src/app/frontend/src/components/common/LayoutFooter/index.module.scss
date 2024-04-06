@@ -52,6 +52,7 @@
 
 .LayoutFooterNavigation__link {
   &:not(:root) {
+    align-items: flex-start;
     background-color: transparent;
     border: none;
     border-radius: 0;
@@ -63,7 +64,6 @@
     transition:
       0.3s color,
       0.3s text-shadow;
-    align-items: flex-start;
 
     @include mxGetFontSize(14);
 
