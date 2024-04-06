@@ -63,6 +63,7 @@
     transition:
       0.3s color,
       0.3s text-shadow;
+    align-items: flex-start;
 
     @include mxGetFontSize(14);
 
@@ -80,13 +81,12 @@
 .LayoutFooterNavigation__icon {
   &:not(:root) {
     flex-shrink: 0;
-    margin-inline-end: 12px;
+    margin-inline-end: 8px;
     padding-block-start: 4px;
 
     &::before {
       background: linear-gradient(90deg, $gradation-primary);
-      height: 13px;
-      width: 8px;
+      width: 14px;
     }
   }
 }
