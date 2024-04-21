@@ -23,7 +23,7 @@ export default {
     },
     lead: {
       message:
-        'Webデザイナー、フロントエンドエンジニアとしての経験を活かし、<br className="Obj--lg Obj--xl" />デザインからコーディングまで一貫して対応します。',
+        'Webデザイナー、フロントエンドエンジニアとしての経験を活かし、<br class="Obj--lg Obj--xl" />デザインからコーディングまで一貫して対応します。',
     },
     service: {
       title: '提供サービス',

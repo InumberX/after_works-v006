@@ -12,6 +12,7 @@ import { format } from 'date-fns'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { BaseTagList } from '@/components/ui/lists/BaseTagList'
 import { useCurrentLocale } from '@/locales/client'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 type ArticleCardContainerProps = {
   mainVisual?: {
@@ -35,6 +36,7 @@ export type ArticleCardProps = {
   isDisabled?: boolean
   className?: string
   onClick?: EventTypes['onClickButton']
+  isNotActiveAnimelm?: boolean
 } & ArticleCardContainerProps
 
 const ArticleCardContainer = ({
@@ -148,69 +150,82 @@ export const ArticleCard = ({
   title,
   titleTag,
   tags,
+  isNotActiveAnimelm,
 }: ArticleCardProps) => {
+  const { targetRef } = useAnimelm<AnimelmElement>()
+
   // 外部リンク判定
   const isExternal = useMemo(() => {
     return url ? url.startsWith('http://') || url.startsWith('https://') : false
   }, [url])
 
-  return isExternal ? (
-    <a
-      href={url}
-      target={target}
-      rel={rel}
-      className={clsx(styles.ArticleCard, className)}
-      title={title}
-      aria-label={title}
+  return (
+    <div
+      className={clsx(
+        styles.ArticleCard,
+        !isNotActiveAnimelm && 'AnimelmBlurIn',
+      )}
+      ref={isNotActiveAnimelm ? null : targetRef}
     >
-      <ArticleCardContainer
-        mainVisual={mainVisual}
-        publishedAt={publishedAt}
-        startedAt={startedAt}
-        endedAt={endedAt}
-        title={title}
-        titleTag={titleTag}
-        tags={tags}
-      />
-    </a>
-  ) : url ? (
-    <Link
-      href={url}
-      target={target}
-      rel={rel}
-      className={clsx(styles.ArticleCard, className)}
-      title={title}
-      aria-label={title}
-    >
-      <ArticleCardContainer
-        mainVisual={mainVisual}
-        publishedAt={publishedAt}
-        startedAt={startedAt}
-        endedAt={endedAt}
-        title={title}
-        titleTag={titleTag}
-        tags={tags}
-      />
-    </Link>
-  ) : (
-    <button
-      type={buttonType ?? 'button'}
-      onClick={onClick}
-      disabled={isDisabled}
-      className={clsx(styles.ArticleCard, className)}
-      title={title}
-      aria-label={title}
-    >
-      <ArticleCardContainer
-        mainVisual={mainVisual}
-        publishedAt={publishedAt}
-        startedAt={startedAt}
-        endedAt={endedAt}
-        title={title}
-        titleTag={titleTag}
-        tags={tags}
-        isButton
-      />
-    </button>
+      {isExternal ? (
+        <a
+          href={url}
+          target={target}
+          rel={rel}
+          className={clsx(styles.ArticleCard__button, className)}
+          title={title}
+          aria-label={title}
+        >
+          <ArticleCardContainer
+            mainVisual={mainVisual}
+            publishedAt={publishedAt}
+            startedAt={startedAt}
+            endedAt={endedAt}
+            title={title}
+            titleTag={titleTag}
+            tags={tags}
+          />
+        </a>
+      ) : url ? (
+        <Link
+          href={url}
+          target={target}
+          rel={rel}
+          className={clsx(styles.ArticleCard__button, className)}
+          title={title}
+          aria-label={title}
+        >
+          <ArticleCardContainer
+            mainVisual={mainVisual}
+            publishedAt={publishedAt}
+            startedAt={startedAt}
+            endedAt={endedAt}
+            title={title}
+            titleTag={titleTag}
+            tags={tags}
+          />
+        </Link>
+      ) : (
+        <button
+          type={buttonType ?? 'button'}
+          onClick={onClick}
+          disabled={isDisabled}
+          className={clsx(styles.ArticleCard__button, className)}
+          title={title}
+          aria-label={title}
+        >
+          <ArticleCardContainer
+            mainVisual={mainVisual}
+            publishedAt={publishedAt}
+            startedAt={startedAt}
+            endedAt={endedAt}
+            title={title}
+            titleTag={titleTag}
+            tags={tags}
+            isButton
+          />
+        </button>
+      )}
+    </div>
   )
 }

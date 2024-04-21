@@ -1,17 +1,26 @@
+'use client'
+
 import styles from './index.module.scss'
 import Image from 'next/image'
+import clsx from 'clsx'
 import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { getScopedI18n } from '@/locales/server'
+import { useScopedI18n } from '@/locales/client'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
-export const Lead = async () => {
-  const scopedT = await getScopedI18n('home.lead')
+export const Lead = () => {
+  const scopedT = useScopedI18n('home.lead')
+  const animelmLeadImage = useAnimelm<AnimelmElement>()
+  const animelmLeadMessage = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={styles.Lead} tag='div'>
       <div className={styles.Lead__wrapper}>
-        <figure className={styles.LeadImage}>
+        <figure
+          className={clsx(styles.LeadImage, 'AnimelmBlurIn')}
+          ref={animelmLeadImage.targetRef}
+        >
           <Image
             src={`${STATIC_IMAGE_DIR}/img-top-lead.webp?${CASH_BUSTER}`}
             alt=''
@@ -25,10 +34,14 @@ export const Lead = async () => {
             <div className={styles.Lead__contents}>
               <div className={styles.LeadMessage}>
                 <p
-                  className={styles.LeadMessage__paragraph}
+                  className={clsx(
+                    styles.LeadMessage__paragraph,
+                    'AnimelmBlurIn',
+                  )}
                   dangerouslySetInnerHTML={{
                     __html: scopedT('message'),
                   }}
+                  ref={animelmLeadMessage.targetRef}
                 />
               </div>
             </div>

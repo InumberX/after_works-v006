@@ -1,7 +1,10 @@
+'use client'
+
 import clsx from 'clsx'
 import styles from './index.module.scss'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { LatestArticleCardList } from '@/components/ui/lists/LatestArticleCardList'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 type Props = {
   className?: string
@@ -18,8 +21,13 @@ export const SideLatestArticle = ({
 }: Props) => {
   const Title = titleTag ?? 'h2'
 
+  const { targetRef } = useAnimelm<AnimelmElement>()
+
   return (
-    <div className={clsx(styles.SideLatestArticle, className)}>
+    <div
+      className={clsx(styles.SideLatestArticle, className, 'AnimelmBlurIn')}
+      ref={targetRef}
+    >
       <div className={styles.SideLatestArticle__container}>
         <div className={styles.SideLatestArticleTitle}>
           <Title className={styles.SideLatestArticleTitle__text}>{title}</Title>
