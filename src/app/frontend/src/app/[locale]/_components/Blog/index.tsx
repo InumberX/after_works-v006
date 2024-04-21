@@ -1,3 +1,6 @@
+'use client'
+
+import clsx from 'clsx'
 import styles from './index.module.scss'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
@@ -6,14 +9,17 @@ import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleSlider } from '@/components/ui/sliders/ArticleSlider'
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { routes } from '@/config/routes'
-import { getScopedI18n, getCurrentLocale } from '@/locales/server'
+import { useScopedI18n, useCurrentLocale } from '@/locales/client'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 type Props = {
   articleInfos: ArticleCardProps[]
 }
 
-export const Blog = async ({ articleInfos }: Props) => {
-  const scopedT = await getScopedI18n('home.blog')
+export const Blog = ({ articleInfos }: Props) => {
+  const scopedT = useScopedI18n('home.blog')
+  const animelmSlider = useAnimelm<AnimelmElement>()
+  const animelmButton = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={styles.Blog}>
@@ -29,20 +35,28 @@ export const Blog = async ({ articleInfos }: Props) => {
 
         <div className={styles.BlogSlider}>
           <LayoutInner>
-            <ArticleSlider
-              className={styles.BlogSlider__slider}
-              articleInfos={articleInfos}
-            />
+            <div
+              className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
+              ref={animelmSlider.targetRef}
+            >
+              <ArticleSlider
+                className={clsx(styles.BlogSlider__slider)}
+                articleInfos={articleInfos}
+              />
+            </div>
           </LayoutInner>
         </div>
 
         <div className={styles.BlogButton}>
           <LayoutInner>
-            <div className={styles.BlogButton__container}>
+            <div
+              className={clsx(styles.BlogButton__container, 'AnimelmBlurIn')}
+              ref={animelmButton.targetRef}
+            >
               <BaseButton
                 className={styles.BlogButton__button}
                 url={routes.blogs.url({
-                  locale: getCurrentLocale(),
+                  locale: useCurrentLocale(),
                 })}
                 text={scopedT('listPageButtonText')}
                 isRightArrow

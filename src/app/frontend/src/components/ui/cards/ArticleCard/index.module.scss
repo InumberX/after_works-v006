@@ -1,6 +1,10 @@
 @use '~/assets/scss/global' as *;
 
 .ArticleCard {
+  height: 100%;
+}
+
+.ArticleCard__button {
   &:not(:root) {
     backdrop-filter: blur(20px);
     background-color: rgba($palette-blue-charcoal, 0.32);

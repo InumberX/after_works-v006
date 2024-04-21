@@ -1,9 +1,13 @@
+'use client'
+
+import clsx from 'clsx'
 import Image from 'next/image'
 import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import styles from './index.module.scss'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { getScopedI18n } from '@/locales/server'
+import { useScopedI18n } from '@/locales/client'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 export type ProfileProps = {
   certifications: {
@@ -13,13 +17,17 @@ export type ProfileProps = {
   skills: string[]
 }
 
-export const Profile = async ({ certifications, skills }: ProfileProps) => {
-  const scopedT = await getScopedI18n('about.profile')
+export const Profile = ({ certifications, skills }: ProfileProps) => {
+  const scopedT = useScopedI18n('about.profile')
+  const { targetRef } = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={styles.Profile}>
       <LayoutInner size='small'>
-        <div className={styles.Profile__container}>
+        <div
+          className={clsx(styles.Profile__container, 'AnimelmBlurIn')}
+          ref={targetRef}
+        >
           <figure className={styles.ProfileIcon}>
             <Image
               src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CASH_BUSTER}`}

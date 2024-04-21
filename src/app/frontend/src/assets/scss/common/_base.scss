@@ -343,3 +343,33 @@ li {
     display: block;
   }
 }
+
+/* アニメーション */
+
+/* 上へスライド */
+.AnimelmSlideInTop.Animelm--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.AnimelmSlideInTop {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    0.6s opacity,
+    0.6s transform;
+}
+
+/* ブラーイン */
+.AnimelmBlurIn.Animelm--active {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.AnimelmBlurIn {
+  filter: blur(24px);
+  opacity: 0;
+  transition:
+    0.6s opacity,
+    0.6s filter;
+}

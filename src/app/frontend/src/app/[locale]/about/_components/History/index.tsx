@@ -14,6 +14,7 @@ import { ApiResponseTagOtherTag } from '@/types/apis/fetch/tagOther'
 import { format } from 'date-fns'
 import { getAboutHistoryInfo } from '@/apis/fetch/aboutHistory'
 import { useCurrentLocale } from '@/locales/client'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 export type HistoryItem = {
   title: string
@@ -53,6 +54,7 @@ export const History = ({
   const [currentYearId, setCurrentYearId] = useState(defaultYearId)
   const [contentsItems, setContentsItems] = useState(defaultItems)
   const [isSending, setIsSending] = useState(false)
+  const { targetRef } = useAnimelm<AnimelmElement>()
   const handleClickYear = async (id: string) => {
     if (isSending || currentYearId === id) {
       return
@@ -263,7 +265,10 @@ export const History = ({
   return (
     <LayoutSection className={styles.History}>
       <LayoutInner>
-        <div className={styles.History__container}>
+        <div
+          className={clsx(styles.History__container, 'AnimelmBlurIn')}
+          ref={targetRef}
+        >
           <div className={styles.History__parallel}>
             <aside className={styles.History__side}>
               <div className={styles.HistoryYear}>
