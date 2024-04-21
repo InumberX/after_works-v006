@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import styles from './index.module.scss'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
@@ -6,15 +8,17 @@ import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { routes } from '@/config/routes'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { getScopedI18n, getCurrentLocale } from '@/locales/server'
+import { useScopedI18n, useCurrentLocale } from '@/locales/client'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 export type Props = {
   className?: string
 }
 
-export const Contact = async ({ className }: Props) => {
-  const scopedT = await getScopedI18n('components.contact')
+export const Contact = ({ className }: Props) => {
+  const scopedT = useScopedI18n('components.contact')
+  const { targetRef } = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={clsx(styles.Contact, className)}>
@@ -25,7 +29,10 @@ export const Contact = async ({ className }: Props) => {
             title={scopedT('title')}
           />
 
-          <div className={styles.Contact__contents}>
+          <div
+            className={clsx(styles.Contact__contents, 'AnimelmBlurIn')}
+            ref={targetRef}
+          >
             <p className={styles.Contact__message}>
               <ReplaceNewLineText text={scopedT('message')} />
             </p>
@@ -34,7 +41,7 @@ export const Contact = async ({ className }: Props) => {
               <BaseButton
                 className={styles.ContactButton__button}
                 url={routes.contact.url({
-                  locale: getCurrentLocale(),
+                  locale: useCurrentLocale(),
                 })}
                 text={scopedT('buttonText')}
                 isRightArrow

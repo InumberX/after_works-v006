@@ -1,7 +1,10 @@
+'use client'
+
 import { ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
 import { BaseButton, BaseButtonProps } from '@/components/ui/buttons/BaseButton'
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 export type ServiceCardProps = {
   className?: string
@@ -20,10 +23,15 @@ export const ServiceCard = ({
   description,
   buttonInfo,
 }: ServiceCardProps) => {
+  const { targetRef } = useAnimelm<AnimelmElement>()
+
   const Title = titleTag ?? 'h3'
 
   return (
-    <div className={clsx(styles.ServiceCard, className)}>
+    <div
+      className={clsx(styles.ServiceCard, className, 'AnimelmBlurIn')}
+      ref={targetRef}
+    >
       <div className={styles.ServiceCard__container}>
         {icon && <div className={styles.ServiceCardIcon}>{icon}</div>}
 
