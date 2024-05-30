@@ -1,17 +1,17 @@
 @use '~/assets/scss/global' as *;
 
-.BasePagenation__items {
+.BasePagination__items {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.BasePagenation__item {
+.BasePagination__item {
   padding-block: 0;
   padding-inline: get-clamp-px(4, 8);
 }
 
-.BasePagenationCurrent {
+.BasePaginationCurrent {
   align-items: center;
   border-radius: 100px;
   display: flex;
@@ -52,7 +52,7 @@
   }
 }
 
-.BasePagenationCurrent__container {
+.BasePaginationCurrent__container {
   align-items: center;
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
@@ -68,7 +68,7 @@
   z-index: $z-index-2;
 }
 
-.BasePagenation__separator {
+.BasePagination__separator {
   align-items: center;
   display: block;
   justify-content: center;
@@ -81,8 +81,8 @@
   }
 }
 
-.BasePagenation__prev {
-  .BasePagenation__icon:not(:root) {
+.BasePagination__prev {
+  .BasePagination__icon:not(:root) {
     margin-inline-start: -2px;
 
     &::before {
@@ -91,8 +91,8 @@
   }
 }
 
-.BasePagenation__next {
-  .BasePagenation__icon:not(:root) {
+.BasePagination__next {
+  .BasePagination__icon:not(:root) {
     margin-inline-end: -2px;
 
     &::before {

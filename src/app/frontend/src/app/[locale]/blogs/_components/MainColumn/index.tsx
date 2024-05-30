@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import styles from './index.module.scss'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
-import { BasePagenation } from '@/components/ui/pagenation/BasePagenation'
+import { BasePagination } from '@/components/ui/pagination/BasePagination'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
@@ -129,8 +129,8 @@ export const MainColumn = ({
     <div className={styles.MainColumn}>
       <div id='main-column-container' className={styles.MainColumn__container}>
         <ArticleCardList infos={articleInfos} />
-        <BasePagenation
-          className={styles.MainColumn__pagenation}
+        <BasePagination
+          className={styles.MainColumn__pagination}
           currentPage={currentPage}
           totalPage={totalPage}
           handleChangePage={handleChangePage}
