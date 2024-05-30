@@ -14,7 +14,7 @@ type Props = {
   handleChangePage: (newPage: number) => void
 }
 
-const BasePagenationItem = ({
+const BasePaginationItem = ({
   currentPage,
   totalPage,
   pageNumber,
@@ -32,39 +32,39 @@ const BasePagenationItem = ({
   return (
     <li
       className={clsx(
-        styles.BasePagenation__item,
-        pageNumber === currentPage && styles['BasePagenation__item--current'],
-        pageNumber === 1 && styles['BasePagenation__item--first'],
-        pageNumber === totalPage && styles['BasePagenation__item--last'],
+        styles.BasePagination__item,
+        pageNumber === currentPage && styles['BasePagination__item--current'],
+        pageNumber === 1 && styles['BasePagination__item--first'],
+        pageNumber === totalPage && styles['BasePagination__item--last'],
         className,
       )}
     >
       {pageNumber === currentPage ? (
-        <span className={styles.BasePagenationCurrent}>
-          <span className={styles.BasePagenationCurrent__container}>
-            <span className={styles.BasePagenationCurrent__text}>
+        <span className={styles.BasePaginationCurrent}>
+          <span className={styles.BasePaginationCurrent__container}>
+            <span className={styles.BasePaginationCurrent__text}>
               {pageNumber}
             </span>
           </span>
         </span>
       ) : (
         <CircleButton
-          className={styles.BasePagenation__button}
+          className={styles.BasePagination__button}
           variant='outlined'
           size='small'
-          title={t('components.basePagenation.buttonText', {
+          title={t('components.basePagination.buttonText', {
             pageNumber,
           })}
           onClick={() => handleChangePage(pageNumber)}
         >
-          <span className={styles.BasePagenation__icon}>{pageNumber}</span>
+          <span className={styles.BasePagination__icon}>{pageNumber}</span>
         </CircleButton>
       )}
     </li>
   )
 }
 
-export const BasePagenation = ({
+export const BasePagination = ({
   className,
   currentPage,
   totalPage,
@@ -77,26 +77,26 @@ export const BasePagenation = ({
   }, [totalPage])
 
   return (
-    <div className={clsx(styles.BasePagenation, className)}>
-      <div className={styles.BasePagenation__container}>
-        <ul className={styles.BasePagenation__items}>
+    <div className={clsx(styles.BasePagination, className)}>
+      <div className={styles.BasePagination__container}>
+        <ul className={styles.BasePagination__items}>
           <li
             className={clsx(
-              styles.BasePagenation__item,
-              styles['BasePagenation__item--prev'],
+              styles.BasePagination__item,
+              styles['BasePagination__item--prev'],
             )}
           >
             <CircleButton
-              className={styles.BasePagenation__prev}
+              className={styles.BasePagination__prev}
               size='small'
               variant='outlined'
               isDisabled={currentPage === 1}
-              title={t('components.basePagenation.prevButtonText')}
+              title={t('components.basePagination.prevButtonText')}
               onClick={() => handleChangePage(currentPage - 1)}
             >
               <SvgIcon
                 variant='arrowLeft'
-                className={styles.BasePagenation__icon}
+                className={styles.BasePagination__icon}
               />
             </CircleButton>
           </li>
@@ -105,7 +105,7 @@ export const BasePagenation = ({
             {totalPage <= 5
               ? totalPageArray.map((pageNumber) => {
                   return (
-                    <BasePagenationItem
+                    <BasePaginationItem
                       key={pageNumber}
                       currentPage={currentPage}
                       totalPage={totalPage}
@@ -131,17 +131,17 @@ export const BasePagenation = ({
                       {isShowPrevSeparator && (
                         <li
                           className={clsx(
-                            styles.BasePagenation__item,
-                            styles['BasePagenation__item--separator'],
+                            styles.BasePagination__item,
+                            styles['BasePagination__item--separator'],
                             'Obj--md Obj--lg Obj--xl',
                           )}
                         >
-                          <span className={styles.BasePagenation__separator} />
+                          <span className={styles.BasePagination__separator} />
                         </li>
                       )}
 
                       {isShowItem && (
-                        <BasePagenationItem
+                        <BasePaginationItem
                           currentPage={currentPage}
                           totalPage={totalPage}
                           pageNumber={pageNumber}
@@ -153,12 +153,12 @@ export const BasePagenation = ({
                       {isShowNextSeparator && (
                         <li
                           className={clsx(
-                            styles.BasePagenation__item,
-                            styles['BasePagenation__item--separator'],
+                            styles.BasePagination__item,
+                            styles['BasePagination__item--separator'],
                             'Obj--md Obj--lg Obj--xl',
                           )}
                         >
-                          <span className={styles.BasePagenation__separator} />
+                          <span className={styles.BasePagination__separator} />
                         </li>
                       )}
                     </Fragment>
@@ -170,7 +170,7 @@ export const BasePagenation = ({
             {totalPage <= 3
               ? totalPageArray.map((pageNumber) => {
                   return (
-                    <BasePagenationItem
+                    <BasePaginationItem
                       key={pageNumber}
                       currentPage={currentPage}
                       totalPage={totalPage}
@@ -195,17 +195,17 @@ export const BasePagenation = ({
                       {isShowPrevSeparator && (
                         <li
                           className={clsx(
-                            styles.BasePagenation__item,
-                            styles['BasePagenation__item--separator'],
+                            styles.BasePagination__item,
+                            styles['BasePagination__item--separator'],
                             'Obj--xs Obj--sm',
                           )}
                         >
-                          <span className={styles.BasePagenation__separator} />
+                          <span className={styles.BasePagination__separator} />
                         </li>
                       )}
 
                       {isShowItem && (
-                        <BasePagenationItem
+                        <BasePaginationItem
                           currentPage={currentPage}
                           totalPage={totalPage}
                           pageNumber={pageNumber}
@@ -217,12 +217,12 @@ export const BasePagenation = ({
                       {isShowNextSeparator && (
                         <li
                           className={clsx(
-                            styles.BasePagenation__item,
-                            styles['BasePagenation__item--separator'],
+                            styles.BasePagination__item,
+                            styles['BasePagination__item--separator'],
                             'Obj--xs Obj--sm',
                           )}
                         >
-                          <span className={styles.BasePagenation__separator} />
+                          <span className={styles.BasePagination__separator} />
                         </li>
                       )}
                     </Fragment>
@@ -232,21 +232,21 @@ export const BasePagenation = ({
 
           <li
             className={clsx(
-              styles.BasePagenation__item,
-              styles['BasePagenation__item--next'],
+              styles.BasePagination__item,
+              styles['BasePagination__item--next'],
             )}
           >
             <CircleButton
-              className={styles.BasePagenation__next}
+              className={styles.BasePagination__next}
               size='small'
               variant='outlined'
               isDisabled={currentPage >= totalPage || totalPage <= 1}
-              title={t('components.basePagenation.nextButtonText')}
+              title={t('components.basePagination.nextButtonText')}
               onClick={() => handleChangePage(currentPage + 1)}
             >
               <SvgIcon
                 variant='arrowRight'
-                className={styles.BasePagenation__icon}
+                className={styles.BasePagination__icon}
               />
             </CircleButton>
           </li>

@@ -179,7 +179,7 @@ export default {
 まずはお気軽にお問い合わせください。`,
       buttonText: 'お問い合わせ',
     },
-    basePagenation: {
+    basePagination: {
       buttonText: '{pageNumber}ページ目を表示する',
       prevButtonText: '前のページに戻る',
       nextButtonText: '次のページに進む',
