@@ -178,7 +178,7 @@ I am also flexible in handling requests for design only or coding only.
 Please feel free to contact me.`,
       buttonText: 'Contact',
     },
-    basePagenation: {
+    basePagination: {
       buttonText: 'Show page {pageNumber}',
       prevButtonText: 'Go back to previous page',
       nextButtonText: 'Go to next page',
