@@ -36,7 +36,13 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.stories.*", "**/*.spec.*", "**/*.test.*"],
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/*.spec.*",
+          "**/*.test.*",
+          "vitest-env.ts",
+          "vitest.config.ts"
+        ],
         "optionalDependencies": false
       }
     ],

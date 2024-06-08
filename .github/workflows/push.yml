@@ -38,6 +38,8 @@ jobs:
       - run: yarn prettier
       - run: yarn stylelint
       - run: yarn lint:quiet
+      - run: yarn typecheck
+      - run: yarn test
       - name: build
         run: |
           yarn run build
