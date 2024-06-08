@@ -13,6 +13,8 @@ applications:
             - yarn prettier
             - yarn stylelint
             - yarn lint:quiet
+            - yarn typecheck
+            - yarn test
         preBuild:
           commands:
             - nvm use 18
