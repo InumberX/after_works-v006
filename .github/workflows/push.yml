@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
-      - run: which prettier
+      - run: export PATH="$(yarn bin):$PATH"
       - run: yarn prettier
       - run: yarn stylelint
       - run: yarn lint:quiet
