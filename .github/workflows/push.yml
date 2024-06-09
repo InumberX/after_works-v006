@@ -35,7 +35,14 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
-      - run: export PATH="$(yarn bin):$PATH"
+
+      # Prettierが正しくインストールされているか確認
+      - run: ls -la node_modules/.bin
+      - run: ls -la node_modules/prettier
+
+      # PATHにnode_modules/.binを追加し、Prettierが使用できるか確認
+      - run: export PATH="$(yarn bin):$PATH" && which prettier
+
       - run: yarn prettier
       - run: yarn stylelint
       - run: yarn lint:quiet
