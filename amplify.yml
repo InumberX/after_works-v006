@@ -60,4 +60,4 @@ applications:
       cache:
         paths:
           - node_modules/**/*
-      buildPath: /
+      buildPath: /src/app/frontend/
