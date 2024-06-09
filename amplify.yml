@@ -13,6 +13,8 @@ applications:
             - yarn prettier
             - yarn stylelint
             - yarn lint:quiet
+            - yarn typecheck
+            - yarn test
         preBuild:
           commands:
             - nvm use 18
@@ -28,3 +30,34 @@ applications:
       cache:
         paths:
           - node_modules/**/*
+  - appRoot: src/app/frontend/.storybook
+    frontend:
+      phases:
+        preTest:
+          commands:
+            - nvm use 18
+            - node -v
+            - yarn install --frozen-lockfile
+        test:
+          commands:
+            - yarn prettier
+            - yarn stylelint
+            - yarn lint:quiet
+            - yarn typecheck
+            - yarn test
+        preBuild:
+          commands:
+            - nvm use 18
+            - node -v
+            - yarn install --frozen-lockfile
+        build:
+          commands:
+            - yarn storybook:build
+      artifacts:
+        baseDirectory: storybook-static
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+      buildPath: /src/app/frontend/

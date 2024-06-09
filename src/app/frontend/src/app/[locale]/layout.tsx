@@ -1,4 +1,4 @@
-import '~/styles/common.scss'
+import '@/styles/common.scss'
 import { AppProvider } from '@/providers/AppProvider'
 import { LayoutDefault } from '@/layouts/Default'
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics'

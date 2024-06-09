@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
+    "es2022": true,
     "node": true
   },
   "extends": [
@@ -36,7 +36,14 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.stories.*", "**/*.spec.*", "**/*.test.*"],
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/*.spec.*",
+          "**/*.test.*",
+          "vitest-env.ts",
+          "vitest.config.ts",
+          "vite-storybook.config.ts"
+        ],
         "optionalDependencies": false
       }
     ],
@@ -61,6 +68,9 @@
       }
     ],
     "@typescript-eslint/no-unsafe-member-access": "warn"
+  },
+  "settings": {
+    "import/core-modules": ["@storybook/react"]
   },
   "ignorePatterns": [".eslintrc.*", "next.config.*"]
 }

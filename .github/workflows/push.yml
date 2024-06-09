@@ -6,16 +6,14 @@ on:
       - '**'
       - '!develop'
       - '!main'
+
 jobs:
-  lint:
+  setup:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src/app/frontend
+    outputs:
+      yarn-cache-dir-path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
     steps:
       - uses: actions/checkout@v2
-        # with:
-        # ref: develop
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -24,7 +22,7 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -35,9 +33,82 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - run: yarn install --frozen-lockfile
       - run: yarn prettier
       - run: yarn stylelint
       - run: yarn lint:quiet
-      - name: build
-        run: |
-          yarn run build
+      - run: yarn typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [setup, lint]
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [setup, lint, test]
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn run build
