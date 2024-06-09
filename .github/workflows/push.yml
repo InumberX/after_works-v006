@@ -6,16 +6,14 @@ on:
       - '**'
       - '!develop'
       - '!main'
+
 jobs:
-  lint:
+  setup:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src/app/frontend
+    outputs:
+      yarn-cache-dir-path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
     steps:
       - uses: actions/checkout@v2
-        # with:
-        # ref: develop
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -35,11 +33,79 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
+
+      - name: Save node_modules
+        uses: actions/upload-artifact@v2
+        with:
+          name: node_modules
+          path: src/app/frontend/node_modules
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Restore node_modules
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: src/app/frontend/node_modules
+
       - run: yarn prettier
       - run: yarn stylelint
       - run: yarn lint:quiet
       - run: yarn typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Restore node_modules
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: src/app/frontend/node_modules
+
       - run: yarn test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [setup, lint, test]
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Restore node_modules
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: src/app/frontend/node_modules
+
       - name: build
-        run: |
-          yarn run build
+        run: yarn run build
