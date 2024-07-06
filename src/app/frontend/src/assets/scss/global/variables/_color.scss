@@ -13,5 +13,6 @@ $palette-heliotrope: #e050f3;
 $palette-x: #000;
 $palette-facebook: #1877f2;
 $palette-line: #00b900;
-$gradation-primary: $palette-heliotrope 0,
-  $palette-sky-blue 100%;
+$gradation-primary:
+  oklch(68.7% 0.254 322.8deg) 0,
+  oklch(81.3% 0.097 219.5deg) 100%;
