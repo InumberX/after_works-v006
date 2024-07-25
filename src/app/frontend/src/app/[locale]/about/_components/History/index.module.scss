@@ -9,9 +9,9 @@
 }
 
 .HistoryYear {
-  left: 0;
+  inset-block-start: 80px;
+  inset-inline-start: 0;
   position: sticky;
-  top: 80px;
 }
 
 .HistoryYear__items {
@@ -70,17 +70,17 @@
       margin-block-start: 0;
 
       &::after {
-        height: calc(100% + 12px);
-        top: 12px;
+        block-size: calc(100% + 12px);
+        inset-block-start: 12px;
 
         @include mxMediaQuerySm {
-          height: calc(100% + 16px);
-          top: 16px;
+          block-size: calc(100% + 16px);
+          inset-block-start: 16px;
         }
 
         @include mxMediaQueryMd {
-          height: calc(100% + 20px);
-          top: 20px;
+          block-size: calc(100% + 20px);
+          inset-block-start: 20px;
         }
       }
     }
@@ -93,48 +93,48 @@
 
   &::before {
     background-color: $palette-heliotrope;
+    block-size: 8px;
     border-radius: 8px;
     content: '';
     display: block;
-    height: 8px;
-    left: -23px;
+    inline-size: 8px;
+    inset-block-start: 10px;
+    inset-inline-start: -23px;
     position: absolute;
-    top: 10px;
-    width: 8px;
-    z-index: $z-index-2;
+    z-index: 2;
 
     @include mxMediaQuerySm {
-      left: -32px;
-      top: 12px;
+      inset-block-start: 12px;
+      inset-inline-start: -32px;
     }
 
     @include mxMediaQueryMd {
-      left: -40px;
-      top: 14px;
+      inset-block-start: 14px;
+      inset-inline-start: -40px;
     }
   }
 
   &::after {
     background-color: $palette-sky-blue;
+    block-size: calc(100% + 24px);
     content: '';
     display: block;
-    height: calc(100% + 24px);
-    left: -20px;
+    inline-size: 2px;
+    inset-block-start: -24px;
+    inset-inline-start: -20px;
     position: absolute;
-    top: -24px;
-    width: 2px;
-    z-index: $z-index-1;
+    z-index: 1;
 
     @include mxMediaQuerySm {
-      height: calc(100% + 32px);
-      left: -29px;
-      top: -32px;
+      block-size: calc(100% + 32px);
+      inset-block-start: -32px;
+      inset-inline-start: -29px;
     }
 
     @include mxMediaQueryMd {
-      height: calc(100% + 40px);
-      left: -37px;
-      top: -40px;
+      block-size: calc(100% + 40px);
+      inset-block-start: -40px;
+      inset-inline-start: -37px;
     }
   }
 }

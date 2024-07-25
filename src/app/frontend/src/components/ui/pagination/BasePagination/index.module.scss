@@ -13,15 +13,15 @@
 
 .BasePaginationCurrent {
   align-items: center;
+  block-size: 40px;
   border-radius: 100px;
   display: flex;
   font-weight: $font-bold;
-  height: 40px;
+  inline-size: 40px;
   justify-content: center;
   padding-block: 1px;
   padding-inline: 1px;
   position: relative;
-  width: 40px;
 
   @include mxGetFontSize(14);
 
@@ -29,12 +29,14 @@
     background-clip: border-box;
     background-image: linear-gradient(90deg, $gradation-primary);
     background-origin: border-box;
+    block-size: 100%;
     border: 1px solid transparent;
     border-radius: 100px;
     content: '';
     display: block;
-    height: 100%;
-    left: 0;
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
     /* stylelint-disable declaration-block-no-duplicate-properties */
     mask-clip: padding-box, border-box;
     mask-clip: padding-box, border-box;
@@ -46,9 +48,7 @@
       linear-gradient($palette-white 0 0);
     /* stylelint-enable */
     position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: $z-index-1;
+    z-index: 1;
   }
 }
 
@@ -56,16 +56,16 @@
   align-items: center;
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
+  block-size: 100%;
   border-radius: 100px;
   display: flex;
-  height: 100%;
+  inline-size: 100%;
   justify-content: center;
   overflow: hidden;
   padding-block: 4px;
   padding-inline: 4px;
   position: relative;
-  width: 100%;
-  z-index: $z-index-2;
+  z-index: 2;
 }
 
 .BasePagination__separator {
@@ -86,7 +86,7 @@
     margin-inline-start: -2px;
 
     &::before {
-      width: 16px;
+      inline-size: 16px;
     }
   }
 }
@@ -96,7 +96,7 @@
     margin-inline-end: -2px;
 
     &::before {
-      width: 16px;
+      inline-size: 16px;
     }
   }
 }

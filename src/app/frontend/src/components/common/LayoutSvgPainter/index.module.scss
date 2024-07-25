@@ -1,9 +1,9 @@
 @use '~/assets/scss/global' as *;
 
 .LayoutSvgPainter {
-  height: 0;
+  block-size: 0;
+  inline-size: 0;
   visibility: hidden;
-  width: 0;
 
   // stylelint-disable-next-line
   :global {

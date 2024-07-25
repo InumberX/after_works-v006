@@ -21,7 +21,7 @@
 
 .MessageButton__button {
   &:not(:root) {
-    max-width: 320px;
-    width: 100%;
+    inline-size: 100%;
+    max-inline-size: 320px;
   }
 }

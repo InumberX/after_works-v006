@@ -13,20 +13,20 @@
 
 .ProfileIcon {
   aspect-ratio: 1 / 1;
+  block-size: auto;
   border-radius: 120px;
   flex-shrink: 0;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  height: auto;
+  inline-size: get-clamp-px(80, 120);
   overflow: hidden;
-  width: get-clamp-px(80, 120);
 }
 
 .ProfileIcon__image {
-  height: 100%;
+  block-size: 100%;
+  inline-size: 100%;
   object-fit: cover;
   object-position: center;
-  width: 100%;
 }
 
 .ProfileTitle {
@@ -92,13 +92,13 @@
 
   &::before {
     background: linear-gradient(90deg, $gradation-primary);
+    block-size: 8px;
     border-radius: 8px;
     content: '';
     display: block;
-    height: 8px;
-    left: 0;
+    inline-size: 8px;
+    inset-block-start: get-clamp-px(8, 10);
+    inset-inline-start: 0;
     position: absolute;
-    top: get-clamp-px(8, 10);
-    width: 8px;
   }
 }

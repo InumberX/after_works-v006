@@ -25,14 +25,14 @@
       box-shadow: none;
       color: $palette-white;
       display: flex;
-      height: 48px;
+      block-size: 48px;
       justify-content: center;
       opacity: 1;
       overflow: hidden;
       padding-block: 0;
       padding-inline: 0;
       transition: 0.3s box-shadow;
-      width: 48px;
+      inline-size: 48px;
 
       @include mxMediaHover {
         &:hover {
@@ -52,8 +52,8 @@
         border-radius: 100px;
         content: '';
         display: block;
-        height: 100%;
-        left: 0;
+        block-size: 100%;
+        inset-inline-start: 0;
         mask-clip: padding-box, border-box;
         mask-clip: padding-box, border-box;
         mask-composite: destination-out;
@@ -64,31 +64,31 @@
           linear-gradient($palette-white 0 0);
         opacity: 0;
         position: absolute;
-        top: 0;
+        inset-block-start: 0;
         transition: 0.3s opacity;
-        width: 100%;
-        z-index: $z-index-1;
+        inline-size: 100%;
+        z-index: 1;
       }
 
       svg {
         fill: $palette-white;
-        height: 22px;
-        width: 22px;
+        block-size: 22px;
+        inline-size: 22px;
       }
     }
 
     .splide__arrow.splide__arrow--prev:not(:root) {
-      left: 0;
+      inset-inline-start: 0;
     }
 
     .splide__arrow.splide__arrow--next:not(:root) {
-      right: 0;
+      inset-inline-end: 0;
     }
   }
   /* stylelint-enable */
 }
 
 .ArticleSlider__contents {
-  height: 100%;
+  block-size: 100%;
   padding-inline: get-clamp-px(12, 20);
 }

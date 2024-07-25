@@ -43,8 +43,8 @@ export const GoogleAd = ({
         className={clsx(styles.GoogleAd__ins, 'adsbygoogle')}
         style={{
           display: 'inline-block',
-          width: '300px',
-          height: '300px',
+          inlineSize: '300px',
+          blockSize: '300px',
           ...style,
         }}
         data-ad-client='ca-pub-6711167987812480'
