@@ -2,6 +2,6 @@
 
 .ArticleCardList__items {
   display: grid;
-  gap: get-clamp-px(24, 40) get-clamp-px(24, 40);
+  gap: get-clamp-px(24, 40);
   grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
 }
