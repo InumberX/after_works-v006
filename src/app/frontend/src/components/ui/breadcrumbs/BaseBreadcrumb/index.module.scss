@@ -57,8 +57,8 @@
     padding-block-start: 3px;
 
     &::before {
-      height: 12px;
-      width: 7px;
+      block-size: 12px;
+      inline-size: 7px;
     }
   }
 }

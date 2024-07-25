@@ -18,7 +18,7 @@
 
 .ContactButton__button {
   &:not(:root) {
-    max-width: 320px;
+    max-inline-size: 320px;
   }
 }
 

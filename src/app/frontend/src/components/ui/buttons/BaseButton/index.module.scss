@@ -11,6 +11,7 @@
   &:not(:root) {
     align-items: center;
     background: linear-gradient(90deg, $gradation-primary);
+    block-size: 100%;
     border: none;
     border-radius: 100px;
     color: $palette-white;
@@ -18,7 +19,7 @@
     display: flex;
     font-size: get-clamp-rem(18, 22);
     font-weight: $font-bold;
-    height: 100%;
+    inline-size: 100%;
     justify-content: center;
     margin-block: 0;
     margin-inline: 0;
@@ -31,7 +32,6 @@
     transition:
       0.3s box-shadow,
       0.3s transform;
-    width: 100%;
 
     @include mxMediaHover {
       &:hover {
@@ -45,8 +45,8 @@
 }
 
 .BaseButton__iconArrowRight {
+  inset-block-start: 50%;
+  inset-inline-end: 24px;
   margin-block-start: -12px;
   position: absolute;
-  right: 24px;
-  top: 50%;
 }

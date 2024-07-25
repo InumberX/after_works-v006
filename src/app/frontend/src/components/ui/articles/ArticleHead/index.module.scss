@@ -7,16 +7,16 @@
 }
 
 .ArticleHeadMainVisual__container {
-  height: auto;
+  block-size: auto;
+  inline-size: 100%;
   position: relative;
-  width: 100%;
 }
 
 .ArticleHeadMainVisual__image {
   &:not(:root) {
-    height: auto !important;
+    block-size: auto !important;
+    inline-size: 100% !important;
     position: static !important;
-    width: 100% !important;
   }
 }
 

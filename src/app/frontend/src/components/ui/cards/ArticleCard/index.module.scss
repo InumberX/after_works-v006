@@ -1,18 +1,18 @@
 @use '~/assets/scss/global' as *;
 
 .ArticleCard {
-  height: 100%;
+  block-size: 100%;
 }
 
 .ArticleCard__button {
   &:not(:root) {
     backdrop-filter: blur(20px);
     background-color: rgba($palette-blue-charcoal, 0.32);
+    block-size: 100%;
     border: none;
     border-radius: 16px;
     color: $palette-white;
     display: block;
-    height: 100%;
     padding-block: get-clamp-px(16, 24);
     padding-inline: get-clamp-px(16, 24);
     text-decoration: none;
@@ -38,9 +38,9 @@
 }
 
 .ArticleCard__container {
+  block-size: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .ArticleCardMainVisual {
@@ -55,10 +55,10 @@
 
 .ArticleCardMainVisual__image {
   &:not(:root) {
-    height: 100%;
+    block-size: 100%;
+    inline-size: 100%;
     object-fit: cover;
     object-position: center;
-    width: 100%;
   }
 }
 

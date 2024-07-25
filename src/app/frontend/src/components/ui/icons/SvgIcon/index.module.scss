@@ -9,7 +9,7 @@
 
 .SvgIcon.SvgIcon--large {
   &::before {
-    width: 80px;
+    inline-size: 80px;
   }
 }
 
@@ -19,14 +19,14 @@
   &::before {
     aspect-ratio: 1 / 1;
     background-color: $palette-white;
+    block-size: auto;
     content: '';
     display: block;
-    height: auto;
+    inline-size: 24px;
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: contain;
     transition: 0.3s background-color;
-    width: 24px;
   }
 }
 

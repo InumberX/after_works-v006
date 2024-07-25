@@ -1,17 +1,17 @@
 @use '~/assets/scss/global' as *;
 
 .ServiceCard {
-  height: 100%;
+  block-size: 100%;
   position: relative;
 }
 
 .ServiceCard__container {
   backdrop-filter: blur(20px);
   background-color: rgba($palette-blue-charcoal, 0.32);
+  block-size: 100%;
   border-radius: get-clamp-px(16, 40);
   display: flex;
   flex-direction: column;
-  height: 100%;
   padding-block: get-clamp-px(24, 40);
   padding-inline: get-clamp-px(24, 40);
 }
@@ -48,6 +48,6 @@
 
 .ServiceCardButton__button {
   &:not(:root) {
-    max-width: 320px;
+    max-inline-size: 320px;
   }
 }
