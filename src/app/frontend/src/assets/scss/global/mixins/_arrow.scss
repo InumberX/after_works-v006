@@ -2,15 +2,17 @@
 
 // Arrow
 @mixin mxArrowLine($width-and-height, $border-width, $border-color, $deg) {
-  border-bottom: $border-width solid $border-color;
-  border-left: $border-width solid $border-color;
+  block-size: $width-and-height;
+  border-block-end: $border-width solid $border-color;
+  border-inline-start: $border-width solid $border-color;
   content: '';
   display: block;
-  height: $width-and-height;
-  transition: 0.3s border-color, 0.3s transform;
-  width: $width-and-height;
+  inline-size: $width-and-height;
+  transition:
+    0.3s border-color,
+    0.3s transform;
 
-  @if  $deg != '' {
+  @if $deg != '' {
     transform: rotate($deg);
   }
   @content;

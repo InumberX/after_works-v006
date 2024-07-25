@@ -15,13 +15,13 @@
 
 .GoogleAdList__item {
   align-items: center;
+  block-size: 300px;
   box-sizing: content-box;
   display: flex;
-  height: 300px;
+  inline-size: 300px;
   justify-content: center;
-  max-height: 300px;
-  max-width: 300px;
-  width: 300px;
+  max-block-size: 300px;
+  max-inline-size: 300px;
 
   @include mxGetPaddingListItem(24px, 24px);
 }

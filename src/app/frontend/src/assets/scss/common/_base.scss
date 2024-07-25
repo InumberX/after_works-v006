@@ -14,10 +14,10 @@
 
 html {
   background: $palette-blue-charcoal;
+  block-size: 100%;
   color: $palette-white;
-  height: 100%;
+  inline-size: 100%;
   line-height: 1;
-  width: 100%;
 }
 
 body {
@@ -28,6 +28,7 @@ body {
   border: 0;
   font-family: $font-main;
   font-weight: $font-medium;
+  inline-size: 100%;
   line-height: 1.6;
   margin-block: 0;
   margin-inline: 0;
@@ -35,14 +36,6 @@ body {
   padding-block: 0;
   padding-inline: 0;
   text-size-adjust: 100%;
-  width: 100%;
-
-  &.Body--fixed {
-    height: 100%;
-    left: 0;
-    position: fixed;
-    width: 100%;
-  }
 }
 
 /*
@@ -122,11 +115,11 @@ video {
 }
 
 audio:not([controls]) {
+  block-size: 0;
   display: none;
-  height: 0;
 }
 
-[hidden],
+[hidden]:not([hidden='until-found']),
 template {
   display: none;
 }
@@ -163,7 +156,7 @@ button {
 }
 
 abbr[title] {
-  border-bottom: 1px dotted;
+  border-block-end: 1px dotted;
 }
 
 i,
@@ -200,18 +193,18 @@ sup {
 }
 
 sup {
-  top: -0.5em;
+  inset-block-start: -0.5em;
 }
 
 sub {
-  bottom: -0.25em;
+  inset-block-end: -0.25em;
 }
 
 img {
   border: 0;
   // stylelint-disable-next-line property-no-unknown
   interpolation-mode: bicubic;
-  max-width: 100%;
+  max-inline-size: 100%;
   vertical-align: top;
 }
 
@@ -220,8 +213,8 @@ svg:not(:root) {
 }
 
 hr {
+  block-size: 0;
   box-sizing: content-box;
-  height: 0;
 }
 
 pre {
@@ -264,6 +257,10 @@ ul,
 ol,
 li {
   font-size: get-clamp-rem(16, 18);
+}
+
+[role='tabpanel']:target {
+  display: revert;
 }
 
 /* サイト内共通 ========== */

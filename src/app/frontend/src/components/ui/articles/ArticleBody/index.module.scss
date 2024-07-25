@@ -9,7 +9,7 @@
 
   h1,
   h2 {
-    border-top: 4px solid $palette-emperor;
+    border-block-start: 4px solid $palette-emperor;
     font-weight: $font-bold;
     margin-block-start: 40px;
     padding-block: 16px 0;
@@ -20,14 +20,14 @@
 
     &::before {
       background: linear-gradient(90deg, $gradation-primary);
+      block-size: 4px;
       content: '';
       display: block;
-      height: 4px;
-      left: 0;
+      inline-size: 64px;
+      inset-block-start: -4px;
+      inset-inline-start: 0;
       position: absolute;
-      top: -4px;
-      width: 64px;
-      z-index: $z-index-1;
+      z-index: 1;
     }
   }
 
@@ -125,7 +125,7 @@
 
   blockquote {
     background-color: $palette-emperor;
-    border-left: 8px solid $palette-silver-chalice;
+    border-inline-start: 8px solid $palette-silver-chalice;
     display: block;
     font-weight: $font-medium;
     margin-block: 16px 0;
@@ -149,24 +149,24 @@
   table {
     background-color: $palette-emperor;
     border: 1px solid$palette-silver-chalice;
+    inline-size: 100%;
     margin-block-start: 16px;
-    width: 100%;
 
     tbody {
       > tr {
-        border-bottom: 1px solid $palette-silver-chalice;
+        border-block-end: 1px solid $palette-silver-chalice;
 
         &:last-of-type {
-          border-bottom: none;
+          border-block-end: none;
         }
 
         > td {
-          border-right: 1px solid $palette-silver-chalice;
+          border-inline-end: 1px solid $palette-silver-chalice;
           padding-block: 4px;
           padding-inline: 4px;
 
           &:last-of-type {
-            border-right: none;
+            border-inline-end: none;
           }
         }
       }

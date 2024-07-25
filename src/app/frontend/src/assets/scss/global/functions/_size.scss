@@ -27,7 +27,7 @@
   // 出力
   @return clamp(
     #{$min-size}px,
-    #{$fixed-size}px + #{$changing-size}vw,
+    #{$fixed-size}px + #{$changing-size}vi,
     #{$max-size}px
   );
 }
@@ -67,7 +67,7 @@
   // 出力
   @return clamp(
     #{$min-rem-size}rem,
-    #{$fixed-size}rem + #{$changing-size}vw,
+    #{$fixed-size}rem + #{$changing-size}vi,
     #{$max-rem-size}rem
   );
 }

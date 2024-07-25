@@ -2,15 +2,17 @@
 
 // Triangle
 @mixin mxTriangle($width, $height, $border-color, $deg) {
-  border-left: math.div($width, 2) solid transparent;
-  border-right: math.div($width, 2) solid transparent;
-  border-top: $height solid $border-color;
+  border-block-start: $height solid $border-color;
+  border-inline-end: math.div($width, 2) solid transparent;
+  border-inline-start: math.div($width, 2) solid transparent;
   content: '';
   display: block;
   position: absolute;
-  transition: 0.3s border-color, 0.3s transform;
+  transition:
+    0.3s border-color,
+    0.3s transform;
 
-  @if  $deg != '' {
+  @if $deg != '' {
     transform: rotate($deg);
   }
   @content;
