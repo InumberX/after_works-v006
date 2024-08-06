@@ -16,7 +16,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  @include mxGetMarginListItems(8px, 8px);
+  @include mxGetMarginListItems(-8px, -8px);
 }
 
 .BaseTagList__item {
