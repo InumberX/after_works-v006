@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  @include mxGetMarginListItems(24px, 24px);
+  @include mxGetMarginListItems(-24px, -24px);
 }
 
 .GoogleAdList__item {
