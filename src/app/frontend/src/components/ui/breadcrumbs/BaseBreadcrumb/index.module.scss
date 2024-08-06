@@ -20,7 +20,7 @@
 .BaseBreadcrumb__items {
   display: flex;
 
-  @include mxGetMarginListItems(8px, 8px);
+  @include mxGetMarginListItems(-8px, -8px);
 
   @include mxMediaQuerySm {
     flex-wrap: wrap;
