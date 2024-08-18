@@ -1,202 +1,69 @@
-const apiResponseWorksDetailInfo = {
-  topics_id: 51,
-  ymd: '2023-10-29',
-  contents_type: 30,
-  contents: '<p>本文です。</p>',
-  subject: '実績テスト',
-  topics_flg: 1,
-  open_flg: 1,
-  regular_flg: 0,
-  inst_ymdhi: '2023-10-29T09:46:37+09:00',
-  update_ymdhi: '2024-01-06T19:09:06+09:00',
-  topics_group_id: 12,
-  post_time: '00:00:00',
-  slug: '',
-  order_no: 0,
-  group_nm: '実績（開発）',
-  group_description: '',
-  contents_type_cnt: 1,
-  contents_type_nm: '実績（開発）',
-  contents_type_slug: null,
-  contents_type_parent_nm: null,
-  category_parent_id: null,
-  contents_type_ext_col_01: null,
-  contents_type_ext_col_02: null,
-  contents_type_ext_col_03: null,
-  contents_type_ext_col_04: null,
-  contents_type_ext_col_05: null,
-  tags: [
-    {
-      tag_id: 13,
-      tag_nm: 'HTML',
-      open_contents_cnt: 62,
-      all_contents_cnt: 62,
-      inst_ymdhi: '2023-08-18T19:17:28+09:00',
-      update_ymdhi: '2023-08-18T21:07:32+09:00',
-      tag_category_id: 9,
-      tag_comment: null,
-      ext_col_01: '',
-      ext_col_02: '',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 140,
-    },
-    {
-      tag_id: 24,
-      tag_nm: 'EJS',
-      open_contents_cnt: 9,
-      all_contents_cnt: 9,
-      inst_ymdhi: '2023-08-18T19:33:34+09:00',
-      update_ymdhi: '2023-08-18T21:07:32+09:00',
-      tag_category_id: 9,
-      tag_comment: null,
-      ext_col_01: '',
-      ext_col_02: '',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 130,
-    },
-    {
-      tag_id: 35,
-      tag_nm: 'ディレクション',
-      open_contents_cnt: 11,
-      all_contents_cnt: 11,
-      inst_ymdhi: '2023-08-20T16:58:22+09:00',
-      update_ymdhi: '2024-01-06T18:28:46+09:00',
-      tag_category_id: 7,
-      tag_comment: null,
-      ext_col_01: '',
-      ext_col_02: 'Direction',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 70,
-    },
-    {
-      tag_id: 11,
-      tag_nm: 'デザイン',
-      open_contents_cnt: 31,
-      all_contents_cnt: 31,
-      inst_ymdhi: '2023-08-18T19:17:13+09:00',
-      update_ymdhi: '2024-01-06T18:29:41+09:00',
-      tag_category_id: 7,
-      tag_comment: null,
-      ext_col_01: '',
-      ext_col_02: 'Design',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 60,
-    },
-    {
-      tag_id: 29,
-      tag_nm: 'MUI',
-      open_contents_cnt: 5,
-      all_contents_cnt: 5,
-      inst_ymdhi: '2023-08-18T19:34:32+09:00',
-      update_ymdhi: '2023-08-18T21:08:46+09:00',
-      tag_category_id: 14,
-      tag_comment: null,
-      ext_col_01: '',
-      ext_col_02: '',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 40,
-    },
-    {
-      tag_id: 19,
-      tag_nm: 'AdobeIllustrator',
-      open_contents_cnt: 16,
-      all_contents_cnt: 16,
-      inst_ymdhi: '2023-08-18T19:31:08+09:00',
-      update_ymdhi: '2024-01-06T18:34:40+09:00',
-      tag_category_id: 15,
-      tag_comment: null,
-      ext_col_01: 'Adobe Illustrator',
-      ext_col_02: 'Adobe Illustrator',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 30,
-    },
-    {
-      tag_id: 34,
-      tag_nm: 'WordPress',
-      open_contents_cnt: 9,
-      all_contents_cnt: 9,
-      inst_ymdhi: '2023-08-18T21:08:02+09:00',
-      update_ymdhi: '2023-08-18T21:08:17+09:00',
-      tag_category_id: 13,
-      tag_comment: null,
-      ext_col_01: '',
-      ext_col_02: '',
-      ext_col_03: '',
-      ext_col_04: '',
-      ext_col_05: '',
-      ext_col_06: '',
-      ext_col_07: '',
-      ext_col_08: '',
-      ext_col_09: '',
-      ext_col_10: '',
-      weight: 30,
-    },
-  ],
-  contents_type_list: [30],
+export type ApiResponseWorksDetailData = {
+  topics_id: number
+  ymd: string
+  contents_type: number
+  contents: string
+  subject: string
+  topics_flg: number
+  open_flg: number
+  regular_flg: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  topics_group_id: number
+  post_time: string
+  slug: string
+  order_no: number
+  group_nm: string
+  group_description: string
+  contents_type_cnt: number
+  contents_type_nm: string
+  contents_type_slug: string | null
+  contents_type_parent_nm: string | null
+  category_parent_id: number | null
+  contents_type_ext_col_01: string | null
+  contents_type_ext_col_02: string | null
+  contents_type_ext_col_03: string | null
+  contents_type_ext_col_04: string | null
+  contents_type_ext_col_05: string | null
+  tags: {
+    tag_id: number
+    tag_nm: string
+    open_contents_cnt: number
+    all_contents_cnt: number
+    inst_ymdhi: string
+    update_ymdhi: string
+    tag_category_id: number
+    tag_comment: string | null
+    ext_col_01: string
+    ext_col_02: string
+    ext_col_03: string
+    ext_col_04: string
+    ext_col_05: string
+    ext_col_06: string
+    ext_col_07: string
+    ext_col_08: string
+    ext_col_09: string
+    ext_col_10: string
+    weight: number
+  }[]
+  contents_type_list: number[]
   main_visual: {
-    id: '51_ext_01_0',
-    url: 'https://afterworks.g.kuroco-img.app/v=1698540397/files/topics/51_ext_1_0.jpg',
-    desc: '',
-    url_org: 'https://afterworks.g.kuroco-img.app/files/topics/51_ext_1_0.jpg',
-  },
-  started_at: '2023-10-04',
-  ended_at: '2023-10-14',
-  url: 'https://afterworks.jp/works/17/',
-  description: '要約です。',
-  subject_en: 'Title',
-  description_en: 'Description',
-  contents_en: '<p>Text</p>',
+    id: string
+    url: string
+    desc: string
+    url_org: string
+  }
+  started_at: string
+  ended_at: string
+  url: string
+  description: string
+  subject_en: string
+  description_en: string
+  contents_en: string
 }
-
-const apiResponseWorksDetail = {
-  errors: [],
-  messages: [],
-}
-
-export type ApiResponseWorksDetailData = typeof apiResponseWorksDetailInfo
 
 export type ApiResponseWorksDetail = {
+  errors: string[]
+  messages: string[]
   details: ApiResponseWorksDetailData
-} & typeof apiResponseWorksDetail
+}

@@ -1,57 +1,52 @@
-const apiResponseTagCmsTag = {
-  tag_id: 16,
-  tag_nm: 'MovableType',
-  open_contents_cnt: 1,
-  all_contents_cnt: 1,
-  inst_ymdhi: '2023-08-18T19:20:42+09:00',
-  update_ymdhi: '2023-08-18T21:08:17+09:00',
-  tag_category_id: 13,
-  tag_comment: null,
-  ext_col_01: 'Movable Type',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  weight: 20,
+export type ApiResponseTagCmsTag = {
+  tag_id: number
+  tag_nm: string
+  open_contents_cnt: number
+  all_contents_cnt: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  tag_category_id: number
+  tag_comment: string | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  weight: number
 }
 
-export type ApiResponseTagCmsTag = typeof apiResponseTagCmsTag
-
-const apiResponseTagCmsList = {
-  tag_category_id: 13,
-  tag_category_nm: 'CMS',
-  open_flg: 1,
-  inst_ymdhi: '2023-08-18 19:37:10.654831+09',
-  update_ymdhi: '2023-08-18 19:42:42.091029+09',
-  parent_tag_category_id: null,
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  category_weight: 30,
-  target_module_type: '',
-  target_topics_group_id: 0,
-}
-
-export type ApiResponseTagCmsData = typeof apiResponseTagCmsList & {
+export type ApiResponseTagCmsData = {
+  tag_category_id: number
+  tag_category_nm: string
+  open_flg: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  parent_tag_category_id: number | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  category_weight: number
+  target_module_type: string
+  target_topics_group_id: number
   tags: {
     [key: string]: ApiResponseTagCmsTag
   }
 }
 
 export type ApiResponseTagCms = {
-  errors: []
-  messages: []
+  errors: string[]
+  messages: string[]
   list: ApiResponseTagCmsData[]
 }

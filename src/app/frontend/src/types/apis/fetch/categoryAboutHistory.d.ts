@@ -1,50 +1,44 @@
-const apiResponseCategoryAboutHistoryList = {
-  topics_category_id: '18',
-  category_nm: '経歴-年表（開発）',
-  parent_id: '',
-  memo: '',
-  inst_ymdhi: '2023-08-18 08:53:48.079553+09',
-  update_ymdhi: '2023-08-18 08:53:48.079553+09',
-  topics_group_id: '9',
-  category_weight: '',
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_title: '',
-  open_flg: '1',
-  ext_col_04: '',
-  ext_col_05: '',
-  slug: '',
-  topics_category_ids: ['18'],
-  category_nms: ['経歴-年表（開発）'],
-  child_level: 1,
+export type ApiResponseCategoryAboutHistoryData = {
+  topics_category_id: string
+  category_nm: string
+  parent_id: string
+  memo: string
+  inst_ymdhi: string
+  update_ymdhi: string
+  topics_group_id: string
+  category_weight: string
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_title: string
+  open_flg: string
+  ext_col_04: string
+  ext_col_05: string
+  slug: string
+  topics_category_ids: string[]
+  category_nms: string[]
+  child_level: number
 }
 
-const apiResponseCategoryAboutHistoryPageInfo = {
-  totalCnt: 9,
-  perPage: 9,
-  totalPageCnt: 1,
-  pageNo: 1,
-  path: '/rcms-api/6/categories/about-history',
-  param: '',
-  startPageNo: 1,
-  endPageNo: 1,
-  first_page_param: '',
-  previous_page_param: '',
-  next_page_param: '',
-  last_page_param: '?pageID=1',
-  other_page_param: '?pageID=',
+export type ApiResponseCategoryAboutHistoryPageInfo = {
+  totalCnt: number
+  perPage: number
+  totalPageCnt: number
+  pageNo: number
+  path: string
+  param: string
+  startPageNo: number
+  endPageNo: number
+  first_page_param: string
+  previous_page_param: string
+  next_page_param: string
+  last_page_param: string
+  other_page_param: string
 }
-
-export type ApiResponseCategoryAboutHistoryData =
-  typeof apiResponseCategoryAboutHistoryList
-
-export type ApiResponseCategoryAboutHistoryPageInfo =
-  typeof apiResponseCategoryAboutHistoryPageInfo
 
 export type ApiResponseCategoryAboutHistory = {
+  errors: string[]
+  messages: string[]
   pageInfo: ApiResponseCategoryAboutHistoryPageInfo
-  errors: []
-  messages: []
   list: ApiResponseCategoryAboutHistoryData[]
 }
