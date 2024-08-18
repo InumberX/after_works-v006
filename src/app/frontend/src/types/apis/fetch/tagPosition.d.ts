@@ -1,57 +1,52 @@
-const apiResponseTagPositionTag = {
-  tag_id: 5,
-  tag_nm: '保守・運用',
-  open_contents_cnt: 5,
-  all_contents_cnt: 5,
-  inst_ymdhi: '2023-08-18T18:45:03+09:00',
-  update_ymdhi: '2023-08-18T21:05:23+09:00',
-  tag_category_id: 7,
-  tag_comment: null,
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  weight: 10,
+export type ApiResponseTagPositionTag = {
+  tag_id: number
+  tag_nm: string
+  open_contents_cnt: number
+  all_contents_cnt: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  tag_category_id: number
+  tag_comment: string | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  weight: number
 }
 
-export type ApiResponseTagPositionTag = typeof apiResponseTagPositionTag
-
-const apiResponseTagPositionList = {
-  tag_category_id: 7,
-  tag_category_nm: '担当箇所',
-  open_flg: 1,
-  inst_ymdhi: '2023-08-18 18:37:52.529422+09',
-  update_ymdhi: '2023-08-18 19:42:30.785033+09',
-  parent_tag_category_id: null,
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  category_weight: 50,
-  target_module_type: '',
-  target_topics_group_id: 0,
-}
-
-export type ApiResponseTagPositionData = typeof apiResponseTagPositionList & {
+export type ApiResponseTagPositionData = {
+  tag_category_id: number
+  tag_category_nm: string
+  open_flg: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  parent_tag_category_id: number | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  category_weight: number
+  target_module_type: string
+  target_topics_group_id: number
   tags: {
     [key: string]: ApiResponseTagPositionTag
   }
 }
 
 export type ApiResponseTagPosition = {
-  errors: []
-  messages: []
+  errors: string[]
+  messages: string[]
   list: ApiResponseTagPositionData[]
 }

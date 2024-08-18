@@ -227,8 +227,13 @@ export const History = ({
 
           const tags = []
 
-          tagPosition.length > 0 && tags.push(tagPosition)
-          tagSkill.length > 0 && tags.push(tagSkill)
+          if (tagPosition.length > 0) {
+            tags.push(tagPosition)
+          }
+
+          if (tagSkill.length > 0) {
+            tags.push(tagSkill)
+          }
 
           return {
             title: locale === 'en' ? info.subject_en : info.subject,

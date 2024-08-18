@@ -1,57 +1,52 @@
-const apiResponseTagNewsTag = {
-  tag_id: 36,
-  tag_nm: 'お知らせ',
-  open_contents_cnt: 0,
-  all_contents_cnt: 0,
-  inst_ymdhi: '2023-10-29T10:57:47+09:00',
-  update_ymdhi: '2023-10-29T10:57:47+09:00',
-  tag_category_id: 16,
-  tag_comment: null,
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  weight: 150,
+export type ApiResponseTagNewsTag = {
+  tag_id: number
+  tag_nm: string
+  open_contents_cnt: number
+  all_contents_cnt: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  tag_category_id: number
+  tag_comment: string | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  weight: number
 }
 
-export type ApiResponseTagNewsTag = typeof apiResponseTagNewsTag
-
-const apiResponseTagNewsList = {
-  tag_category_id: 16,
-  tag_category_nm: 'お知らせ',
-  open_flg: 1,
-  inst_ymdhi: '2023-10-29 10:56:36.440119+09',
-  update_ymdhi: '2023-10-29 10:56:36.440119+09',
-  parent_tag_category_id: null,
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  category_weight: 60,
-  target_module_type: '',
-  target_topics_group_id: 0,
-}
-
-export type ApiResponseTagNewsData = typeof apiResponseTagNewsList & {
+export type ApiResponseTagNewsData = {
+  tag_category_id: number
+  tag_category_nm: string
+  open_flg: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  parent_tag_category_id: number | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  category_weight: number
+  target_module_type: string
+  target_topics_group_id: number
   tags: {
     [key: string]: ApiResponseTagNewsTag
   }
 }
 
 export type ApiResponseTagNews = {
-  errors: []
-  messages: []
+  errors: string[]
+  messages: string[]
   list: ApiResponseTagNewsData[]
 }

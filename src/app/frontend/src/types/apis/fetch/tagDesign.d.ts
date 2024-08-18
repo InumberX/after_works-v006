@@ -1,57 +1,52 @@
-const apiResponseTagDesignTag = {
-  tag_id: 19,
-  tag_nm: 'AdobeIllustrator',
-  open_contents_cnt: 4,
-  all_contents_cnt: 4,
-  inst_ymdhi: '2023-08-18T19:31:08+09:00',
-  update_ymdhi: '2023-08-18T21:08:30+09:00',
-  tag_category_id: 15,
-  tag_comment: null,
-  ext_col_01: 'Adobe Illustrator',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  weight: 30,
+export type ApiResponseTagDesignTag = {
+  tag_id: number
+  tag_nm: string
+  open_contents_cnt: number
+  all_contents_cnt: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  tag_category_id: number
+  tag_comment: string | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  weight: number
 }
 
-export type ApiResponseTagDesignTag = typeof apiResponseTagDesignTag
-
-const apiResponseTagDesignList = {
-  tag_category_id: 15,
-  tag_category_nm: 'デザイン',
-  open_flg: 1,
-  inst_ymdhi: '2023-08-18 19:37:33.007015+09',
-  update_ymdhi: '2023-08-18 19:42:25.628492+09',
-  parent_tag_category_id: null,
-  ext_col_01: '',
-  ext_col_02: '',
-  ext_col_03: '',
-  ext_col_04: '',
-  ext_col_05: '',
-  ext_col_06: '',
-  ext_col_07: '',
-  ext_col_08: '',
-  ext_col_09: '',
-  ext_col_10: '',
-  category_weight: 20,
-  target_module_type: '',
-  target_topics_group_id: 0,
-}
-
-export type ApiResponseTagDesignData = typeof apiResponseTagDesignList & {
+export type ApiResponseTagDesignData = {
+  tag_category_id: number
+  tag_category_nm: string
+  open_flg: number
+  inst_ymdhi: string
+  update_ymdhi: string
+  parent_tag_category_id: number | null
+  ext_col_01: string
+  ext_col_02: string
+  ext_col_03: string
+  ext_col_04: string
+  ext_col_05: string
+  ext_col_06: string
+  ext_col_07: string
+  ext_col_08: string
+  ext_col_09: string
+  ext_col_10: string
+  category_weight: number
+  target_module_type: string
+  target_topics_group_id: number
   tags: {
     [key: string]: ApiResponseTagDesignTag
   }
 }
 
 export type ApiResponseTagDesign = {
-  errors: []
-  messages: []
+  errors: string[]
+  messages: string[]
   list: ApiResponseTagDesignData[]
 }
