@@ -1,5 +1,7 @@
-const path = require('path')
-const { withSentryConfig } = require('@sentry/nextjs')
+import * as path from 'path'
+import { withSentryConfig } from '@sentry/nextjs'
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 const now = new Date()
 const nowDatetime =
@@ -52,7 +54,7 @@ const nextConfig = {
   },
 }
 
-module.exports = withSentryConfig(nextConfig, {
+export default withSentryConfig(nextConfig, {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
 
