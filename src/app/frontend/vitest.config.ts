@@ -2,6 +2,8 @@ import * as path from 'path'
 import * as VitestConfig from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
+
 export default VitestConfig.defineConfig({
   test: {
     environment: 'jsdom',

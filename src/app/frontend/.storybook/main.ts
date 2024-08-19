@@ -1,7 +1,7 @@
 import path from 'path'
 import { StorybookConfig } from '@storybook/react-vite'
 const { loadConfigFromFile, mergeConfig } = require('vite')
-const tsconfigPaths = require('vite-tsconfig-paths').default
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 const config: StorybookConfig = {
   stories: ['../**/*.stories.@(ts|tsx)'],
