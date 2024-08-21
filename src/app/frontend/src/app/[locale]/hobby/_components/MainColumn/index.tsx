@@ -9,7 +9,7 @@ import { BasePagination } from '@/components/ui/pagination/BasePagination'
 import { getHobbyInfos } from '@/apis/fetch/hobby'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
-import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
 import { useCurrentLocale } from '@/locales/client'
 

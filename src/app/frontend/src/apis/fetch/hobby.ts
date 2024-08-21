@@ -1,14 +1,10 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseHobby,
-  ApiResponseHobbyData,
-  ApiResponseHobbyPageInfo,
-} from '@/types/apis/fetch/hobby'
+import { Hobby, List, PageInfo } from '@/types/apis/fetch/hobby'
 
 export type ResponseGetHobbyInfos =
   | {
-      list: ApiResponseHobbyData[]
-      pageInfo: ApiResponseHobbyPageInfo
+      list: List[]
+      pageInfo: PageInfo
     }
   | undefined
 
@@ -36,7 +32,7 @@ export const getHobbyInfos = async ({
 
   const value = await response
     .json()
-    .then((data: ApiResponseHobby) => data)
+    .then((data: Hobby) => data)
     .catch(() => undefined)
 
   if (!value) {

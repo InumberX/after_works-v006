@@ -1,10 +1,7 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseAbout,
-  ApiResponseAboutData,
-} from '@/types/apis/fetch/about'
+import { About, List } from '@/types/apis/fetch/about'
 
-export type ResponseGetAboutInfo = ApiResponseAboutData | undefined
+export type ResponseGetAboutInfo = List | undefined
 
 export const getAboutInfo = async ({
   cnt = 1,
@@ -24,7 +21,7 @@ export const getAboutInfo = async ({
 
   const value = await response
     .json()
-    .then((data: ApiResponseAbout) => data)
+    .then((data: About[]) => data)
     .catch(() => undefined)
 
   if (!value || value.length === 0) {

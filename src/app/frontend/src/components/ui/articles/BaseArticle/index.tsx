@@ -18,8 +18,8 @@ export type BaseArticleInfo = {
   }[]
   body: string
   dateTitle?: string
-  startedAt?: string
-  endedAt?: string
+  startedAt?: string | Date
+  endedAt?: string | Date
   bottomLink?: {
     url: string
     text: string

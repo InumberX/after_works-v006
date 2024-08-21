@@ -1,10 +1,7 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseTagCms,
-  ApiResponseTagCmsTag,
-} from '@/types/apis/fetch/tagCms'
+import { TagCMS, Tag } from '@/types/apis/fetch/tagCms'
 
-export type ResponseGetTagCmsInfos = ApiResponseTagCmsTag[]
+export type ResponseGetTagCmsInfos = Tag[]
 
 export const getTagCmsInfos = async (): Promise<ResponseGetTagCmsInfos> => {
   const result: ResponseGetTagCmsInfos = []
@@ -19,7 +16,7 @@ export const getTagCmsInfos = async (): Promise<ResponseGetTagCmsInfos> => {
 
   const value = await response
     .json()
-    .then((data: ApiResponseTagCms) => data)
+    .then((data: TagCMS) => data)
     .catch(() => undefined)
 
   if (!value || value.list.length === 0) {

@@ -15,8 +15,8 @@ type Props = {
     }
     title: string
     dateTitle?: string
-    startedAt?: string
-    endedAt?: string
+    startedAt?: string | Date
+    endedAt?: string | Date
     tags?: {
       title?: string
       items: BaseTagProps[]
