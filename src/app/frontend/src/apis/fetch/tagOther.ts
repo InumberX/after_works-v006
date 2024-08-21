@@ -1,10 +1,7 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseTagOther,
-  ApiResponseTagOtherTag,
-} from '@/types/apis/fetch/tagOther'
+import { TagOther, Tag } from '@/types/apis/fetch/tagOther'
 
-export type ResponseGetTagOtherInfos = ApiResponseTagOtherTag[]
+export type ResponseGetTagOtherInfos = Tag[]
 
 export const getTagOtherInfos = async (): Promise<ResponseGetTagOtherInfos> => {
   const result: ResponseGetTagOtherInfos = []
@@ -19,7 +16,7 @@ export const getTagOtherInfos = async (): Promise<ResponseGetTagOtherInfos> => {
 
   const value = await response
     .json()
-    .then((data: ApiResponseTagOther) => data)
+    .then((data: TagOther) => data)
     .catch(() => undefined)
 
   if (!value || value.list.length === 0) {

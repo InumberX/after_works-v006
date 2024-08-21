@@ -9,7 +9,7 @@ import { BasePagination } from '@/components/ui/pagination/BasePagination'
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
-import { ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
+import { Tag as ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
 import { useCurrentLocale } from '@/locales/client'
 

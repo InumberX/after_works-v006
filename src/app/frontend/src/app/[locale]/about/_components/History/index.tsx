@@ -6,11 +6,11 @@ import styles from './index.module.scss'
 import clsx from 'clsx'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
-import { ApiResponseTagProgramTag } from '@/types/apis/fetch/tagProgram'
-import { ApiResponseTagCmsTag } from '@/types/apis/fetch/tagCms'
-import { ApiResponseTagDesignTag } from '@/types/apis/fetch/tagDesign'
-import { ApiResponseTagOtherTag } from '@/types/apis/fetch/tagOther'
+import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+import { Tag as ApiResponseTagProgramTag } from '@/types/apis/fetch/tagProgram'
+import { Tag as ApiResponseTagCmsTag } from '@/types/apis/fetch/tagCms'
+import { Tag as ApiResponseTagDesignTag } from '@/types/apis/fetch/tagDesign'
+import { Tag as ApiResponseTagOtherTag } from '@/types/apis/fetch/tagOther'
 import { format } from 'date-fns'
 import { getAboutHistoryInfo } from '@/apis/fetch/aboutHistory'
 import { useCurrentLocale } from '@/locales/client'
@@ -19,8 +19,8 @@ import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 export type HistoryItem = {
   title: string
   tags: string[][]
-  startedAt: string
-  endedAt: string
+  startedAt: string | Date
+  endedAt: string | Date
 }
 
 export type HistoryProps = {

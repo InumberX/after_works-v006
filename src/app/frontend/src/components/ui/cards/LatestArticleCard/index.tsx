@@ -16,9 +16,9 @@ type LatestArticleCardContainerProps = {
     src: string
     alt: string
   }
-  publishedAt?: string
-  startedAt?: string
-  endedAt?: string
+  publishedAt?: string | Date
+  startedAt?: string | Date
+  endedAt?: string | Date
   title: string
   titleTag?: keyof JSX.IntrinsicElements
   isButton?: boolean

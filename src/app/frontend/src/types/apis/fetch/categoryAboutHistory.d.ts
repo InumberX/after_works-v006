@@ -1,4 +1,4 @@
-export type ApiResponseCategoryAboutHistoryData = {
+export type List = {
   topics_category_id: string
   category_nm: string
   parent_id: string
@@ -20,7 +20,7 @@ export type ApiResponseCategoryAboutHistoryData = {
   child_level: number
 }
 
-export type ApiResponseCategoryAboutHistoryPageInfo = {
+export type PageInfo = {
   totalCnt: number
   perPage: number
   totalPageCnt: number
@@ -36,9 +36,9 @@ export type ApiResponseCategoryAboutHistoryPageInfo = {
   other_page_param: string
 }
 
-export type ApiResponseCategoryAboutHistory = {
+export type CategoryAboutHistory = {
   errors: string[]
   messages: string[]
-  pageInfo: ApiResponseCategoryAboutHistoryPageInfo
-  list: ApiResponseCategoryAboutHistoryData[]
+  list: List[]
+  pageInfo: PageInfo
 }

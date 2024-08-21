@@ -1,14 +1,10 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseWorks,
-  ApiResponseWorksData,
-  ApiResponseWorksPageInfo,
-} from '@/types/apis/fetch/works'
+import { Works, List, PageInfo } from '@/types/apis/fetch/works'
 
 export type ResponseGetWorksInfos =
   | {
-      list: ApiResponseWorksData[]
-      pageInfo: ApiResponseWorksPageInfo
+      list: List[]
+      pageInfo: PageInfo
     }
   | undefined
 
@@ -36,7 +32,7 @@ export const getWorksInfos = async ({
 
   const value = await response
     .json()
-    .then((data: ApiResponseWorks) => data)
+    .then((data: Works) => data)
     .catch(() => undefined)
 
   if (!value) {

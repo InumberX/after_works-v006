@@ -1,12 +1,7 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseAboutHistory,
-  ApiResponseAboutHistoryData,
-} from '@/types/apis/fetch/aboutHistory'
+import { AboutHistory, List } from '@/types/apis/fetch/aboutHistory'
 
-export type ResponseGetAboutHistoryInfo =
-  | ApiResponseAboutHistoryData[]
-  | undefined
+export type ResponseGetAboutHistoryInfo = List[] | undefined
 
 export const getAboutHistoryInfo = async ({
   categoryId,
@@ -32,7 +27,7 @@ export const getAboutHistoryInfo = async ({
 
   const value = await response
     .json()
-    .then((data: ApiResponseAboutHistory) => data)
+    .then((data: AboutHistory[]) => data)
     .catch(() => undefined)
 
   if (!value || value.length === 0) {
