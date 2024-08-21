@@ -1,14 +1,14 @@
 import { API_URL } from '@/config/env'
 import {
-  ApiResponseCategoryAboutHistory,
-  ApiResponseCategoryAboutHistoryData,
-  ApiResponseCategoryAboutHistoryPageInfo,
+  CategoryAboutHistory,
+  List,
+  PageInfo,
 } from '@/types/apis/fetch/categoryAboutHistory'
 
 export type ResponseGetCategoryAboutHistory =
   | {
-      list: ApiResponseCategoryAboutHistoryData[]
-      pageInfo: ApiResponseCategoryAboutHistoryPageInfo
+      list: List[]
+      pageInfo: PageInfo
     }
   | undefined
 
@@ -30,7 +30,7 @@ export const getCategoryAboutHistoryInfos = async ({
 
   const value = await response
     .json()
-    .then((data: ApiResponseCategoryAboutHistory) => data)
+    .then((data: CategoryAboutHistory) => data)
     .catch(() => undefined)
 
   if (!value) {

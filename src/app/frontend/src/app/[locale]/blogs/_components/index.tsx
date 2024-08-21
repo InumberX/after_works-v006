@@ -8,7 +8,7 @@ import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { MainColumn } from './MainColumn'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { SideColumn } from './SideColumn'
-import { ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
+import { Tag as ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
 import { getScopedI18n } from '@/locales/server'
 
 type Props = {

@@ -1,10 +1,7 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseTagPosition,
-  ApiResponseTagPositionTag,
-} from '@/types/apis/fetch/tagPosition'
+import { TagPosition, Tag } from '@/types/apis/fetch/tagPosition'
 
-export type ResponseGetTagPositionInfos = ApiResponseTagPositionTag[]
+export type ResponseGetTagPositionInfos = Tag[]
 
 export const getTagPositionInfos =
   async (): Promise<ResponseGetTagPositionInfos> => {
@@ -20,7 +17,7 @@ export const getTagPositionInfos =
 
     const value = await response
       .json()
-      .then((data: ApiResponseTagPosition) => data)
+      .then((data: TagPosition) => data)
       .catch(() => undefined)
 
     if (!value || value.list.length === 0) {

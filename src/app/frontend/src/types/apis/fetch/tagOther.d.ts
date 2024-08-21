@@ -1,12 +1,12 @@
-export type ApiResponseTagOtherTag = {
+export type Tag = {
   tag_id: number
   tag_nm: string
   open_contents_cnt: number
   all_contents_cnt: number
-  inst_ymdhi: string
-  update_ymdhi: string
+  inst_ymdhi: Date
+  update_ymdhi: Date
   tag_category_id: number
-  tag_comment: string | null
+  tag_comment: null
   ext_col_01: string
   ext_col_02: string
   ext_col_03: string
@@ -18,15 +18,18 @@ export type ApiResponseTagOtherTag = {
   ext_col_09: string
   ext_col_10: string
   weight: number
+  vector1024: null
+  vector1024_embedding_model: string
+  vector_model: string
 }
 
-export type ApiResponseTagOtherData = {
+export type List = {
   tag_category_id: number
   tag_category_nm: string
   open_flg: number
   inst_ymdhi: string
   update_ymdhi: string
-  parent_tag_category_id: number | null
+  parent_tag_category_id: null
   ext_col_01: string
   ext_col_02: string
   ext_col_03: string
@@ -40,13 +43,12 @@ export type ApiResponseTagOtherData = {
   category_weight: number
   target_module_type: string
   target_topics_group_id: number
-  tags: {
-    [key: string]: ApiResponseTagOtherTag
-  }
+  target_topics_group_ids: string
+  tags: { [key: string]: Tag }
 }
 
-export type ApiResponseTagOther = {
+export type TagOther = {
   errors: string[]
   messages: string[]
-  list: ApiResponseTagOtherData[]
+  list: List[]
 }

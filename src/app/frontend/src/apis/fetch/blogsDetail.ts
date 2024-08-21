@@ -1,10 +1,7 @@
 import { API_URL } from '@/config/env'
-import {
-  ApiResponseBlogsDetail,
-  ApiResponseBlogsDetailData,
-} from '@/types/apis/fetch/blogsDetail'
+import { BlogsDetail, Details } from '@/types/apis/fetch/blogsDetail'
 
-export type ResponseGetBlogsDetailInfo = ApiResponseBlogsDetailData | undefined
+export type ResponseGetBlogsDetailInfo = Details | undefined
 
 export const getBlogsDetailInfo = async ({
   id,
@@ -21,7 +18,7 @@ export const getBlogsDetailInfo = async ({
 
   const value = await response
     .json()
-    .then((data: ApiResponseBlogsDetail) => data)
+    .then((data: BlogsDetail) => data)
     .catch(() => undefined)
 
   if (!value) {
