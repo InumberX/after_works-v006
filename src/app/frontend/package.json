@@ -16,7 +16,8 @@
     "typecheck": "tsc -b",
     "test": "vitest",
     "storybook": "storybook dev -p 6006 -c .storybook",
-    "storybook:build": "storybook build -c .storybook"
+    "storybook:build": "storybook build -c .storybook",
+    "pre-commit": "yarn typecheck && yarn lint && yarn stylelint:fix && yarn prettier:fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -71,10 +72,5 @@
     "vite": "^5.4.1",
     "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.0.5"
-  },
-  "resolutions": {
-    "lerna/**/string-width": "4",
-    "lerna/**/strip-ansi": "6",
-    "lerna/**/wrap-ansi": "7"
   }
 }
