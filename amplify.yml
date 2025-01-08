@@ -7,6 +7,7 @@ applications:
           commands:
             - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         test:
           commands:
@@ -19,6 +20,7 @@ applications:
           commands:
             - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         build:
           commands:
@@ -37,6 +39,7 @@ applications:
           commands:
             - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         test:
           commands:
@@ -49,6 +52,7 @@ applications:
           commands:
             - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         build:
           commands:
