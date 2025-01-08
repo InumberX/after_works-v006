@@ -39,3 +39,7 @@ next-env.d.ts
 
 # Storybook
 storybook-static
+
+.yarn/
+!.yarn/release/*
+# !.yarn/install-state.gz

@@ -13,19 +13,21 @@ jobs:
     outputs:
       yarn-cache-dir-path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: '20.x'
+
+      - run: corepack enable
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
@@ -41,15 +43,17 @@ jobs:
       run:
         working-directory: src/app/frontend
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: '20.x'
+
+      - run: corepack enable
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
@@ -69,15 +73,17 @@ jobs:
       run:
         working-directory: src/app/frontend
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: '20.x'
+
+      - run: corepack enable
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
@@ -94,15 +100,17 @@ jobs:
       run:
         working-directory: src/app/frontend
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: '20.x'
+
+      - run: corepack enable
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}

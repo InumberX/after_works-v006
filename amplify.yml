@@ -5,8 +5,9 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm use 18
+            - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         test:
           commands:
@@ -17,8 +18,9 @@ applications:
             - yarn test
         preBuild:
           commands:
-            - nvm use 18
+            - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         build:
           commands:
@@ -35,8 +37,9 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm use 18
+            - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         test:
           commands:
@@ -47,8 +50,9 @@ applications:
             - yarn test
         preBuild:
           commands:
-            - nvm use 18
+            - nvm use 20
             - node -v
+            - corepack enable
             - yarn install --frozen-lockfile
         build:
           commands:
