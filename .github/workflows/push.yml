@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - '**'
-      - '!develop'
-      - '!main'
-
+env:
+  cache-version: v1
 jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      yarn-cache-dir-path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+      npm-cache-dir-path: ${{ steps.npm-cache-dir-path.outputs.dir }}
     steps:
       - uses: actions/checkout@v4
 
@@ -20,21 +19,19 @@ jobs:
         with:
           node-version: '20.x'
 
-      - run: corepack enable
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Get npm cache directory path
+        id: npm-cache-dir-path
+        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          path: ${{ steps.npm-cache-dir-path.outputs.dir }}
+          key: ${{ env.cache-version }}-${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ env.cache-version }}-${{ runner.os }}-npm-
 
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
 
   lint:
     runs-on: ubuntu-latest
@@ -50,28 +47,23 @@ jobs:
         with:
           node-version: '20.x'
 
-      - run: corepack enable
-
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          path: ${{ needs.setup.outputs.npm-cache-dir-path }}
+          key: ${{ env.cache-version }}-${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ env.cache-version }}-${{ runner.os }}-npm-
 
-      - run: yarn install --frozen-lockfile
-      - run: yarn prettier
-      - run: yarn stylelint
-      - run: yarn lint:quiet
-      - run: yarn typecheck
+      - run: npm ci
+      - run: npm run format
+      - run: npm run stylelint
+      - run: npm run lint-quiet
+      - run: npm run typecheck
 
   test:
     runs-on: ubuntu-latest
-    needs: [setup, lint]
-    defaults:
-      run:
-        working-directory: src/app/frontend
+    needs: setup
     steps:
       - uses: actions/checkout@v4
 
@@ -80,18 +72,16 @@ jobs:
         with:
           node-version: '20.x'
 
-      - run: corepack enable
-
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          path: ${{ needs.setup.outputs.npm-cache-dir-path }}
+          key: ${{ env.cache-version }}-${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ env.cache-version }}-${{ runner.os }}-npm-
 
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
+      - run: npm ci
+      - run: npm run test
 
   build:
     runs-on: ubuntu-latest
@@ -107,16 +97,14 @@ jobs:
         with:
           node-version: '20.x'
 
-      - run: corepack enable
-
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ needs.setup.outputs.yarn-cache-dir-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          path: ${{ needs.setup.outputs.npm-cache-dir-path }}
+          key: ${{ env.cache-version }}-${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ env.cache-version }}-${{ runner.os }}-npm-
 
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - name: Build
-        run: yarn run build
+        run: npm run build

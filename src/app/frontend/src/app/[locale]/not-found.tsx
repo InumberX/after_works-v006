@@ -6,12 +6,13 @@ import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const scopedT = await getScopedI18n('notFound')
+  const locale = await getCurrentLocale()
 
   return AppHead({
     title: scopedT('title'),
     canonical: routes.notFound.url({
       isFullPath: true,
-      locale: getCurrentLocale(),
+      locale,
     }),
     robots: 'noindex, nofollow',
   })

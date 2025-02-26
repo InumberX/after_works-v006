@@ -14,7 +14,7 @@ import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('about')
 
   return AppHead({
@@ -28,7 +28,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const HomePage = async ({ searchParams }: NextPageProps) => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const aboutInfo = await getAboutInfo({})
 
   const certifications = aboutInfo

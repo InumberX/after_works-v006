@@ -11,7 +11,7 @@ import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('hobby')
 
   return AppHead({
@@ -25,7 +25,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const HobbyPage = async ({ searchParams }: NextPageProps) => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const tagPositionInfos = await getTagPositionInfos()
 
   const responseHobbyInfos = await getHobbyInfos({

@@ -19,7 +19,7 @@ export const baseDescriptions = {
   en: 'This is the portfolio website for N/NE (Nine), a Front-end Engineer based in Tokyo.',
 }
 
-export const AppHead = ({
+export const AppHead = async ({
   title,
   description,
   ogImage,
@@ -28,8 +28,8 @@ export const AppHead = ({
   robots,
   prev,
   next,
-}: Props): Metadata => {
-  const locale = getCurrentLocale()
+}: Props): Promise<Metadata> => {
+  const locale = await getCurrentLocale()
   const titleText = title
     ? `${title} | ${siteName}`
     : `${siteName} - N/NE's Portfolio Site`

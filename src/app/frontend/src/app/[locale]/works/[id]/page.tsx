@@ -25,7 +25,7 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('worksDetail')
 
   const responseWorksDetailInfo = await getWorksDetailInfo({
@@ -69,7 +69,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('worksDetail')
 
   const tagPositionInfos = await getTagPositionInfos()
