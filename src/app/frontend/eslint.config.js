@@ -3,11 +3,12 @@ import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
+import pluginNext from '@next/eslint-plugin-next'
 import { fixupPluginRules } from '@eslint/compat'
 
 export default tseslint.config(
   {
-    ignores: ['node_modules', '.cache', 'build', 'public/build', '.env'],
+    ignores: ['node_modules', '.next', 'storybook-build', 'public', '.env'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -35,27 +36,18 @@ export default tseslint.config(
     plugins: {
       react: pluginReact,
       'react-hooks': fixupPluginRules(pluginReactHooks),
+      next: pluginNext,
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
       ...pluginReact.configs['jsx-runtime'].rules,
       ...pluginReactHooks.configs.recommended.rules,
+      ...pluginNext.configs.recommended.rules,
     },
     settings: {
       react: {
         version: 'detect',
       },
-      formComponents: ['Form'],
-      linkComponents: [
-        {
-          name: 'Link',
-          linkAttribute: 'to',
-        },
-        {
-          name: 'NavLink',
-          linkAttribute: 'to',
-        },
-      ],
     },
   },
   {
@@ -71,5 +63,5 @@ export default tseslint.config(
     rules: {
       'react/jsx-no-target-blank': 'off',
     },
-  }
+  },
 )

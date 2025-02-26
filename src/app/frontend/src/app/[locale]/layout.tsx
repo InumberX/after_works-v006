@@ -4,24 +4,26 @@ import { LayoutDefault } from '@/layouts/Default'
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics'
 import Script from 'next/script'
 
-const RootLayout = ({
+const RootLayout = async ({
   children,
   params,
 }: {
   children: React.ReactNode
-  params: {
+  params: Promise<{
     locale: string
-  }
+  }>
 }) => {
+  const { locale } = await params
+
   return (
     // eslint-disable-next-line react/no-unknown-property
-    <html lang={params.locale} prefix='og: http://ogp.me/ns#'>
+    <html lang={locale} prefix='og: http://ogp.me/ns#'>
       <head>
         <GoogleAnalytics />
       </head>
 
       <body>
-        <AppProvider locale={params.locale}>
+        <AppProvider locale={locale}>
           <LayoutDefault>{children}</LayoutDefault>
         </AppProvider>
         <Script

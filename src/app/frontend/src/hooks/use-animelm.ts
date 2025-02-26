@@ -19,10 +19,10 @@ export const useAnimelm = <T extends HTMLElement>({
   options?: UseAnimelmOptions
 } = {}): {
   isVisible: boolean
-  targetRef: RefObject<T>
+  targetRef: RefObject<T | null>
 } => {
   const [isVisible, setIsVisible] = useState(false)
-  const targetRef = useRef<T>(null)
+  const targetRef = useRef<T | null>(null)
 
   useEffect(() => {
     const currentRef = targetRef.current
