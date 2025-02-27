@@ -8,23 +8,23 @@ applications:
             - nvm use 20
             - node -v
             - corepack enable
-            - yarn install --frozen-lockfile
+            - npm ci
         test:
           commands:
-            - yarn prettier
-            - yarn stylelint
-            - yarn lint:quiet
-            - yarn typecheck
-            - yarn test
+            - npm run format
+            - npm run stylelint
+            - npm run lint-quiet
+            - npm run typecheck
+            - npm run test
         preBuild:
           commands:
             - nvm use 20
             - node -v
             - corepack enable
-            - yarn install --frozen-lockfile
+            - npm ci
         build:
           commands:
-            - yarn build
+            - npm run build
       artifacts:
         baseDirectory: .next
         files:
@@ -40,23 +40,23 @@ applications:
             - nvm use 20
             - node -v
             - corepack enable
-            - yarn install --frozen-lockfile
+            - npm ci
         test:
           commands:
-            - yarn prettier
-            - yarn stylelint
-            - yarn lint:quiet
-            - yarn typecheck
-            - yarn test
+            - npm run format
+            - npm run stylelint
+            - npm run lint-quiet
+            - npm run typecheck
+            - npm run test
         preBuild:
           commands:
             - nvm use 20
             - node -v
             - corepack enable
-            - yarn install --frozen-lockfile
+            - npm ci
         build:
           commands:
-            - yarn storybook:build
+            - npm run storybook-build
       artifacts:
         baseDirectory: storybook-static
         files:

@@ -11,7 +11,7 @@ import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('blogs')
 
   return AppHead({
@@ -25,13 +25,14 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const BlogsPage = async ({ searchParams }: NextPageProps) => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const tagNewsInfos = await getTagNewsInfos()
+  const currentSearchParams = await searchParams
 
   const responseBlogsInfos = await getBlogsInfos({
-    ...(searchParams &&
-      searchParams.page && {
-        page: parseInt(searchParams.page, 10),
+    ...(currentSearchParams &&
+      currentSearchParams.page && {
+        page: parseInt(currentSearchParams.page as string, 10),
       }),
   })
 
@@ -118,7 +119,9 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
   return (
     <Index
       defaultPage={
-        searchParams && searchParams.page ? parseInt(searchParams.page, 10) : 1
+        currentSearchParams && currentSearchParams.page
+          ? parseInt(currentSearchParams.page as string, 10)
+          : 1
       }
       defaultTotalPage={
         responseBlogsInfos ? responseBlogsInfos.pageInfo.totalPageCnt : 0

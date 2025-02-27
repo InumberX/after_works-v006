@@ -20,7 +20,7 @@ Start a shell such as PoworShell and navigate to the root of the project.
 Install the Node.js package.
 
 ```shell
-yarn install
+npm install
 ```
 
 ### Execution of development tasks
@@ -28,7 +28,7 @@ yarn install
 Execute the following command.
 
 ```shell
-yarn dev
+npm run dev
 ```
 
 The following URL will take you to the screen.
@@ -40,7 +40,7 @@ http://localhost:3000/
 ### Syntax Check
 
 ```shell
-yarn lint
+npm run lint
 ```
 
 ### Formatter
@@ -48,13 +48,13 @@ yarn lint
 #### Check
 
 ```shell
-yarn prettier
+npm run format
 ```
 
 #### Check and Format
 
 ```shell
-yarn prettier:fix
+npm run format-fix
 ```
 
 ### Formatter (SCSS)
@@ -62,13 +62,28 @@ yarn prettier:fix
 #### Check
 
 ```shell
-yarn stylelint
+npm run stylelint
 ```
 
 #### Check and Format
 
 ```shell
-yarn stylelint:fix
+npm run stylelint-fix
+```
+
+### Upgrading packages
+
+#### Check
+
+```shell
+npm run upgrade-check
+```
+
+#### Upgrade
+
+```shell
+npm run upgrade
+npm install
 ```
 
 ## Development with Docker
@@ -88,7 +103,7 @@ docker compose up -d
 Install the Node.js package.
 
 ```shell
-docker compose exec frontend yarn install
+docker compose exec frontend npm install
 ```
 
 ### Execution of development tasks
@@ -96,7 +111,7 @@ docker compose exec frontend yarn install
 Execute the following command.
 
 ```shell
-docker compose exec frontend yarn dev
+docker compose exec frontend npm run dev
 ```
 
 The following URL will take you to the screen.
@@ -116,7 +131,7 @@ docker compose down
 ### Syntax Check
 
 ```shell
-docker compose exec frontend yarn lint
+docker compose exec frontend npm run lint
 ```
 
 ### Formatter
@@ -124,13 +139,13 @@ docker compose exec frontend yarn lint
 #### Check
 
 ```shell
-docker compose exec frontend yarn prettier
+docker compose exec frontend npm run format
 ```
 
 #### Check and Format
 
 ```shell
-docker compose exec frontend yarn prettier:fix
+docker compose exec frontend npm run format-fix
 ```
 
 ### Formatter (SCSS)
@@ -138,11 +153,11 @@ docker compose exec frontend yarn prettier:fix
 #### Check
 
 ```shell
-docker compose exec frontend yarn stylelint
+docker compose exec frontend npm run stylelint
 ```
 
 #### Check and Format
 
 ```shell
-docker compose exec frontend yarn stylelint:fix
+docker compose exec frontend npm run stylelint-fix
 ```

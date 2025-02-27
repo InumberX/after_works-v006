@@ -14,7 +14,7 @@ import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('about')
 
   return AppHead({
@@ -28,8 +28,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const HomePage = async ({ searchParams }: NextPageProps) => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const aboutInfo = await getAboutInfo({})
+  const currentSearchParams = await searchParams
 
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
@@ -63,11 +64,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
 
   let defaultYearId = ''
 
-  if (searchParams && searchParams.year && years.length > 0) {
+  if (currentSearchParams && currentSearchParams.year && years.length > 0) {
     for (let i = 0, iLength = years.length; i < iLength; i = i + 1) {
       const year = years[i]
 
-      if (year.value === searchParams.year) {
+      if (year.value === currentSearchParams.year) {
         defaultYearId = year.id
         break
       }

@@ -17,6 +17,7 @@ type Props = {
 
 export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
   const t = await getI18n()
+  const locale = await getCurrentLocale()
 
   return (
     <div
@@ -42,7 +43,7 @@ export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
               >
                 <Link
                   href={routes.home.url({
-                    locale: getCurrentLocale(),
+                    locale,
                   })}
                   className={styles.BaseBreadcrumb__link}
                   itemProp='item'

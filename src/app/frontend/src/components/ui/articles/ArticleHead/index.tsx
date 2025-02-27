@@ -25,9 +25,9 @@ type Props = {
   }
 }
 
-export const ArticleHead = ({ className, info }: Props) => {
+export const ArticleHead = async ({ className, info }: Props) => {
   const { mainVisual, title, dateTitle, startedAt, endedAt, tags, url } = info
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
 
   const startedAtText = startedAt
     ? format(

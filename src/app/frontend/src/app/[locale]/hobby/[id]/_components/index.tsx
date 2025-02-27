@@ -17,6 +17,7 @@ type Props = {
 
 export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
   const hobbyScopedT = await getScopedI18n('hobby')
+  const locale = await getCurrentLocale()
 
   return (
     <>
@@ -25,7 +26,7 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
           {
             name: hobbyScopedT('pageTitle'),
             url: routes.hobby.url({
-              locale: getCurrentLocale(),
+              locale,
             }),
           },
           {

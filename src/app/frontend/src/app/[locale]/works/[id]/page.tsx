@@ -19,13 +19,14 @@ import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 export const generateMetadata = async ({
   params,
 }: NextPageProps): Promise<Metadata> => {
-  const id = params?.id
+  const currentParams = await params
+  const id = currentParams?.id
 
   if (!id) {
     notFound()
   }
 
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('worksDetail')
 
   const responseWorksDetailInfo = await getWorksDetailInfo({
@@ -63,13 +64,14 @@ export const generateMetadata = async ({
 }
 
 const WorksDetailPage = async ({ params }: NextPageProps) => {
-  const id = params?.id
+  const currentParams = await params
+  const id = currentParams?.id
 
   if (!id) {
     notFound()
   }
 
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const scopedT = await getScopedI18n('worksDetail')
 
   const tagPositionInfos = await getTagPositionInfos()

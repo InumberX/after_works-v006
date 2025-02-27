@@ -19,7 +19,7 @@ export const snsInfos: {
 } = {
   x: {
     id: 'x',
-    url: 'https://twitter.com/InumberX',
+    url: 'https://x.com/InumberX',
     title: 'X',
   },
   instagram: {

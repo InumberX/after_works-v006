@@ -8,6 +8,7 @@ import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineT
 
 export const Message = async () => {
   const scopedT = await getScopedI18n('notFound')
+  const locale = await getCurrentLocale()
 
   return (
     <LayoutSection className={styles.Message} isFirst tag='div'>
@@ -21,7 +22,7 @@ export const Message = async () => {
             <div className={styles.MessageButton}>
               <BaseButton
                 url={routes.home.url({
-                  locale: getCurrentLocale(),
+                  locale,
                 })}
                 text={scopedT('message.buttonText')}
                 isRightArrow

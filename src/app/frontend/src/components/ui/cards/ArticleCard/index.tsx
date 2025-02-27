@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, JSX } from 'react'
 import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
 import Link from 'next/link'
 import Image from 'next/image'
