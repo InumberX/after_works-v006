@@ -31,7 +31,6 @@ const nextConfig = {
   // distDir: 'out',
   // output: 'export',
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     unoptimized: true,
     // importした画像の型定義設定を無効にする

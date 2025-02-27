@@ -9,6 +9,7 @@ import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 
 export const Contents = async () => {
   const scopedT = await getScopedI18n('home.contents')
+  const locale = await getCurrentLocale()
 
   return (
     <LayoutSection className={styles.Contents}>
@@ -34,7 +35,7 @@ export const Contents = async () => {
                 description: scopedT('about.description'),
                 buttonInfo: {
                   url: routes.about.url({
-                    locale: getCurrentLocale(),
+                    locale,
                   }),
                   text: scopedT('about.buttonText'),
                   isRightArrow: true,
@@ -53,7 +54,7 @@ export const Contents = async () => {
                 description: scopedT('works.description'),
                 buttonInfo: {
                   url: routes.works.url({
-                    locale: getCurrentLocale(),
+                    locale,
                   }),
                   text: scopedT('works.buttonText'),
                   isRightArrow: true,

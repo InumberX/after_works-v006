@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, JSX } from 'react'
 import styles from './index.module.scss'
 import clsx from 'clsx'
 

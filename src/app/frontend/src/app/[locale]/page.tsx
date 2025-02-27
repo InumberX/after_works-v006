@@ -10,8 +10,8 @@ import { getCurrentLocale } from '@/locales/server'
 
 export const dynamic = 'force-dynamic'
 
-export const generateMetadata = (): Metadata => {
-  const locale = getCurrentLocale()
+export const generateMetadata = async (): Promise<Metadata> => {
+  const locale = await getCurrentLocale()
 
   return AppHead({
     canonical: routes.home.url({
@@ -22,7 +22,7 @@ export const generateMetadata = (): Metadata => {
 }
 
 const HomePage = async () => {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const tagPositionInfos = await getTagPositionInfos()
 
   const responseLatestBlogInfos = await getBlogsInfos({

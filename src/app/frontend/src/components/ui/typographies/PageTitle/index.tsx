@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, JSX } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'

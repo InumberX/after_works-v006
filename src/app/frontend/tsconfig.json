@@ -31,7 +31,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "build/types/**/*.ts",
-    "out/types/**/*.ts"
+    "out/types/**/*.ts",
+    "eslint.config.js"
   ],
   "exclude": ["node_modules"]
 }
