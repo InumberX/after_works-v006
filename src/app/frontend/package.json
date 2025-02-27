@@ -15,7 +15,7 @@
     "format-fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "typecheck": "tsc -b",
     "test": "vitest",
-    "storybook": "storybook dev -p 6006 -c .storybook",
+    "storybook": "storybook dev --no-open -p 6006 -c .storybook",
     "storybook-build": "storybook build -c .storybook",
     "upgrade": "npx npm-check-updates -u",
     "upgrade-check": "npx npm-check-updates",
