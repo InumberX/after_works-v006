@@ -19,7 +19,8 @@ import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 export const generateMetadata = async ({
   params,
 }: NextPageProps): Promise<Metadata> => {
-  const id = params?.id
+  const currentParams = await params
+  const id = currentParams?.id
 
   if (!id) {
     notFound()
@@ -63,7 +64,8 @@ export const generateMetadata = async ({
 }
 
 const HobbyDetailPage = async ({ params }: NextPageProps) => {
-  const id = params?.id
+  const currentParams = await params
+  const id = currentParams?.id
 
   if (!id) {
     notFound()

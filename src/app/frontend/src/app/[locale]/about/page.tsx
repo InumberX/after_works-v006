@@ -30,6 +30,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const HomePage = async ({ searchParams }: NextPageProps) => {
   const locale = await getCurrentLocale()
   const aboutInfo = await getAboutInfo({})
+  const currentSearchParams = await searchParams
 
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
@@ -63,11 +64,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
 
   let defaultYearId = ''
 
-  if (searchParams && searchParams.year && years.length > 0) {
+  if (currentSearchParams && currentSearchParams.year && years.length > 0) {
     for (let i = 0, iLength = years.length; i < iLength; i = i + 1) {
       const year = years[i]
 
-      if (year.value === searchParams.year) {
+      if (year.value === currentSearchParams.year) {
         defaultYearId = year.id
         break
       }

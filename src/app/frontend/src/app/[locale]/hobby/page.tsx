@@ -27,11 +27,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const HobbyPage = async ({ searchParams }: NextPageProps) => {
   const locale = await getCurrentLocale()
   const tagPositionInfos = await getTagPositionInfos()
+  const currentSearchParams = await searchParams
 
   const responseHobbyInfos = await getHobbyInfos({
-    ...(searchParams &&
-      searchParams.page && {
-        page: parseInt(searchParams.page, 10),
+    ...(currentSearchParams &&
+      currentSearchParams.page && {
+        page: parseInt(currentSearchParams.page as string, 10),
       }),
   })
 
@@ -120,7 +121,9 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
   return (
     <Index
       defaultPage={
-        searchParams && searchParams.page ? parseInt(searchParams.page, 10) : 1
+        currentSearchParams && currentSearchParams.page
+          ? parseInt(currentSearchParams.page as string, 10)
+          : 1
       }
       defaultTotalPage={
         responseHobbyInfos ? responseHobbyInfos.pageInfo.totalPageCnt : 0
