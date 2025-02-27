@@ -10,8 +10,8 @@ export default tseslint.config(
   {
     ignores: ['node_modules', '.next', 'storybook-build', 'public', '.env'],
   },
-  eslint.configs.recommended,
   ...tseslint.configs.recommended,
+  eslint.configs.recommended,
   {
     languageOptions: {
       ecmaVersion: 2022,
@@ -36,13 +36,14 @@ export default tseslint.config(
     plugins: {
       react: pluginReact,
       'react-hooks': fixupPluginRules(pluginReactHooks),
-      next: pluginNext,
+      '@next/next': pluginNext,
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
       ...pluginReact.configs['jsx-runtime'].rules,
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
     },
     settings: {
       react: {

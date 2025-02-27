@@ -15,11 +15,12 @@ type SnsInfo = {
 }
 
 export const snsInfos: {
+  // eslint-disable-next-line no-unused-vars
   [key in SnsKey]: SnsInfo
 } = {
   x: {
     id: 'x',
-    url: 'https://twitter.com/InumberX',
+    url: 'https://x.com/InumberX',
     title: 'X',
   },
   instagram: {
