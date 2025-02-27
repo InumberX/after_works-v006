@@ -11,7 +11,6 @@ type Props = {
   className?: string
   currentPage: number
   totalPage: number
-  // eslint-disable-next-line no-unused-vars
   handleChangePage: (newPage: number) => void
 }
 
@@ -26,7 +25,6 @@ const BasePaginationItem = ({
   totalPage: number
   pageNumber: number
   className?: string
-  // eslint-disable-next-line no-unused-vars
   handleChangePage: (newPage: number) => void
 }) => {
   const t = useI18n()

@@ -1,6 +1,5 @@
 import React from 'react'
 
-/* eslint-disable no-unused-vars */
 export type EventTypes = {
   // 一般的な入力フォームのEvent型定義（text, checkbox, radioなど）
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -23,4 +22,3 @@ export type EventTypes = {
   // SubmitのEvent型定義
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
-/* eslint-enable */

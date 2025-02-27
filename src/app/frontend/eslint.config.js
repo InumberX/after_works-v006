@@ -7,11 +7,8 @@ import pluginNext from '@next/eslint-plugin-next'
 import { fixupPluginRules } from '@eslint/compat'
 
 export default tseslint.config(
-  {
-    ignores: ['node_modules', '.next', 'storybook-build', 'public', '.env'],
-  },
-  ...tseslint.configs.recommended,
   eslint.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     languageOptions: {
       ecmaVersion: 2022,
@@ -32,7 +29,7 @@ export default tseslint.config(
   },
   // React
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,tsx,js,mjs}'],
     plugins: {
       react: pluginReact,
       'react-hooks': fixupPluginRules(pluginReactHooks),
@@ -64,5 +61,8 @@ export default tseslint.config(
     rules: {
       'react/jsx-no-target-blank': 'off',
     },
+  },
+  {
+    ignores: ['node_modules', '.next', 'storybook-build', 'public', '.env'],
   },
 )

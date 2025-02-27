@@ -15,7 +15,6 @@ type SnsInfo = {
 }
 
 export const snsInfos: {
-  // eslint-disable-next-line no-unused-vars
   [key in SnsKey]: SnsInfo
 } = {
   x: {

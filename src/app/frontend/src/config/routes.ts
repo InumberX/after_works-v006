@@ -28,15 +28,11 @@ const getUrl = ({
 }
 
 export const routes: {
-  // eslint-disable-next-line no-unused-vars
   [key in RouteKey]: {
     id: string
     url: ({
-      // eslint-disable-next-line no-unused-vars
       isFullPath,
-      // eslint-disable-next-line no-unused-vars
       locale,
-      // eslint-disable-next-line no-unused-vars
       id,
     }: {
       isFullPath?: boolean
