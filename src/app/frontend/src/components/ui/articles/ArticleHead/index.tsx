@@ -41,7 +41,7 @@ export const ArticleHead = async ({ className, info }: Props) => {
 
   return (
     <div className={clsx(styles.ArticleHead, className)}>
-      {mainVisual && (
+      {mainVisual && mainVisual.src && (
         <div className={styles.ArticleHeadMainVisual}>
           <figure className={styles.ArticleHeadMainVisual__container}>
             <Image
