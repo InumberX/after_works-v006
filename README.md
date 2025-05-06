@@ -7,7 +7,7 @@
 This repository is my portfolio site.
 
 - [Production Site](https://afterworks.jp/)
-- [DeepWiki Page](https://deepwiki.com/InumberX/after_works-v006)
+- [Project documentation on DeepWiki](https://deepwiki.com/InumberX/after_works-v006)
 
 ## Structure Diagram
 
