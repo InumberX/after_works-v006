@@ -6,8 +6,8 @@
 
 This repository is my portfolio site.
 
-- https://afterworks.jp/
-- https://deepwiki.com/InumberX/after_works-v006
+- [Production Site](https://afterworks.jp/)
+- [DeepWiki Page](https://deepwiki.com/InumberX/after_works-v006)
 
 ## Structure Diagram
 
