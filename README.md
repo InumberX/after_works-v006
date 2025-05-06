@@ -4,8 +4,10 @@
 
 ## Overview
 
-This repository is my portfolio site.  
-https://afterworks.jp/
+This repository is my portfolio site.
+
+- https://afterworks.jp/
+- https://deepwiki.com/InumberX/after_works-v006
 
 ## Structure Diagram
 
