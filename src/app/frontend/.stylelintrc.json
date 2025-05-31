@@ -9,5 +9,5 @@
     "scss/at-mixin-pattern": "^[a-z]+([A-Z][a-z0-9]+)*$",
     "no-descending-specificity": null
   },
-  "ignoreFiles": ["**/node_modules/**"]
+  "ignoreFiles": ["**/node_modules/**", "./src/assets/post-css/libs/**"]
 }

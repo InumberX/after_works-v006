@@ -1,7 +1,7 @@
-import * as path from 'path'
+// import * as path from 'path'
 import { withSentryConfig } from '@sentry/nextjs'
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname)
+// const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 const now = new Date()
 const nowDatetime =
@@ -35,9 +35,6 @@ const nextConfig = {
     unoptimized: true,
     // importした画像の型定義設定を無効にする
     disableStaticImages: true,
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'src/styles')],
   },
   env: {
     NEXT_PUBLIC_CASH_BUSTER: cashBuster,
