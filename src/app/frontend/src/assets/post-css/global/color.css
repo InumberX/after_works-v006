@@ -1,0 +1,20 @@
+:root {
+  --color-palette-white: #fff;
+  --color-palette-black: #000;
+  --color-palette-black-rgb: 0 0 0;
+  --color-palette-blue-charcoal: #000911;
+  --color-palette-blue-charcoal-rgb: 0 9 17;
+  --color-palette-silver-chalice: #a6a6a6;
+  --color-palette-mercury: #e1e1e1;
+  --color-palette-emperor: #505050;
+  --color-palette-sky-blue: #73d1ed;
+  --color-palette-sky-blue-rgb: 115 209 237;
+  --color-palette-chambray: #2d507b;
+  --color-palette-heliotrope: #e050f3;
+  --color-palette-heliotrope-rgb: 224 80 243;
+  --color-palette-x: #000;
+  --color-palette-facebook: #1877f2;
+  --color-palette-line: #00b900;
+  --color-gradation-primary:
+    oklch(68.7% 0.254 322.8deg) 0, oklch(81.3% 0.097 219.5deg) 100%;
+}

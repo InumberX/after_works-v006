@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import {
   ArticleCardProps,
   ArticleCard,

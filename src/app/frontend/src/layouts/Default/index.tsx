@@ -5,7 +5,7 @@ import { LayoutFooter } from '@/components/common/LayoutFooter'
 import { LayoutPortal } from '@/components/common/LayoutPortal'
 import { LayoutSvgPainter } from '@/components/common/LayoutSvgPainter'
 import { LayoutPageBackground } from '@/components/common/LayoutPageBackground'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 type Props = {
   children: ReactNode

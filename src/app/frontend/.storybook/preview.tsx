@@ -1,6 +1,6 @@
 import React from 'react'
 import { Preview } from '@storybook/react'
-import '@/styles/common.scss'
+import '@/styles/common.css'
 
 const preview: Preview = {
   parameters: {

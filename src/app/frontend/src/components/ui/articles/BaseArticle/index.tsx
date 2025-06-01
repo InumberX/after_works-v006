@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { ArticleHead } from '@/components/ui/articles/ArticleHead'
 import { ArticleBody } from '@/components/ui/articles/ArticleBody'
 import { ArticleFooter } from '@/components/ui/articles/ArticleFooter'

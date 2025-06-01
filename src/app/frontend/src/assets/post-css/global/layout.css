@@ -1,0 +1,11 @@
+:root {
+  --layout-header-height: 52px;
+  --layout-header-height-large: 80px;
+  --layout-inner-padding-xs: 4vw;
+  --layout-inner-padding-sm: 4.6vw;
+  --layout-inner-padding-md: 32px;
+  --layout-inner-max-width: 1064px;
+  --layout-inner-max-width-small: 900px;
+  --layout-inner-max-width-large: 1200px;
+  --layout-inner-max-width-maximum: 1920px;
+}

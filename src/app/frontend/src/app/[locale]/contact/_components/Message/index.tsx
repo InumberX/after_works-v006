@@ -1,4 +1,4 @@
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { BaseButton } from '@/components/ui/buttons/BaseButton'

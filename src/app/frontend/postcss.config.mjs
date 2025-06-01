@@ -14,6 +14,7 @@ const MAX_VIEWPORT = BREAKPOINTS.xl
 
 const config = {
   plugins: {
+    'postcss-import': {},
     'postcss-mixins': {
       mixins: {
         getMediaQueryXs: () => {
@@ -249,13 +250,11 @@ const config = {
         },
       },
     },
-    'postcss-nested': {},
     '@csstools/postcss-global-data': {
       files: ['./src/assets/post-css/global/custom-media.css'],
     },
     'postcss-custom-media': {},
-    'postcss-import': {},
-    autoprefixer: {},
+    'postcss-nested': {},
   },
 }
 

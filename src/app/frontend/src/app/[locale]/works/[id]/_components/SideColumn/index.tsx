@@ -1,4 +1,4 @@
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { SideLatestArticle } from '@/components/ui/sides/SideLatestArticle'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { getScopedI18n } from '@/locales/server'

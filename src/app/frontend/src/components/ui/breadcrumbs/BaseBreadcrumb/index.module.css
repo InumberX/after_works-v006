@@ -1,0 +1,81 @@
+.BaseBreadcrumb.BaseBreadcrumb--top {
+  padding-block-start: 80px;
+}
+
+.BaseBreadcrumb {
+  padding-block: 16px;
+  padding-inline: 0;
+}
+
+.BaseBreadcrumb__wrapper {
+  overflow-x: auto;
+
+  @mixin getMediaQuerySm {
+    overflow: hidden;
+  }
+}
+
+.BaseBreadcrumb__items {
+  display: flex;
+  gap: 8px;
+
+  @mixin getMediaQuerySm {
+    flex-wrap: wrap;
+  }
+
+  > .BaseBreadcrumb__item {
+    &:last-of-type {
+      padding-inline-end: var(--layout-inner-padding-xs);
+
+      @mixin getMediaQuerySm {
+        padding-inline-end: 0;
+      }
+    }
+  }
+}
+
+.BaseBreadcrumb__item {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  @mixin getMediaQuerySm {
+    flex-shrink: 1;
+    white-space: normal;
+  }
+}
+
+.BaseBreadcrumb__icon {
+  &:not(:root) {
+    flex-shrink: 0;
+    margin-inline-end: 8px;
+    padding-block-start: 3px;
+
+    &::before {
+      block-size: 12px;
+      inline-size: 7px;
+    }
+  }
+}
+
+.BaseBreadcrumb__link {
+  &:not(:root) {
+    color: var(--color-palette-white);
+    display: block;
+    text-decoration: none;
+
+    @mixin getFontSize 12;
+
+    @media (--media-hover) {
+      &:hover {
+        color: var(--color-palette-sky-blue);
+      }
+    }
+  }
+}
+
+.BaseBreadcrumb__name {
+  display: block;
+
+  @mixin getFontSize 12;
+}

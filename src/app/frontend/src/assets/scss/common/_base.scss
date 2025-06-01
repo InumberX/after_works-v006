@@ -13,9 +13,9 @@
 }
 
 html {
-  background: $palette-blue-charcoal;
+  background: var(--color-palette-blue-charcoal);
   block-size: 100%;
-  color: $palette-white;
+  color: var(--color-palette-white);
   inline-size: 100%;
   line-height: 1;
 }
@@ -125,7 +125,7 @@ template {
 }
 
 a {
-  color: $palette-sky-blue;
+  color: var(--color-palette-sky-blue);
   cursor: pointer;
   text-decoration: underline;
   transition:
@@ -136,14 +136,14 @@ a {
 
   &:link,
   &:visited {
-    color: $palette-sky-blue;
+    color: var(--color-palette-sky-blue);
     text-decoration: underline;
   }
 
   @include mxMediaHover {
     &:hover,
     &:active {
-      color: $palette-heliotrope;
+      color: var(--color-palette-heliotrope);
       text-decoration: underline;
     }
   }
@@ -176,8 +176,8 @@ dfn {
 }
 
 mark {
-  background-color: $palette-white;
-  color: $palette-black;
+  background-color: var(--color-palette-white);
+  color: var(--color-palette-black);
 }
 
 small {

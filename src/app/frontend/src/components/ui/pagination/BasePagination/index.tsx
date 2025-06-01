@@ -2,7 +2,7 @@
 
 import { useMemo, Fragment } from 'react'
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { useI18n } from '@/locales/client'

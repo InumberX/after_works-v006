@@ -10,7 +10,7 @@ import { actSmoothScroll } from '@/utils/actSmoothScroll'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { useI18n, useCurrentLocale } from '@/locales/client'
 
 export const LayoutFooter = () => {
