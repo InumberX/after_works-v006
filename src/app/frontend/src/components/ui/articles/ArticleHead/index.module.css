@@ -1,0 +1,144 @@
+.ArticleHeadMainVisual {
+  overflow: hidden;
+
+  @mixin getClampPx border-radius, 16, 24;
+  @mixin getClampPx margin-block-end, 24, 40;
+}
+
+.ArticleHeadMainVisual__container {
+  block-size: auto;
+  inline-size: 100%;
+  position: relative;
+}
+
+.ArticleHeadMainVisual__image {
+  &:not(:root) {
+    block-size: auto !important;
+    inline-size: 100% !important;
+    position: static !important;
+  }
+}
+
+.ArticleHeadTitle__text {
+  font-weight: var(--font-weight-bold);
+
+  @mixin getClampRem font-size, 24, 32;
+}
+
+.ArticleHeadInfo {
+  margin-block-start: 16px;
+}
+
+.ArticleHeadDate {
+  display: flex;
+
+  @mixin getFontSize 14;
+}
+
+.ArticleHeadDate__title {
+  display: block;
+  flex-shrink: 0;
+
+  &::after {
+    content: ':';
+    margin-block: 0;
+    margin-inline: 4px;
+  }
+}
+
+.ArticleHeadDate__contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ArticleHeadDate__text {
+  display: block;
+}
+
+.ArticleHeadDate__separator {
+  display: block;
+  margin-block: 0;
+  margin-inline: 4px;
+}
+
+.ArticleHeadUrl {
+  display: flex;
+  margin-block-start: 8px;
+
+  @mixin getFontSize 14;
+}
+
+.ArticleHeadUrl__title {
+  display: block;
+  flex-shrink: 0;
+
+  &::after {
+    content: ':';
+    margin-block: 0;
+    margin-inline: 4px;
+  }
+}
+
+.ArticleHeadUrl__contents {
+  display: flex;
+}
+
+.ArticleHeadUrl__link {
+  &:not(:root) {
+    color: var(--color-palette-white);
+    display: block;
+    text-decoration: none;
+
+    @media (--media-hover) {
+      &:hover {
+        color: var(--color-palette-sky-blue);
+      }
+    }
+  }
+}
+
+.ArticleHeadUrl__text {
+  display: block;
+}
+
+.ArticleHeadTag {
+  margin-block-start: 16px;
+}
+
+.ArticleHeadTag__items {
+  > .ArticleHeadTag__item {
+    &:first-of-type {
+      margin-block-start: 0;
+    }
+  }
+}
+
+.ArticleHeadTag__item {
+  margin-block-start: 16px;
+}
+
+.ArticleHeadTag__container {
+  display: flex;
+}
+
+.ArticleHeadTagTitle {
+  flex-shrink: 0;
+  font-weight: var(--font-weight-bold);
+  padding-block-start: 2px;
+
+  @mixin getFontSize 14;
+}
+
+.ArticleHeadTagTitle__text {
+  display: block;
+
+  &::after {
+    content: ':';
+    margin-block: 0;
+    margin-inline: 4px;
+  }
+}
+
+.ArticleHeadTag__list {
+  flex-grow: 1;
+}

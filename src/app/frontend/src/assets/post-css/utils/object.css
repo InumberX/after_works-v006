@@ -1,0 +1,119 @@
+.Obj__xs {
+  display: none;
+
+  @mixin getMediaQueryXs {
+    display: block;
+  }
+}
+
+.Obj__sm {
+  display: none;
+
+  @mixin getMediaQuerySm {
+    display: block;
+  }
+}
+
+.Obj__md {
+  display: none;
+
+  @mixin getMediaQueryMd {
+    display: block;
+  }
+}
+
+.Obj__lg {
+  display: none;
+
+  @mixin getMediaQueryLg {
+    display: block;
+  }
+}
+
+.Obj__xl {
+  display: none;
+
+  @mixin getMediaQueryXl {
+    display: block;
+  }
+}
+
+.Obj__xs--reverse {
+  display: block;
+
+  @mixin getMediaQueryXs {
+    display: none;
+  }
+}
+
+.Obj__sm--reverse {
+  display: block;
+
+  @mixin getMediaQuerySm {
+    display: none;
+  }
+}
+
+.Obj__md--reverse {
+  display: block;
+
+  @mixin getMediaQueryMd {
+    display: none;
+  }
+}
+
+.Obj__lg--reverse {
+  display: block;
+
+  @mixin getMediaQueryLg {
+    display: none;
+  }
+}
+
+.Obj__xl--reverse {
+  display: block;
+
+  @mixin getMediaQueryXl {
+    display: none;
+  }
+}
+
+.Obj__xs--container {
+  display: none;
+
+  @mixin getContainerQueryXs {
+    display: block;
+  }
+}
+
+.Obj__sm--container {
+  display: none;
+
+  @mixin getContainerQuerySm {
+    display: block;
+  }
+}
+
+.Obj__md--container {
+  display: none;
+
+  @mixin getContainerQueryMd {
+    display: block;
+  }
+}
+
+.Obj__lg--container {
+  display: none;
+
+  @mixin getContainerQueryLg {
+    display: block;
+  }
+}
+
+.Obj__xl--container {
+  display: none;
+
+  @mixin getContainerQueryXl {
+    display: block;
+  }
+}

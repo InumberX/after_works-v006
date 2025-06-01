@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'

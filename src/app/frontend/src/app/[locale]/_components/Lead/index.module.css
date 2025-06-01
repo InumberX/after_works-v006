@@ -1,0 +1,65 @@
+.Lead__wrapper {
+  position: relative;
+}
+
+.LeadImage.LeadImage--active {
+  opacity: 1;
+}
+
+.LeadImage {
+  block-size: 100%;
+  display: block;
+  inline-size: 70%;
+  inset-block-start: 0;
+  inset-inline-start: 30%;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+
+  &::after {
+    background-color: rgb(var(--color-palette-black-rgb) / 40%);
+    block-size: 100%;
+    content: '';
+    display: block;
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    position: absolute;
+    z-index: 2;
+  }
+}
+
+.LeadImage__image {
+  &:not(:root) {
+    object-fit: cover;
+    object-position: top center;
+    z-index: 1;
+  }
+}
+
+.Lead__container {
+  padding-inline: 0;
+  position: relative;
+  z-index: 2;
+
+  @mixin getClampPx padding-block, 80, 120;
+}
+
+.LeadMessage {
+  padding-inline-end: 20%;
+
+  @mixin getMediaQuerySm {
+    padding-inline-end: 0;
+  }
+}
+
+.LeadMessage__paragraph.LeadMessage__paragraph--active {
+  opacity: 1;
+}
+
+.LeadMessage__paragraph {
+  font-weight: var(--font-weight-bold);
+  opacity: 0;
+
+  @mixin getClampRem font-size, 18, 32;
+}

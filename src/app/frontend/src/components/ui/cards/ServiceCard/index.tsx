@@ -2,7 +2,7 @@
 
 import { ReactNode, JSX } from 'react'
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { BaseButton, BaseButtonProps } from '@/components/ui/buttons/BaseButton'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 

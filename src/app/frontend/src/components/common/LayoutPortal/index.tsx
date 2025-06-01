@@ -1,4 +1,4 @@
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 export const LayoutPortal = () => {
   return (

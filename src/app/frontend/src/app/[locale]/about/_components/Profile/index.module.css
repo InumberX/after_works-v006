@@ -1,0 +1,104 @@
+.Profile__container {
+  display: grid;
+  gap: 24px 16px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+
+  @mixin getMediaQuerySm {
+    gap: 0 40px;
+  }
+}
+
+.ProfileIcon {
+  aspect-ratio: 1 / 1;
+  block-size: auto;
+  border-radius: 120px;
+  flex-shrink: 0;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  overflow: hidden;
+
+  @mixin getClampPx inline-size, 80, 120;
+}
+
+.ProfileIcon__image {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ProfileTitle {
+  align-items: center;
+  display: flex;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  padding-block: 8px;
+}
+
+.ProfileTitle__main {
+  @mixin getFontSize 24;
+
+  font-weight: var(--font-weight-bold);
+  margin-inline-end: 8px;
+}
+
+.ProfileTitle__sub {
+  @mixin getFontSize 14;
+}
+
+.ProfileInfo {
+  display: grid;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  grid-template-columns: [column-1] auto [column-2] 1fr;
+  row-gap: 24px;
+
+  @mixin getMediaQuerySm {
+    grid-column: 2 / 3;
+  }
+}
+
+.ProfileInfo__contents {
+  column-gap: 16px;
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: subgrid;
+}
+
+.ProfileInfoTitle__text {
+  @mixin getFontSize 18;
+
+  font-weight: var(--font-weight-bold);
+}
+
+.ProfileInfoDescription {
+  padding-block-start: 2px;
+}
+
+.ProfileInfoDescription__items {
+  > .ProfileInfoDescription__item {
+    &:first-of-type {
+      margin-block-start: 0;
+    }
+  }
+}
+
+.ProfileInfoDescription__item {
+  margin-block-start: 16px;
+  padding-inline-start: 16px;
+  position: relative;
+
+  &::before {
+    background: linear-gradient(90deg, var(--color-gradation-primary));
+    block-size: 8px;
+    border-radius: 8px;
+    content: '';
+    display: block;
+    inline-size: 8px;
+    inset-inline-start: 0;
+    position: absolute;
+
+    @mixin getClampPx inset-block-start, 8, 10;
+  }
+}

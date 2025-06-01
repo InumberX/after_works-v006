@@ -1,0 +1,17 @@
+.BaseTagList.BaseTagList--justifyEnd {
+  .BaseTagList__items {
+    justify-content: flex-end;
+  }
+}
+
+.BaseTagList {
+  display: block;
+  overflow: hidden;
+}
+
+.BaseTagList__items {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

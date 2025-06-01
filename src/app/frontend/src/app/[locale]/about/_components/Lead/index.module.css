@@ -1,0 +1,8 @@
+.Lead__contents {
+  backdrop-filter: blur(20px);
+  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+
+  @mixin getClampPx border-radius, 24, 40;
+  @mixin getClampPx padding-block, 24, 40;
+  @mixin getClampPx padding-inline, 24, 40;
+}

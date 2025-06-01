@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
 import { BasePagination } from '@/components/ui/pagination/BasePagination'

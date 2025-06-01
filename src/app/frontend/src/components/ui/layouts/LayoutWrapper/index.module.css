@@ -1,0 +1,6 @@
+.LayoutWrapper {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vb;
+  min-block-size: 100svb;
+}

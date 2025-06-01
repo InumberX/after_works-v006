@@ -1,0 +1,10 @@
+.BaseTag {
+  background-color: var(--color-palette-emperor);
+  border-radius: calc(infinity * 1px);
+  color: var(--color-palette-mercury);
+  display: block;
+  padding-block: 4px;
+  padding-inline: 8px;
+
+  @mixin getFontSize 12;
+}

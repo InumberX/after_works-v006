@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { format } from 'date-fns'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { BaseTagList } from '@/components/ui/lists/BaseTagList'

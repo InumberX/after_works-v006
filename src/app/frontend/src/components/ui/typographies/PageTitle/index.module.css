@@ -1,0 +1,93 @@
+.PageTitle {
+  padding-block-start: 64px;
+}
+
+.PageTitle__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  padding-block: 40px;
+  padding-inline: 0;
+}
+
+.PageTitleSub.PageTitleSub--active {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.PageTitleSub {
+  display: block;
+  filter: blur(24px);
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  opacity: 0;
+  position: relative;
+  transition:
+    0.6s 0.6s opacity,
+    0.6s 0.6s filter;
+  z-index: 1;
+}
+
+.PageTitleSub__text {
+  color: rgb(var(--color-palette-blue-charcoal-rgb) / 10%);
+  display: block;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+
+  @mixin getClampRem font-size, 56, 104;
+}
+
+.PageTitleMain {
+  align-items: flex-end;
+  display: flex;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  position: relative;
+  z-index: 2;
+}
+
+.PageTitleMain__paragraph {
+  color: var(--color-palette-white);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+
+  @mixin getClampRem font-size, 24, 48;
+}
+
+.PageTitleMain__text.PageTitleMain__text--active {
+  opacity: 1;
+}
+
+.PageTitleMain__text {
+  display: inline-block;
+  opacity: 0;
+  position: relative;
+  transition: 0s 0.3s opacity;
+  z-index: 1;
+}
+
+.PageTitleMainCurtain {
+  block-size: 100%;
+  display: block;
+  inline-size: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+}
+
+.PageTitleMainCurtain__curtain.PageTitleMainCurtain__curtain--active {
+  inset-inline-start: 100%;
+}
+
+.PageTitleMainCurtain__curtain {
+  background: linear-gradient(90deg, var(--color-gradation-primary));
+  block-size: 100%;
+  display: block;
+  inline-size: 100%;
+  inset-block-start: 0;
+  inset-inline-start: -100%;
+  position: absolute;
+  transition: 0.6s left;
+}

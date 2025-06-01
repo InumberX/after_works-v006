@@ -1,0 +1,9 @@
+.ServiceCardList__items {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(1, 1fr);
+
+  @mixin getMediaQuerySm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

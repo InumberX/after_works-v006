@@ -2,7 +2,7 @@
 
 import { useMemo, Fragment } from 'react'
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { useI18n } from '@/locales/client'
@@ -111,7 +111,7 @@ export const BasePagination = ({
                       totalPage={totalPage}
                       pageNumber={pageNumber}
                       handleChangePage={handleChangePage}
-                      className='Obj--md Obj--lg Obj--xl'
+                      className='Obj__md Obj__lg Obj__xl'
                     />
                   )
                 })
@@ -133,7 +133,7 @@ export const BasePagination = ({
                           className={clsx(
                             styles.BasePagination__item,
                             styles['BasePagination__item--separator'],
-                            'Obj--md Obj--lg Obj--xl',
+                            'Obj__md Obj__lg Obj__xl',
                           )}
                         >
                           <span className={styles.BasePagination__separator} />
@@ -146,7 +146,7 @@ export const BasePagination = ({
                           totalPage={totalPage}
                           pageNumber={pageNumber}
                           handleChangePage={handleChangePage}
-                          className='Obj--md Obj--lg Obj--xl'
+                          className='Obj__md Obj__lg Obj__xl'
                         />
                       )}
 
@@ -155,7 +155,7 @@ export const BasePagination = ({
                           className={clsx(
                             styles.BasePagination__item,
                             styles['BasePagination__item--separator'],
-                            'Obj--md Obj--lg Obj--xl',
+                            'Obj__md Obj__lg Obj__xl',
                           )}
                         >
                           <span className={styles.BasePagination__separator} />
@@ -176,7 +176,7 @@ export const BasePagination = ({
                       totalPage={totalPage}
                       pageNumber={pageNumber}
                       handleChangePage={handleChangePage}
-                      className='Obj--xs Obj--sm'
+                      className='Obj__xs Obj__sm'
                     />
                   )
                 })
@@ -197,7 +197,7 @@ export const BasePagination = ({
                           className={clsx(
                             styles.BasePagination__item,
                             styles['BasePagination__item--separator'],
-                            'Obj--xs Obj--sm',
+                            'Obj__xs Obj__sm',
                           )}
                         >
                           <span className={styles.BasePagination__separator} />
@@ -210,7 +210,7 @@ export const BasePagination = ({
                           totalPage={totalPage}
                           pageNumber={pageNumber}
                           handleChangePage={handleChangePage}
-                          className='Obj--xs Obj--sm'
+                          className='Obj__xs Obj__sm'
                         />
                       )}
 
@@ -219,7 +219,7 @@ export const BasePagination = ({
                           className={clsx(
                             styles.BasePagination__item,
                             styles['BasePagination__item--separator'],
-                            'Obj--xs Obj--sm',
+                            'Obj__xs Obj__sm',
                           )}
                         >
                           <span className={styles.BasePagination__separator} />

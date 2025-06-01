@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+  min-inline-size: 1px;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+    min-inline-size: 1px;
+  }
+}
+
+html {
+  background: var(--color-palette-blue-charcoal);
+  block-size: 100%;
+  color: var(--color-palette-white);
+  inline-size: 100%;
+  line-height: 1;
+}
+
+body {
+  color: var(--color-palette-white);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-medium);
+  inline-size: 100%;
+  line-height: 1.6;
+  overflow: clip auto;
+  text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+p,
+blockquote,
+ul,
+ol,
+li {
+  -webkit-overflow-wrap: break-word;
+  overflow-wrap: break-word;
+  vertical-align: baseline;
+  -webkit-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+figcaption,
+span {
+  -webkit-overflow-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  block-size: 0;
+  display: none;
+}
+
+[hidden]:not([hidden='until-found']),
+template {
+  display: none;
+}
+
+a {
+  color: var(--color-palette-sky-blue);
+  text-decoration: none;
+  transition:
+    0.3s color,
+    0.3s opacity,
+    0.3s background-color,
+    0.3s border-color;
+
+  &:link,
+  &:visited {
+    color: var(--color-palette-sky-blue);
+    text-decoration: none;
+  }
+
+  @media (--media-hover) {
+    &:hover {
+      color: var(--color-palette-heliotrope);
+    }
+  }
+}
+
+i,
+em,
+address {
+  font-style: normal;
+}
+
+b,
+strong,
+em {
+  font-weight: var(--font-weight-bold);
+}
+
+img {
+  block-size: auto;
+  border-block: none;
+  border-inline: none;
+  /* stylelint-disable-next-line property-no-unknown */
+  interpolation-mode: bicubic;
+  max-inline-size: 100%;
+  vertical-align: top;
+}
+
+svg {
+  overflow: hidden;
+}
+
+hr {
+  block-size: 0;
+  box-sizing: content-box;
+}
+
+pre {
+  overflow: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-family-main);
+
+  @mixin getFontSize 10;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+p,
+blockquote,
+ul,
+ol,
+li {
+  @mixin getClampRem font-size, 14, 16;
+}
+
+[role='tabpanel']:target {
+  display: revert;
+}

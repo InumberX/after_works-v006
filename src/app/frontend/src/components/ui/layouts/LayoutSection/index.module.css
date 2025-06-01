@@ -1,0 +1,13 @@
+.LayoutSection.LayoutSection--first {
+  @mixin getClampPx padding-block-start, 24, 40;
+}
+
+.LayoutSection.LayoutSection--notTopMargin {
+  padding-block-start: 0;
+}
+
+.LayoutSection {
+  padding-inline: 0;
+
+  @mixin getClampPx padding-block, 56, 96;
+}
