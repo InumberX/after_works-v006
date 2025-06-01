@@ -1,7 +1,12 @@
 .LayoutSvgPainter {
   block-size: 0;
   inline-size: 0;
+  min-inline-size: auto;
   visibility: hidden;
+
+  svg {
+    min-inline-size: auto;
+  }
 
   /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
   :global {

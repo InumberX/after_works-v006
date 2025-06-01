@@ -32,19 +32,16 @@
 }
 
 .LayoutFooterNavigation__items {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   row-gap: 24px;
 
   @mixin getClampPx column-gap, 24, 40;
-}
 
-.LayoutFooterNavigation__item {
-  inline-size: 50%;
-
-  @include mxMediaQuerySm {
-    inline-size: auto;
+  @mixin getMediaQuerySm {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
