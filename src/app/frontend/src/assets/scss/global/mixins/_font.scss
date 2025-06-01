@@ -1,7 +1,0 @@
-@use '../variables' as *;
-@use 'sass:math';
-
-// Font
-@mixin mxGetFontSize($font-size-px) {
-  font-size: math.div($font-size-px, $font-size) * 1rem;
-}
