@@ -1,5 +1,5 @@
 import { ReactNode, JSX } from 'react'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import clsx from 'clsx'
 
 type Props = {

@@ -1,0 +1,24 @@
+@use '~/assets/scss/global' as *;
+
+.GoogleAdList {
+  overflow: hidden;
+}
+
+.GoogleAdList__items {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.GoogleAdList__item {
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  block-size: auto;
+  box-sizing: content-box;
+  display: flex;
+  inline-size: 300px;
+  justify-content: center;
+  max-inline-size: 300px;
+}

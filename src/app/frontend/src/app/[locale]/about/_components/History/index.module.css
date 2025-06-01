@@ -1,0 +1,187 @@
+.History__parallel {
+  display: flex;
+}
+
+.History__side {
+  flex-shrink: 0;
+}
+
+.HistoryYear {
+  inset-block-start: 80px;
+  inset-inline-start: 0;
+  position: sticky;
+}
+
+.HistoryYear__items {
+  > .HistoryYear__item {
+    &:first-of-type {
+      margin-block-start: 0;
+    }
+  }
+}
+
+.HistoryYear__item {
+  margin-block-start: 24px;
+}
+
+.HistoryYear__title.HistoryYear__title--active {
+  .HistoryYear__button {
+    &:not(:root) {
+      background: linear-gradient(90deg, var(--color-gradation-primary));
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.HistoryYear__button {
+  &:not(:root) {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    color: var(--color-palette-white);
+    display: flex;
+    justify-content: center;
+    padding-block: 0;
+    padding-inline: 0;
+
+    @mixin getClampRem font-size, 20, 32;
+
+    @media (--media-hover) {
+      &:hover {
+        background: linear-gradient(90deg, var(--color-gradation-primary));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}
+
+.History__main {
+  flex-grow: 1;
+
+  @mixin getClampPx padding-inline-start, 40, 80;
+}
+
+.HistoryContens__items {
+  > .HistoryContens__item {
+    &:first-of-type {
+      margin-block-start: 0;
+
+      &::after {
+        block-size: calc(100% + 12px);
+        inset-block-start: 12px;
+
+        @mixin getMediaQuerySm {
+          block-size: calc(100% + 16px);
+          inset-block-start: 16px;
+        }
+
+        @mixin getMediaQueryMd {
+          block-size: calc(100% + 20px);
+          inset-block-start: 20px;
+        }
+      }
+    }
+  }
+}
+
+.HistoryContens__item {
+  position: relative;
+
+  @mixin getClampPx margin-block-start, 24, 40;
+
+  &::before {
+    background-color: var(--color-palette-heliotrope);
+    block-size: 8px;
+    border-radius: 8px;
+    content: '';
+    display: block;
+    inline-size: 8px;
+    inset-block-start: 10px;
+    inset-inline-start: -23px;
+    position: absolute;
+    z-index: 2;
+
+    @mixin getMediaQuerySm {
+      inset-block-start: 12px;
+      inset-inline-start: -32px;
+    }
+
+    @mixin getMediaQueryMd {
+      inset-block-start: 14px;
+      inset-inline-start: -40px;
+    }
+  }
+
+  &::after {
+    background-color: var(--color-palette-sky-blue);
+    block-size: calc(100% + 24px);
+    content: '';
+    display: block;
+    inline-size: 2px;
+    inset-block-start: -24px;
+    inset-inline-start: -20px;
+    position: absolute;
+    z-index: 1;
+
+    @mixin getMediaQuerySm {
+      block-size: calc(100% + 32px);
+      inset-block-start: -32px;
+      inset-inline-start: -29px;
+    }
+
+    @mixin getMediaQueryMd {
+      block-size: calc(100% + 40px);
+      inset-block-start: -40px;
+      inset-inline-start: -37px;
+    }
+  }
+}
+
+.HistoryContensDate {
+  align-items: center;
+  display: flex;
+  font-weight: var(--font-weight-bold);
+
+  @mixin getClampRem font-size, 18, 24;
+  @mixin getClampPx margin-block-end, 8, 16;
+}
+
+.HistoryContensDate__separator {
+  margin-block: 0;
+  margin-inline: 4px;
+}
+
+.HistoryContensTitle__text {
+  font-weight: var(--font-weight-medium);
+
+  @mixin getClampRem font-size, 16, 18;
+}
+
+.HistoryContensTag {
+  margin-block-start: 8px;
+  padding-inline-start: 24px;
+}
+
+.HistoryContensTagText__items {
+  display: flex;
+  flex-wrap: wrap;
+
+  > .HistoryContensTagText__item {
+    &:last-of-type {
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+.HistoryContensTagText__item {
+  @mixin getClampRem font-size, 14, 16;
+
+  &::after {
+    content: '、';
+  }
+}

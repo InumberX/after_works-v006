@@ -1,0 +1,16 @@
+.MessageText__text {
+  text-align: center;
+}
+
+.MessageLink {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-block-start: 24px;
+}
+
+.MessageLink__button {
+  &:not(:root) {
+    max-inline-size: 320px;
+  }
+}

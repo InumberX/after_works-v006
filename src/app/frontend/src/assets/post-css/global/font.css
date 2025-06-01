@@ -1,0 +1,9 @@
+:root {
+  --font-family-main:
+    游明朝, 'Yu Mincho', yumincho, 'Hiragino Mincho ProN',
+    'Hiragino Mincho Pro', hgs明朝e, cambria, georgia, serif, times, メイリオ,
+    meiryo;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}

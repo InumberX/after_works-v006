@@ -2,7 +2,7 @@
 
 import { JSX } from 'react'
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { LatestArticleCardList } from '@/components/ui/lists/LatestArticleCardList'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'

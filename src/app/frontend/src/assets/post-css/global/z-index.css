@@ -1,0 +1,10 @@
+:root {
+  --z-index-header: 10000;
+  --z-index-header-button: 10100;
+  --z-index-header-overlay: 10200;
+  --z-index-header-menu-outer: 10300;
+  --z-index-header-menu-outer-close: 10400;
+  --z-index-footer: 5000;
+  --z-index-modal: 21000;
+  --z-index-modal-background: 20000;
+}

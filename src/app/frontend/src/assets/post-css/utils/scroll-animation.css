@@ -1,0 +1,27 @@
+/* ブラーイン */
+.ScrollAnimationBlurIn.IsScrollAnimationActive {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.ScrollAnimationBlurIn {
+  filter: blur(26px);
+  opacity: 0;
+  transition:
+    1s opacity,
+    1s filter;
+}
+
+/* フェードイン */
+.ScrollAnimationFadeInFromBottom {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    1s opacity,
+    1s transform;
+}
+
+.ScrollAnimationFadeInFromBottom.IsScrollAnimationActive {
+  opacity: 1;
+  transform: translateY(0);
+}

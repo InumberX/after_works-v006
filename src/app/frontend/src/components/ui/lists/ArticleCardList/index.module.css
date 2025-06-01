@@ -1,0 +1,6 @@
+.ArticleCardList__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+
+  @mixin getClampPx gap, 24, 40;
+}

@@ -1,0 +1,31 @@
+@use '~/assets/scss/global' as *;
+
+.Contact__contents {
+  margin-block-start: 40px;
+}
+
+.Contact__message {
+  text-align: center;
+
+  @mixin getClampRem font-size, 16, 18;
+}
+
+.ContactButton {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-block-start: 40px;
+}
+
+.ContactButton__button {
+  &:not(:root) {
+    max-inline-size: 320px;
+  }
+}
+
+.ContactButton__icon {
+  &:not(:root) {
+    flex-shrink: 0;
+    margin-inline-end: 8px;
+  }
+}

@@ -1,0 +1,17 @@
+.SideLatestArticle {
+  backdrop-filter: blur(20px);
+  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+  border-radius: 16px;
+  padding-block: 24px;
+  padding-inline: 16px;
+}
+
+.SideLatestArticleTitle__text {
+  @mixin getFontSize 20;
+
+  font-weight: var(--font-weight-bold);
+}
+
+.SideLatestArticle__contents {
+  margin-block-start: 16px;
+}

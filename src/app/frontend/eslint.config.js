@@ -56,6 +56,14 @@ export default tseslint.config(
       },
     },
   },
+  {
+    files: ['postcss.config.js'],
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
+    },
+  },
   // Custom rules
   {
     rules: {

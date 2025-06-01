@@ -4,7 +4,7 @@ import { ReactNode, useMemo } from 'react'
 import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
 import Link from 'next/link'
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { EventTypes } from '@/types/event'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 

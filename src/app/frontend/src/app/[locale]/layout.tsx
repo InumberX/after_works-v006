@@ -1,4 +1,4 @@
-import '@/styles/common.scss'
+import '@/styles/common.css'
 import React from 'react'
 import { AppProvider } from '@/providers/AppProvider'
 import { LayoutDefault } from '@/layouts/Default'

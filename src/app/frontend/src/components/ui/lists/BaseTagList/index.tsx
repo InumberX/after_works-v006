@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { BaseTag, BaseTagProps } from '@/components/ui/tags/BaseTag'
 
 type Props = {

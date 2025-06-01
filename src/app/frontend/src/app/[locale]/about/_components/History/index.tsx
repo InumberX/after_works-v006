@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import clsx from 'clsx'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
