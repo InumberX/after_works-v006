@@ -112,6 +112,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
             }),
           publishedAt: info.ymd,
           title: locale === 'en' ? info.subject_en : info.subject,
+          titleTag: 'h3',
         }
       })
     : []
