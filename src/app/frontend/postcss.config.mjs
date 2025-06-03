@@ -101,6 +101,46 @@ const config = {
             },
           }
         },
+        getMediaQueryBetweenXs: () => {
+          return {
+            [`@media screen and (width >= ${BREAKPOINTS.xs}px) and (width < ${BREAKPOINTS.sm}px), print`]:
+              {
+                '@mixin-content': '',
+              },
+          }
+        },
+        getMediaQueryBetweenSm: () => {
+          return {
+            [`@media screen and (width >= ${BREAKPOINTS.sm}px) and (width < ${BREAKPOINTS.md}px), print`]:
+              {
+                '@mixin-content': '',
+              },
+          }
+        },
+        getMediaQueryBetweenMd: () => {
+          return {
+            [`@media screen and (width >= ${BREAKPOINTS.md}px) and (width < ${BREAKPOINTS.lg}px), print`]:
+              {
+                '@mixin-content': '',
+              },
+          }
+        },
+        getMediaQueryBetweenLg: () => {
+          return {
+            [`@media screen and (width >= ${BREAKPOINTS.lg}px) and (width < ${BREAKPOINTS.xl}px), print`]:
+              {
+                '@mixin-content': '',
+              },
+          }
+        },
+        getMediaQueryBetweenXl: () => {
+          return {
+            [`@media screen and (width >= ${BREAKPOINTS.xl}px) and (width < ${BREAKPOINTS.xxl}px), print`]:
+              {
+                '@mixin-content': '',
+              },
+          }
+        },
         getContainerQueryXs: () => {
           return {
             [`@container (width >= ${BREAKPOINTS.xs}px)`]: {

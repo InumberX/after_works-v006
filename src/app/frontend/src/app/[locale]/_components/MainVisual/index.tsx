@@ -21,7 +21,7 @@ export const MainVisual = () => {
             <div className={styles.MainVisual__contents}>
               <div className={styles.MainVisualTitle}>
                 <h1 className={styles.MainVisualTitle__text}>
-                  From design <br className='Obj__xs Obj__sm' />
+                  From design <br className='Obj__sm--reverse' />
                   to coding
                 </h1>
               </div>
