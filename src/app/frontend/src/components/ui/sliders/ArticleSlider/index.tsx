@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/cards/ArticleCard'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/css'
+import { BREAKPOINTS } from '@/providers/BreakpointsProvider'
 
 type Props = {
   className?: string
@@ -28,15 +29,15 @@ export const ArticleSlider = ({ className, articleInfos }: Props) => {
             pagination: false,
             mediaQuery: 'min',
             focus: 'center',
-            perPage: 1,
+            perPage: 1.2,
             gap: '0px',
             width: '100%',
             breakpoints: {
-              576: {
+              [BREAKPOINTS.sm]: {
                 perPage: 2,
                 focus: 0,
               },
-              768: {
+              [BREAKPOINTS.lg]: {
                 perPage: 3,
                 focus: 'center',
               },
