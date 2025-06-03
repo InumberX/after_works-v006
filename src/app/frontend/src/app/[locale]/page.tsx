@@ -81,6 +81,7 @@ const HomePage = async () => {
             }),
           publishedAt: info.ymd,
           title: locale === 'en' ? info.subject_en : info.subject,
+          titleTag: 'h3',
           tags: tagPosition,
           isNotActiveAnimelm: true,
         }
