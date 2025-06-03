@@ -276,6 +276,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
           startedAt: info.started_at,
           endedAt: info.ended_at,
           title: locale === 'en' ? info.subject_en : info.subject,
+          titleTag: 'h3',
         }
       })
     : []

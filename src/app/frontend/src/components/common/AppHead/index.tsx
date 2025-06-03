@@ -50,10 +50,11 @@ export const AppHead = async ({
     description: descriptionText,
     // themeColor: '#000911',
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       images: ogImageUrl,
       title: titleText,
       description: descriptionText,
+      site: '@InumberX',
     },
     openGraph: {
       siteName,
