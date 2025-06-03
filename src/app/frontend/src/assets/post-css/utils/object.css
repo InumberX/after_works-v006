@@ -1,118 +1,150 @@
-.Obj__xs {
+.Obj__xs,
+.Obj__sm,
+.Obj__md,
+.Obj__lg,
+.Obj__xl {
   display: none;
+}
 
+.Obj__xs {
   @mixin getMediaQueryXs {
     display: block;
   }
 }
 
 .Obj__sm {
-  display: none;
-
   @mixin getMediaQuerySm {
     display: block;
   }
 }
 
 .Obj__md {
-  display: none;
-
   @mixin getMediaQueryMd {
     display: block;
   }
 }
 
 .Obj__lg {
-  display: none;
-
   @mixin getMediaQueryLg {
     display: block;
   }
 }
 
 .Obj__xl {
-  display: none;
-
   @mixin getMediaQueryXl {
     display: block;
   }
 }
 
-.Obj__xs--reverse {
+.Obj__xs--reverse,
+.Obj__sm--reverse,
+.Obj__md--reverse,
+.Obj__lg--reverse,
+.Obj__xl--reverse {
   display: block;
+}
 
+.Obj__xs--reverse {
   @mixin getMediaQueryXs {
     display: none;
   }
 }
 
 .Obj__sm--reverse {
-  display: block;
-
   @mixin getMediaQuerySm {
     display: none;
   }
 }
 
 .Obj__md--reverse {
-  display: block;
-
   @mixin getMediaQueryMd {
     display: none;
   }
 }
 
 .Obj__lg--reverse {
-  display: block;
-
   @mixin getMediaQueryLg {
     display: none;
   }
 }
 
 .Obj__xl--reverse {
-  display: block;
-
   @mixin getMediaQueryXl {
     display: none;
   }
 }
 
-.Obj__xs--container {
+.Obj__xs--between,
+.Obj__sm--between,
+.Obj__md--between,
+.Obj__lg--between,
+.Obj__xl--between {
   display: none;
+}
 
+.Obj__xs--between {
+  @mixin getMediaQueryBetweenXs {
+    display: block;
+  }
+}
+
+.Obj__sm--between {
+  @mixin getMediaQueryBetweenSm {
+    display: block;
+  }
+}
+
+.Obj__md--between {
+  @mixin getMediaQueryBetweenMd {
+    display: block;
+  }
+}
+
+.Obj__lg--between {
+  @mixin getMediaQueryBetweenLg {
+    display: block;
+  }
+}
+
+.Obj__xl--between {
+  @mixin getMediaQueryBetweenXl {
+    display: block;
+  }
+}
+
+.Obj__xs--container,
+.Obj__sm--container,
+.Obj__md--container,
+.Obj__lg--container,
+.Obj__xl--container {
+  display: none;
+}
+
+.Obj__xs--container {
   @mixin getContainerQueryXs {
     display: block;
   }
 }
 
 .Obj__sm--container {
-  display: none;
-
   @mixin getContainerQuerySm {
     display: block;
   }
 }
 
 .Obj__md--container {
-  display: none;
-
   @mixin getContainerQueryMd {
     display: block;
   }
 }
 
 .Obj__lg--container {
-  display: none;
-
   @mixin getContainerQueryLg {
     display: block;
   }
 }
 
 .Obj__xl--container {
-  display: none;
-
   @mixin getContainerQueryXl {
     display: block;
   }

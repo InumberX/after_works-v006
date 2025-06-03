@@ -32,6 +32,10 @@
       padding-inline: 0;
       transition: 0.3s box-shadow;
       inline-size: 48px;
+      right: auto;
+      left: auto;
+      width: 48px;
+      height: auto;
 
       @media (--media-hover) {
         &:hover {
@@ -76,7 +80,8 @@
 
       svg {
         fill: var(--color-palette-white);
-        block-size: 22px;
+        aspect-ratio: 1 / 1;
+        block-size: auto;
         inline-size: 22px;
       }
     }
