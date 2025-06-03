@@ -76,7 +76,8 @@
 
       svg {
         fill: var(--color-palette-white);
-        block-size: 22px;
+        aspect-ratio: 1 / 1;
+        block-size: auto;
         inline-size: 22px;
       }
     }

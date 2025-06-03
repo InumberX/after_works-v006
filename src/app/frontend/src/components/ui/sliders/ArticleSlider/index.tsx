@@ -30,22 +30,15 @@ export const ArticleSlider = ({ className, articleInfos }: Props) => {
             focus: 'center',
             perPage: 1,
             gap: '0px',
-            width: '80%',
+            width: '100%',
             breakpoints: {
               576: {
                 perPage: 2,
                 focus: 0,
-                width: '88%',
               },
               768: {
                 perPage: 3,
                 focus: 'center',
-              },
-              992: {
-                width: '96%',
-              },
-              1200: {
-                width: '100%',
               },
             },
           }}
