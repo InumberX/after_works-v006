@@ -45,7 +45,7 @@ li {
   overflow-wrap: break-word;
   vertical-align: baseline;
   -webkit-word-wrap: break-word;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 ul,
@@ -58,7 +58,7 @@ span {
   -webkit-overflow-wrap: break-word;
   overflow-wrap: break-word;
   -webkit-word-wrap: break-word;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 audio,
