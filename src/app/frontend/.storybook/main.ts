@@ -1,6 +1,6 @@
 import path from 'path'
 import { StorybookConfig } from '@storybook/react-vite'
-const { loadConfigFromFile, mergeConfig } = require('vite')
+import { loadConfigFromFile, mergeConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 const config: StorybookConfig = {
@@ -22,10 +22,12 @@ const config: StorybookConfig = {
   staticDirs: ['../public'],
   viteFinal: async (config, { configType }) => {
     // Add your configuration here
-    const { config: userConfig } = await loadConfigFromFile(
-      configType,
-      path.resolve(__dirname, '../vite-storybook.config.ts'),
+    const configPath = path.resolve(__dirname, '../vite-storybook.config.ts')
+    const result = await loadConfigFromFile(
+      { mode: configType ?? 'development', command: 'build' },
+      configPath,
     )
+    const userConfig = result?.config ?? {}
 
     config.define = {
       'process.env': {},

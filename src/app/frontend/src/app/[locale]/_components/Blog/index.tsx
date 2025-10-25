@@ -37,6 +37,7 @@ export const Blog = ({ articleInfos }: Props) => {
           <LayoutInner>
             <div
               className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
+              // eslint-disable-next-line react-hooks/refs
               ref={animelmSlider.targetRef}
             >
               <ArticleSlider
@@ -51,6 +52,7 @@ export const Blog = ({ articleInfos }: Props) => {
           <LayoutInner>
             <div
               className={clsx(styles.BlogButton__container, 'AnimelmBlurIn')}
+              // eslint-disable-next-line react-hooks/refs
               ref={animelmButton.targetRef}
             >
               <BaseButton

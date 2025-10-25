@@ -19,6 +19,7 @@ export const Lead = () => {
       <div className={styles.Lead__wrapper}>
         <figure
           className={clsx(styles.LeadImage, 'AnimelmBlurIn')}
+          // eslint-disable-next-line react-hooks/refs
           ref={animelmLeadImage.targetRef}
         >
           <Image
@@ -41,6 +42,7 @@ export const Lead = () => {
                   dangerouslySetInnerHTML={{
                     __html: scopedT('message'),
                   }}
+                  // eslint-disable-next-line react-hooks/refs
                   ref={animelmLeadMessage.targetRef}
                 />
               </div>

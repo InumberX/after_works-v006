@@ -2,7 +2,7 @@
 
 import * as Sentry from '@sentry/nextjs'
 import NextError from 'next/error'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const GlobalError = ({
   error,
@@ -11,12 +11,16 @@ const GlobalError = ({
     digest?: string
   }
 }) => {
-  const [statusCode, setStatusCode] = useState(500)
+  const statusCode = useMemo(() => (error.digest ? 500 : 404), [error.digest])
+  const [hasReported, setHasReported] = useState(false)
 
   useEffect(() => {
-    setStatusCode(error.digest ? 500 : 404)
-    Sentry.captureException(error)
-  }, [error])
+    if (!hasReported) {
+      Sentry.captureException(error)
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setHasReported(true)
+    }
+  }, [error, hasReported])
 
   return (
     <html>

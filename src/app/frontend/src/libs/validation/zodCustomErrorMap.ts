@@ -47,166 +47,142 @@ const convertTypeToNativeLanguage = (type: string): string => {
   }
 }
 
-export const zodCustomErrorMap = (): zod.ZodErrorMap => (issue, ctx) => {
+export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
   switch (issue.code) {
-    case zod.ZodIssueCode.invalid_type:
-      if (issue.received === 'undefined') {
+    case 'invalid_type':
+      if ('expected' in issue && 'input' in issue) {
+        const received =
+          issue.input === undefined ? 'undefined' : typeof issue.input
+        if (received === 'undefined') {
+          return {
+            // Required
+            message: `必須項目です。`,
+          }
+        }
         return {
-          // Required
-          message: `必須項目です。`,
+          // Expected ${issue.expected}, received ${received}
+          message: `${convertTypeToNativeLanguage(
+            received,
+          )}ではなく${convertTypeToNativeLanguage(
+            String(issue.expected),
+          )}で入力してください。`,
         }
       }
-      return {
-        // Expected ${issue.expected}, received ${issue.received}
-        message: `${convertTypeToNativeLanguage(
-          issue.received,
-        )}ではなく${convertTypeToNativeLanguage(
-          issue.expected,
-        )}で入力してください。`,
+      return { message: '型が不正です。' }
+    case 'unrecognized_keys':
+      if ('keys' in issue && Array.isArray(issue.keys)) {
+        return {
+          // Unrecognized key(s) in object: ${issue.keys.map((k) => `'${k}'`).join(', ')}
+          message: `許可されていないキーが含まれています。（${issue.keys
+            .map((k: string) => `'${k}'`)
+            .join(', ')}）`,
+        }
       }
-    case zod.ZodIssueCode.unrecognized_keys:
-      return {
-        // Unrecognized key(s) in object: ${issue.keys.map((k) => `'${k}'`).join(', ')}
-        message: `許可されていないキーが含まれています。（${issue.keys
-          .map((k) => `'${k}'`)
-          .join(', ')}）`,
-      }
-    case zod.ZodIssueCode.invalid_union:
+      return { message: '許可されていないキーが含まれています。' }
+    case 'invalid_union':
       return {
         // Invalid input
         message: '無効な入力です。',
       }
-    case zod.ZodIssueCode.invalid_union_discriminator:
+    case 'invalid_format':
       return {
-        /*
-         * Invalid discriminator value. Expected ${issue.options
-         * .map((val) => (typeof val === 'string' ? `'${val}'` : val))
-         * .join(' | ')}
-         */
-        message: `無効な入力値が含まれています。期待される値は ${issue.options
-          .map((val) => (typeof val === 'string' ? `'${val}'` : val))
-          .join(' | ')} です。`,
+        // Invalid format
+        message: '無効な形式です。',
       }
-    case zod.ZodIssueCode.invalid_enum_value:
+    case 'too_small':
+      if ('origin' in issue && 'minimum' in issue) {
+        if (issue.origin === 'array') {
+          return {
+            // Array must contain ${issue.inclusive ? `at least` : `more than`} ${issue.minimum} element(s)
+            message: `${issue.inclusive ? `少なくとも` : ``}${
+              issue.minimum
+            }個以上選択してください。`,
+          }
+        }
+
+        if (issue.origin === 'string') {
+          return {
+            /*
+             * String must contain ${
+             * issue.inclusive ? `at least` : `over`
+             * } ${issue.minimum} character(s)
+             */
+            message: `${issue.inclusive ? `少なくとも` : ``}${
+              issue.minimum
+            }文字以上入力してください。`,
+          }
+        }
+
+        if (
+          issue.origin === 'number' ||
+          issue.origin === 'int' ||
+          issue.origin === 'bigint'
+        ) {
+          return {
+            // Number must be greater than ${issue.inclusive ? `or equal to ` : ``}${issue.minimum}
+            message: `${issue.minimum}${
+              issue.inclusive ? `以上の` : `より大きい`
+            }数値で入力してください。`,
+          }
+        }
+      }
+      return { message: '入力値が小さすぎます。' }
+    case 'too_big':
+      if ('origin' in issue && 'maximum' in issue) {
+        if (issue.origin === 'array') {
+          return {
+            // Array must contain ${issue.inclusive ? `at most` : `less than`} ${issue.maximum} element(s)
+            message: `${issue.inclusive ? `最大` : `最低`}${
+              issue.maximum
+            }個選択してください。`,
+          }
+        }
+
+        if (issue.origin === 'string') {
+          return {
+            // String must contain ${issue.inclusive ? `at most` : `under`} ${issue.maximum} character(s)
+            message: `${
+              issue.inclusive
+                ? `最大${issue.maximum}文字`
+                : `${issue.maximum}文字以下`
+            }で入力してください。`,
+          }
+        }
+
+        if (
+          issue.origin === 'number' ||
+          issue.origin === 'int' ||
+          issue.origin === 'bigint'
+        ) {
+          return {
+            // Number must be less than ${issue.inclusive ? `or equal to ` : ``}${issue.maximum}
+            message: `${issue.maximum}${
+              issue.inclusive ? `以下` : `未満`
+            }の数値で入力してください。`,
+          }
+        }
+      }
       return {
-        /*
-         * Invalid enum value. Expected ${issue.options
-         * .map((val) => (typeof val === 'string' ? `'${val}'` : val))
-         * .join(' | ')}
-         */
-        message: `無効な入力値が含まれています。期待される値は ${issue.options
-          .map((val) => (typeof val === 'string' ? `'${val}'` : val))
-          .join(' | ')} です。`,
+        // Invalid input
+        message: '入力値が大きすぎます。',
       }
-    case zod.ZodIssueCode.invalid_arguments:
-      return {
-        // Invalid function arguments
-        message: '関数の引数が不正です。',
+    case 'custom':
+      if ('message' in issue && typeof issue.message === 'string') {
+        return { message: issue.message }
       }
-    case zod.ZodIssueCode.invalid_return_type:
-      return {
-        // Invalid function return type
-        message: '関数の戻り値の型が不正です。',
-      }
-    case zod.ZodIssueCode.invalid_date:
-      return {
-        // Invalid date
-        message: '無効な日付です。',
-      }
-    case zod.ZodIssueCode.invalid_string:
-      if (issue.validation !== 'regex') {
-        return {
-          // Invalid ${issue.validation}
-          message: `${String(issue.validation)}は無効な形式です。`,
-        }
-      }
-      return {
-        // Invalid
-        message: '無効な入力です。',
-      }
-    case zod.ZodIssueCode.too_small:
-      if (issue.type === 'array') {
-        return {
-          // Array must contain ${issue.inclusive ? `at least` : `more than`} ${issue.minimum} element(s)
-          message: `${issue.inclusive ? `少なくとも` : ``}${
-            issue.minimum
-          }個以上選択してください。`,
-        }
-      }
-
-      if (issue.type === 'string') {
-        return {
-          /*
-           * String must contain ${
-           * issue.inclusive ? `at least` : `over`
-           * } ${issue.minimum} character(s)
-           */
-          message: `${issue.inclusive ? `少なくとも` : ``}${
-            issue.minimum
-          }文字以上入力してください。`,
-        }
-      }
-
-      if (issue.type === 'number') {
-        return {
-          // Number must be greater than ${issue.inclusive ? `or equal to ` : ``}${issue.minimum}
-          message: `${issue.minimum}${
-            issue.inclusive ? `以上の` : `より大きい`
-          }数値で入力してください。`,
-        }
-      }
-
-      return { message: 'Invalid input' }
-    case zod.ZodIssueCode.too_big:
-      if (issue.type === 'array') {
-        return {
-          // Array must contain ${issue.inclusive ? `at most` : `less than`} ${issue.maximum} element(s)
-          message: `${issue.inclusive ? `最大` : `最低`}${
-            issue.maximum
-          }個選択してください。`,
-        }
-      }
-
-      if (issue.type === 'string') {
-        return {
-          // String must contain ${issue.inclusive ? `at most` : `under`} ${issue.maximum} character(s)
-          message: `${
-            issue.inclusive
-              ? `最大${issue.maximum}文字`
-              : `${issue.maximum}文字以下`
-          }で入力してください。`,
-        }
-      }
-
-      if (issue.type === 'number') {
-        return {
-          // Number must be less than ${issue.inclusive ? `or equal to ` : ``}${issue.maximum}
-          message: `${issue.maximum}${
-            issue.inclusive ? `以下` : `未満`
-          }の数値で入力してください。`,
-        }
-      }
-
       return {
         // Invalid input
         message: '無効な入力です。',
       }
-    case zod.ZodIssueCode.custom:
-      return {
-        // Invalid input
-        message: '無効な入力です。',
+    case 'not_multiple_of':
+      if ('divisor' in issue) {
+        return {
+          // Number must be a multiple of ${issue.divisor}
+          message: `${issue.divisor}の倍数で入力してください。`,
+        }
       }
-    case zod.ZodIssueCode.invalid_intersection_types:
-      return {
-        // Intersection results could not be merged
-        message: '処理結果のマージに失敗しました。',
-      }
-    case zod.ZodIssueCode.not_multiple_of:
-      return {
-        // Number must be a multiple of ${issue.multipleOf}
-        message: `${issue.multipleOf}の倍数で入力してください。`,
-      }
+      return { message: '倍数ではありません。' }
     default:
-      return { message: ctx.defaultError }
+      return { message: '無効な入力です。' }
   }
 }

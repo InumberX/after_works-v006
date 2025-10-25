@@ -1,3 +1,4 @@
+/* global process */
 // import * as path from 'path'
 import { withSentryConfig } from '@sentry/nextjs'
 
