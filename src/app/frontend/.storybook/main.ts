@@ -3,6 +3,8 @@ import { StorybookConfig } from '@storybook/react-vite'
 import { loadConfigFromFile, mergeConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
+
 const config: StorybookConfig = {
   stories: ['../**/*.stories.@(ts|tsx)'],
   addons: [
