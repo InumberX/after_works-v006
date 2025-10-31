@@ -7,92 +7,83 @@
   margin-inline: auto;
   position: static;
 
-  /* stylelint-disable */
-  :global {
-    .splide__track {
-      overflow: visible;
-    }
+  /* stylelint-disable selector-class-pattern, selector-pseudo-class-no-unknown */
+  :global(.splide__track) {
+    overflow: visible;
+  }
 
-    .splide__arrow:not(:root) {
-      align-items: center;
-      aspect-ratio: 1 / 1;
-      backdrop-filter: blur(20px);
-      background: none;
-      background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
-      border: none;
-      border-radius: calc(infinity * 1px);
-      box-shadow: none;
-      color: var(--color-palette-white);
-      display: flex;
-      block-size: auto;
-      justify-content: center;
-      opacity: 1;
-      overflow: hidden;
-      padding-block: 0;
-      padding-inline: 0;
-      transition: 0.3s box-shadow;
-      inline-size: 48px;
-      right: auto;
-      left: auto;
-      width: 48px;
-      height: auto;
+  :global(.splide__arrow:not(:root)) {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    backdrop-filter: blur(20px);
+    background: none;
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    block-size: auto;
+    border: none;
+    border-radius: calc(infinity * 1px);
+    box-shadow: none;
+    color: var(--color-palette-white);
+    display: flex;
+    height: auto;
+    inline-size: 48px;
+    justify-content: center;
+    left: auto;
+    opacity: 1;
+    overflow: hidden;
+    padding-block: 0;
+    padding-inline: 0;
+    right: auto;
+    transition: 0.3s box-shadow;
+    width: 48px;
 
-      @media (--media-hover) {
-        &:hover {
-          box-shadow: none;
+    @media (--media-hover) {
+      &:hover {
+        box-shadow: none;
 
-          &::after {
-            opacity: 1;
-          }
+        &::after {
+          opacity: 1;
         }
       }
-
-      &::after {
-        background-clip: border-box;
-        background-image: linear-gradient(
-          90deg,
-          var(--color-gradation-primary)
-        );
-        background-origin: border-box;
-        border: 1px solid transparent;
-        border-radius: calc(infinity * 1px);
-        content: '';
-        display: block;
-        block-size: 100%;
-        inset-inline-start: 0;
-        mask-clip: padding-box, border-box;
-        mask-clip: padding-box, border-box;
-        mask-composite: destination-out;
-        mask-composite: exclude;
-        mask-image:
-          linear-gradient(var(--color-palette-white) 0 0),
-          linear-gradient(var(--color-palette-white) 0 0);
-        mask-image:
-          linear-gradient(var(--color-palette-white) 0 0),
-          linear-gradient(var(--color-palette-white) 0 0);
-        opacity: 0;
-        position: absolute;
-        inset-block-start: 0;
-        transition: 0.3s opacity;
-        inline-size: 100%;
-        z-index: 1;
-      }
-
-      svg {
-        fill: var(--color-palette-white);
-        aspect-ratio: 1 / 1;
-        block-size: auto;
-        inline-size: 22px;
-      }
     }
 
-    .splide__arrow.splide__arrow--prev:not(:root) {
+    &::after {
+      background-clip: border-box;
+      background-image: linear-gradient(90deg, var(--color-gradation-primary));
+      background-origin: border-box;
+      block-size: 100%;
+      border: 1px solid transparent;
+      border-radius: calc(infinity * 1px);
+      content: '';
+      display: block;
+      inline-size: 100%;
+      inset-block-start: 0;
       inset-inline-start: 0;
+      mask-clip: padding-box, border-box;
+      mask-composite: destination-out;
+      mask-composite: exclude;
+      mask-image:
+        linear-gradient(var(--color-palette-white) 0 0),
+        linear-gradient(var(--color-palette-white) 0 0);
+      opacity: 0;
+      position: absolute;
+      transition: 0.3s opacity;
+      z-index: 1;
     }
 
-    .splide__arrow.splide__arrow--next:not(:root) {
-      inset-inline-end: 0;
+    svg {
+      aspect-ratio: 1 / 1;
+      block-size: auto;
+      fill: var(--color-palette-white);
+      inline-size: 22px;
     }
+  }
+
+  :global(.splide__arrow.splide__arrow--prev:not(:root)) {
+    inset-inline-start: 0;
+  }
+
+  :global(.splide__arrow.splide__arrow--next:not(:root)) {
+    inset-inline-end: 0;
   }
   /* stylelint-enable */
 }

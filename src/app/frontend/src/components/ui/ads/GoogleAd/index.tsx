@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import styles from './index.module.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 
 export type GoogleAdProps = {
@@ -19,10 +19,9 @@ export const GoogleAd = ({
   style,
 }: GoogleAdProps) => {
   const pathname = usePathname()
-  const [googleAdKey, setGoogleAdKey] = useState(pathname.replace(/\//g, '-'))
+  const googleAdKey = useMemo(() => pathname.replace(/\//g, '-'), [pathname])
 
   useEffect(() => {
-    setGoogleAdKey(pathname.replace(/\//g, '-'))
     try {
       /* eslint-disable */
       // @ts-ignore

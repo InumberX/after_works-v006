@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -87,9 +87,9 @@ export const LayoutHeader = () => {
     setIsShowMenu(true)
   }
 
-  const hideMenu = () => {
+  const hideMenu = useCallback(() => {
     setIsShowMenu(false)
-  }
+  }, [])
 
   const toggleMenu = () => {
     if (!isShowMenu) {
@@ -105,9 +105,9 @@ export const LayoutHeader = () => {
     setIsShowLocalesMenu(true)
   }
 
-  const hideLocalesMenu = () => {
+  const hideLocalesMenu = useCallback(() => {
     setIsShowLocalesMenu(false)
-  }
+  }, [])
 
   const toggleLocalesMenu = () => {
     if (!isShowLocalesMenu) {
@@ -157,8 +157,12 @@ export const LayoutHeader = () => {
   }, [isBreakpointMd, isBreakpointLg, isBreakpointXl, isBreakpointXxl])
 
   useEffect(() => {
-    hideMenu()
-    hideLocalesMenu()
+    if (isShowSmallMenu) {
+      hideMenu()
+      hideLocalesMenu()
+    }
+    // hideMenu and hideLocalesMenu are stable callbacks from useCallback and don't need to trigger re-renders
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShowSmallMenu])
 
   return (

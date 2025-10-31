@@ -2,7 +2,7 @@
 
 import * as Sentry from '@sentry/nextjs'
 import NextError from 'next/error'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 const GlobalError = ({
   error,
@@ -11,11 +11,14 @@ const GlobalError = ({
     digest?: string
   }
 }) => {
-  const [statusCode, setStatusCode] = useState(500)
+  const statusCode = error.digest ? 500 : 404
+  const hasReportedRef = useRef(false)
 
   useEffect(() => {
-    setStatusCode(error.digest ? 500 : 404)
-    Sentry.captureException(error)
+    if (!hasReportedRef.current) {
+      Sentry.captureException(error)
+      hasReportedRef.current = true
+    }
   }, [error])
 
   return (
