@@ -161,6 +161,7 @@ export const LayoutHeader = () => {
       hideMenu()
       hideLocalesMenu()
     }
+    // hideMenu and hideLocalesMenu are stable callbacks from useCallback and don't need to trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShowSmallMenu])
 

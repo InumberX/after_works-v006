@@ -50,22 +50,18 @@ const convertTypeToNativeLanguage = (type: string): string => {
 export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
   switch (issue.code) {
     case 'invalid_type':
-      if ('expected' in issue && 'input' in issue) {
-        const received =
-          issue.input === undefined ? 'undefined' : typeof issue.input
-        if (received === 'undefined') {
+      if ('expected' in issue && 'received' in issue) {
+        if (issue.received === 'undefined') {
           return {
             // Required
             message: `必須項目です。`,
           }
         }
         return {
-          // Expected ${issue.expected}, received ${received}
+          // Expected ${issue.expected}, received ${issue.received}
           message: `${convertTypeToNativeLanguage(
-            received,
-          )}ではなく${convertTypeToNativeLanguage(
-            String(issue.expected),
-          )}で入力してください。`,
+            String(issue.received),
+          )}ではなく${convertTypeToNativeLanguage(String(issue.expected))}で入力してください。`,
         }
       }
       return { message: '型が不正です。' }
@@ -90,8 +86,8 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
         message: '無効な形式です。',
       }
     case 'too_small':
-      if ('origin' in issue && 'minimum' in issue) {
-        if (issue.origin === 'array') {
+      if ('type' in issue && 'minimum' in issue) {
+        if (issue.type === 'array') {
           return {
             // Array must contain ${issue.inclusive ? `at least` : `more than`} ${issue.minimum} element(s)
             message: `${issue.inclusive ? `少なくとも` : ``}${
@@ -100,7 +96,7 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
           }
         }
 
-        if (issue.origin === 'string') {
+        if (issue.type === 'string') {
           return {
             /*
              * String must contain ${
@@ -114,9 +110,9 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
         }
 
         if (
-          issue.origin === 'number' ||
-          issue.origin === 'int' ||
-          issue.origin === 'bigint'
+          issue.type === 'number' ||
+          issue.type === 'int' ||
+          issue.type === 'bigint'
         ) {
           return {
             // Number must be greater than ${issue.inclusive ? `or equal to ` : ``}${issue.minimum}
@@ -128,8 +124,8 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
       }
       return { message: '入力値が小さすぎます。' }
     case 'too_big':
-      if ('origin' in issue && 'maximum' in issue) {
-        if (issue.origin === 'array') {
+      if ('type' in issue && 'maximum' in issue) {
+        if (issue.type === 'array') {
           return {
             // Array must contain ${issue.inclusive ? `at most` : `less than`} ${issue.maximum} element(s)
             message: `${issue.inclusive ? `最大` : `最低`}${
@@ -138,7 +134,7 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
           }
         }
 
-        if (issue.origin === 'string') {
+        if (issue.type === 'string') {
           return {
             // String must contain ${issue.inclusive ? `at most` : `under`} ${issue.maximum} character(s)
             message: `${
@@ -150,9 +146,9 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
         }
 
         if (
-          issue.origin === 'number' ||
-          issue.origin === 'int' ||
-          issue.origin === 'bigint'
+          issue.type === 'number' ||
+          issue.type === 'int' ||
+          issue.type === 'bigint'
         ) {
           return {
             // Number must be less than ${issue.inclusive ? `or equal to ` : ``}${issue.maximum}
@@ -175,10 +171,10 @@ export const zodCustomErrorMap: zod.ZodErrorMap = (issue) => {
         message: '無効な入力です。',
       }
     case 'not_multiple_of':
-      if ('divisor' in issue) {
+      if ('multipleOf' in issue) {
         return {
-          // Number must be a multiple of ${issue.divisor}
-          message: `${issue.divisor}の倍数で入力してください。`,
+          // Number must be a multiple of ${issue.multipleOf}
+          message: `${issue.multipleOf}の倍数で入力してください。`,
         }
       }
       return { message: '倍数ではありません。' }

@@ -1,11 +1,15 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import * as zod from 'zod'
 import { zodCustomErrorMap } from '@/libs/validation/zodCustomErrorMap'
 
 export const ZodProvider = ({ children }: { children: ReactNode }) => {
-  zod.setErrorMap(zodCustomErrorMap)
+  useEffect(() => {
+    zod.config({
+      localeError: zodCustomErrorMap,
+    })
+  }, [])
 
   return children
 }
