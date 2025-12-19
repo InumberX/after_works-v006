@@ -5,7 +5,7 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm use 24
+            - nvm use 22
             - node -v
             - corepack enable
             - npm ci
@@ -18,7 +18,7 @@ applications:
             - npm run test
         preBuild:
           commands:
-            - nvm use 24
+            - nvm use 22
             - node -v
             - corepack enable
             - npm ci
@@ -37,7 +37,7 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm use 24
+            - nvm use 22
             - node -v
             - corepack enable
             - npm ci
@@ -50,7 +50,7 @@ applications:
             - npm run test
         preBuild:
           commands:
-            - nvm use 24
+            - nvm use 22
             - node -v
             - corepack enable
             - npm ci
