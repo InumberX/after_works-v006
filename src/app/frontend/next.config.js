@@ -1,9 +1,3 @@
-/* global process */
-// import * as path from 'path'
-import { withSentryConfig } from '@sentry/nextjs'
-
-// const __dirname = path.dirname(new URL(import.meta.url).pathname)
-
 const now = new Date()
 const nowDatetime =
   now.getFullYear() +
@@ -51,16 +45,13 @@ const nextConfig = {
   },
 }
 
-export default withSentryConfig(nextConfig, {
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
+// TODO: Sentry is temporarily disabled due to Amplify SSR bundler compatibility issue
+// with import-in-the-middle package. Re-enable when issue is resolved.
+// export default withSentryConfig(nextConfig, {
+//   org: process.env.SENTRY_ORG,
+//   project: process.env.SENTRY_PROJECT,
+//   sourcemaps: { disable: true },
+//   silent: false,
+// })
 
-  // An auth token is required for uploading source maps.
-  // authToken: process.env.SENTRY_AUTH_TOKEN,
-
-  sourcemaps: {
-    disable: true,
-  },
-
-  silent: false, // Can be used to suppress logs
-})
+export default nextConfig

@@ -1,6 +1,5 @@
 'use client'
 
-import * as Sentry from '@sentry/nextjs'
 import NextError from 'next/error'
 import { useEffect, useRef } from 'react'
 
@@ -16,7 +15,6 @@ const GlobalError = ({
 
   useEffect(() => {
     if (!hasReportedRef.current) {
-      Sentry.captureException(error)
       hasReportedRef.current = true
     }
   }, [error])

@@ -24,6 +24,7 @@ applications:
             - npm ci
         build:
           commands:
+            - rm -rf .next
             - npm run build
       artifacts:
         baseDirectory: .next
