@@ -5,7 +5,7 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm use 22
+            - nvm use 24
             - node -v
             - corepack enable
             - npm ci
@@ -18,12 +18,13 @@ applications:
             - npm run test
         preBuild:
           commands:
-            - nvm use 22
+            - nvm use 24
             - node -v
             - corepack enable
             - npm ci
         build:
           commands:
+            - rm -rf .next
             - npm run build
       artifacts:
         baseDirectory: .next
@@ -37,7 +38,7 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm use 22
+            - nvm use 24
             - node -v
             - corepack enable
             - npm ci
@@ -50,7 +51,7 @@ applications:
             - npm run test
         preBuild:
           commands:
-            - nvm use 22
+            - nvm use 24
             - node -v
             - corepack enable
             - npm ci
