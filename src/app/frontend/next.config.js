@@ -63,4 +63,9 @@ export default withSentryConfig(nextConfig, {
   },
 
   silent: false, // Can be used to suppress logs
+
+  // Disable automatic instrumentation to avoid import-in-the-middle issues with Amplify SSR
+  autoInstrumentServerFunctions: false,
+  autoInstrumentMiddleware: false,
+  autoInstrumentAppDirectory: false,
 })
