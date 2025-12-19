@@ -1,9 +1,3 @@
-// /* global process */
-// import * as path from 'path'
-// import { withSentryConfig } from '@sentry/nextjs'
-
-// const __dirname = path.dirname(new URL(import.meta.url).pathname)
-
 const now = new Date()
 const nowDatetime =
   now.getFullYear() +

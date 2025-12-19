@@ -31,7 +31,8 @@ applications:
         files:
           - '**/*'
       cache:
-        paths: []
+        paths:
+          - node_modules/**/*
   - appRoot: src/app/frontend/.storybook
     frontend:
       phases:
