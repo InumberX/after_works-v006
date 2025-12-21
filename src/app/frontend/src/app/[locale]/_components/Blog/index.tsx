@@ -36,18 +36,16 @@ export const Blog = ({ articleInfos }: Props) => {
         </div>
 
         <div className={styles.BlogSlider}>
-          <LayoutInner>
-            <div
-              className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
-              // eslint-disable-next-line react-hooks/refs
-              ref={animelmSlider.targetRef}
-            >
-              <ArticleSlider
-                className={clsx(styles.BlogSlider__slider)}
-                articleInfos={articleInfos}
-              />
-            </div>
-          </LayoutInner>
+          <div
+            className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
+            // eslint-disable-next-line react-hooks/refs
+            ref={animelmSlider.targetRef}
+          >
+            <ArticleSlider
+              className={clsx(styles.BlogSlider__slider)}
+              articleInfos={articleInfos}
+            />
+          </div>
         </div>
 
         <div className={styles.BlogButton}>
