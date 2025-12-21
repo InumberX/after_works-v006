@@ -29,7 +29,9 @@ npm run pre-commit      # Run all checks (typecheck, lint, stylelint, format)
 
 ### Testing
 ```bash
-npm run test            # Run Vitest tests
+npm run test            # Run Vitest tests (watch mode)
+npm run test -- --run   # Run tests once without watch
+npm run test -- src/tests/components/ui/buttons/BaseButton  # Run specific test file
 npm run storybook       # Start Storybook on port 6006
 npm run storybook-build # Build Storybook
 ```
@@ -47,7 +49,8 @@ npm run upgrade         # Upgrade all packages (use with caution)
 - Locale files: `src/locales/ja.ts` and `src/locales/en.ts`
 - Middleware handles locale resolution at `src/middleware.ts`
 - URL structure: `/` (Japanese), `/en` (English) with rewriteDefault strategy
-- LocaleProvider wraps the app to provide i18n context
+- **Client components**: Use hooks from `src/locales/client.ts` (`useI18n`, `useScopedI18n`, `useCurrentLocale`, `useChangeLocale`)
+- **Server components**: Use functions from `src/locales/server.ts` (`getI18n`, `getScopedI18n`, `getCurrentLocale`, `getStaticParams`)
 
 ### State Management
 - **Jotai** for global state (atomic state management)
@@ -80,6 +83,12 @@ The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
 - Stylelint with SCSS configuration
 - Path aliases: `@/` and `~/` both map to `src/`
 
+### Code Style
+- ESLint enforces import ordering with `eslint-plugin-import-x`:
+  - Imports must be alphabetized (case-insensitive)
+  - Newlines required between import groups
+- Prettier handles code formatting
+
 ### Content Management
 - Headless CMS architecture with typed API responses
 - Content types: blogs, works, hobby, about
@@ -87,12 +96,12 @@ The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
 - API responses are strongly typed in `src/types/apis/fetch/`
 
 ### Key Features
-- **Sentry integration** for error tracking (client, server, edge)
 - **Google Analytics** and **Google AdSense** integration
 - **Framer Motion** for animations
 - **React Hook Form + Zod** for form validation
 - **Splide** for carousels/sliders
 - RSS feed generation at `/rss.xml` (rewrites to `/api/rss`)
+- Cache busting via `NEXT_PUBLIC_CASH_BUSTER` env variable (auto-generated at build time)
 
 ### Component Organization
 Components follow a barrel export pattern with index files. UI components are categorized:
