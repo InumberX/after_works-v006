@@ -1,10 +1,11 @@
 import styles from './index.module.css'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
-import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 
 export const Message = async () => {
   const scopedT = await getScopedI18n('notFound')

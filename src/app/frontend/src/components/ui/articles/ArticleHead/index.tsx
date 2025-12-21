@@ -1,9 +1,11 @@
-import Image from 'next/image'
 import clsx from 'clsx'
-import styles from './index.module.css'
 import { format } from 'date-fns'
-import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import Image from 'next/image'
+
+import styles from './index.module.css'
+
 import { BaseTagList } from '@/components/ui/lists/BaseTagList'
+import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { getCurrentLocale } from '@/locales/server'
 
 type Props = {

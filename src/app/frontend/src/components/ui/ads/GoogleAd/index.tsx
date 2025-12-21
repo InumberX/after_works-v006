@@ -1,9 +1,10 @@
 'use client'
 
 import clsx from 'clsx'
-import styles from './index.module.css'
-import { useEffect, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
+import { useEffect, useMemo } from 'react'
+
+import styles from './index.module.css'
 
 export type GoogleAdProps = {
   className?: string

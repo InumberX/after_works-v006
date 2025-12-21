@@ -1,8 +1,9 @@
 import styles from './index.module.css'
-import { SideLatestArticle } from '@/components/ui/sides/SideLatestArticle'
+
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
-import { getScopedI18n } from '@/locales/server'
 import { GoogleAdList } from '@/components/ui/lists/GoogleAdList'
+import { SideLatestArticle } from '@/components/ui/sides/SideLatestArticle'
+import { getScopedI18n } from '@/locales/server'
 
 type Props = {
   latestArticleInfos: LatestArticleCardProps[]

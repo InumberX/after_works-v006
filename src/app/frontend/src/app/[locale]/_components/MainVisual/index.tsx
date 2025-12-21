@@ -1,14 +1,16 @@
-import styles from './index.module.css'
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
+
+import styles from './index.module.css'
+
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
 
 export const MainVisual = () => {
   return (
     <div className={styles.MainVisual}>
       <figure className={styles.MainVisualBackground}>
         <Image
-          src={`${STATIC_IMAGE_DIR}/img-top-main-visual.webp?${CASH_BUSTER}`}
+          src={`${STATIC_IMAGE_DIR}/img-top-main-visual.webp?${CACHE_BUSTER}`}
           alt=''
           fill
           className={styles.MainVisualBackground__image}

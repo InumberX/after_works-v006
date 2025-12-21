@@ -1,12 +1,14 @@
 'use client'
 
+import { Splide, SplideSlide } from '@splidejs/react-splide'
 import clsx from 'clsx'
+
 import styles from './index.module.css'
+
 import {
   ArticleCardProps,
   ArticleCard,
 } from '@/components/ui/cards/ArticleCard'
-import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/css'
 import { BREAKPOINTS } from '@/providers/BreakpointsProvider'
 

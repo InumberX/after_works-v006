@@ -1,10 +1,11 @@
-import globals from 'globals'
+import { fixupPluginRules } from '@eslint/compat'
 import eslint from '@eslint/js'
-import tseslint from 'typescript-eslint'
+import pluginNext from '@next/eslint-plugin-next'
+import { importX } from 'eslint-plugin-import-x'
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
-import pluginNext from '@next/eslint-plugin-next'
-import { fixupPluginRules } from '@eslint/compat'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -34,6 +35,7 @@ export default tseslint.config(
       react: pluginReact,
       'react-hooks': fixupPluginRules(pluginReactHooks),
       '@next/next': pluginNext,
+      'import-x': importX,
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
@@ -41,6 +43,17 @@ export default tseslint.config(
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs['core-web-vitals'].rules,
+      'import-x/no-extraneous-dependencies': ['error', { includeTypes: true }],
+      'import-x/order': [
+        'error',
+        {
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
     settings: {
       react: {

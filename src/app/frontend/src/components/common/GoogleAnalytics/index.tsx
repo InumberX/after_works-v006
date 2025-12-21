@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
+import { useEffect } from 'react'
+
 import { GOOGLE_ANALYTICS_ID } from '@/config/env'
 import { isActiveGA, pageview } from '@/libs/ga/gtag'
 

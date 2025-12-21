@@ -1,11 +1,13 @@
 'use client'
 
-import { ReactNode, useMemo } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
-import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
-import { EventTypes } from '@/types/event'
+import Link from 'next/link'
+import { ReactNode, useMemo } from 'react'
+
 import styles from './index.module.css'
+
+import { EventTypes } from '@/types/event'
+import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
 
 type Props = {
   variant?: 'contained' | 'outlined'
