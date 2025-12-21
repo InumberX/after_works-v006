@@ -219,6 +219,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     }
   }
 
+  const positionTags = [...tagPosition]
+  const technologyTags = [...tagProgram, ...tagDesign, ...tagCms, ...tagOther]
+
   const articleInfo: BaseArticleInfo = {
     id: String(responseHobbyDetailInfo.topics_id),
     ...(responseHobbyDetailInfo.main_visual && {
@@ -246,14 +249,22 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       text: scopedT('bottomLinkText'),
     },
     tags: [
-      {
-        title: scopedT('tags.position.title'),
-        items: [...tagPosition],
-      },
-      {
-        title: scopedT('tags.technology.title'),
-        items: [...tagProgram, ...tagDesign, ...tagCms, ...tagOther],
-      },
+      ...(positionTags.length > 0
+        ? [
+            {
+              title: scopedT('tags.position.title'),
+              items: [...positionTags],
+            },
+          ]
+        : []),
+      ...(technologyTags.length > 0
+        ? [
+            {
+              title: scopedT('tags.technology.title'),
+              items: [...technologyTags],
+            },
+          ]
+        : []),
     ],
   }
 

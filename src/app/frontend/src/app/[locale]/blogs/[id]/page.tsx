@@ -245,6 +245,15 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     }
   }
 
+  const tags = [
+    ...tagNews,
+    ...tagPosition,
+    ...tagProgram,
+    ...tagDesign,
+    ...tagCms,
+    ...tagOther,
+  ]
+
   const articleInfo: BaseArticleInfo = {
     id: String(responseBlogsDetailInfo.topics_id),
     ...(responseBlogsDetailInfo.main_visual && {
@@ -269,18 +278,14 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       }),
       text: scopedT('bottomLinkText'),
     },
-    tags: [
-      {
-        items: [
-          ...tagNews,
-          ...tagPosition,
-          ...tagProgram,
-          ...tagDesign,
-          ...tagCms,
-          ...tagOther,
-        ],
-      },
-    ],
+    tags:
+      tags.length > 0
+        ? [
+            {
+              items: tags,
+            },
+          ]
+        : [],
   }
 
   const responseLatestBlogsInfos = await getBlogsInfos({
