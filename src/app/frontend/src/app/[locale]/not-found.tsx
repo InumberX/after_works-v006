@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
-import { AppHead } from '@/components/common/AppHead'
+
 import { Index } from './[...not-found]/_components'
+
+import { AppHead } from '@/components/common/AppHead'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 

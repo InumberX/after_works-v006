@@ -1,6 +1,7 @@
-import { PageTitle } from '@/components/ui/typographies/PageTitle'
-import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
 import { Message } from './Message'
+
+import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
+import { PageTitle } from '@/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '@/locales/server'
 
 export const Index = async () => {

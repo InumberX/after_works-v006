@@ -1,6 +1,7 @@
-import { PageTitle } from '@/components/ui/typographies/PageTitle'
-import { Contact } from '@/components/common/Contact'
 import { Message } from './Message'
+
+import { Contact } from '@/components/common/Contact'
+import { PageTitle } from '@/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '@/locales/server'
 
 export const Index = async () => {

@@ -1,7 +1,9 @@
-import styles from './index.module.css'
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
+
+import styles from './index.module.css'
+
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 
 export const MainVisual = () => {
   return (

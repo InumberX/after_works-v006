@@ -1,6 +1,8 @@
 import Image from 'next/image'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
+
 import styles from './index.module.css'
+
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 
 export const LayoutPageBackground = () => {
   return (

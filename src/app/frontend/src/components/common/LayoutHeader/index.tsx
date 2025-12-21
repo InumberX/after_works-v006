@@ -1,25 +1,27 @@
 'use client'
 
-import { useState, useMemo, useEffect, useCallback } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useAtom } from 'jotai'
-import { routes } from '@/config/routes'
-import { STATIC_IMAGE_DIR, SITE_NAME, CASH_BUSTER } from '@/config/env'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState, useMemo, useEffect, useCallback } from 'react'
+
 import styles from './index.module.css'
-import { actSmoothScroll } from '@/utils/actSmoothScroll'
+
+import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR, SITE_NAME, CASH_BUSTER } from '@/config/env'
+import { routes } from '@/config/routes'
+import { useI18n, useCurrentLocale, useChangeLocale } from '@/locales/client'
 import {
   isBreakpointMdAtom,
   isBreakpointLgAtom,
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
 } from '@/store/breakpoints'
-import { useI18n, useCurrentLocale, useChangeLocale } from '@/locales/client'
-import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { actSmoothScroll } from '@/utils/actSmoothScroll'
 
 export const LayoutHeader = () => {
   const locale = useCurrentLocale()

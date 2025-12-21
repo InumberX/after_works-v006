@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+
 import { SITE_URL } from '@/config/env'
 
 const robots = (): MetadataRoute.Robots => {

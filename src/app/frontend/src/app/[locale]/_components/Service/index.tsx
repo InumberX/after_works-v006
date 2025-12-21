@@ -1,11 +1,12 @@
 import styles from './index.module.css'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
-import { ServiceCardList } from '@/components/ui/lists/ServiceCardList'
+
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { getScopedI18n } from '@/locales/server'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { ServiceCardList } from '@/components/ui/lists/ServiceCardList'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
+import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
+import { getScopedI18n } from '@/locales/server'
 
 export const Service = async () => {
   const scopedT = await getScopedI18n('home.service')

@@ -1,4 +1,5 @@
 import { Metadata, Viewport } from 'next'
+
 import { SITE_URL, SITE_NAME } from '@/config/env'
 import { getCurrentLocale } from '@/locales/server'
 

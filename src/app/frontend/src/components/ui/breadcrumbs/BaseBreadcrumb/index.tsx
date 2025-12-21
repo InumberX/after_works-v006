@@ -1,9 +1,11 @@
-import Link from 'next/link'
 import clsx from 'clsx'
+import Link from 'next/link'
+
 import styles from './index.module.css'
-import { routes } from '@/config/routes'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { routes } from '@/config/routes'
 import { getI18n, getCurrentLocale } from '@/locales/server'
 
 type Props = {

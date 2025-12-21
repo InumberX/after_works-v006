@@ -1,17 +1,19 @@
 import { Metadata } from 'next'
-import { AppHead } from '@/components/common/AppHead'
+
 import { Index } from './_components'
-import { routes } from '@/config/routes'
-import { NextPageProps } from '@/types/next'
+
 import { getAboutInfo } from '@/apis/fetch/about'
-import { getCategoryAboutHistoryInfos } from '@/apis/fetch/categoryAboutHistory'
 import { getAboutHistoryInfo } from '@/apis/fetch/aboutHistory'
-import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
-import { getTagProgramInfos } from '@/apis/fetch/tagProgram'
+import { getCategoryAboutHistoryInfos } from '@/apis/fetch/categoryAboutHistory'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
 import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagOtherInfos } from '@/apis/fetch/tagOther'
+import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
+import { getTagProgramInfos } from '@/apis/fetch/tagProgram'
+import { AppHead } from '@/components/common/AppHead'
+import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
+import { NextPageProps } from '@/types/next'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const locale = await getCurrentLocale()

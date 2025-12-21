@@ -1,8 +1,9 @@
-import { MainVisual } from './MainVisual'
-import { Lead } from './Lead'
-import { Service } from './Service'
-import { Contents } from './Contents'
 import { Blog } from './Blog'
+import { Contents } from './Contents'
+import { Lead } from './Lead'
+import { MainVisual } from './MainVisual'
+import { Service } from './Service'
+
 import { Contact } from '@/components/common/Contact'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 

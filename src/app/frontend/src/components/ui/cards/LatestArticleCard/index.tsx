@@ -1,15 +1,17 @@
 'use client'
 
-import { useMemo, JSX } from 'react'
-import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
-import Link from 'next/link'
-import Image from 'next/image'
 import clsx from 'clsx'
-import styles from './index.module.css'
-import { EventTypes } from '@/types/event'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import { format } from 'date-fns'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useMemo, JSX } from 'react'
+
+import styles from './index.module.css'
+
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import { useCurrentLocale } from '@/locales/client'
+import { EventTypes } from '@/types/event'
+import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
 
 type LatestArticleCardContainerProps = {
   mainVisual?: {

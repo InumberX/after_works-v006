@@ -1,6 +1,7 @@
-import { ReactNode, JSX } from 'react'
-import styles from './index.module.css'
 import clsx from 'clsx'
+import { ReactNode, JSX } from 'react'
+
+import styles from './index.module.css'
 
 type Props = {
   children: ReactNode

@@ -1,8 +1,10 @@
 import clsx from 'clsx'
+
 import styles from './index.module.css'
-import { ArticleHead } from '@/components/ui/articles/ArticleHead'
+
 import { ArticleBody } from '@/components/ui/articles/ArticleBody'
 import { ArticleFooter } from '@/components/ui/articles/ArticleFooter'
+import { ArticleHead } from '@/components/ui/articles/ArticleHead'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 
 export type BaseArticleInfo = {

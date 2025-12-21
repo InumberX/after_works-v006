@@ -1,6 +1,7 @@
 import * as path from 'path'
-import * as VitestConfig from 'vitest/config'
+
 import react from '@vitejs/plugin-react'
+import * as VitestConfig from 'vitest/config'
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
 

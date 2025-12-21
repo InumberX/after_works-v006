@@ -1,6 +1,7 @@
 import styles from './index.module.css'
-import { SideLatestArticle } from '@/components/ui/sides/SideLatestArticle'
+
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
+import { SideLatestArticle } from '@/components/ui/sides/SideLatestArticle'
 import { getScopedI18n } from '@/locales/server'
 
 type Props = {

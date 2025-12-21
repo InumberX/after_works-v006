@@ -1,21 +1,23 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { NextPageProps } from '@/types/next'
-import { AppHead } from '@/components/common/AppHead'
+
 import { Index } from './_components'
-import { routes } from '@/config/routes'
+
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getBlogsDetailInfo } from '@/apis/fetch/blogsDetail'
-import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
-import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
+import { getTagCmsInfos } from '@/apis/fetch/tagCms'
+import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
 import { getTagNewsInfos } from '@/apis/fetch/tagNews'
+import { getTagOtherInfos } from '@/apis/fetch/tagOther'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { getTagProgramInfos } from '@/apis/fetch/tagProgram'
-import { getTagDesignInfos } from '@/apis/fetch/tagDesign'
-import { getTagCmsInfos } from '@/apis/fetch/tagCms'
-import { getTagOtherInfos } from '@/apis/fetch/tagOther'
+import { AppHead } from '@/components/common/AppHead'
+import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
+import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
+import { NextPageProps } from '@/types/next'
 
 export const generateMetadata = async ({
   params,

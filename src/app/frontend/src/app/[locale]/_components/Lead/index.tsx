@@ -1,13 +1,15 @@
 'use client'
 
-import styles from './index.module.css'
-import Image from 'next/image'
 import clsx from 'clsx'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import Image from 'next/image'
+
+import styles from './index.module.css'
+
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { useScopedI18n } from '@/locales/client'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
+import { useScopedI18n } from '@/locales/client'
 
 export const Lead = () => {
   const scopedT = useScopedI18n('home.lead')

@@ -1,11 +1,13 @@
 import { Metadata } from 'next'
-import { AppHead } from '@/components/common/AppHead'
+
 import { Index } from './_components'
-import { routes } from '@/config/routes'
+
 import { getBlogsInfos } from '@/apis/fetch/blogs'
-import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
+import { AppHead } from '@/components/common/AppHead'
+import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { routes } from '@/config/routes'
 import { getCurrentLocale } from '@/locales/server'
 
 export const dynamic = 'force-dynamic'
