@@ -7,7 +7,7 @@ import styles from './index.module.css'
 
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
+import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 import { useScopedI18n } from '@/locales/client'
 
@@ -32,7 +32,7 @@ export const Profile = ({ certifications, skills }: ProfileProps) => {
         >
           <figure className={styles.ProfileIcon}>
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CASH_BUSTER}`}
+              src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CACHE_BUSTER}`}
               width={80}
               height={80}
               alt={scopedT('title')}

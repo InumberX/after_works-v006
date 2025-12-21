@@ -12,7 +12,7 @@ import styles from './index.module.css'
 
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { STATIC_IMAGE_DIR, SITE_NAME, CASH_BUSTER } from '@/config/env'
+import { STATIC_IMAGE_DIR, SITE_NAME, CACHE_BUSTER } from '@/config/env'
 import { routes } from '@/config/routes'
 import { useI18n, useCurrentLocale, useChangeLocale } from '@/locales/client'
 import {
@@ -180,7 +180,7 @@ export const LayoutHeader = () => {
                 className={styles.LayoutHeaderLogo__link}
               >
                 <Image
-                  src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CASH_BUSTER}`}
+                  src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CACHE_BUSTER}`}
                   alt={SITE_NAME}
                   width='140'
                   height='25'

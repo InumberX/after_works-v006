@@ -10,7 +10,7 @@ import styles from './index.module.css'
 
 import { BaseTagList } from '@/components/ui/lists/BaseTagList'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
+import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 import { useCurrentLocale } from '@/locales/client'
 import { EventTypes } from '@/types/event'
@@ -68,7 +68,7 @@ const ArticleCardContainer = ({
           />
         ) : (
           <Image
-            src={`${STATIC_IMAGE_DIR}/img-empty.webp?${CASH_BUSTER}`}
+            src={`${STATIC_IMAGE_DIR}/img-empty.webp?${CACHE_BUSTER}`}
             alt='After Works.'
             fill
             className={styles.ArticleCardMainVisual__image}

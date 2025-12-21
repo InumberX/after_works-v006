@@ -7,7 +7,7 @@ import styles from './index.module.css'
 
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { STATIC_IMAGE_DIR, CASH_BUSTER } from '@/config/env'
+import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 import { useScopedI18n } from '@/locales/client'
 
@@ -25,7 +25,7 @@ export const Lead = () => {
           ref={animelmLeadImage.targetRef}
         >
           <Image
-            src={`${STATIC_IMAGE_DIR}/img-top-lead.webp?${CASH_BUSTER}`}
+            src={`${STATIC_IMAGE_DIR}/img-top-lead.webp?${CACHE_BUSTER}`}
             alt=''
             fill
             className={styles.LeadImage__image}
