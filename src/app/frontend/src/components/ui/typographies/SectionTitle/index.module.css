@@ -1,96 +1,98 @@
-.SectionTitle__container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-}
+@layer component-ui-low {
+  .SectionTitle__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
 
-.SectionTitleSub.SectionTitleSub--active {
-  filter: blur(0);
-  opacity: 1;
-}
+  .SectionTitleSub.SectionTitleSub--active {
+    filter: blur(0);
+    opacity: 1;
+  }
 
-.SectionTitleSub {
-  align-items: center;
-  display: flex;
-  filter: blur(24px);
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  justify-content: center;
-  opacity: 0;
-  position: relative;
-  transition:
-    0.6s 0.6s opacity,
-    0.6s 0.6s filter;
-  z-index: 1;
-}
+  .SectionTitleSub {
+    align-items: center;
+    display: flex;
+    filter: blur(24px);
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    justify-content: center;
+    opacity: 0;
+    position: relative;
+    transition:
+      0.6s 0.6s opacity,
+      0.6s 0.6s filter;
+    z-index: 1;
+  }
 
-.SectionTitleSub__text {
-  color: rgb(var(--color-palette-blue-charcoal-rgb) / 10%);
-  display: inline-block;
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-  text-align: center;
+  .SectionTitleSub__text {
+    color: rgb(var(--color-palette-blue-charcoal-rgb) / 10%);
+    display: inline-block;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    text-align: center;
 
-  @mixin getClampRem font-size, 56, 104;
-}
+    @mixin getClampRem font-size, 56, 104;
+  }
 
-.SectionTitleMain {
-  align-items: center;
-  align-items: flex-end;
-  display: flex;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
+  .SectionTitleMain {
+    align-items: center;
+    align-items: flex-end;
+    display: flex;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
 
-.SectionTitleMain__paragraph {
-  font-weight: var(--font-weight-bold);
-  position: relative;
-  text-align: center;
-  -webkit-text-fill-color: transparent;
+  .SectionTitleMain__paragraph {
+    font-weight: var(--font-weight-bold);
+    position: relative;
+    text-align: center;
+    -webkit-text-fill-color: transparent;
 
-  @mixin getClampRem font-size, 24, 48;
-}
+    @mixin getClampRem font-size, 24, 48;
+  }
 
-.SectionTitleMain__text.SectionTitleMain__text--active {
-  opacity: 1;
-}
+  .SectionTitleMain__text.SectionTitleMain__text--active {
+    opacity: 1;
+  }
 
-.SectionTitleMain__text {
-  background: linear-gradient(90deg, var(--color-gradation-primary));
-  background-clip: text;
-  color: var(--color-palette-sky-blue);
-  display: inline-block;
-  opacity: 0;
-  position: relative;
-  transition: 0s 0.3s opacity;
-  z-index: 1;
-}
+  .SectionTitleMain__text {
+    background: linear-gradient(90deg, var(--color-gradation-primary));
+    background-clip: text;
+    color: var(--color-palette-sky-blue);
+    display: inline-block;
+    opacity: 0;
+    position: relative;
+    transition: 0s 0.3s opacity;
+    z-index: 1;
+  }
 
-.SectionTitleMainCurtain {
-  block-size: 100%;
-  display: block;
-  inline-size: 100%;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: 2;
-}
+  .SectionTitleMainCurtain {
+    block-size: 100%;
+    display: block;
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+  }
 
-.SectionTitleMainCurtain__curtain.SectionTitleMainCurtain__curtain--active {
-  inset-inline-start: 100%;
-}
+  .SectionTitleMainCurtain__curtain.SectionTitleMainCurtain__curtain--active {
+    inset-inline-start: 100%;
+  }
 
-.SectionTitleMainCurtain__curtain {
-  background: linear-gradient(90deg, var(--color-gradation-primary));
-  block-size: 100%;
-  display: block;
-  inline-size: 100%;
-  inset-block-start: 0;
-  inset-inline-start: -100%;
-  position: absolute;
-  transition: 0.6s left;
+  .SectionTitleMainCurtain__curtain {
+    background: linear-gradient(90deg, var(--color-gradation-primary));
+    block-size: 100%;
+    display: block;
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-start: -100%;
+    position: absolute;
+    transition: 0.6s left;
+  }
 }

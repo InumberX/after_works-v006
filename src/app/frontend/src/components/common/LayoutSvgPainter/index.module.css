@@ -1,60 +1,62 @@
-.LayoutSvgPainter {
-  block-size: 0;
-  inline-size: 0;
-  min-inline-size: auto;
-  visibility: hidden;
-
-  svg {
+@layer component-common {
+  .LayoutSvgPainter {
+    block-size: 0;
+    inline-size: 0;
     min-inline-size: auto;
-  }
+    visibility: hidden;
 
-  /* stylelint-disable selector-pseudo-class-no-unknown */
-  :global(#svg-painter-gradient-primary-top) {
-    .Stop {
-      &:nth-child(1) {
-        stop-color: var(--color-palette-sky-blue);
-      }
+    svg {
+      min-inline-size: auto;
+    }
 
-      &:nth-child(2) {
-        stop-color: var(--color-palette-heliotrope);
+    /* stylelint-disable selector-pseudo-class-no-unknown */
+    :global(#svg-painter-gradient-primary-top) {
+      .Stop {
+        &:nth-child(1) {
+          stop-color: var(--color-palette-sky-blue);
+        }
+
+        &:nth-child(2) {
+          stop-color: var(--color-palette-heliotrope);
+        }
       }
     }
-  }
 
-  :global(#svg-painter-gradient-primary-right) {
-    .Stop {
-      &:nth-child(1) {
-        stop-color: var(--color-palette-heliotrope);
-      }
+    :global(#svg-painter-gradient-primary-right) {
+      .Stop {
+        &:nth-child(1) {
+          stop-color: var(--color-palette-heliotrope);
+        }
 
-      &:nth-child(2) {
-        stop-color: var(--color-palette-sky-blue);
-      }
-    }
-  }
-
-  :global(#svg-painter-gradient-primary-bottom) {
-    .Stop {
-      &:nth-child(1) {
-        stop-color: var(--color-palette-heliotrope);
-      }
-
-      &:nth-child(2) {
-        stop-color: var(--color-palette-sky-blue);
+        &:nth-child(2) {
+          stop-color: var(--color-palette-sky-blue);
+        }
       }
     }
-  }
 
-  :global(#svg-painter-gradient-primary-left) {
-    .Stop {
-      &:nth-child(1) {
-        stop-color: var(--color-palette-sky-blue);
-      }
+    :global(#svg-painter-gradient-primary-bottom) {
+      .Stop {
+        &:nth-child(1) {
+          stop-color: var(--color-palette-heliotrope);
+        }
 
-      &:nth-child(2) {
-        stop-color: var(--color-palette-heliotrope);
+        &:nth-child(2) {
+          stop-color: var(--color-palette-sky-blue);
+        }
       }
     }
+
+    :global(#svg-painter-gradient-primary-left) {
+      .Stop {
+        &:nth-child(1) {
+          stop-color: var(--color-palette-sky-blue);
+        }
+
+        &:nth-child(2) {
+          stop-color: var(--color-palette-heliotrope);
+        }
+      }
+    }
+    /* stylelint-enable */
   }
-  /* stylelint-enable */
 }

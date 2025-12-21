@@ -1,10 +1,12 @@
-.ArticleFooterLink {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-block-start: 80px;
-}
+@layer component-ui-low {
+  .ArticleFooterLink {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-block-start: 80px;
+  }
 
-.ArticleFooterLink__button:not(:root) {
-  max-inline-size: 320px;
+  .ArticleFooterLink__button {
+    max-inline-size: 320px;
+  }
 }

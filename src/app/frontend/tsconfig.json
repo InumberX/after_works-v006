@@ -21,10 +21,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./src/*"],
-      "@splidejs/react-splide": [
-        "./node_modules/@splidejs/react-splide/dist/types/index"
-      ]
+      "~/*": ["./src/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/types/**"]
   },

@@ -13,16 +13,15 @@ import { useScopedI18n } from '@/locales/client'
 
 export const Lead = () => {
   const scopedT = useScopedI18n('home.lead')
-  const animelmLeadImage = useAnimelm<AnimelmElement>()
-  const animelmLeadMessage = useAnimelm<AnimelmElement>()
+  const { targetRef: leadImageTargetRef } = useAnimelm<AnimelmElement>()
+  const { targetRef: leadMessageTargetRef } = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={styles.Lead} tag='div'>
       <div className={styles.Lead__wrapper}>
         <figure
           className={clsx(styles.LeadImage, 'AnimelmBlurIn')}
-          // eslint-disable-next-line react-hooks/refs
-          ref={animelmLeadImage.targetRef}
+          ref={leadImageTargetRef}
         >
           <Image
             src={`${STATIC_IMAGE_DIR}/img-top-lead.webp?${CACHE_BUSTER}`}
@@ -44,8 +43,7 @@ export const Lead = () => {
                   dangerouslySetInnerHTML={{
                     __html: scopedT('message'),
                   }}
-                  // eslint-disable-next-line react-hooks/refs
-                  ref={animelmLeadMessage.targetRef}
+                  ref={leadMessageTargetRef}
                 />
               </div>
             </div>

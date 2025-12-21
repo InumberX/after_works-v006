@@ -1,3 +1,5 @@
-.SideColumn__googleAdList {
-  margin-block-start: 40px;
+@layer component-page {
+  .SideColumn__googleAdList {
+    margin-block-start: 40px;
+  }
 }

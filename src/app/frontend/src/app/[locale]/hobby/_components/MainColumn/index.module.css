@@ -1,3 +1,5 @@
-.MainColumn__pagination {
-  margin-block-start: 40px;
+@layer component-page {
+  .MainColumn__pagination {
+    margin-block-start: 40px;
+  }
 }

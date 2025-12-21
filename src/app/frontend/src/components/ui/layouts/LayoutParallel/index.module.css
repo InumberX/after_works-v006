@@ -1,23 +1,25 @@
-.LayoutParallel__container {
-  @mixin getMediaQueryLg {
-    display: flex;
+@layer component-ui-low {
+  .LayoutParallel__container {
+    @mixin getMediaQueryLg {
+      display: flex;
+    }
   }
-}
 
-.LayoutParallel__main {
-  @mixin getMediaQueryLg {
-    flex-grow: 1;
-    min-inline-size: 1px;
+  .LayoutParallel__main {
+    @mixin getMediaQueryLg {
+      flex-grow: 1;
+      min-inline-size: 1px;
+    }
   }
-}
 
-.LayoutParallel__side {
-  margin-block-start: 80px;
+  .LayoutParallel__side {
+    margin-block-start: 80px;
 
-  @mixin getMediaQueryLg {
-    flex-shrink: 0;
-    inline-size: 300px;
-    margin-block-start: 0;
-    margin-inline-start: 40px;
+    @mixin getMediaQueryLg {
+      flex-shrink: 0;
+      inline-size: 300px;
+      margin-block-start: 0;
+      margin-inline-start: 40px;
+    }
   }
 }

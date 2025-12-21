@@ -1,17 +1,19 @@
-.BaseArticle {
-  backdrop-filter: blur(20px);
-  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+@layer component-ui-low {
+  .BaseArticle {
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
 
-  @mixin getClampPx border-radius, 24, 40;
-  @mixin getClampPx padding-block-start, 24, 40;
-  @mixin getClampPx padding-block-end, 40, 80;
-  @mixin getClampPx padding-inline, 24, 40;
-}
+    @mixin getClampPx border-radius, 24, 40;
+    @mixin getClampPx padding-block-start, 24, 40;
+    @mixin getClampPx padding-block-end, 40, 80;
+    @mixin getClampPx padding-inline, 24, 40;
+  }
 
-.BaseArticle__body {
-  margin-block-start: 40px;
-}
+  .BaseArticle__body {
+    margin-block-start: 40px;
+  }
 
-.BaseArticle__footer {
-  margin-block-start: 40px;
+  .BaseArticle__footer {
+    margin-block-start: 40px;
+  }
 }

@@ -1,16 +1,16 @@
-.MessageText__text {
-  text-align: center;
-}
+@layer component-page {
+  .MessageText__text {
+    text-align: center;
+  }
 
-.MessageLink {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-block-start: 24px;
-}
+  .MessageLink {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-block-start: 24px;
+  }
 
-.MessageLink__button {
-  &:not(:root) {
+  .MessageLink__button {
     max-inline-size: 320px;
   }
 }

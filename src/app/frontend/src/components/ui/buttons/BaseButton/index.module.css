@@ -1,12 +1,10 @@
-.BaseButton.BaseButton--rightArrow {
-  &:not(:root) {
+@layer component-ui-low {
+  .BaseButton.BaseButton--rightArrow {
     padding-block: 12px;
     padding-inline: 48px;
   }
-}
 
-.BaseButton {
-  &:not(:root) {
+  .BaseButton {
     align-items: center;
     background: linear-gradient(90deg, var(--color-gradation-primary));
     block-size: 100%;
@@ -41,11 +39,11 @@
       }
     }
   }
-}
 
-.BaseButton__iconArrowRight {
-  inset-block-start: 50%;
-  inset-inline-end: 24px;
-  margin-block-start: -12px;
-  position: absolute;
+  .BaseButton__iconArrowRight {
+    inset-block-start: 50%;
+    inset-inline-end: 24px;
+    margin-block-start: -12px;
+    position: absolute;
+  }
 }
