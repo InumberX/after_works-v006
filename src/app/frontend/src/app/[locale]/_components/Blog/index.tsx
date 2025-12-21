@@ -20,8 +20,8 @@ type Props = {
 
 export const Blog = ({ articleInfos }: Props) => {
   const scopedT = useScopedI18n('home.blog')
-  const animelmSlider = useAnimelm<AnimelmElement>()
-  const animelmButton = useAnimelm<AnimelmElement>()
+  const { targetRef: sliderTargetRef } = useAnimelm<AnimelmElement>()
+  const { targetRef: buttonTargetRef } = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={styles.Blog}>
@@ -38,8 +38,7 @@ export const Blog = ({ articleInfos }: Props) => {
         <div className={styles.BlogSlider}>
           <div
             className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
-            // eslint-disable-next-line react-hooks/refs
-            ref={animelmSlider.targetRef}
+            ref={sliderTargetRef}
           >
             <ArticleSlider
               className={clsx(styles.BlogSlider__slider)}
@@ -52,8 +51,7 @@ export const Blog = ({ articleInfos }: Props) => {
           <LayoutInner>
             <div
               className={clsx(styles.BlogButton__container, 'AnimelmBlurIn')}
-              // eslint-disable-next-line react-hooks/refs
-              ref={animelmButton.targetRef}
+              ref={buttonTargetRef}
             >
               <BaseButton
                 className={styles.BlogButton__button}
