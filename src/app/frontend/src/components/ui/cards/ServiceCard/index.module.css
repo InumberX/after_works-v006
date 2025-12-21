@@ -1,53 +1,53 @@
-.ServiceCard {
-  block-size: 100%;
-  position: relative;
-}
+@layer component-ui-low {
+  .ServiceCard {
+    block-size: 100%;
+    position: relative;
+  }
 
-.ServiceCard__container {
-  backdrop-filter: blur(20px);
-  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
-  block-size: 100%;
-  display: flex;
-  flex-direction: column;
+  .ServiceCard__container {
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
 
-  @mixin getClampPx border-radius, 16, 40;
-  @mixin getClampPx padding-block, 24, 40;
-  @mixin getClampPx padding-inline, 24, 40;
-}
+    @mixin getClampPx border-radius, 16, 40;
+    @mixin getClampPx padding-block, 24, 40;
+    @mixin getClampPx padding-inline, 24, 40;
+  }
 
-.ServiceCardIcon {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-block-end: 24px;
-}
+  .ServiceCardIcon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-block-end: 24px;
+  }
 
-.ServiceCardTitle__text {
-  color: var(--color-palette-white);
-  font-weight: var(--font-weight-bold);
-  text-align: center;
+  .ServiceCardTitle__text {
+    color: var(--color-palette-white);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
 
-  @mixin getClampRem font-size, 20, 24;
-}
+    @mixin getClampRem font-size, 20, 24;
+  }
 
-.ServiceCardDescription {
-  margin-block-start: 16px;
-}
+  .ServiceCardDescription {
+    margin-block-start: 16px;
+  }
 
-.ServiceCardDescription__text {
-  @mixin getClampRem font-size, 14, 16;
-}
+  .ServiceCardDescription__text {
+    @mixin getClampRem font-size, 14, 16;
+  }
 
-.ServiceCardButton {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-block-start: auto;
-  padding-block-start: 24px;
-}
+  .ServiceCardButton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-block-start: auto;
+    padding-block-start: 24px;
+  }
 
-.ServiceCardButton__button {
-  &:not(:root) {
+  .ServiceCardButton__button {
     max-inline-size: 320px;
   }
 }

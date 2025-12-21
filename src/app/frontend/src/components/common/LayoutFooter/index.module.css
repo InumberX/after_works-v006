@@ -1,52 +1,50 @@
-.LayoutFooter {
-  margin-block-start: auto;
-}
-
-.LayoutFooterBackToTop {
-  inset-block-end: 16px;
-  inset-inline-end: var(--layout-inner-padding-xs);
-  position: fixed;
-  z-index: var(--z-index-footer);
-
-  @mixin getMediaQuerySm {
-    inset-inline-end: var(--layout-inner-padding-sm);
+@layer component-common {
+  .LayoutFooter {
+    margin-block-start: auto;
   }
 
-  @mixin getMediaQueryMd {
-    inset-inline-end: var(--layout-inner-padding-md);
-  }
-}
+  .LayoutFooterBackToTop {
+    inset-block-end: 16px;
+    inset-inline-end: var(--layout-inner-padding-xs);
+    position: fixed;
+    z-index: var(--z-index-footer);
 
-.LayoutFooterBackToTop__icon {
-  &:not(:root) {
+    @mixin getMediaQuerySm {
+      inset-inline-end: var(--layout-inner-padding-sm);
+    }
+
+    @mixin getMediaQueryMd {
+      inset-inline-end: var(--layout-inner-padding-md);
+    }
+  }
+
+  .LayoutFooterBackToTop__icon {
     margin-block-end: 4px;
   }
-}
 
-.LayoutFooter__contents {
-  backdrop-filter: blur(20px);
-  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
-  padding-inline: 0;
+  .LayoutFooter__contents {
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    padding-inline: 0;
 
-  @mixin getClampPx padding-block, 40, 80;
-}
-
-.LayoutFooterNavigation__items {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
-  row-gap: 24px;
-
-  @mixin getClampPx column-gap, 24, 40;
-
-  @mixin getMediaQuerySm {
-    display: flex;
-    flex-wrap: wrap;
+    @mixin getClampPx padding-block, 40, 80;
   }
-}
 
-.LayoutFooterNavigation__link {
-  &:not(:root) {
+  .LayoutFooterNavigation__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    row-gap: 24px;
+
+    @mixin getClampPx column-gap, 24, 40;
+
+    @mixin getMediaQuerySm {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .LayoutFooterNavigation__link {
     align-items: flex-start;
     background-color: transparent;
     border: none;
@@ -71,10 +69,8 @@
       }
     }
   }
-}
 
-.LayoutFooterNavigation__icon {
-  &:not(:root) {
+  .LayoutFooterNavigation__icon {
     flex-shrink: 0;
     margin-inline-end: 8px;
     padding-block-start: 4px;
@@ -84,25 +80,23 @@
       inline-size: 14px;
     }
   }
-}
 
-.LayoutFooterSns {
-  overflow: hidden;
+  .LayoutFooterSns {
+    overflow: hidden;
 
-  @mixin getClampPx margin-block-start, 64, 80;
-}
+    @mixin getClampPx margin-block-start, 64, 80;
+  }
 
-.LayoutFooterSns__items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  row-gap: 24px;
+  .LayoutFooterSns__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 24px;
 
-  @mixin getClampPx column-gap, 24, 40;
-}
+    @mixin getClampPx column-gap, 24, 40;
+  }
 
-.LayoutFooterSns__link {
-  &:not(:root) {
+  .LayoutFooterSns__link {
     background-color: transparent;
     border: none;
     border-radius: 0;
@@ -115,25 +109,25 @@
       }
     }
   }
-}
 
-.LayoutFooter__copy {
-  backdrop-filter: blur(20px);
-  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 80%);
-  padding-block: 24px;
-  padding-inline: 24px;
-}
+  .LayoutFooter__copy {
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 80%);
+    padding-block: 24px;
+    padding-inline: 24px;
+  }
 
-.LayoutFooterCopy__paragraph {
-  text-align: center;
-}
+  .LayoutFooterCopy__paragraph {
+    text-align: center;
+  }
 
-.LayoutFooterCopy__text {
-  background: linear-gradient(90deg, var(--color-gradation-primary));
-  background-clip: text;
-  color: var(--color-palette-sky-blue);
-  display: inline-block;
-  -webkit-text-fill-color: transparent;
+  .LayoutFooterCopy__text {
+    background: linear-gradient(90deg, var(--color-gradation-primary));
+    background-clip: text;
+    color: var(--color-palette-sky-blue);
+    display: inline-block;
+    -webkit-text-fill-color: transparent;
 
-  @mixin getFontSize 12;
+    @mixin getFontSize 12;
+  }
 }

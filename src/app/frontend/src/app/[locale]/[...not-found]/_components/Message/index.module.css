@@ -1,26 +1,26 @@
-.Message__contents {
-  backdrop-filter: blur(20px);
-  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+@layer component-page {
+  .Message__contents {
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
 
-  @mixin getClampPx border-radius, 24, 40;
-  @mixin getClampPx padding-block, 24, 40;
-  @mixin getClampPx padding-inline, 24, 40;
-}
+    @mixin getClampPx border-radius, 24, 40;
+    @mixin getClampPx padding-block, 24, 40;
+    @mixin getClampPx padding-inline, 24, 40;
+  }
 
-.Message__text {
-  text-align: center;
-}
+  .Message__text {
+    text-align: center;
+  }
 
-.MessageButton {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  .MessageButton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
-  @mixin getClampPx margin-block-start, 24, 40;
-}
+    @mixin getClampPx margin-block-start, 24, 40;
+  }
 
-.MessageButton__button {
-  &:not(:root) {
+  .MessageButton__button {
     inline-size: 100%;
     max-inline-size: 320px;
   }

@@ -9,7 +9,6 @@ import {
   ArticleCardProps,
   ArticleCard,
 } from '@/components/ui/cards/ArticleCard'
-import '@splidejs/splide/css'
 import { BREAKPOINTS } from '@/providers/BreakpointsProvider'
 
 type Props = {
