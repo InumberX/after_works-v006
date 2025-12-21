@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
+
+import { getBlogsInfos } from '@/apis/fetch/blogs'
+import { getHobbyInfos } from '@/apis/fetch/hobby'
+import { getWorksInfos } from '@/apis/fetch/works'
 import { LASTMOD } from '@/config/env'
 import { routes } from '@/config/routes'
-import { getBlogsInfos } from '@/apis/fetch/blogs'
-import { getWorksInfos } from '@/apis/fetch/works'
-import { getHobbyInfos } from '@/apis/fetch/hobby'
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const sitemapInfos: MetadataRoute.Sitemap = [

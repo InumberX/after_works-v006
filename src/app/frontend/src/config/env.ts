@@ -16,8 +16,8 @@ export const API_URL =
 export const GOOGLE_ANALYTICS_ID =
   process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || 'G-XVVDZTWTWS'
 
-export const CASH_BUSTER =
-  process.env.NEXT_PUBLIC_CASH_BUSTER || `ver=${new Date().toISOString()}`
+export const CACHE_BUSTER =
+  process.env.NEXT_PUBLIC_CACHE_BUSTER || `ver=${new Date().toISOString()}`
 
 export const LASTMOD =
   process.env.NEXT_PUBLIC_LASTMOD || new Date().toISOString()

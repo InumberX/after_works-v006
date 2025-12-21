@@ -1,7 +1,8 @@
 import styles from './index.module.css'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { getScopedI18n } from '@/locales/server'
 
 export const Message = async () => {

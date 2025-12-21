@@ -32,7 +32,7 @@ const nextConfig = {
     disableStaticImages: true,
   },
   env: {
-    NEXT_PUBLIC_CASH_BUSTER: cashBuster,
+    NEXT_PUBLIC_CACHE_BUSTER: cashBuster,
     NEXT_PUBLIC_LASTMOD: lastmod,
   },
   async rewrites() {

@@ -1,12 +1,13 @@
+import { MainColumn } from './MainColumn'
+import { SideColumn } from './SideColumn'
+
 import { Contact } from '@/components/common/Contact'
+import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
 import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutParallel } from '@/components/ui/layouts/LayoutParallel'
-import { MainColumn } from './MainColumn'
-import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
-import { SideColumn } from './SideColumn'
-import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 

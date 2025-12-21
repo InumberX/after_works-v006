@@ -1,9 +1,11 @@
 'use client'
 
 import clsx from 'clsx'
+
 import styles from './index.module.css'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
+
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 

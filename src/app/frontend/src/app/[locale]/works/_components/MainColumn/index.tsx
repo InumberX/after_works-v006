@@ -1,17 +1,19 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+
 import styles from './index.module.css'
+
+import { getWorksInfos } from '@/apis/fetch/works'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
 import { BasePagination } from '@/components/ui/pagination/BasePagination'
-import { getWorksInfos } from '@/apis/fetch/works'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
+import { useCurrentLocale } from '@/locales/client'
 import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
-import { useCurrentLocale } from '@/locales/client'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]

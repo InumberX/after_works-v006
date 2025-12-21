@@ -1,16 +1,18 @@
 'use client'
 
 import clsx from 'clsx'
+
 import styles from './index.module.css'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
+
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
-import { routes } from '@/config/routes'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { useScopedI18n, useCurrentLocale } from '@/locales/client'
+import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
+import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
+import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
+import { routes } from '@/config/routes'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
+import { useScopedI18n, useCurrentLocale } from '@/locales/client'
 
 export type Props = {
   className?: string
