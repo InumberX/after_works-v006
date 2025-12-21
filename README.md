@@ -163,3 +163,13 @@ docker compose exec frontend npm run stylelint
 ```shell
 docker compose exec frontend npm run stylelint-fix
 ```
+
+## API Documentation
+
+### Creating API Types
+
+API type definitions are generated using [quicktype](https://app.quicktype.io).
+
+1. Copy the JSON response from the Kuroco CMS API
+2. Paste it into quicktype and select TypeScript as the target language
+3. Save the generated types to `src/app/frontend/src/types/apis/fetch/`
