@@ -1,12 +1,10 @@
-.CircleButton.CircleButton--small {
-  &:not(:root) {
+@layer component-ui-low {
+  .CircleButton.CircleButton--small {
     block-size: 48px;
     inline-size: 48px;
   }
-}
 
-.CircleButton.CircleButton--outlined {
-  &:not(:root) {
+  .CircleButton.CircleButton--outlined {
     background: none;
     box-shadow: none;
     padding-block: 1px;
@@ -69,10 +67,8 @@
       z-index: 2;
     }
   }
-}
 
-.CircleButton {
-  &:not(:root) {
+  .CircleButton {
     align-items: center;
     aspect-ratio: 1 / 1;
     background: linear-gradient(90deg, var(--color-gradation-primary));
@@ -98,13 +94,13 @@
       }
     }
   }
-}
 
-.CircleButton__container {
-  align-items: center;
-  block-size: 100%;
-  border-radius: calc(infinity * 1px);
-  display: flex;
-  inline-size: 100%;
-  justify-content: center;
+  .CircleButton__container {
+    align-items: center;
+    block-size: 100%;
+    border-radius: calc(infinity * 1px);
+    display: flex;
+    inline-size: 100%;
+    justify-content: center;
+  }
 }

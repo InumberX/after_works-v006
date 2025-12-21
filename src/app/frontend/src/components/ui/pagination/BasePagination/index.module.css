@@ -1,104 +1,106 @@
-.BasePagination__items {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
+@layer component-ui-low {
+  .BasePagination__items {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 
-.BasePagination__item {
-  padding-block: 0;
+  .BasePagination__item {
+    padding-block: 0;
 
-  @mixin getClampPx padding-inline, 4, 8;
-}
+    @mixin getClampPx padding-inline, 4, 8;
+  }
 
-.BasePaginationCurrent {
-  align-items: center;
-  aspect-ratio: 1 / 1;
-  block-size: auto;
-  border-radius: calc(infinity * 1px);
-  display: flex;
-  font-weight: var(--font-weight-bold);
-  inline-size: 40px;
-  justify-content: center;
-  padding-block: 1px;
-  padding-inline: 1px;
-  position: relative;
-
-  @mixin getFontSize 14;
-
-  &::after {
-    background-clip: border-box;
-    background-image: linear-gradient(90deg, var(--color-gradation-primary));
-    background-origin: border-box;
-    block-size: 100%;
-    border: 1px solid transparent;
+  .BasePaginationCurrent {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    block-size: auto;
     border-radius: calc(infinity * 1px);
-    content: '';
-    display: block;
-    inline-size: 100%;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-    /* stylelint-disable declaration-block-no-duplicate-properties */
-    mask-clip: padding-box, border-box;
-    mask-clip: padding-box, border-box;
-    mask-composite: destination-out;
-    mask-composite: exclude;
-    mask-image:
-      linear-gradient(var(--color-palette-white) 0 0),
-      linear-gradient(var(--color-palette-white) 0 0);
-    mask-image:
-      linear-gradient(var(--color-palette-white) 0 0),
-      linear-gradient(var(--color-palette-white) 0 0);
-    /* stylelint-enable */
-    position: absolute;
-    z-index: 1;
-  }
-}
+    display: flex;
+    font-weight: var(--font-weight-bold);
+    inline-size: 40px;
+    justify-content: center;
+    padding-block: 1px;
+    padding-inline: 1px;
+    position: relative;
 
-.BasePaginationCurrent__container {
-  align-items: center;
-  backdrop-filter: blur(20px);
-  background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
-  block-size: 100%;
-  border-radius: calc(infinity * 1px);
-  display: flex;
-  inline-size: 100%;
-  justify-content: center;
-  overflow: hidden;
-  padding-block: 4px;
-  padding-inline: 4px;
-  position: relative;
-  z-index: 2;
-}
+    @mixin getFontSize 14;
 
-.BasePagination__separator {
-  align-items: center;
-  display: block;
-  justify-content: center;
-  text-align: center;
-
-  @mixin getFontSize 14;
-
-  &::before {
-    content: '…';
-  }
-}
-
-.BasePagination__prev {
-  .BasePagination__icon:not(:root) {
-    margin-inline-start: -2px;
-
-    &::before {
-      inline-size: 16px;
+    &::after {
+      background-clip: border-box;
+      background-image: linear-gradient(90deg, var(--color-gradation-primary));
+      background-origin: border-box;
+      block-size: 100%;
+      border: 1px solid transparent;
+      border-radius: calc(infinity * 1px);
+      content: '';
+      display: block;
+      inline-size: 100%;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      /* stylelint-disable declaration-block-no-duplicate-properties */
+      mask-clip: padding-box, border-box;
+      mask-clip: padding-box, border-box;
+      mask-composite: destination-out;
+      mask-composite: exclude;
+      mask-image:
+        linear-gradient(var(--color-palette-white) 0 0),
+        linear-gradient(var(--color-palette-white) 0 0);
+      mask-image:
+        linear-gradient(var(--color-palette-white) 0 0),
+        linear-gradient(var(--color-palette-white) 0 0);
+      /* stylelint-enable */
+      position: absolute;
+      z-index: 1;
     }
   }
-}
 
-.BasePagination__next {
-  .BasePagination__icon:not(:root) {
-    margin-inline-end: -2px;
+  .BasePaginationCurrent__container {
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    block-size: 100%;
+    border-radius: calc(infinity * 1px);
+    display: flex;
+    inline-size: 100%;
+    justify-content: center;
+    overflow: hidden;
+    padding-block: 4px;
+    padding-inline: 4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .BasePagination__separator {
+    align-items: center;
+    display: block;
+    justify-content: center;
+    text-align: center;
+
+    @mixin getFontSize 14;
 
     &::before {
-      inline-size: 16px;
+      content: '…';
+    }
+  }
+
+  .BasePagination__prev {
+    .BasePagination__icon {
+      margin-inline-start: -2px;
+
+      &::before {
+        inline-size: 16px;
+      }
+    }
+  }
+
+  .BasePagination__next {
+    .BasePagination__icon {
+      margin-inline-end: -2px;
+
+      &::before {
+        inline-size: 16px;
+      }
     }
   }
 }

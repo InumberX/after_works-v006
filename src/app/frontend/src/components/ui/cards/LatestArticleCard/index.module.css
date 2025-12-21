@@ -1,5 +1,5 @@
-.LatestArticleCard {
-  &:not(:root) {
+@layer component-ui-low {
+  .LatestArticleCard {
     border: none;
     border-radius: 0;
     color: var(--color-palette-white);
@@ -21,63 +21,61 @@
       }
     }
   }
-}
 
-.LatestArticleCard__container {
-  align-items: flex-start;
-  display: flex;
-}
+  .LatestArticleCard__container {
+    align-items: flex-start;
+    display: flex;
+  }
 
-.LatestArticleCardMainVisual {
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  display: block;
-  flex-shrink: 0;
-  inline-size: 96px;
-  margin-inline-end: 16px;
-  overflow: hidden;
-  position: relative;
-  transition: 0.3s border-radius;
-}
+  .LatestArticleCardMainVisual {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    display: block;
+    flex-shrink: 0;
+    inline-size: 96px;
+    margin-inline-end: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.3s border-radius;
+  }
 
-.LatestArticleCardMainVisual__image {
-  &:not(:root) {
+  .LatestArticleCardMainVisual__image {
     block-size: 100%;
     inline-size: 100%;
     object-fit: cover;
     object-position: center;
   }
-}
 
-.LatestArticleCard__contents {
-  flex-grow: 1;
-}
+  .LatestArticleCard__contents {
+    flex-grow: 1;
+  }
 
-.LatestArticleCardDate {
-  align-items: center;
-  color: var(--color-palette-white);
-  display: flex;
-  flex-wrap: wrap;
-  margin-block-end: 8px;
+  .LatestArticleCardDate {
+    align-items: center;
+    color: var(--color-palette-white);
+    display: flex;
+    flex-wrap: wrap;
+    margin-block-end: 8px;
 
-  @mixin getFontSize 12;
-}
+    @mixin getFontSize 12;
+  }
 
-.LatestArticleCardDate__separator {
-  margin-block: 0;
-  margin-inline: 4px;
-}
+  .LatestArticleCardDate__separator {
+    margin-block: 0;
+    margin-inline: 4px;
+  }
 
-.LatestArticleCardTitle {
-  display: block;
-}
+  .LatestArticleCardTitle {
+    display: block;
+  }
 
-.LatestArticleCardTitle__text {
-  @mixin getFontSize 14;
+  .LatestArticleCardTitle__text {
+    @mixin getFontSize 14;
 
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  font-weight: var(--font-weight-medium);
-  -webkit-line-clamp: 3;
-  overflow: hidden;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-weight: var(--font-weight-medium);
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
 }

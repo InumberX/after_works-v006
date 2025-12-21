@@ -1,9 +1,11 @@
-.ContentsServiceCardList {
-  margin-block-start: 40px;
-}
+@layer component-page {
+  .ContentsServiceCardList {
+    margin-block-start: 40px;
+  }
 
-.ContentsServiceCardList__icon {
-  &::before {
-    background: linear-gradient(90deg, var(--color-gradation-primary));
+  .ContentsServiceCardList__icon {
+    &::before {
+      background: linear-gradient(90deg, var(--color-gradation-primary));
+    }
   }
 }

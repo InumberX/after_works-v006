@@ -1,9 +1,9 @@
-.ArticleCard {
-  block-size: 100%;
-}
+@layer component-ui-low {
+  .ArticleCard {
+    block-size: 100%;
+  }
 
-.ArticleCard__button {
-  &:not(:root) {
+  .ArticleCard__button {
     backdrop-filter: blur(20px);
     background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
     block-size: 100%;
@@ -27,62 +27,60 @@
       }
     }
   }
-}
 
-.ArticleCard__container {
-  block-size: 100%;
-  display: flex;
-  flex-direction: column;
-}
+  .ArticleCard__container {
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-.ArticleCardMainVisual {
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  display: block;
-  margin-block-end: 16px;
-  overflow: hidden;
-  position: relative;
-}
+  .ArticleCardMainVisual {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    display: block;
+    margin-block-end: 16px;
+    overflow: hidden;
+    position: relative;
+  }
 
-.ArticleCardMainVisual__image {
-  &:not(:root) {
+  .ArticleCardMainVisual__image {
     block-size: 100%;
     inline-size: 100%;
     object-fit: cover;
     object-position: center;
   }
-}
 
-.ArticleCardDate {
-  align-items: center;
-  color: var(--color-palette-white);
-  display: flex;
-  flex-wrap: wrap;
-  margin-block-end: 8px;
+  .ArticleCardDate {
+    align-items: center;
+    color: var(--color-palette-white);
+    display: flex;
+    flex-wrap: wrap;
+    margin-block-end: 8px;
 
-  @mixin getFontSize 14;
-}
+    @mixin getFontSize 14;
+  }
 
-.ArticleCardDate__separator {
-  margin-block: 0;
-  margin-inline: 4px;
-}
+  .ArticleCardDate__separator {
+    margin-block: 0;
+    margin-inline: 4px;
+  }
 
-.ArticleCardTitle {
-  display: block;
-}
+  .ArticleCardTitle {
+    display: block;
+  }
 
-.ArticleCardTitle__text {
-  @mixin getFontSize 16;
+  .ArticleCardTitle__text {
+    @mixin getFontSize 16;
 
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  font-weight: var(--font-weight-medium);
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-}
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-weight: var(--font-weight-medium);
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
 
-.ArticleCardTag {
-  margin-block-start: auto;
-  padding-block-start: 16px;
+  .ArticleCardTag {
+    margin-block-start: auto;
+    padding-block-start: 16px;
+  }
 }

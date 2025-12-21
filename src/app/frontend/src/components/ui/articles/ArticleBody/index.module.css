@@ -1,171 +1,173 @@
-.ArticleBody__body {
-  > * {
-    &:first-child {
-      margin-block-start: 0;
-    }
-  }
-
-  h1,
-  h2 {
-    border-block-start: 4px solid var(--color-palette-emperor);
-    font-weight: var(--font-weight-bold);
-    margin-block-start: 80px;
-    padding-block: 16px 0;
-    padding-inline: 0;
-    position: relative;
-
-    @mixin getFontSize 22;
-
-    &::before {
-      background: linear-gradient(90deg, var(--color-gradation-primary));
-      block-size: 4px;
-      content: '';
-      display: block;
-      inline-size: 64px;
-      inset-block-start: -4px;
-      inset-inline-start: 0;
-      position: absolute;
-      z-index: 1;
-    }
-  }
-
-  h3 {
-    font-weight: var(--font-weight-bold);
-    margin-block-start: 40px;
-
-    @mixin getFontSize 20;
-  }
-
-  h4 {
-    font-weight: var(--font-weight-bold);
-    margin-block-start: 32px;
-
-    @mixin getFontSize 18;
-  }
-
-  h5 {
-    font-weight: var(--font-weight-bold);
-    margin-block-start: 24px;
-
-    @mixin getFontSize 16;
-  }
-
-  h6 {
-    font-weight: var(--font-weight-bold);
-    margin-block-start: 16px;
-
-    @mixin getFontSize 16;
-  }
-
-  p {
-    margin-block-start: 16px;
-  }
-
-  i {
-    font-style: italic;
-    font-weight: var(--font-weight-medium);
-  }
-
-  strong {
-    font-weight: var(--font-weight-bold);
-  }
-
-  u {
-    text-decoration: underline;
-  }
-
-  ul {
-    list-style: disc;
-    margin-block-start: 16px;
-    padding-inline-start: 24px;
-
-    li {
-      &:first-of-type {
+@layer component-ui-low {
+  .ArticleBody__body {
+    > * {
+      &:first-child {
         margin-block-start: 0;
       }
     }
-  }
 
-  ol {
-    list-style: decimal;
-    margin-block-start: 16px;
-    padding-inline-start: 24px;
+    h1,
+    h2 {
+      border-block-start: 4px solid var(--color-palette-emperor);
+      font-weight: var(--font-weight-bold);
+      margin-block-start: 80px;
+      padding-block: 16px 0;
+      padding-inline: 0;
+      position: relative;
 
-    li {
-      &:first-of-type {
-        margin-block-start: 0;
+      @mixin getFontSize 22;
+
+      &::before {
+        background: linear-gradient(90deg, var(--color-gradation-primary));
+        block-size: 4px;
+        content: '';
+        display: block;
+        inline-size: 64px;
+        inset-block-start: -4px;
+        inset-inline-start: 0;
+        position: absolute;
+        z-index: 1;
       }
     }
-  }
 
-  li {
-    margin-block-start: 8px;
-  }
+    h3 {
+      font-weight: var(--font-weight-bold);
+      margin-block-start: 40px;
 
-  pre {
-    background-color: var(--color-palette-emperor);
-    border: 1px solid var(--color-palette-silver-chalice);
-    display: block;
-    font-weight: var(--font-weight-medium);
-    margin-block: 16px 0;
-    margin-inline: 0;
-    padding-block: 16px;
-    padding-inline: 16px;
-
-    @mixin getFontSize 14;
-
-    code {
-      margin-block-start: 0;
-
-      @mixin getFontSize 14;
+      @mixin getFontSize 20;
     }
-  }
 
-  blockquote {
-    background-color: var(--color-palette-emperor);
-    border-inline-start: 8px solid var(--color-palette-silver-chalice);
-    display: block;
-    font-weight: var(--font-weight-medium);
-    margin-block: 16px 0;
-    margin-inline: 0;
-    padding-block: 16px;
-    padding-inline: 16px;
+    h4 {
+      font-weight: var(--font-weight-bold);
+      margin-block-start: 32px;
 
-    @mixin getFontSize 14;
+      @mixin getFontSize 18;
+    }
+
+    h5 {
+      font-weight: var(--font-weight-bold);
+      margin-block-start: 24px;
+
+      @mixin getFontSize 16;
+    }
+
+    h6 {
+      font-weight: var(--font-weight-bold);
+      margin-block-start: 16px;
+
+      @mixin getFontSize 16;
+    }
 
     p {
-      margin-block-start: 0;
+      margin-block-start: 16px;
+    }
+
+    i {
+      font-style: italic;
+      font-weight: var(--font-weight-medium);
+    }
+
+    strong {
+      font-weight: var(--font-weight-bold);
+    }
+
+    u {
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: disc;
+      margin-block-start: 16px;
+      padding-inline-start: 24px;
+
+      li {
+        &:first-of-type {
+          margin-block-start: 0;
+        }
+      }
+    }
+
+    ol {
+      list-style: decimal;
+      margin-block-start: 16px;
+      padding-inline-start: 24px;
+
+      li {
+        &:first-of-type {
+          margin-block-start: 0;
+        }
+      }
+    }
+
+    li {
+      margin-block-start: 8px;
+    }
+
+    pre {
+      background-color: var(--color-palette-emperor);
+      border: 1px solid var(--color-palette-silver-chalice);
+      display: block;
+      font-weight: var(--font-weight-medium);
+      margin-block: 16px 0;
+      margin-inline: 0;
+      padding-block: 16px;
+      padding-inline: 16px;
 
       @mixin getFontSize 14;
+
+      code {
+        margin-block-start: 0;
+
+        @mixin getFontSize 14;
+      }
     }
-  }
 
-  img {
-    block-size: auto;
-    margin-block-start: 16px;
-  }
+    blockquote {
+      background-color: var(--color-palette-emperor);
+      border-inline-start: 8px solid var(--color-palette-silver-chalice);
+      display: block;
+      font-weight: var(--font-weight-medium);
+      margin-block: 16px 0;
+      margin-inline: 0;
+      padding-block: 16px;
+      padding-inline: 16px;
 
-  table {
-    background-color: var(--color-palette-emperor);
-    border: 1px solidvar(--color-palette-silver-chalice);
-    inline-size: 100%;
-    margin-block-start: 16px;
+      @mixin getFontSize 14;
 
-    tbody {
-      > tr {
-        border-block-end: 1px solid var(--color-palette-silver-chalice);
+      p {
+        margin-block-start: 0;
 
-        &:last-of-type {
-          border-block-end: none;
-        }
+        @mixin getFontSize 14;
+      }
+    }
 
-        > td {
-          border-inline-end: 1px solid var(--color-palette-silver-chalice);
-          padding-block: 4px;
-          padding-inline: 4px;
+    img {
+      block-size: auto;
+      margin-block-start: 16px;
+    }
+
+    table {
+      background-color: var(--color-palette-emperor);
+      border: 1px solid var(--color-palette-silver-chalice);
+      inline-size: 100%;
+      margin-block-start: 16px;
+
+      tbody {
+        > tr {
+          border-block-end: 1px solid var(--color-palette-silver-chalice);
 
           &:last-of-type {
-            border-inline-end: none;
+            border-block-end: none;
+          }
+
+          > td {
+            border-inline-end: 1px solid var(--color-palette-silver-chalice);
+            padding-block: 4px;
+            padding-inline: 4px;
+
+            &:last-of-type {
+              border-inline-end: none;
+            }
           }
         }
       }

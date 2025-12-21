@@ -1,7 +1,9 @@
-.ScrollTarget {
-  scroll-margin-top: calc(var(--layout-header-height) + 24px);
+@layer util {
+  .ScrollTarget {
+    scroll-margin-top: calc(var(--layout-header-height) + 24px);
 
-  @mixin getMediaQuerySm {
-    scroll-margin-top: calc(var(--layout-header-height-large) + 24px);
+    @mixin getMediaQuerySm {
+      scroll-margin-top: calc(var(--layout-header-height-large) + 24px);
+    }
   }
 }

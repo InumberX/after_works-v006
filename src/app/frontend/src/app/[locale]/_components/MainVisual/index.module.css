@@ -1,44 +1,44 @@
-.MainVisual {
-  overflow: hidden;
-  position: relative;
-}
+@layer component-page {
+  .MainVisual {
+    overflow: hidden;
+    position: relative;
+  }
 
-.MainVisualBackground {
-  block-size: 100%;
-  inline-size: 100%;
-  inset-block-start: -40px;
-  inset-inline-start: 0;
-  position: absolute;
-  z-index: 1;
-}
+  .MainVisualBackground {
+    block-size: 100%;
+    inline-size: 100%;
+    inset-block-start: -40px;
+    inset-inline-start: 0;
+    position: absolute;
+    z-index: 1;
+  }
 
-.MainVisualBackground__image {
-  &:not(:root) {
+  .MainVisualBackground__image {
     object-fit: cover;
     object-position: bottom center;
   }
-}
 
-.MainVisual__wrapper {
-  padding-block-start: 64px;
-  position: relative;
-  z-index: 2;
-}
+  .MainVisual__wrapper {
+    padding-block-start: 64px;
+    position: relative;
+    z-index: 2;
+  }
 
-.MainVisual__container {
-  align-items: center;
-  block-size: calc(100vb - 64px);
-  block-size: calc(100svb - 64px);
-  display: flex;
-  justify-content: center;
-  max-block-size: 720px;
-  min-block-size: 400px;
-  padding-block: 80px calc(80px + 64px);
-  padding-inline: 0;
-}
+  .MainVisual__container {
+    align-items: center;
+    block-size: calc(100vb - 64px);
+    block-size: calc(100svb - 64px);
+    display: flex;
+    justify-content: center;
+    max-block-size: 720px;
+    min-block-size: 400px;
+    padding-block: 80px calc(80px + 64px);
+    padding-inline: 0;
+  }
 
-.MainVisualTitle__text {
-  text-align: center;
+  .MainVisualTitle__text {
+    text-align: center;
 
-  @mixin getClampRem font-size, 40, 64;
+    @mixin getClampRem font-size, 40, 64;
+  }
 }
