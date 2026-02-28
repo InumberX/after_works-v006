@@ -26,7 +26,7 @@
     "@hookform/resolvers": "^5.2.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "framer-motion": "^12.33.0",
+    "framer-motion": "^12.34.3",
     "jotai": "^2.17.1",
     "keen-slider": "^6.8.6",
     "next": "16.1.6",
