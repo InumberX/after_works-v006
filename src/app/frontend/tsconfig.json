@@ -32,7 +32,6 @@
     ".next/types/**/*.ts",
     "build/types/**/*.ts",
     "out/types/**/*.ts",
-    "eslint.config.js",
     "postcss.config.mjs",
     ".next/dev/types/**/*.ts"
   ],
