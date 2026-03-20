@@ -20,12 +20,12 @@ npm run start           # Start production server
 
 ```bash
 npm run typecheck       # Run TypeScript type checking
-npm run lint            # Run ESLint (Next.js linter)
-npm run lint-quiet      # Run ESLint without warnings
+npm run lint            # Run oxlint (Rust-based linter)
+npm run lint-quiet      # Run oxlint without warnings
 npm run stylelint       # Check CSS/SCSS files
 npm run stylelint-fix   # Auto-fix CSS/SCSS issues
-npm run format          # Check code formatting with Prettier
-npm run format-fix      # Auto-format code with Prettier
+npm run format          # Check code formatting with oxfmt
+npm run format-fix      # Auto-format code with oxfmt
 npm run pre-commit      # Run all checks (typecheck, lint, stylelint, format)
 ```
 
@@ -95,10 +95,10 @@ The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
 
 ### Code Style
 
-- ESLint enforces import ordering with `eslint-plugin-import-x`:
-  - Imports must be alphabetized (case-insensitive)
-  - Newlines required between import groups
-- Prettier handles code formatting
+- Oxlint (Rust-based linter) enforces code quality rules for TypeScript, React, and Next.js
+  - Configuration: `.oxlintrc.json`
+- Oxfmt (Rust-based formatter) handles code formatting
+  - Configuration: `.oxfmtrc.json`
 
 ### Content Management
 

@@ -3,8 +3,6 @@
 import clsx from 'clsx'
 import { useKeenSlider } from 'keen-slider/react'
 
-import styles from './index.module.css'
-
 import { CircleButton } from '@/components/ui/buttons/CircleButton'
 import {
   ArticleCardProps,
@@ -13,6 +11,8 @@ import {
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { BREAKPOINTS } from '@/providers/BreakpointsProvider'
+
+import styles from './index.module.css'
 
 type Props = {
   className?: string

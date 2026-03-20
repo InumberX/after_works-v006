@@ -1,9 +1,9 @@
-import styles from './index.module.css'
-
 import {
   BaseArticle,
   BaseArticleInfo,
 } from '@/components/ui/articles/BaseArticle'
+
+import styles from './index.module.css'
 
 type Props = {
   articleInfo: BaseArticleInfo

@@ -1,6 +1,3 @@
-import { MainColumn } from './MainColumn'
-import { SideColumn } from './SideColumn'
-
 import { Contact } from '@/components/common/Contact'
 import { BaseArticleInfo } from '@/components/ui/articles/BaseArticle'
 import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
@@ -10,6 +7,9 @@ import { LayoutParallel } from '@/components/ui/layouts/LayoutParallel'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
+
+import { MainColumn } from './MainColumn'
+import { SideColumn } from './SideColumn'
 
 type Props = {
   latestArticleInfos: LatestArticleCardProps[]

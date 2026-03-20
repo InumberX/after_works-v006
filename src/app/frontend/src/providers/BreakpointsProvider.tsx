@@ -207,7 +207,7 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
     checkBreakPointLg(matchMediaLg)
     checkBreakPointXl(matchMediaXl)
     checkBreakPointXxl(matchMediaXxl)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return <>{children}</>

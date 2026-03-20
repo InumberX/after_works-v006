@@ -4,10 +4,10 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { ReactNode, useMemo } from 'react'
 
-import styles from './index.module.css'
-
 import { EventTypes } from '@/types/event'
 import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
+
+import styles from './index.module.css'
 
 type Props = {
   variant?: 'contained' | 'outlined'

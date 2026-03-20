@@ -1,11 +1,11 @@
+import { Contact } from '@/components/common/Contact'
+import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
+
 import { Blog } from './Blog'
 import { Contents } from './Contents'
 import { Lead } from './Lead'
 import { MainVisual } from './MainVisual'
 import { Service } from './Service'
-
-import { Contact } from '@/components/common/Contact'
-import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 
 type Props = {
   latestArticleInfos: ArticleCardProps[]

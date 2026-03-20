@@ -2,8 +2,6 @@
 
 import clsx from 'clsx'
 
-import styles from './index.module.css'
-
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
@@ -13,6 +11,8 @@ import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
 import { routes } from '@/config/routes'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 import { useScopedI18n, useCurrentLocale } from '@/locales/client'
+
+import styles from './index.module.css'
 
 export type Props = {
   className?: string

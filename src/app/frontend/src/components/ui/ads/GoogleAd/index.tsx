@@ -24,10 +24,10 @@ export const GoogleAd = ({
 
   useEffect(() => {
     try {
-      /* eslint-disable */
+      /* oxlint-disable */
       // @ts-ignore
       ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-      /* eslint-enable */
+      /* oxlint-enable */
     } catch (error) {
       console.error(error)
     }
