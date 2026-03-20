@@ -178,7 +178,9 @@
     },
     {
       "files": [
-        "eslint.config.js"
+        "next.config.ts",
+        "postcss.config.mjs",
+        "vitest.config.ts"
       ],
       "env": {
         "node": true
