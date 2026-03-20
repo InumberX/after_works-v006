@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 
-import styles from './index.module.css'
-
 import {
   LatestArticleCard,
   LatestArticleCardProps,
 } from '@/components/ui/cards/LatestArticleCard'
+
+import styles from './index.module.css'
 
 type Props = {
   className?: string

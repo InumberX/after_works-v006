@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 
-import styles from './index.module.css'
-
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
+
+import styles from './index.module.css'
 
 type Props = {
   className?: string

@@ -1,16 +1,33 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
+    "source.fixAll": "explicit",
   },
   "[css]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
   },
   "[scss]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
   },
   "css.validate": false,
   "scss.validate": false,
-  "eslint.workingDirectories": ["./src/app/frontend"]
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+  },
+  "prettier.enable": false,
+  "eslint.enable": false,
+  "oxc.fmt.configPath": "./src/app/frontend/.oxfmtrc.json",
 }

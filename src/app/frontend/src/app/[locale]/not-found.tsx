@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 
-import { Index } from './[...not-found]/_components'
-
 import { AppHead } from '@/components/common/AppHead'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
+
+import { Index } from './[...not-found]/_components'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const scopedT = await getScopedI18n('notFound')

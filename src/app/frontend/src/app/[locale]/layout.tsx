@@ -18,7 +18,7 @@ const RootLayout = async ({
   const { locale } = await params
 
   return (
-    // eslint-disable-next-line react/no-unknown-property
+    // oxlint-disable-next-line react/no-unknown-property
     <html lang={locale} prefix='og: http://ogp.me/ns#'>
       <head>
         <GoogleAnalytics />

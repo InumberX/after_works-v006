@@ -1,8 +1,8 @@
-import { Message } from './Message'
-
 import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
 import { PageTitle } from '@/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '@/locales/server'
+
+import { Message } from './Message'
 
 export const Index = async () => {
   const scopedT = await getScopedI18n('contact')

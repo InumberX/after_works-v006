@@ -1,8 +1,8 @@
-import styles from './index.module.css'
-
 import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
 import { SideLatestArticle } from '@/components/ui/sides/SideLatestArticle'
 import { getScopedI18n } from '@/locales/server'
+
+import styles from './index.module.css'
 
 type Props = {
   latestArticleInfos: LatestArticleCardProps[]
