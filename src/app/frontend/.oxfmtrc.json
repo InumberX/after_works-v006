@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "singleQuote": true,
   "semi": false,
   "trailingComma": "all",
@@ -16,5 +17,7 @@
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "requirePragma": false,
-  "embeddedLanguageFormatting": "auto"
+  "embeddedLanguageFormatting": "auto",
+  "sortPackageJson": false,
+  "ignorePatterns": []
 }
