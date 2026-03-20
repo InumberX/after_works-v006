@@ -88,6 +88,6 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['node_modules', '.next', 'storybook-build', 'public', '.env'],
+    ignores: ['node_modules', '.next', 'storybook-build', 'storybook-static', 'public', '.env'],
   },
 )
