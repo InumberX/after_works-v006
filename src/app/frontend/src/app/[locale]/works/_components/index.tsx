@@ -1,6 +1,3 @@
-import { MainColumn } from './MainColumn'
-import { SideColumn } from './SideColumn'
-
 import { Contact } from '@/components/common/Contact'
 import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
@@ -11,6 +8,9 @@ import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { PageTitle } from '@/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '@/locales/server'
 import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+
+import { MainColumn } from './MainColumn'
+import { SideColumn } from './SideColumn'
 
 type Props = {
   defaultPage: number

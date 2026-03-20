@@ -3,13 +3,13 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import styles from './index.module.css'
-
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 import { useScopedI18n } from '@/locales/client'
+
+import styles from './index.module.css'
 
 export const Lead = () => {
   const scopedT = useScopedI18n('home.lead')

@@ -3,8 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import styles from './index.module.css'
-
 import { getHobbyInfos } from '@/apis/fetch/hobby'
 import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
@@ -14,6 +12,8 @@ import { routes } from '@/config/routes'
 import { useCurrentLocale } from '@/locales/client'
 import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
+
+import styles from './index.module.css'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]

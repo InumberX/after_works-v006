@@ -4,11 +4,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { ReactNode, useMemo } from 'react'
 
-import styles from './index.module.css'
-
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { EventTypes } from '@/types/event'
 import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
+
+import styles from './index.module.css'
 
 export type BaseButtonProps = {
   url?: string

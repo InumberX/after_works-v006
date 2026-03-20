@@ -1,7 +1,5 @@
 import { Metadata } from 'next'
 
-import { Index } from './_components'
-
 import { getHobbyInfos } from '@/apis/fetch/hobby'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { AppHead } from '@/components/common/AppHead'
@@ -11,6 +9,8 @@ import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 import { NextPageProps } from '@/types/next'
+
+import { Index } from './_components'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const locale = await getCurrentLocale()

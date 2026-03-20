@@ -8,8 +8,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useMemo, useEffect, useCallback } from 'react'
 
-import styles from './index.module.css'
-
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { STATIC_IMAGE_DIR, SITE_NAME, CACHE_BUSTER } from '@/config/env'
@@ -22,6 +20,8 @@ import {
   isBreakpointXxlAtom,
 } from '@/store/breakpoints'
 import { actSmoothScroll } from '@/utils/actSmoothScroll'
+
+import styles from './index.module.css'
 
 export const LayoutHeader = () => {
   const locale = useCurrentLocale()
