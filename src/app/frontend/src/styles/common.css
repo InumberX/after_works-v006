@@ -8,6 +8,6 @@
 @import '../assets/post-css/global/scale.css';
 @import '../assets/post-css/libs/ress.min.css';
 @import '../assets/post-css/libs/keen-slider.min.css';
-@import '../assets/post-css/base';
-@import '../assets/post-css/utils';
-@import '../assets/post-css/no-layer';
+@import '../assets/post-css/base/index.css';
+@import '../assets/post-css/utils/index.css';
+@import '../assets/post-css/no-layer/index.css';
