@@ -13,7 +13,7 @@ applications:
           commands:
             - npm run format
             - npm run stylelint
-            - npm run lint-quiet
+            - npm run lint
             - npm run typecheck
             - npm run test
         preBuild:
@@ -46,7 +46,7 @@ applications:
           commands:
             - npm run format
             - npm run stylelint
-            - npm run lint-quiet
+            - npm run lint
             - npm run typecheck
             - npm run test
         preBuild:
