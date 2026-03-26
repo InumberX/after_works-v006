@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 
-import { GoogleAd, GoogleAdProps } from '@/components/ui/ads/GoogleAd'
-
 import styles from './index.module.css'
+
+import { GoogleAd, GoogleAdProps } from '@/components/ui/ads/GoogleAd'
 
 type Props = {
   className?: string

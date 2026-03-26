@@ -3,9 +3,9 @@
 import clsx from 'clsx'
 import { ReactNode, JSX } from 'react'
 
-import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
-
 import styles from './index.module.css'
+
+import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
 
 type Props = {
   className?: string

@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 
+import { Index } from './_components'
+
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getTagPositionInfos } from '@/apis/fetch/tagPosition'
 import { AppHead } from '@/components/common/AppHead'
@@ -7,8 +9,6 @@ import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
 import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
 import { getCurrentLocale } from '@/locales/server'
-
-import { Index } from './_components'
 
 export const dynamic = 'force-dynamic'
 
