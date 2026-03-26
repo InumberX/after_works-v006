@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { Index } from './_components'
+
 import { getBlogsInfos } from '@/apis/fetch/blogs'
 import { getBlogsDetailInfo } from '@/apis/fetch/blogsDetail'
 import { getTagCmsInfos } from '@/apis/fetch/tagCms'
@@ -16,8 +18,6 @@ import { BaseTagProps } from '@/components/ui/tags/BaseTag'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
 import { NextPageProps } from '@/types/next'
-
-import { Index } from './_components'
 
 export const generateMetadata = async ({
   params,

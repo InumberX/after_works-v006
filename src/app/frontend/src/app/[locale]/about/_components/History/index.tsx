@@ -5,6 +5,8 @@ import { format } from 'date-fns'
 import { useRouter, usePathname } from 'next/navigation'
 import { useState } from 'react'
 
+import styles from './index.module.css'
+
 import { getAboutHistoryInfo } from '@/apis/fetch/aboutHistory'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
@@ -15,8 +17,6 @@ import { Tag as ApiResponseTagDesignTag } from '@/types/apis/fetch/tagDesign'
 import { Tag as ApiResponseTagOtherTag } from '@/types/apis/fetch/tagOther'
 import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
 import { Tag as ApiResponseTagProgramTag } from '@/types/apis/fetch/tagProgram'
-
-import styles from './index.module.css'
 
 export type HistoryItem = {
   title: string

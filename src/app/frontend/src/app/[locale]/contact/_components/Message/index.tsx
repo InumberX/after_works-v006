@@ -1,9 +1,9 @@
+import styles from './index.module.css'
+
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { getScopedI18n } from '@/locales/server'
-
-import styles from './index.module.css'
 
 export const Message = async () => {
   const scopedT = await getScopedI18n('contact')
