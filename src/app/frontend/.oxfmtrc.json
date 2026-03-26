@@ -28,6 +28,6 @@
       ["value-internal", "type-internal"],
       "unknown"
     ],
-    "internalPrefix": ["~/"]
+    "internalPrefix": ["~/", "@/"],
   }
 }
