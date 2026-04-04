@@ -20,13 +20,13 @@ npm run start           # Start production server
 
 ```bash
 npm run typecheck       # Run TypeScript type checking
-npm run lint            # Run oxlint (Rust-based linter)
-npm run lint-quiet      # Run oxlint without warnings
+npm run lint            # Run oxlint (Rust-based linter, --max-warnings=0)
+npm run lint-fix        # Auto-fix lint issues with oxlint
 npm run stylelint       # Check CSS/SCSS files
 npm run stylelint-fix   # Auto-fix CSS/SCSS issues
 npm run format          # Check code formatting with oxfmt
 npm run format-fix      # Auto-format code with oxfmt
-npm run pre-commit      # Run all checks (typecheck, lint, stylelint, format)
+npm run pre-commit      # Run typecheck + lint-fix + stylelint-fix + format-fix
 ```
 
 ### Testing
@@ -52,7 +52,7 @@ npm run upgrade         # Upgrade all packages (use with caution)
 
 - Uses `next-international` for multilingual support (Japanese default, English available)
 - Locale files: `src/locales/ja.ts` and `src/locales/en.ts`
-- Middleware handles locale resolution at `src/middleware.ts`
+- Middleware handles locale resolution at `src/proxy.ts` (exports `proxy` function and route `config`)
 - URL structure: `/` (Japanese), `/en` (English) with rewriteDefault strategy
 - **Client components**: Use hooks from `src/locales/client.ts` (`useI18n`, `useScopedI18n`, `useCurrentLocale`, `useChangeLocale`)
 - **Server components**: Use functions from `src/locales/server.ts` (`getI18n`, `getScopedI18n`, `getCurrentLocale`, `getStaticParams`)
@@ -112,7 +112,7 @@ The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
 - **Google Analytics** and **Google AdSense** integration
 - **Framer Motion** for animations
 - **React Hook Form + Zod** for form validation
-- **Splide** for carousels/sliders
+- **keen-slider** for carousels/sliders
 - RSS feed generation at `/rss.xml` (rewrites to `/api/rss`)
 - Cache busting via `NEXT_PUBLIC_CACHE_BUSTER` env variable (auto-generated at build time)
 
