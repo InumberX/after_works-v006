@@ -2,12 +2,12 @@
 
 import clsx from 'clsx'
 
+import styles from './index.module.css'
+
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
 import { ReplaceNewLineText } from '@/components/ui/typographies/ReplaceNewLineText'
 import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
-
-import styles from './index.module.css'
 
 export type LeadProps = {
   lead: string

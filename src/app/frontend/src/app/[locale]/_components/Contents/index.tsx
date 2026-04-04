@@ -1,3 +1,5 @@
+import styles from './index.module.css'
+
 import { SvgIcon } from '@/components/ui/icons/SvgIcon'
 import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
@@ -5,8 +7,6 @@ import { ServiceCardList } from '@/components/ui/lists/ServiceCardList'
 import { SectionTitle } from '@/components/ui/typographies/SectionTitle'
 import { routes } from '@/config/routes'
 import { getScopedI18n, getCurrentLocale } from '@/locales/server'
-
-import styles from './index.module.css'
 
 export const Contents = async () => {
   const scopedT = await getScopedI18n('home.contents')

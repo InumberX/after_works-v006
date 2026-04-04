@@ -1,5 +1,4 @@
 import type { RenderResult } from '@testing-library/react'
-
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import { describe, vi, afterEach, beforeEach, test, expect } from 'vitest'
 
