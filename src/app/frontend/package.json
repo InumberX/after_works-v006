@@ -22,7 +22,6 @@
     "pre-commit": "npm run typecheck && npm run lint-fix && npm run stylelint-fix && npm run format-fix"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",
