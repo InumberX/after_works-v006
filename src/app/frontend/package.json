@@ -51,7 +51,7 @@
     "jsdom": "^29.1.1",
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
-    "postcss": "^8.5.10",
+    "postcss": "^8.5.13",
     "postcss-custom-media": "^12.0.1",
     "postcss-import": "^16.1.1",
     "postcss-mixins": "^12.1.2",
