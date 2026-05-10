@@ -143,5 +143,5 @@ src/tests/components/ui/buttons/BaseButton/<テストファイル>.test.tsx
 - ❌ hooks ファイルが `useFoo.ts`（→ `use-foo.ts`）
 - ❌ utils ファイルが `kebab-case.ts`（→ `camelCase.ts`）
 - ❌ 廃止済みの `@/` エイリアスを使用（→ `~/` を使う）
-- ❌ `export default` でのコンポーネントエクスポート（Next.js 規約ファイル `page.tsx` / `layout.tsx` / `error.tsx` / `not-found.tsx` / `loading.tsx` / `template.tsx` / `sitemap.ts` / `robots.ts` は除く）
+- ❌ `export default` でのコンポーネントエクスポート（Next.js 規約ファイル `page.tsx` / `layout.tsx` / `error.tsx` / `global-error.tsx` / `not-found.tsx` / `loading.tsx` / `template.tsx` / `sitemap.ts` / `robots.ts` は除く）
 - ❌ テストファイルが `src/components/` 内に同居（→ `src/tests/` 配下にミラー配置）
