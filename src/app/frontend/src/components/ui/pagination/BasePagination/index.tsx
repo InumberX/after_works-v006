@@ -13,21 +13,21 @@ type Props = {
   className?: string
   currentPage: number
   totalPage: number
-  handleChangePage: (newPage: number) => void
+  onChangePage: (newPage: number) => void
 }
 
 const BasePaginationItem = ({
   currentPage,
   totalPage,
   pageNumber,
-  handleChangePage,
+  onChangePage,
   className,
 }: {
   currentPage: number
   totalPage: number
   pageNumber: number
   className?: string
-  handleChangePage: (newPage: number) => void
+  onChangePage: (newPage: number) => void
 }) => {
   const t = useI18n()
 
@@ -57,7 +57,7 @@ const BasePaginationItem = ({
           title={t('components.basePagination.buttonText', {
             pageNumber,
           })}
-          onClick={() => handleChangePage(pageNumber)}
+          onClick={() => onChangePage(pageNumber)}
         >
           <span className={styles.BasePagination__icon}>{pageNumber}</span>
         </CircleButton>
@@ -70,7 +70,7 @@ export const BasePagination = ({
   className,
   currentPage,
   totalPage,
-  handleChangePage,
+  onChangePage,
 }: Props) => {
   const t = useI18n()
 
@@ -94,7 +94,7 @@ export const BasePagination = ({
               variant='outlined'
               isDisabled={currentPage === 1}
               title={t('components.basePagination.prevButtonText')}
-              onClick={() => handleChangePage(currentPage - 1)}
+              onClick={() => onChangePage(currentPage - 1)}
             >
               <SvgIcon
                 variant='arrowLeft'
@@ -112,7 +112,7 @@ export const BasePagination = ({
                       currentPage={currentPage}
                       totalPage={totalPage}
                       pageNumber={pageNumber}
-                      handleChangePage={handleChangePage}
+                      onChangePage={onChangePage}
                       className='Obj__sm'
                     />
                   )
@@ -147,7 +147,7 @@ export const BasePagination = ({
                           currentPage={currentPage}
                           totalPage={totalPage}
                           pageNumber={pageNumber}
-                          handleChangePage={handleChangePage}
+                          onChangePage={onChangePage}
                           className='Obj__sm'
                         />
                       )}
@@ -177,7 +177,7 @@ export const BasePagination = ({
                       currentPage={currentPage}
                       totalPage={totalPage}
                       pageNumber={pageNumber}
-                      handleChangePage={handleChangePage}
+                      onChangePage={onChangePage}
                       className='Obj__sm--reverse'
                     />
                   )
@@ -211,7 +211,7 @@ export const BasePagination = ({
                           currentPage={currentPage}
                           totalPage={totalPage}
                           pageNumber={pageNumber}
-                          handleChangePage={handleChangePage}
+                          onChangePage={onChangePage}
                           className='Obj__sm--reverse'
                         />
                       )}
@@ -244,7 +244,7 @@ export const BasePagination = ({
               variant='outlined'
               isDisabled={currentPage >= totalPage || totalPage <= 1}
               title={t('components.basePagination.nextButtonText')}
-              onClick={() => handleChangePage(currentPage + 1)}
+              onClick={() => onChangePage(currentPage + 1)}
             >
               <SvgIcon
                 variant='arrowRight'

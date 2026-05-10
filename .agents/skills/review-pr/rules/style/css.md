@@ -11,7 +11,7 @@
 | ベースブロック | **PascalCase**（コンポーネント名と一致） | `.BaseButton`、`.ArticleCard` |
 | 要素（Element） | `Block__camelCase` | `.BaseButton__text`、`.ArticleCard__container`、`.BaseButton__iconArrowRight` |
 | 修飾子（Modifier） | `Block--camelCase` | `.BaseButton--rightArrow`、`.CircleButton--small`、`.CircleButton--outlined` |
-| サブブロック | 別の PascalCase ブロック | `ArticleCardMainVisual`、`ArticleCardDate`、`ArticleCardTitle`、`ArticleCardTag` |
+| サブブロック | 別の PascalCase ブロック | `.ArticleCardMainVisual`、`.ArticleCardDate`、`.ArticleCardTitle`、`.ArticleCardTag` |
 | サブブロックの要素 | `SubBlock__camelCase` | `.ArticleCardMainVisual__image`、`.ArticleCardDate__separator`、`.ArticleCardDate__text` |
 
 ### サブブロックを切る目安

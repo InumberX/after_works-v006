@@ -6,10 +6,11 @@
 
 ```
 src/
-├── app/[locale]/         # Next.js App Router（dynamic locale）
-│   ├── api/              # ルートハンドラ
-│   ├── robots.ts
-│   └── sitemap.ts
+├── app/                  # Next.js App Router ルート
+│   ├── [locale]/         # dynamic locale 配下のページ群
+│   ├── api/              # ルートハンドラ（多言語不要）
+│   ├── robots.ts         # Metadata File（app/ 直下が必須）
+│   └── sitemap.ts        # Metadata File（app/ 直下が必須）
 ├── apis/fetch/           # ヘッドレスCMSへのフェッチ関数
 ├── assets/               # 静的アセット（画像・PostCSS）
 │   ├── img/
@@ -24,11 +25,15 @@ src/
 ├── locales/              # i18n 辞書とクライアント/サーバ用ヘルパ
 ├── providers/            # React Context / Provider
 ├── store/                # Jotai のグローバル state（カテゴリ別ディレクトリ）
+├── stories/              # Storybook 用ストーリ
 ├── styles/               # common.css（@import エントリ）
 ├── tests/                # Vitest テスト（components 構造をミラー）
 ├── types/                # TypeScript 型定義
-└── utils/                # 純粋なユーティリティ関数
+├── utils/                # 純粋なユーティリティ関数
+└── proxy.ts              # next-international middleware（locale 解決）
 ```
+
+> Next.js 規約: `robots.ts` / `sitemap.ts` は `app/` 直下にしか置けず、`[locale]` のような dynamic segment 配下では認識されない。`api/` も多言語非依存なので `[locale]/` の外に置く。
 
 ## components/common と components/ui の使い分け
 
@@ -83,7 +88,7 @@ ui/buttons/BaseButton/
 | ロジック種別 | 置き場 | 命名 |
 |---|---|---|
 | データ取得関数 | `apis/fetch/<resource>.ts` | camelCase |
-| データ型定義 | `types/apis/fetch/<resource>.ts` | camelCase |
+| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | camelCase |
 | カスタムフック | `hooks/use-<name>.ts` | kebab-case + `use-` プレフィックス |
 | 純粋関数ユーティリティ | `utils/<verbName>.ts` | camelCase（動詞起点） |
 | 外部ライブラリラッパー | `libs/<lib>/<file>.ts` | ライブラリ名のディレクトリで分割 |
