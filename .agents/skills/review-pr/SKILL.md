@@ -51,7 +51,7 @@ description: Review a pull request against this project's style, naming, and str
 
 指摘は重要度別に整理し、ファイルパスと行番号を必ず含める。
 
-```markdown
+````markdown
 ## レビュー結果
 
 ### 🔴 Must（規約違反・修正必須）
@@ -79,7 +79,7 @@ description: Review a pull request against this project's style, naming, and str
 
 - ディレクトリ構造が `components/ui/buttons/PascalCase/index.tsx` パターンに正しく従っている
 - ...
-```
+````
 
 ## 出力上の注意
 
