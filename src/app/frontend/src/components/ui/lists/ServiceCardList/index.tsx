@@ -5,7 +5,7 @@ import styles from './index.module.css'
 import {
   ServiceCard,
   ServiceCardProps,
-} from '@/components/ui/cards/ServiceCard'
+} from '~/components/ui/cards/ServiceCard'
 
 export type Props = {
   className?: string

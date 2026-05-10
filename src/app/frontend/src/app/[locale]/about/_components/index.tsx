@@ -2,10 +2,10 @@ import { History, HistoryProps } from './History'
 import { Lead, LeadProps } from './Lead'
 import { Profile, ProfileProps } from './Profile'
 
-import { Contact } from '@/components/common/Contact'
-import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
-import { PageTitle } from '@/components/ui/typographies/PageTitle'
-import { getScopedI18n } from '@/locales/server'
+import { Contact } from '~/components/common/Contact'
+import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
+import { PageTitle } from '~/components/ui/typographies/PageTitle'
+import { getScopedI18n } from '~/locales/server'
 
 type Props = {
   leadInfo: LeadProps

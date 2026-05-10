@@ -5,8 +5,8 @@ import { ReactNode, JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { BaseButton, BaseButtonProps } from '@/components/ui/buttons/BaseButton'
-import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
+import { BaseButton, BaseButtonProps } from '~/components/ui/buttons/BaseButton'
+import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 
 export type ServiceCardProps = {
   className?: string

@@ -5,7 +5,7 @@ import { ReactNode, JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { useAnimelm, type AnimelmElement } from '@/hooks/use-animelm'
+import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 
 type Props = {
   className?: string

@@ -1,7 +1,7 @@
 import { Preview } from '@storybook/react-vite'
 import React from 'react'
 
-import '@/styles/common.css'
+import '~/styles/common.css'
 
 const preview: Preview = {
   parameters: {

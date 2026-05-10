@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { About, List } from '@/types/apis/fetch/about'
+import { API_URL } from '~/config/env'
+import { About, List } from '~/types/apis/fetch/about'
 
 export type ResponseGetAboutInfo = List | undefined
 

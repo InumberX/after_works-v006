@@ -4,9 +4,9 @@ import Image from 'next/image'
 
 import styles from './index.module.css'
 
-import { BaseTagList } from '@/components/ui/lists/BaseTagList'
-import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { getCurrentLocale } from '@/locales/server'
+import { BaseTagList } from '~/components/ui/lists/BaseTagList'
+import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import { getCurrentLocale } from '~/locales/server'
 
 type Props = {
   className?: string

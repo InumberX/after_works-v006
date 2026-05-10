@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { TagCMS, Tag } from '@/types/apis/fetch/tagCms'
+import { API_URL } from '~/config/env'
+import { TagCMS, Tag } from '~/types/apis/fetch/tagCms'
 
 export type ResponseGetTagCmsInfos = Tag[]
 

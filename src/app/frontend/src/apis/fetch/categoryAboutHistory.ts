@@ -1,9 +1,9 @@
-import { API_URL } from '@/config/env'
+import { API_URL } from '~/config/env'
 import {
   CategoryAboutHistory,
   List,
   PageInfo,
-} from '@/types/apis/fetch/categoryAboutHistory'
+} from '~/types/apis/fetch/categoryAboutHistory'
 
 export type ResponseGetCategoryAboutHistory =
   | {

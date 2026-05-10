@@ -1,4 +1,4 @@
-import { SITE_ROOT, SITE_URL } from '@/config/env'
+import { SITE_ROOT, SITE_URL } from '~/config/env'
 
 type RouteKey =
   | 'home'
