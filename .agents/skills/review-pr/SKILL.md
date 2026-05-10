@@ -23,7 +23,7 @@ description: Review a pull request against this project's style, naming, and str
 
 優先順位:
 
-1. ユーザーが PR 番号や URL を指定 → `mcp__github__pull_request_read` 等で取得
+1. ユーザーが PR 番号や URL を指定 → `gh pr view <番号>` / `gh pr diff <番号>` で取得（GitHub MCP が利用可能なら `mcp__github__pull_request_read` でもよい）
 2. ブランチが develop から派生している → `git diff develop...HEAD --stat` と `git diff develop...HEAD` で差分把握
 3. 作業ツリーに未コミット変更がある → `git status` と `git diff`
 

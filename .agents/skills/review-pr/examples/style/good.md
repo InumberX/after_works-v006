@@ -27,9 +27,9 @@ import { ReactNode, useMemo } from 'react'
 
 import styles from './index.module.css'
 
-import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { EventTypes } from '@/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
+import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { EventTypes } from '~/types/event'
+import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 export type BaseButtonProps = {
   url?: string
@@ -60,7 +60,7 @@ export const BaseButton = ({
 - `export type BaseButtonProps`（コンポーネント名 + `Props`）
 - boolean Props に `is*` プレフィックス: `isDisabled`、`isRightArrow`
 - ReactNode スロットに `*Elm` サフィックス: `leftElm`、`rightElm`
-- 共通型を `@/types/event`、`@/types/html` から import
+- 共通型を `~/types/event`、`~/types/html` から import
 - インポート順序: 外部 → 同階層スタイル → プロジェクト内
 
 ## 3. CSS Modules（PascalCase + BEM風）

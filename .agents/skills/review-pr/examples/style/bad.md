@@ -238,18 +238,18 @@ export const BaseButton = ({ /* ... */ }: BaseButtonProps) => { /* ... */ }
 
 参照: `rules/style/structure.md` バレルエクスポート
 
-## 12. ❌ パスエイリアスの混在
+## 12. ❌ 廃止済みエイリアス `@/` の使用
 
 ```tsx
-// Bad — 同一PR内/同一ファイル内で混在
+// Bad — `@/` は PR #209 で廃止済み。tsconfig 等から外れているため解決されない
 import { BaseButton } from '@/components/ui/buttons/BaseButton'
-import { ArticleCard } from '~/components/ui/cards/ArticleCard'
+import { ArticleCard } from '@/components/ui/cards/ArticleCard'
 ```
 
 ```tsx
-// Good — どちらかに統一（既存コードは @/ が主流）
-import { BaseButton } from '@/components/ui/buttons/BaseButton'
-import { ArticleCard } from '@/components/ui/cards/ArticleCard'
+// Good — `~/` を使う
+import { BaseButton } from '~/components/ui/buttons/BaseButton'
+import { ArticleCard } from '~/components/ui/cards/ArticleCard'
 ```
 
 参照: `rules/style/structure.md` パスエイリアス

@@ -96,18 +96,17 @@ ui/buttons/BaseButton/
 各コンポーネントの `index.tsx` から名前付きエクスポートを行い、外部からは以下のように参照する:
 
 ```ts
-import { BaseButton } from '@/components/ui/buttons/BaseButton'
+import { BaseButton } from '~/components/ui/buttons/BaseButton'
 ```
 
 `index.tsx` に `export default` は使わない（既存コードは全て名前付きエクスポート）。
 
 ## パスエイリアス
 
-両方とも `src/` を指す:
-- `@/...`
-- `~/...`
+`~/*` のみが `src/*` を指す。`@/*` は廃止済み（PR #209 で `tsconfig.json` / `vitest.config.ts` / `.storybook/main.ts` / `.oxfmtrc.json` から削除）。
 
-既存コードは `@/...` が主流。新規コードでも `@/...` を使う。混在させない。
+- ✅ `~/...` を使う
+- ❌ `@/...` は解決されない
 
 ## テストファイルの配置
 
@@ -129,6 +128,6 @@ src/tests/components/ui/buttons/BaseButton/<テストファイル>.test.tsx
 - ❌ コンポーネントスタイルが `index.module.css` 以外（`BaseButton.module.css`、`styles.module.css`）
 - ❌ hooks ファイルが `useFoo.ts`（→ `use-foo.ts`）
 - ❌ utils ファイルが `kebab-case.ts`（→ `camelCase.ts`）
-- ❌ パスエイリアス `@/` と `~/` の混在
+- ❌ 廃止済みの `@/` エイリアスを使用（→ `~/` を使う）
 - ❌ `export default` でのコンポーネントエクスポート
 - ❌ テストファイルが `src/components/` 内に同居（→ `src/tests/` 配下にミラー配置）
