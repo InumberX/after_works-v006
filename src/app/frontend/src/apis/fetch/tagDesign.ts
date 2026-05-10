@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { TagDesign, Tag } from '@/types/apis/fetch/tagDesign'
+import { API_URL } from '~/config/env'
+import { TagDesign, Tag } from '~/types/apis/fetch/tagDesign'
 
 export type ResponseGetTagDesignInfos = Tag[]
 

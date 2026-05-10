@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { BlogsDetail, Details } from '@/types/apis/fetch/blogsDetail'
+import { API_URL } from '~/config/env'
+import { BlogsDetail, Details } from '~/types/apis/fetch/blogsDetail'
 
 export type ResponseGetBlogsDetailInfo = Details | undefined
 

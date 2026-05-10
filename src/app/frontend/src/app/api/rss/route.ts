@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 
-import { getBlogsInfos } from '@/apis/fetch/blogs'
-import { getHobbyInfos } from '@/apis/fetch/hobby'
-import { getWorksInfos } from '@/apis/fetch/works'
-import { baseDescriptions } from '@/components/common/AppHead'
-import { SITE_NAME, SITE_URL } from '@/config/env'
-import { routes } from '@/config/routes'
+import { getBlogsInfos } from '~/apis/fetch/blogs'
+import { getHobbyInfos } from '~/apis/fetch/hobby'
+import { getWorksInfos } from '~/apis/fetch/works'
+import { baseDescriptions } from '~/components/common/AppHead'
+import { SITE_NAME, SITE_URL } from '~/config/env'
+import { routes } from '~/config/routes'
 
 export const GET = async () => {
   const response: string[] = [

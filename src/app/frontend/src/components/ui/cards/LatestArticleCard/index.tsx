@@ -8,10 +8,10 @@ import { useMemo, JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
-import { useCurrentLocale } from '@/locales/client'
-import { EventTypes } from '@/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
+import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
+import { useCurrentLocale } from '~/locales/client'
+import { EventTypes } from '~/types/event'
+import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 type LatestArticleCardContainerProps = {
   mainVisual?: {

@@ -5,9 +5,9 @@ import { useMemo, Fragment } from 'react'
 
 import styles from './index.module.css'
 
-import { CircleButton } from '@/components/ui/buttons/CircleButton'
-import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { useI18n } from '@/locales/client'
+import { CircleButton } from '~/components/ui/buttons/CircleButton'
+import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { useI18n } from '~/locales/client'
 
 type Props = {
   className?: string

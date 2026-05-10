@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { TagPosition, Tag } from '@/types/apis/fetch/tagPosition'
+import { API_URL } from '~/config/env'
+import { TagPosition, Tag } from '~/types/apis/fetch/tagPosition'
 
 export type ResponseGetTagPositionInfos = Tag[]
 

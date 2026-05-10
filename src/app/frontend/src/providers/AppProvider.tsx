@@ -1,9 +1,9 @@
 import { StrictMode, ReactNode } from 'react'
 
-import { BreakpointsProvider } from '@/providers/BreakpointsProvider'
-import { JotaiProvider } from '@/providers/JotaiProvider'
-import { LocaleProvider } from '@/providers/LocaleProvider'
-import { ZodProvider } from '@/providers/ZodProvider'
+import { BreakpointsProvider } from '~/providers/BreakpointsProvider'
+import { JotaiProvider } from '~/providers/JotaiProvider'
+import { LocaleProvider } from '~/providers/LocaleProvider'
+import { ZodProvider } from '~/providers/ZodProvider'
 
 export const AppProvider = ({
   children,

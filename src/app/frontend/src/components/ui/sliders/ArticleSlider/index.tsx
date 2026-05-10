@@ -5,14 +5,14 @@ import { useKeenSlider } from 'keen-slider/react'
 
 import styles from './index.module.css'
 
-import { CircleButton } from '@/components/ui/buttons/CircleButton'
+import { CircleButton } from '~/components/ui/buttons/CircleButton'
 import {
   ArticleCardProps,
   ArticleCard,
-} from '@/components/ui/cards/ArticleCard'
-import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { BREAKPOINTS } from '@/providers/BreakpointsProvider'
+} from '~/components/ui/cards/ArticleCard'
+import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { BREAKPOINTS } from '~/providers/BreakpointsProvider'
 
 type Props = {
   className?: string
