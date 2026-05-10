@@ -101,6 +101,20 @@ import { BaseButton } from '~/components/ui/buttons/BaseButton'
 
 `index.tsx` に `export default` は使わない（既存コードは全て名前付きエクスポート）。
 
+### 例外: Next.js App Router 規約ファイル
+
+以下のファイルは Next.js のファイル規約により `export default` が **必須**。指摘対象から除外する:
+
+- `src/app/**/page.tsx`
+- `src/app/**/layout.tsx`
+- `src/app/**/error.tsx` / `global-error.tsx`
+- `src/app/**/not-found.tsx`
+- `src/app/**/loading.tsx`
+- `src/app/**/template.tsx`
+- `src/app/sitemap.ts` / `src/app/robots.ts`（Metadata Files）
+
+`src/app/**/route.ts` は名前付きエクスポート（`GET` / `POST` 等）が規約のため、通常の「`export default` 禁止」ルールがそのまま適用される。
+
 ## パスエイリアス
 
 `~/*` のみが `src/*` を指す。`@/*` は廃止済み（PR #209 で `tsconfig.json` / `vitest.config.ts` / `.storybook/main.ts` / `.oxfmtrc.json` から削除）。
@@ -129,5 +143,5 @@ src/tests/components/ui/buttons/BaseButton/<テストファイル>.test.tsx
 - ❌ hooks ファイルが `useFoo.ts`（→ `use-foo.ts`）
 - ❌ utils ファイルが `kebab-case.ts`（→ `camelCase.ts`）
 - ❌ 廃止済みの `@/` エイリアスを使用（→ `~/` を使う）
-- ❌ `export default` でのコンポーネントエクスポート
+- ❌ `export default` でのコンポーネントエクスポート（Next.js 規約ファイル `page.tsx` / `layout.tsx` / `error.tsx` / `not-found.tsx` / `loading.tsx` / `template.tsx` / `sitemap.ts` / `robots.ts` は除く）
 - ❌ テストファイルが `src/components/` 内に同居（→ `src/tests/` 配下にミラー配置）

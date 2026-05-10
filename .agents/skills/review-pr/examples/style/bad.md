@@ -236,6 +236,8 @@ export default BaseButton
 export const BaseButton = ({ /* ... */ }: BaseButtonProps) => { /* ... */ }
 ```
 
+ただし Next.js App Router 規約ファイル（`page.tsx` / `layout.tsx` / `error.tsx` / `not-found.tsx` / `loading.tsx` / `template.tsx` / `sitemap.ts` / `robots.ts`）は `export default` が必須。指摘対象外。
+
 参照: `rules/style/structure.md` バレルエクスポート
 
 ## 12. ❌ 廃止済みエイリアス `@/` の使用
