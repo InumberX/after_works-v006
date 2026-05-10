@@ -136,7 +136,7 @@ export const MainColumn = ({
           className={styles.MainColumn__pagination}
           currentPage={currentPage}
           totalPage={totalPage}
-          handleChangePage={handleChangePage}
+          onChangePage={handleChangePage}
         />
       </div>
     </div>
