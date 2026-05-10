@@ -4,8 +4,8 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from 'react'
 
-import { GOOGLE_ANALYTICS_ID } from '@/config/env'
-import { isActiveGA, pageview } from '@/libs/ga/gtag'
+import { GOOGLE_ANALYTICS_ID } from '~/config/env'
+import { isActiveGA, pageview } from '~/libs/ga/gtag'
 
 export const GoogleAnalytics = () => {
   const pathname = usePathname()

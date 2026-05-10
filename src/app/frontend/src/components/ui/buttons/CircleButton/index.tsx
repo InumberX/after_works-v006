@@ -6,8 +6,8 @@ import { ReactNode, useMemo } from 'react'
 
 import styles from './index.module.css'
 
-import { EventTypes } from '@/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '@/types/html'
+import { EventTypes } from '~/types/event'
+import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 type Props = {
   variant?: 'contained' | 'outlined'

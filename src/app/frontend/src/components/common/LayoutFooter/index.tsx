@@ -7,13 +7,13 @@ import { ReactNode } from 'react'
 
 import styles from './index.module.css'
 
-import { CircleButton } from '@/components/ui/buttons/CircleButton'
-import { SvgIcon } from '@/components/ui/icons/SvgIcon'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { routes } from '@/config/routes'
-import { snsInfos } from '@/config/sns'
-import { useI18n, useCurrentLocale } from '@/locales/client'
-import { actSmoothScroll } from '@/utils/actSmoothScroll'
+import { CircleButton } from '~/components/ui/buttons/CircleButton'
+import { SvgIcon } from '~/components/ui/icons/SvgIcon'
+import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { routes } from '~/config/routes'
+import { snsInfos } from '~/config/sns'
+import { useI18n, useCurrentLocale } from '~/locales/client'
+import { actSmoothScroll } from '~/utils/actSmoothScroll'
 
 export const LayoutFooter = () => {
   const locale = useCurrentLocale()

@@ -1,16 +1,16 @@
 import { MainColumn } from './MainColumn'
 import { SideColumn } from './SideColumn'
 
-import { Contact } from '@/components/common/Contact'
-import { BaseBreadcrumb } from '@/components/ui/breadcrumbs/BaseBreadcrumb'
-import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
-import { LatestArticleCardProps } from '@/components/ui/cards/LatestArticleCard'
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { LayoutParallel } from '@/components/ui/layouts/LayoutParallel'
-import { LayoutSection } from '@/components/ui/layouts/LayoutSection'
-import { PageTitle } from '@/components/ui/typographies/PageTitle'
-import { getScopedI18n } from '@/locales/server'
-import { Tag as ApiResponseTagPositionTag } from '@/types/apis/fetch/tagPosition'
+import { Contact } from '~/components/common/Contact'
+import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
+import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
+import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { LayoutParallel } from '~/components/ui/layouts/LayoutParallel'
+import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
+import { PageTitle } from '~/components/ui/typographies/PageTitle'
+import { getScopedI18n } from '~/locales/server'
+import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tagPosition'
 
 type Props = {
   defaultPage: number

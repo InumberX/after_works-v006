@@ -5,15 +5,15 @@ import { useState } from 'react'
 
 import styles from './index.module.css'
 
-import { getBlogsInfos } from '@/apis/fetch/blogs'
-import { ArticleCardProps } from '@/components/ui/cards/ArticleCard'
-import { ArticleCardList } from '@/components/ui/lists/ArticleCardList'
-import { BasePagination } from '@/components/ui/pagination/BasePagination'
-import { BaseTagProps } from '@/components/ui/tags/BaseTag'
-import { routes } from '@/config/routes'
-import { useCurrentLocale } from '@/locales/client'
-import { Tag as ApiResponseTagNewsTag } from '@/types/apis/fetch/tagNews'
-import { actSmoothScroll } from '@/utils/actSmoothScroll'
+import { getBlogsInfos } from '~/apis/fetch/blogs'
+import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
+import { ArticleCardList } from '~/components/ui/lists/ArticleCardList'
+import { BasePagination } from '~/components/ui/pagination/BasePagination'
+import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import { routes } from '~/config/routes'
+import { useCurrentLocale } from '~/locales/client'
+import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tagNews'
+import { actSmoothScroll } from '~/utils/actSmoothScroll'
 
 type Props = {
   defaultArticleInfos: ArticleCardProps[]
@@ -135,7 +135,7 @@ export const MainColumn = ({
           className={styles.MainColumn__pagination}
           currentPage={currentPage}
           totalPage={totalPage}
-          handleChangePage={handleChangePage}
+          onChangePage={handleChangePage}
         />
       </div>
     </div>

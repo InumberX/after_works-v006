@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite'
 
-import { BaseButton } from '@/components/ui/buttons/BaseButton'
+import { BaseButton } from '~/components/ui/buttons/BaseButton'
 
 const meta: Meta<typeof BaseButton> = {
   title: 'components/ui/buttons/BaseButton',
