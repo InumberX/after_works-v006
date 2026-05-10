@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 import styles from './index.module.css'
 
-import { BaseTag, BaseTagProps } from '@/components/ui/tags/BaseTag'
+import { BaseTag, BaseTagProps } from '~/components/ui/tags/BaseTag'
 
 type Props = {
   className?: string

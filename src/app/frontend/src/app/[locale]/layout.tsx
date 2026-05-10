@@ -1,10 +1,10 @@
-import '@/styles/common.css'
+import '~/styles/common.css'
 import Script from 'next/script'
 import React from 'react'
 
-import { GoogleAnalytics } from '@/components/common/GoogleAnalytics'
-import { LayoutDefault } from '@/layouts/Default'
-import { AppProvider } from '@/providers/AppProvider'
+import { GoogleAnalytics } from '~/components/common/GoogleAnalytics'
+import { LayoutDefault } from '~/layouts/Default'
+import { AppProvider } from '~/providers/AppProvider'
 
 const RootLayout = async ({
   children,

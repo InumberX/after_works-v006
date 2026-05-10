@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { HobbyDetail, Details } from '@/types/apis/fetch/hobbyDetail'
+import { API_URL } from '~/config/env'
+import { HobbyDetail, Details } from '~/types/apis/fetch/hobbyDetail'
 
 export type ResponseGetHobbyDetailInfo = Details | undefined
 

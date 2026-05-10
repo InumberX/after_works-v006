@@ -11,7 +11,7 @@ import {
   isBreakpointLgAtom,
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
-} from '@/store/breakpoints'
+} from '~/store/breakpoints'
 
 export const BREAKPOINTS = {
   xs: 360,

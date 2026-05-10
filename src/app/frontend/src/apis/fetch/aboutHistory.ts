@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/env'
-import { AboutHistory, List } from '@/types/apis/fetch/aboutHistory'
+import { API_URL } from '~/config/env'
+import { AboutHistory, List } from '~/types/apis/fetch/aboutHistory'
 
 export type ResponseGetAboutHistoryInfo = List[] | undefined
 

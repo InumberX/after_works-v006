@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 import styles from './index.module.css'
 
-import { LayoutInner } from '@/components/ui/layouts/LayoutInner'
-import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '@/config/env'
+import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 
 export const MainVisual = () => {
   return (

@@ -5,7 +5,7 @@ import styles from './index.module.css'
 import {
   ArticleCard,
   ArticleCardProps,
-} from '@/components/ui/cards/ArticleCard'
+} from '~/components/ui/cards/ArticleCard'
 
 type Props = {
   className?: string
