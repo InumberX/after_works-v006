@@ -25,7 +25,7 @@ src/
 ├── locales/              # i18n 辞書とクライアント/サーバ用ヘルパ
 ├── providers/            # React Context / Provider
 ├── store/                # Jotai のグローバル state（カテゴリ別ディレクトリ）
-├── stories/              # Storybook 用ストーリ
+├── stories/              # Storybook 用ストーリー
 ├── styles/               # common.css（@import エントリ）
 ├── tests/                # Vitest テスト（components 構造をミラー）
 ├── types/                # TypeScript 型定義
