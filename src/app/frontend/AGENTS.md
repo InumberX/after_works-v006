@@ -15,7 +15,7 @@ This package is a Next.js 16 frontend rooted at `src/`. Main areas are `src/app`
 Use Node `22.20.0` via Volta, or any Node `>=22` compatible with `package.json`.
 
 ## Coding Style & Naming Conventions
-TypeScript is strict and uses path aliases `@/*` and `~/*` for `src/*`. Follow the existing style: 2-space indentation, no semicolons, single quotes, and named exports for reusable components. Keep component directories flat with `index.tsx` and optional `index.module.css`. CSS Modules use PascalCase-style class names such as `.BaseButton` and modifier forms like `.BaseButton--rightArrow`. Run `oxlint`, `oxfmt`, and `stylelint` instead of hand-formatting.
+TypeScript is strict and uses the path alias `~/*` for `src/*`. Follow the existing style: 2-space indentation, no semicolons, single quotes, and named exports for reusable components. Keep component directories flat with `index.tsx` and optional `index.module.css`. CSS Modules use PascalCase-style class names such as `.BaseButton` and modifier forms like `.BaseButton--rightArrow`. Run `oxlint`, `oxfmt`, and `stylelint` instead of hand-formatting.
 
 ## Testing Guidelines
 Vitest and Testing Library are configured in `vitest.config.ts` and `vitest-env.ts`. Place tests in `src/tests/**` with the `index.test.tsx` naming pattern. Prefer user-facing assertions over implementation details, and cover interactive states, links, and disabled behavior for UI components. Run `npm run test` before opening a PR.

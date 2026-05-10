@@ -91,7 +91,7 @@ The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
 - Uses CSS Modules with PostCSS
 - PostCSS plugins: nested, mixins, custom-media, autoprefixer
 - Stylelint with SCSS configuration
-- Path aliases: `@/` and `~/` both map to `src/`
+- Path alias: `~/` maps to `src/`
 
 ### Code Style
 
