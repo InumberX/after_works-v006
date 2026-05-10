@@ -31,13 +31,13 @@ description: Review a pull request against this project's style, naming, and str
 
 依頼内容から参照するルールを決定する。
 
-| 依頼パターン | 参照ファイル |
-|---|---|
-| 「PRレビュー」「全体レビュー」「コードレビュー」 | `rules/**/*.md` 全て |
-| 「スタイル」「命名」「CSS」「構造」関連 | `rules/style/*.md` |
-| 「命名だけ」 | `rules/style/naming.md` |
-| 「CSSだけ」「クラス名だけ」 | `rules/style/css.md` |
-| 「ディレクトリ構造」「ファイル配置」 | `rules/style/structure.md` |
+| 依頼パターン                                     | 参照ファイル               |
+| ------------------------------------------------ | -------------------------- |
+| 「PRレビュー」「全体レビュー」「コードレビュー」 | `rules/**/*.md` 全て       |
+| 「スタイル」「命名」「CSS」「構造」関連          | `rules/style/*.md`         |
+| 「命名だけ」                                     | `rules/style/naming.md`    |
+| 「CSSだけ」「クラス名だけ」                      | `rules/style/css.md`       |
+| 「ディレクトリ構造」「ファイル配置」             | `rules/style/structure.md` |
 
 将来 `rules/a11y/`・`rules/performance/` 等が追加されたら、同様のマッピングを拡張する。
 
@@ -60,9 +60,11 @@ description: Review a pull request against this project's style, naming, and str
   クラス名がケバブケースになっています。本プロジェクトではコンポーネント名と一致する PascalCase を採用しています（参考: `rules/style/css.md` 命名セクション、既存の `BaseButton/index.module.css`）。
   ```css
   /* Bad */
-  .new-button { }
+  .new-button {
+  }
   /* Good */
-  .NewButton { }
+  .NewButton {
+  }
   ```
 
 ### 🟡 Should（推奨される改善）
@@ -97,3 +99,7 @@ description: Review a pull request against this project's style, naming, and str
 3. 本ファイルの「観点の選択」テーブルに行を追加
 
 ルールファイルを増やしすぎる前に、既存ファイルへの追記で済まないか検討する。
+
+```
+
+```
