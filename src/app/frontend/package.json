@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.2.1",
     "framer-motion": "^12.38.0",
     "jotai": "^2.20.0",
     "keen-slider": "^6.8.6",
