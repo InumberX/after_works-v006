@@ -191,151 +191,159 @@ export const LayoutHeader = () => {
             </div>
 
             <div className={styles.LayoutHeaderMenu}>
-              <div className={styles.LayoutHeaderMenuGlobal}>
-                <nav className={styles.LayoutHeaderMenuGlobal__navigation}>
-                  <ul className={styles.LayoutHeaderMenuGlobal__items}>
-                    {headerMenuGlobalInfos.map((info) => (
-                      <li
-                        className={styles.LayoutHeaderMenuGlobal__item}
-                        key={info.id}
-                      >
-                        <button
-                          type='button'
-                          className={styles.LayoutHeaderMenuGlobal__link}
-                          onClick={() => {
-                            movePage({
-                              url: info.url,
-                              id: info.elmId,
-                            })
-                          }}
+              <div className={styles.LayoutHeaderMenu__container}>
+                <div className={styles.LayoutHeaderMenuGlobal}>
+                  <nav className={styles.LayoutHeaderMenuGlobal__navigation}>
+                    <ul className={styles.LayoutHeaderMenuGlobal__items}>
+                      {headerMenuGlobalInfos.map((info) => (
+                        <li
+                          className={styles.LayoutHeaderMenuGlobal__item}
+                          key={info.id}
                         >
-                          <span className={styles.LayoutHeaderMenuGlobal__text}>
-                            {info.title}
-                          </span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-
-              <div className={styles.LayoutHeaderLocales}>
-                <div className={styles.LayoutHeaderLocales__container}>
-                  <div className={styles.LayoutHeaderLocalesButton}>
-                    <button
-                      type='button'
-                      className={styles.LayoutHeaderLocalesButton__button}
-                      title={t('components.layoutHeader.locales.title')}
-                      aria-label={t('components.layoutHeader.locales.title')}
-                      onClick={() => {
-                        toggleLocalesMenu()
-                      }}
-                    >
-                      <SvgIcon
-                        variant='translate'
-                        className={styles.LayoutHeaderLocalesButton__icon}
-                      />
-                    </button>
-                  </div>
+                          <button
+                            type='button'
+                            className={styles.LayoutHeaderMenuGlobal__link}
+                            onClick={() => {
+                              movePage({
+                                url: info.url,
+                                id: info.elmId,
+                              })
+                            }}
+                          >
+                            <span
+                              className={styles.LayoutHeaderMenuGlobal__text}
+                            >
+                              {info.title}
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
                 </div>
 
-                <AnimatePresence mode='wait'>
-                  {isShowLocalesMenu && (
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                      }}
-                      animate={{
-                        opacity: 1,
-                      }}
-                      exit={{
-                        opacity: 0,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                      }}
-                      className={styles.LayoutHeaderLocalesMenu}
-                    >
-                      <div
-                        className={styles.LayoutHeaderLocalesMenu__container}
+                <div className={styles.LayoutHeaderLocales}>
+                  <div className={styles.LayoutHeaderLocales__container}>
+                    <div className={styles.LayoutHeaderLocalesButton}>
+                      <button
+                        type='button'
+                        className={styles.LayoutHeaderLocalesButton__button}
+                        title={t('components.layoutHeader.locales.title')}
+                        aria-label={t('components.layoutHeader.locales.title')}
+                        onClick={() => {
+                          toggleLocalesMenu()
+                        }}
                       >
-                        <ul className={styles.LayoutHeaderLocalesMenu__items}>
-                          <li className={styles.LayoutHeaderLocalesMenu__item}>
-                            <div
-                              className={
-                                styles.LayoutHeaderLocalesMenu__contents
-                              }
-                            >
-                              <button
-                                type='button'
-                                className={
-                                  styles.LayoutHeaderLocalesMenu__button
-                                }
-                                onClick={() => {
-                                  changeLocale('ja')
-                                  hideLocalesMenu()
-                                }}
-                              >
-                                <span
-                                  className={
-                                    styles.LayoutHeaderLocalesMenu__text
-                                  }
-                                >
-                                  日本語
-                                </span>
-                              </button>
-                            </div>
-                          </li>
-                          <li className={styles.LayoutHeaderLocalesMenu__item}>
-                            <div
-                              className={
-                                styles.LayoutHeaderLocalesMenu__contents
-                              }
-                            >
-                              <button
-                                type='button'
-                                className={
-                                  styles.LayoutHeaderLocalesMenu__button
-                                }
-                                onClick={() => {
-                                  changeLocale('en')
-                                  hideLocalesMenu()
-                                }}
-                              >
-                                <span
-                                  className={
-                                    styles.LayoutHeaderLocalesMenu__text
-                                  }
-                                >
-                                  English
-                                </span>
-                              </button>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                        <SvgIcon
+                          variant='translate'
+                          className={styles.LayoutHeaderLocalesButton__icon}
+                        />
+                      </button>
+                    </div>
+                  </div>
 
-              <div className={styles.LayoutHeaderMenuButton}>
-                <button
-                  type='button'
-                  className={styles.LayoutHeaderMenuButton__button}
-                  onClick={toggleMenu}
-                >
-                  <span className={styles.LayoutHeaderMenuButton__container}>
-                    <span className={styles.LayoutHeaderMenuButton__icons}>
-                      <span className={styles.LayoutHeaderMenuButton__icon} />
-                      <span className={styles.LayoutHeaderMenuButton__icon} />
-                      <span className={styles.LayoutHeaderMenuButton__icon} />
+                  <AnimatePresence mode='wait'>
+                    {isShowLocalesMenu && (
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                        }}
+                        animate={{
+                          opacity: 1,
+                        }}
+                        exit={{
+                          opacity: 0,
+                        }}
+                        transition={{
+                          duration: 0.3,
+                        }}
+                        className={styles.LayoutHeaderLocalesMenu}
+                      >
+                        <div
+                          className={styles.LayoutHeaderLocalesMenu__container}
+                        >
+                          <ul className={styles.LayoutHeaderLocalesMenu__items}>
+                            <li
+                              className={styles.LayoutHeaderLocalesMenu__item}
+                            >
+                              <div
+                                className={
+                                  styles.LayoutHeaderLocalesMenu__contents
+                                }
+                              >
+                                <button
+                                  type='button'
+                                  className={
+                                    styles.LayoutHeaderLocalesMenu__button
+                                  }
+                                  onClick={() => {
+                                    changeLocale('ja')
+                                    hideLocalesMenu()
+                                  }}
+                                >
+                                  <span
+                                    className={
+                                      styles.LayoutHeaderLocalesMenu__text
+                                    }
+                                  >
+                                    日本語
+                                  </span>
+                                </button>
+                              </div>
+                            </li>
+                            <li
+                              className={styles.LayoutHeaderLocalesMenu__item}
+                            >
+                              <div
+                                className={
+                                  styles.LayoutHeaderLocalesMenu__contents
+                                }
+                              >
+                                <button
+                                  type='button'
+                                  className={
+                                    styles.LayoutHeaderLocalesMenu__button
+                                  }
+                                  onClick={() => {
+                                    changeLocale('en')
+                                    hideLocalesMenu()
+                                  }}
+                                >
+                                  <span
+                                    className={
+                                      styles.LayoutHeaderLocalesMenu__text
+                                    }
+                                  >
+                                    English
+                                  </span>
+                                </button>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <div className={styles.LayoutHeaderMenuButton}>
+                  <button
+                    type='button'
+                    className={styles.LayoutHeaderMenuButton__button}
+                    onClick={toggleMenu}
+                  >
+                    <span className={styles.LayoutHeaderMenuButton__container}>
+                      <span className={styles.LayoutHeaderMenuButton__icons}>
+                        <span className={styles.LayoutHeaderMenuButton__icon} />
+                        <span className={styles.LayoutHeaderMenuButton__icon} />
+                        <span className={styles.LayoutHeaderMenuButton__icon} />
+                      </span>
+                      <span className={styles.LayoutHeaderMenuButton__text}>
+                        {t('components.layoutHeader.menu.buttonText')}
+                      </span>
                     </span>
-                    <span className={styles.LayoutHeaderMenuButton__text}>
-                      {t('components.layoutHeader.menu.buttonText')}
-                    </span>
-                  </span>
-                </button>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
