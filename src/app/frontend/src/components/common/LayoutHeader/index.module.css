@@ -3,13 +3,8 @@
     inline-size: 100%;
     inset-block-start: 0;
     inset-inline-start: 0;
-    position: fixed;
+    position: absolute;
     z-index: var(--z-index-header);
-  }
-
-  .LayoutHeader__wrapper {
-    backdrop-filter: blur(20px);
-    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
   }
 
   .LayoutHeader__container {
@@ -42,9 +37,39 @@
   }
 
   .LayoutHeaderMenu {
+    inset-block-start: 8px;
+    inset-inline-end: var(--layout-inner-padding-xs);
+    position: fixed;
+    z-index: var(--z-index-header);
+
+    @mixin getMediaQuerySm {
+      inset-inline-end: var(--layout-inner-padding-sm);
+    }
+
+    @mixin getMediaQueryMd {
+      inset-inline-end: var(--layout-inner-padding-md);
+    }
+  }
+
+  .LayoutHeaderMenu__container {
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    border-radius: calc(infinity * 1px);
     display: flex;
-    flex-grow: 1;
     justify-content: flex-end;
+    padding-block: 8px;
+    padding-inline: 16px;
+
+    @mixin getMediaQueryMd {
+      padding-block: 0;
+      padding-inline: 8px 16px;
+    }
+
+    @mixin getMediaQueryLg {
+      padding-block: 0;
+      padding-inline: 16px 32px;
+    }
   }
 
   .LayoutHeaderMenuGlobal {
@@ -76,7 +101,7 @@
     inline-size: 100%;
     justify-content: center;
     min-inline-size: 72px;
-    padding-block: 16px;
+    padding-block: 12px;
     padding-inline: 8px;
     position: relative;
     text-align: start;
