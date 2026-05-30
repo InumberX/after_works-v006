@@ -23,41 +23,21 @@
     font-family: var(--font-family-main);
     font-weight: var(--font-weight-medium);
     inline-size: 100%;
+    -webkit-line-break: strict;
+    line-break: strict;
     line-height: 1.6;
     overflow: clip auto;
+    -webkit-overflow-wrap: anywhere;
+    overflow-wrap: anywhere;
     text-size-adjust: 100%;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  dl,
-  dt,
-  dd,
-  p,
-  blockquote,
-  ul,
-  ol,
-  li {
-    -webkit-overflow-wrap: break-word;
-    overflow-wrap: break-word;
     vertical-align: baseline;
-    -webkit-word-wrap: break-word;
+    -webkit-word-break: normal;
+    word-break: normal;
   }
 
   ul,
   ol {
     list-style: none;
-  }
-
-  figcaption,
-  span {
-    -webkit-overflow-wrap: break-word;
-    overflow-wrap: break-word;
-    -webkit-word-wrap: break-word;
   }
 
   audio,
