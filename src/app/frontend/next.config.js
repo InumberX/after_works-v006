@@ -1,3 +1,5 @@
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+
 const now = new Date()
 const nowDatetime =
   now.getFullYear() +
@@ -53,5 +55,9 @@ const nextConfig = {
 //   sourcemaps: { disable: true },
 //   silent: false,
 // })
+
+// Makes Cloudflare bindings (and `getCloudflareContext`) available during
+// `next dev`. No-op for production builds / deploys.
+initOpenNextCloudflareForDev()
 
 export default nextConfig
