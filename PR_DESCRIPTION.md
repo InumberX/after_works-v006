@@ -23,9 +23,9 @@
 - `src/app/frontend/CLAUDE.md` — middleware の記述を更新。
 - `.node-version` — `22.20.0`。
 
-### 据え置き
+### 削除ファイル
 
-- `amplify.yml` — DNS 切替確認までロールバック用に残置。
+- `amplify.yml` — AWS Amplify のビルド設定。Cloudflare Workers への移行に伴い削除。
 
 ## 認証の挙動
 
@@ -55,4 +55,4 @@
 1. GitHub Environments（`development` / `production`）と Environment variables（`NEXT_PUBLIC_*`）を作成。
 2. GitHub Secrets（`CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID`）を設定。
 3. staging のみ `wrangler secret put BASIC_AUTH_USER --env=development`（と `..._PASS`）。
-4. `afterworks.jp` を `after-works-v006` ワーカーのカスタムドメインに割当。確認後 Amplify を撤去。
+4. `afterworks.jp` を `after-works-v006` ワーカーのカスタムドメインに割当。確認後 AWS 側の Amplify アプリを撤去。

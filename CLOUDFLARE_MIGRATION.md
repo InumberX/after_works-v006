@@ -28,9 +28,9 @@
 - `src/app/frontend/.gitignore` — `.open-next/` / `.wrangler/` / `.dev.vars` などを除外
 - `.node-version` — `22.20.0`
 
-据え置き:
+削除:
 
-- `amplify.yml` — DNS 切替確認まではロールバック用に残置
+- `amplify.yml` — AWS Amplify のビルド設定。Cloudflare Workers への移行に伴い削除
 
 ## Next.js 16 Proxy と OpenNext の互換問題（重要）
 
@@ -105,7 +105,7 @@ npm run preview
    wrangler secret put BASIC_AUTH_PASS --env=development
    ```
 
-5. **本番ドメイン切替**: `afterworks.jp` を `after-works-v006` ワーカーのカスタムドメインに割当（ゾーンが Cloudflare 上にあること）。確認後に Amplify を撤去し、`amplify.yml` を削除。
+5. **本番ドメイン切替**: `afterworks.jp` を `after-works-v006` ワーカーのカスタムドメインに割当（ゾーンが Cloudflare 上にあること）。確認後に AWS 側の Amplify アプリを撤去（`amplify.yml` は本ブランチで削除済み）。
 
 ## 監査済みの互換性（移行ブロッカーなし）
 
