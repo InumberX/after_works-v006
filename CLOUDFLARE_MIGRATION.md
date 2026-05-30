@@ -78,8 +78,8 @@ npm run preview
 
 `.github/workflows/deploy.yml`:
 
-- `develop` への push → `development` 環境（staging worker `after-works-v006-staging`）
-- `main` への push → `production` 環境（worker `after-works-v006`）
+- `develop` への push → `development` 環境（staging worker `dev-after-works`）
+- `main` への push → `production` 環境（worker `after-works`）
 - 手動実行（`workflow_dispatch`）も可能
 
 ビルド時に `NEXT_PUBLIC_*` を GitHub Environment variables から注入し、`CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` でデプロイします。
@@ -105,7 +105,7 @@ npm run preview
    wrangler secret put BASIC_AUTH_PASS --env=development
    ```
 
-5. **本番ドメイン切替**: `afterworks.jp` を `after-works-v006` ワーカーのカスタムドメインに割当（ゾーンが Cloudflare 上にあること）。確認後に AWS 側の Amplify アプリを撤去（`amplify.yml` は本ブランチで削除済み）。
+5. **本番ドメイン切替**: `afterworks.jp` を `after-works` ワーカーのカスタムドメインに割当（ゾーンが Cloudflare 上にあること）。確認後に AWS 側の Amplify アプリを撤去（`amplify.yml` は本ブランチで削除済み）。
 
 ## 監査済みの互換性（移行ブロッカーなし）
 

@@ -2,7 +2,7 @@
   // Cloudflare Workers configuration for the OpenNext build of the Next.js app.
   // Docs: https://opennext.js.org/cloudflare  |  https://developers.cloudflare.com/workers/wrangler/configuration/
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "after-works-v006",
+  "name": "after-works",
   // Custom Worker entrypoint that wraps the OpenNext handler with Basic auth.
   // It imports the generated `.open-next/worker.js` produced by the build.
   "main": "workers/app.ts",

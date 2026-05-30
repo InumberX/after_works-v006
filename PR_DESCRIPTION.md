@@ -55,4 +55,4 @@
 1. GitHub Environments（`development` / `production`）と Environment variables（`NEXT_PUBLIC_*`）を作成。
 2. GitHub Secrets（`CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID`）を設定。
 3. staging のみ `wrangler secret put BASIC_AUTH_USER --env=development`（と `..._PASS`）。
-4. `afterworks.jp` を `after-works-v006` ワーカーのカスタムドメインに割当。確認後 AWS 側の Amplify アプリを撤去。
+4. `afterworks.jp` を `after-works` ワーカーのカスタムドメインに割当。確認後 AWS 側の Amplify アプリを撤去。
