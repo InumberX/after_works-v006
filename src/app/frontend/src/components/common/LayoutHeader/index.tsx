@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useState, useMemo, useEffect, useCallback } from 'react'
+import { useState, useMemo, useEffect, useCallback, MouseEvent } from 'react'
 
 import styles from './index.module.css'
 
@@ -28,7 +27,6 @@ export const LayoutHeader = () => {
   const changeLocale = useChangeLocale()
   const t = useI18n()
   const [isShowMenu, setIsShowMenu] = useState(false)
-  const router = useRouter()
   const [isBreakpointMd] = useAtom(isBreakpointMdAtom)
   const [isBreakpointLg] = useAtom(isBreakpointLgAtom)
   const [isBreakpointXl] = useAtom(isBreakpointXlAtom)
@@ -121,8 +119,16 @@ export const LayoutHeader = () => {
     hideLocalesMenu()
   }
 
-  const movePage = ({ url, id }: { url: string; id?: string }) => {
+  const movePage = ({
+    event,
+    id,
+  }: {
+    event?: MouseEvent<HTMLAnchorElement>
+    id?: string
+  }) => {
     if (id && document.querySelector(`#${id}`)) {
+      event?.preventDefault()
+
       if (!isShowMenu) {
         actSmoothScroll(`#${id}`)
         return
@@ -137,16 +143,7 @@ export const LayoutHeader = () => {
       return
     }
 
-    if (!isShowMenu) {
-      router.push(url)
-      return
-    }
-
     hideMenu()
-
-    setTimeout(() => {
-      router.push(url)
-    }, 310)
   }
 
   const isShowSmallMenu = useMemo(() => {
@@ -180,10 +177,10 @@ export const LayoutHeader = () => {
                 className={styles.LayoutHeaderLogo__link}
               >
                 <Image
-                  src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CACHE_BUSTER}`}
+                  src={`${STATIC_IMAGE_DIR}/img-logo-small.svg?${CACHE_BUSTER}`}
                   alt={SITE_NAME}
-                  width='140'
-                  height='25'
+                  width='76'
+                  height='41'
                   className={styles.LayoutHeaderLogo__image}
                   priority
                 />
@@ -200,12 +197,12 @@ export const LayoutHeader = () => {
                           className={styles.LayoutHeaderMenuGlobal__item}
                           key={info.id}
                         >
-                          <button
-                            type='button'
+                          <Link
+                            href={info.url}
                             className={styles.LayoutHeaderMenuGlobal__link}
-                            onClick={() => {
+                            onClick={(event) => {
                               movePage({
-                                url: info.url,
+                                event,
                                 id: info.elmId,
                               })
                             }}
@@ -215,7 +212,7 @@ export const LayoutHeader = () => {
                             >
                               {info.title}
                             </span>
-                          </button>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -331,15 +328,14 @@ export const LayoutHeader = () => {
                     type='button'
                     className={styles.LayoutHeaderMenuButton__button}
                     onClick={toggleMenu}
+                    title={t('components.layoutHeader.menu.buttonText')}
+                    aria-label={t('components.layoutHeader.menu.buttonText')}
                   >
                     <span className={styles.LayoutHeaderMenuButton__container}>
                       <span className={styles.LayoutHeaderMenuButton__icons}>
                         <span className={styles.LayoutHeaderMenuButton__icon} />
                         <span className={styles.LayoutHeaderMenuButton__icon} />
                         <span className={styles.LayoutHeaderMenuButton__icon} />
-                      </span>
-                      <span className={styles.LayoutHeaderMenuButton__text}>
-                        {t('components.layoutHeader.menu.buttonText')}
                       </span>
                     </span>
                   </button>
@@ -381,15 +377,14 @@ export const LayoutHeader = () => {
                     styles['LayoutHeaderMenuButton__button--active'],
                   )}
                   onClick={hideMenu}
+                  title={t('components.layoutHeader.menu.closeButtonText')}
+                  aria-label={t('components.layoutHeader.menu.closeButtonText')}
                 >
                   <span className={styles.LayoutHeaderMenuButton__container}>
                     <span className={styles.LayoutHeaderMenuButton__icons}>
                       <span className={styles.LayoutHeaderMenuButton__icon} />
                       <span className={styles.LayoutHeaderMenuButton__icon} />
                       <span className={styles.LayoutHeaderMenuButton__icon} />
-                    </span>
-                    <span className={styles.LayoutHeaderMenuButton__text}>
-                      {t('components.layoutHeader.menu.closeButtonText')}
                     </span>
                   </span>
                 </button>
@@ -428,14 +423,14 @@ export const LayoutHeader = () => {
                           }
                           key={info.id}
                         >
-                          <button
-                            type='button'
+                          <Link
+                            href={info.url}
                             className={
                               styles.LayoutHeaderMenuOuterNavigation__link
                             }
-                            onClick={() => {
+                            onClick={(event) => {
                               movePage({
-                                url: info.url,
+                                event,
                                 id: info.elmId,
                               })
                             }}
@@ -447,7 +442,7 @@ export const LayoutHeader = () => {
                             >
                               {info.title}
                             </span>
-                          </button>
+                          </Link>
                         </motion.li>
                       ))}
                     </motion.ul>

@@ -33,7 +33,7 @@
   .LayoutHeaderLogo__image {
     block-size: auto;
 
-    @mixin getClampPx inline-size, 140, 160;
+    @mixin getClampPx inline-size, 56, 76;
   }
 
   .LayoutHeaderMenu {
@@ -53,15 +53,13 @@
 
   .LayoutHeaderMenu__container {
     align-items: center;
-    backdrop-filter: blur(20px);
-    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
-    border-radius: calc(infinity * 1px);
     display: flex;
     justify-content: flex-end;
-    padding-block: 8px;
-    padding-inline: 16px;
 
     @mixin getMediaQueryMd {
+      backdrop-filter: blur(20px);
+      background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+      border-radius: calc(infinity * 1px);
       padding-block: 0;
       padding-inline: 8px 16px;
     }
@@ -155,14 +153,16 @@
 
   .LayoutHeaderMenuButton__button {
     align-items: center;
-    background-color: transparent;
+    aspect-ratio: 1 / 1;
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
     block-size: 100%;
     border: none;
-    border-radius: 0;
+    border-radius: calc(infinity * 1px);
     display: flex;
     font-weight: var(--font-weight-bold);
     justify-content: center;
-    min-inline-size: 64px;
+    min-inline-size: 48px;
     padding-block: 0;
     padding-inline: 0;
 
@@ -329,10 +329,12 @@
 
   .LayoutHeaderLocalesButton__button {
     align-items: center;
-    background-color: transparent;
+    aspect-ratio: 1 / 1;
+    backdrop-filter: blur(20px);
+    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
     block-size: 100%;
     border: none;
-    border-radius: 0;
+    border-radius: calc(infinity * 1px);
     display: flex;
     inline-size: 48px;
     justify-content: center;
@@ -340,6 +342,11 @@
     padding-inline: 0;
 
     @mixin getMediaQueryMd {
+      aspect-ratio: auto;
+      backdrop-filter: none;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
       justify-content: flex-end;
     }
   }

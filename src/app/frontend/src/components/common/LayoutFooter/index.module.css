@@ -30,6 +30,25 @@
     @mixin getClampPx padding-block, 40, 80;
   }
 
+  .LayoutFooterContents {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @mixin getClampPx gap, 64, 80;
+  }
+
+  .LayoutFooterLogo__container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .LayoutFooterLogo__image {
+    block-size: auto;
+
+    @mixin getClampPx inline-size, 200, 328;
+  }
+
   .LayoutFooterNavigation__items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -83,8 +102,6 @@
 
   .LayoutFooterSns {
     overflow: hidden;
-
-    @mixin getClampPx margin-block-start, 64, 80;
   }
 
   .LayoutFooterSns__items {
