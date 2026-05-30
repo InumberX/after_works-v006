@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useMemo, useEffect, useCallback } from 'react'
+import { useState, useMemo, useEffect, useCallback, MouseEvent } from 'react'
 
 import styles from './index.module.css'
 
@@ -119,8 +119,16 @@ export const LayoutHeader = () => {
     hideLocalesMenu()
   }
 
-  const movePage = ({ id }: { id?: string }) => {
+  const movePage = ({
+    event,
+    id,
+  }: {
+    event?: MouseEvent<HTMLAnchorElement>
+    id?: string
+  }) => {
     if (id && document.querySelector(`#${id}`)) {
+      event?.preventDefault()
+
       if (!isShowMenu) {
         actSmoothScroll(`#${id}`)
         return
@@ -192,8 +200,9 @@ export const LayoutHeader = () => {
                           <Link
                             href={info.url}
                             className={styles.LayoutHeaderMenuGlobal__link}
-                            onClick={() => {
+                            onClick={(event) => {
                               movePage({
+                                event,
                                 id: info.elmId,
                               })
                             }}
@@ -419,8 +428,9 @@ export const LayoutHeader = () => {
                             className={
                               styles.LayoutHeaderMenuOuterNavigation__link
                             }
-                            onClick={() => {
+                            onClick={(event) => {
                               movePage({
+                                event,
                                 id: info.elmId,
                               })
                             }}
