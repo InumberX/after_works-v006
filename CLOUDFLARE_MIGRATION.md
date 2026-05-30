@@ -22,6 +22,7 @@
 
 変更:
 
+- `src/app/frontend/src/proxy.ts` → `src/app/frontend/src/middleware.ts` にリネーム（後述「Next.js 16 Proxy と OpenNext の互換問題」を参照）
 - `src/app/frontend/package.json` — 依存（`@opennextjs/cloudflare` / `@inumberx/cloudflare-workers-basic-auth` / `wrangler`）とスクリプト追加
 - `src/app/frontend/next.config.js` — `initOpenNextCloudflareForDev()` の dev フック追加
 - `src/app/frontend/.gitignore` — `.open-next/` / `.wrangler/` / `.dev.vars` などを除外
@@ -30,6 +31,20 @@
 据え置き:
 
 - `amplify.yml` — DNS 切替確認まではロールバック用に残置
+
+## Next.js 16 Proxy と OpenNext の互換問題（重要）
+
+引き継ぎ資料では `src/proxy.ts` は移行ブロッカーなしと記載されていましたが、実機検証で **ビルドブロッカー** が判明しました。
+
+- Next.js 16 で `middleware.ts` は `proxy.ts` にリネームされ、**Proxy は常に Node.js ランタイムで動作**します（Edge ランタイムは選択不可。`export const config = { runtime: 'edge' }` はビルドエラー）。
+- 一方、OpenNext の Cloudflare アダプタは **現時点で Node.js ミドルウェアをサポートしていません**（`ERROR Node.js middleware is not currently supported. Consider switching to Edge Middleware.`）。参考: https://github.com/cloudflare/workers-sdk/issues/13755
+
+### 対応
+
+`src/proxy.ts` を **非推奨だが利用可能な** `src/middleware.ts` 規約に戻しました（関数名 `proxy` → `middleware`）。`middleware.ts` は Edge ランタイムで動作し、OpenNext がサポートするため、next-international によるロケール振り分けが Cloudflare Workers 上でそのまま動作します。
+
+- ビルド時に `⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.` という **警告** は出ますが、ビルドは成功します。
+- 将来 OpenNext が Node.js ミドルウェア（Next 16 Proxy）に対応したら `proxy.ts` へ戻せます。
 
 ## ローカル開発
 
@@ -94,7 +109,7 @@ npm run preview
 
 ## 監査済みの互換性（移行ブロッカーなし）
 
-- App Router + `[locale]` i18n（next-international）。`src/proxy.ts` は URL ベースのロケール振り分けのみで Node 専用 API 不使用。
+- App Router + `[locale]` i18n（next-international）。ロケール振り分けは `src/middleware.ts`（Edge ランタイム）で実施（上記の互換対応を参照）。URL ベースの振り分けのみで Node 専用 API 不使用。
 - `export const runtime = 'edge'` は不使用。fs / path 等の Node 組み込みモジュールの直接利用なし。
 - データ取得は標準 Web `fetch`（`cache: 'no-store'`）で Kuroco CMS を参照。RSS / `sitemap.ts` / `robots.ts` も fetch ベース。
 - トップは `force-dynamic`（SSR）。`images: { unoptimized: true }` 済み。
