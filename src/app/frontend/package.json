@@ -19,9 +19,17 @@
     "storybook-build": "storybook build -c .storybook",
     "upgrade": "npx npm-check-updates -u",
     "upgrade-check": "npx npm-check-updates",
-    "pre-commit": "npm run typecheck && npm run lint-fix && npm run stylelint-fix && npm run format-fix"
+    "pre-commit": "npm run typecheck && npm run lint-fix && npm run stylelint-fix && npm run format-fix",
+    "cf-build": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "deploy:staging": "opennextjs-cloudflare build && wrangler deploy --env development",
+    "deploy:production": "opennextjs-cloudflare build && wrangler deploy --env production",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@inumberx/cloudflare-workers-basic-auth": "^1.0.0",
+    "@opennextjs/cloudflare": "^1.19.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.3.0",
     "framer-motion": "^12.40.0",
@@ -64,7 +72,8 @@
     "typescript": "6.0.3",
     "vite": "^8.0.14",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.7",
+    "wrangler": "^4.40.0"
   },
   "engines": {
     "node": ">=22.0.0"

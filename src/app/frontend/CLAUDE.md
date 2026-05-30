@@ -52,7 +52,7 @@ npm run upgrade         # Upgrade all packages (use with caution)
 
 - Uses `next-international` for multilingual support (Japanese default, English available)
 - Locale files: `src/locales/ja.ts` and `src/locales/en.ts`
-- Middleware handles locale resolution at `src/proxy.ts` (exports `proxy` function and route `config`)
+- Middleware handles locale resolution at `src/middleware.ts` (exports `middleware` function and route `config`). NOTE: kept on the deprecated `middleware.ts` (Edge runtime) convention rather than Next.js 16's `proxy.ts` because the OpenNext Cloudflare adapter does not support Node.js middleware (Next 16 Proxy is Node-only).
 - URL structure: `/` (Japanese), `/en` (English) with rewriteDefault strategy
 - **Client components**: Use hooks from `src/locales/client.ts` (`useI18n`, `useScopedI18n`, `useCurrentLocale`, `useChangeLocale`)
 - **Server components**: Use functions from `src/locales/server.ts` (`getI18n`, `getScopedI18n`, `getCurrentLocale`, `getStaticParams`)

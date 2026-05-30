@@ -1,0 +1,58 @@
+name: Deploy to Cloudflare Workers
+
+# Deploys the OpenNext build of the Next.js app to Cloudflare Workers.
+#   - push to `develop` -> `development` environment (staging worker, Basic auth ON)
+#   - push to `main`    -> `production` environment (production worker, auth OFF)
+#
+# Required GitHub Environment configuration (see CLOUDFLARE_MIGRATION.md):
+#   Variables: NEXT_PUBLIC_SITE_URL / _SITE_ROOT / _SITE_NAME / _API_URL /
+#              _GOOGLE_ANALYTICS_ID / _STATIC_IMAGE_DIR
+#   Secrets:   CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+#   Staging only secrets (set via `wrangler secret put`): BASIC_AUTH_USER / _PASS
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'development' }}
+    defaults:
+      run:
+        working-directory: src/app/frontend
+    env:
+      # Build-time public env vars are inlined into the bundle by Next.js.
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+      NEXT_PUBLIC_SITE_ROOT: ${{ vars.NEXT_PUBLIC_SITE_ROOT }}
+      NEXT_PUBLIC_SITE_NAME: ${{ vars.NEXT_PUBLIC_SITE_NAME }}
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+      NEXT_PUBLIC_STATIC_IMAGE_DIR: ${{ vars.NEXT_PUBLIC_STATIC_IMAGE_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: npm
+          cache-dependency-path: src/app/frontend/package-lock.json
+
+      - run: npm ci
+
+      - name: Build (OpenNext)
+        run: npx opennextjs-cloudflare build
+
+      - name: Deploy
+        run: npx wrangler deploy --env ${{ github.ref_name == 'main' && 'production' || 'development' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
