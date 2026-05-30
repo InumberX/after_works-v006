@@ -319,6 +319,8 @@ export const LayoutHeader = () => {
                     type='button'
                     className={styles.LayoutHeaderMenuButton__button}
                     onClick={toggleMenu}
+                    title={t('components.layoutHeader.menu.buttonText')}
+                    aria-label={t('components.layoutHeader.menu.buttonText')}
                   >
                     <span className={styles.LayoutHeaderMenuButton__container}>
                       <span className={styles.LayoutHeaderMenuButton__icons}>
@@ -366,6 +368,8 @@ export const LayoutHeader = () => {
                     styles['LayoutHeaderMenuButton__button--active'],
                   )}
                   onClick={hideMenu}
+                  title={t('components.layoutHeader.menu.closeButtonText')}
+                  aria-label={t('components.layoutHeader.menu.closeButtonText')}
                 >
                   <span className={styles.LayoutHeaderMenuButton__container}>
                     <span className={styles.LayoutHeaderMenuButton__icons}>
