@@ -13,7 +13,8 @@ import { SvgIcon } from '~/components/ui/icons/SvgIcon'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { STATIC_IMAGE_DIR, SITE_NAME, CACHE_BUSTER } from '~/config/env'
 import { routes } from '~/config/routes'
-import { useI18n, useCurrentLocale, useChangeLocale } from '~/locales/client'
+import { useChangeLocale } from '~/hooks/use-change-locale'
+import { useI18n, useCurrentLocale } from '~/locales/client'
 import {
   isBreakpointMdAtom,
   isBreakpointLgAtom,
