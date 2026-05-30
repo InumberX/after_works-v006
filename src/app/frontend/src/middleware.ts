@@ -27,7 +27,18 @@ const I18nMiddleware = createI18nMiddleware({
   },
 })
 
+// The locale is derived purely from the URL (see `resolveLocaleFromRequest`
+// above). However, next-international's middleware reads the `Next-Locale`
+// cookie *before* falling back to `resolveLocaleFromRequest`, so a stale cookie
+// overrides the explicit URL. That breaks language switching: clicking
+// "English" while the cookie still holds "ja" navigates to `/en`, but the
+// middleware reads the cookie, decides `/en` doesn't match, and 307-redirects
+// back to `/` (Japanese) — the switch appears to do nothing. Deleting the cookie
+// from the request makes the URL path the single source of truth, so `/en`
+// always resolves to English. The response still re-sets the cookie in sync with
+// the resolved locale, so nothing downstream depends on it being present here.
 export function middleware(request: NextRequest) {
+  request.cookies.delete('Next-Locale')
   return I18nMiddleware(request)
 }
 
