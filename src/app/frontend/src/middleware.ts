@@ -1,6 +1,12 @@
 import { createI18nMiddleware } from 'next-international/middleware'
 import type { NextRequest } from 'next/server'
 
+// NOTE: This file uses the (now deprecated in Next.js 16) `middleware.ts`
+// convention on purpose. Next.js 16 renamed middleware to `proxy.ts`, but the
+// Proxy always runs on the Node.js runtime, which the OpenNext Cloudflare
+// adapter does not yet support. The `middleware.ts` convention still runs on
+// the Edge runtime, which OpenNext supports, so the i18n locale rewriting keeps
+// working on Cloudflare Workers. See https://github.com/cloudflare/workers-sdk/issues/13755
 const I18nMiddleware = createI18nMiddleware({
   locales: ['ja', 'en'],
   defaultLocale: 'ja',
@@ -21,7 +27,7 @@ const I18nMiddleware = createI18nMiddleware({
   },
 })
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   return I18nMiddleware(request)
 }
 

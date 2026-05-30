@@ -1,0 +1,33 @@
+{
+  // Cloudflare Workers configuration for the OpenNext build of the Next.js app.
+  // Docs: https://opennext.js.org/cloudflare  |  https://developers.cloudflare.com/workers/wrangler/configuration/
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "after-works-v006",
+  // Custom Worker entrypoint that wraps the OpenNext handler with Basic auth.
+  // It imports the generated `.open-next/worker.js` produced by the build.
+  "main": "workers/app.ts",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets",
+    // Run the Worker first so the Basic auth gate also covers static assets on
+    // staging. Authenticated GET/HEAD requests are then served from ASSETS by
+    // the custom Worker before falling through to the Next.js handler.
+    "run_worker_first": true
+  },
+  "observability": {
+    "enabled": true
+  },
+  // Environment-specific names. Build-time NEXT_PUBLIC_* values are injected by
+  // the GitHub Actions workflow; runtime secrets (BASIC_AUTH_*) are set per
+  // environment with `wrangler secret put ... --env=<environment>`.
+  "env": {
+    "development": {
+      "name": "after-works-v006-staging"
+    },
+    "production": {
+      "name": "after-works-v006"
+    }
+  }
+}

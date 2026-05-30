@@ -1,0 +1,6 @@
+# Local runtime secrets for `wrangler dev` / `opennextjs-cloudflare preview`.
+# Copy to `.dev.vars` (gitignored) to exercise the Basic auth gate locally.
+# Set BOTH to enable the gate; leave BOTH empty to disable it. Setting only one
+# fails closed (every request returns 503).
+BASIC_AUTH_USER=
+BASIC_AUTH_PASS=
