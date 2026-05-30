@@ -182,7 +182,6 @@ export const LayoutFooter = () => {
                     width='328'
                     height='57'
                     className={styles.LayoutFooterLogo__image}
-                    priority
                   />
                 </figure>
               </div>
