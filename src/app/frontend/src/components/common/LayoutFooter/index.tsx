@@ -1,6 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
@@ -10,6 +11,7 @@ import styles from './index.module.css'
 import { CircleButton } from '~/components/ui/buttons/CircleButton'
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { STATIC_IMAGE_DIR, SITE_NAME, CACHE_BUSTER } from '~/config/env'
 import { routes } from '~/config/routes'
 import { snsInfos } from '~/config/sns'
 import { useI18n, useCurrentLocale } from '~/locales/client'
@@ -172,6 +174,18 @@ export const LayoutFooter = () => {
         <div className={styles.LayoutFooter__contents}>
           <LayoutInner>
             <div className={styles.LayoutFooterContents}>
+              <div className={styles.LayoutFooterLogo}>
+                <figure className={styles.LayoutFooterLogo__container}>
+                  <Image
+                    src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CACHE_BUSTER}`}
+                    alt={SITE_NAME}
+                    width='328'
+                    height='57'
+                    className={styles.LayoutFooterLogo__image}
+                    priority
+                  />
+                </figure>
+              </div>
               <div className={styles.LayoutFooterNavigation}>
                 <nav className={styles.LayoutFooterNavigation__container}>
                   <ul className={styles.LayoutFooterNavigation__items}>
