@@ -180,8 +180,8 @@ export const LayoutHeader = () => {
                 <Image
                   src={`${STATIC_IMAGE_DIR}/img-logo-small.svg?${CACHE_BUSTER}`}
                   alt={SITE_NAME}
-                  width='76'
-                  height='41'
+                  width='67'
+                  height='38'
                   className={styles.LayoutHeaderLogo__image}
                   priority
                 />

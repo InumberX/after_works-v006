@@ -32,7 +32,7 @@ export const Profile = ({ certifications, skills }: ProfileProps) => {
         >
           <figure className={styles.ProfileIcon}>
             <Image
-              src={`${STATIC_IMAGE_DIR}/img-profile.svg?${CACHE_BUSTER}`}
+              src={`${STATIC_IMAGE_DIR}/img-profile.avif?${CACHE_BUSTER}`}
               width={80}
               height={80}
               alt={scopedT('title')}
@@ -42,10 +42,6 @@ export const Profile = ({ certifications, skills }: ProfileProps) => {
 
           <div className={styles.ProfileTitle}>
             <h2 className={styles.ProfileTitle__main}>{scopedT('title')}</h2>
-
-            <span className={styles.ProfileTitle__sub}>
-              {scopedT('subTitle')}
-            </span>
           </div>
 
           <div className={styles.ProfileInfo}>

@@ -179,8 +179,8 @@ export const LayoutFooter = () => {
                   <Image
                     src={`${STATIC_IMAGE_DIR}/img-logo.svg?${CACHE_BUSTER}`}
                     alt={SITE_NAME}
-                    width='328'
-                    height='57'
+                    width='288'
+                    height='51'
                     className={styles.LayoutFooterLogo__image}
                   />
                 </figure>
@@ -270,7 +270,7 @@ export const LayoutFooter = () => {
                   lang='en'
                   translate='no'
                 >
-                  Copyright &copy; {currentYear} N/NE, All rights reserved.
+                  Copyright &copy; {currentYear} NiNE, All rights reserved.
                 </small>
               </p>
             </div>
