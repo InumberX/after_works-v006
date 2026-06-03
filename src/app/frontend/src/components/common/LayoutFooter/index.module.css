@@ -46,7 +46,7 @@
   .LayoutFooterLogo__image {
     block-size: auto;
 
-    @mixin getClampPx inline-size, 200, 328;
+    @mixin getClampPx inline-size, 180, 288;
   }
 
   .LayoutFooterNavigation__items {

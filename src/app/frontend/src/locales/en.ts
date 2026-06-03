@@ -44,12 +44,11 @@ I can create various types of websites such as responsive sites that display opt
   about: {
     title: 'About',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, I introduce my profile, past experiences, and duties.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce my profile, past experiences, and duties.',
     pageTitle: 'About',
     pageSubTitle: 'About',
     profile: {
-      title: 'N/NE',
-      subTitle: '[nʌɪn]',
+      title: 'NiNE',
       certification: {
         title: 'Certifications',
       },
@@ -61,7 +60,7 @@ I can create various types of websites such as responsive sites that display opt
   blogs: {
     title: 'Blog',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, you can view a list of articles I have posted.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of articles I have posted.',
     pageTitle: 'Blog',
     pageSubTitle: 'Blog',
     sideColumn: {
@@ -73,7 +72,7 @@ I can create various types of websites such as responsive sites that display opt
   blogsDetail: {
     title: 'Blog',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, you can view the article titled {title}.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
     dateTitle: 'Post Date',
     bottomLinkText: 'Return to Blog List',
     sideColumn: {
@@ -85,7 +84,7 @@ I can create various types of websites such as responsive sites that display opt
   contact: {
     title: 'Contact',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. Please feel free to contact me through this page.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. Please feel free to contact me through this page.',
     pageTitle: 'Contact',
     pageSubTitle: 'Contact',
     message: {
@@ -98,7 +97,7 @@ I can create various types of websites such as responsive sites that display opt
   hobby: {
     title: 'Hobby',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, I introduce things I have created for my hobbies and learning.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce things I have created for my hobbies and learning.',
     pageTitle: 'Hobby',
     pageSubTitle: 'Hobby',
     sideColumn: {
@@ -110,7 +109,7 @@ I can create various types of websites such as responsive sites that display opt
   hobbyDetail: {
     title: 'Hobby',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, you can view the article titled {title}.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
     dateTitle: 'Creation Period',
     bottomLinkText: 'Return to Hobby List',
     tags: {
@@ -130,7 +129,7 @@ I can create various types of websites such as responsive sites that display opt
   works: {
     title: 'Works',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, you can view a list of my past achievements and creations.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of my past achievements and creations.',
     pageTitle: 'Works',
     pageSubTitle: 'Works',
     sideColumn: {
@@ -142,7 +141,7 @@ I can create various types of websites such as responsive sites that display opt
   worksDetail: {
     title: 'Works',
     description:
-      'I am a Front-end Engineer living in Tokyo: N/NE (Nine). This is my portfolio website. On this page, you can view the article titled {title}.',
+      'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
     dateTitle: 'Creation Period',
     bottomLinkText: 'Return to Works List',
     tags: {

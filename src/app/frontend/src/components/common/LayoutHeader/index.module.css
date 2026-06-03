@@ -33,7 +33,7 @@
   .LayoutHeaderLogo__image {
     block-size: auto;
 
-    @mixin getClampPx inline-size, 56, 76;
+    @mixin getClampPx inline-size, 48, 67;
   }
 
   .LayoutHeaderMenu {
