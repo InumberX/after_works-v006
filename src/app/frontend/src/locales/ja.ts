@@ -44,12 +44,11 @@ export default {
   about: {
     title: '経歴',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、私のプロフィールやこれまでの経験、担当業務等をご紹介します。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私のプロフィールやこれまでの経験、担当業務等をご紹介します。',
     pageTitle: '経歴',
     pageSubTitle: 'About',
     profile: {
-      title: 'N/NE',
-      subTitle: '（ナイン）',
+      title: 'NiNE',
       certification: {
         title: '資格',
       },
@@ -61,7 +60,7 @@ export default {
   blogs: {
     title: 'ブログ',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、私が投稿した記事の一覧を閲覧できます。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私が投稿した記事の一覧を閲覧できます。',
     pageTitle: 'ブログ',
     pageSubTitle: 'Blog',
     sideColumn: {
@@ -73,7 +72,7 @@ export default {
   blogsDetail: {
     title: 'ブログ',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
     dateTitle: '投稿日',
     bottomLinkText: 'ブログ一覧に戻る',
     sideColumn: {
@@ -85,7 +84,7 @@ export default {
   contact: {
     title: 'お問い合わせ',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。お問い合わせはこちらのページからお気軽にご連絡ください。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。お問い合わせはこちらのページからお気軽にご連絡ください。',
     pageTitle: 'お問い合わせ',
     pageSubTitle: 'Contact',
     message: {
@@ -98,7 +97,7 @@ export default {
   hobby: {
     title: '趣味',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、私の趣味および学習のために制作したものをご紹介します。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私の趣味および学習のために制作したものをご紹介します。',
     pageTitle: '趣味',
     pageSubTitle: 'Hobby',
     sideColumn: {
@@ -110,7 +109,7 @@ export default {
   hobbyDetail: {
     title: '趣味',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
     dateTitle: '制作期間',
     bottomLinkText: '趣味一覧に戻る',
     tags: {
@@ -130,7 +129,7 @@ export default {
   works: {
     title: '実績',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、私のこれまでの実績・制作物の一覧を閲覧できます。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私のこれまでの実績・制作物の一覧を閲覧できます。',
     pageTitle: '実績',
     pageSubTitle: 'Works',
     sideColumn: {
@@ -142,7 +141,7 @@ export default {
   worksDetail: {
     title: '実績',
     description:
-      '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
+      '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
     dateTitle: '制作期間',
     bottomLinkText: '実績一覧に戻る',
     tags: {

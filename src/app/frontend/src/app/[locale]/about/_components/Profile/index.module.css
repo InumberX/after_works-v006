@@ -41,11 +41,6 @@
     @mixin getFontSize 24;
 
     font-weight: var(--font-weight-bold);
-    margin-inline-end: 8px;
-  }
-
-  .ProfileTitle__sub {
-    @mixin getFontSize 14;
   }
 
   .ProfileInfo {

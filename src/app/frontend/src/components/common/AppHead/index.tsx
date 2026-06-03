@@ -16,8 +16,8 @@ type Props = {
 
 const siteName = SITE_NAME
 export const baseDescriptions = {
-  ja: '東京都在住のフロントエンドエンジニア：N/NE（ナイン）のポートフォリオ用Webサイトです。',
-  en: 'This is the portfolio website for N/NE (Nine), a Front-end Engineer based in Tokyo.',
+  ja: '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。',
+  en: 'This is the portfolio website for NiNE, a Front-end Engineer based in Tokyo.',
 }
 
 export const AppHead = async ({
@@ -33,7 +33,7 @@ export const AppHead = async ({
   const locale = await getCurrentLocale()
   const titleText = title
     ? `${title} | ${siteName}`
-    : `${siteName} - N/NE's Portfolio Site`
+    : `${siteName} - NiNE's Portfolio Site`
   const descriptionText = description ?? baseDescriptions[locale]
   const ogImageUrl = ogImage ?? `${SITE_URL}/assets/img/img-ogp.png`
   const canonicalUrl = canonical ?? SITE_URL

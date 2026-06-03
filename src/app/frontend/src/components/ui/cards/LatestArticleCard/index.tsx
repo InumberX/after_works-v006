@@ -62,7 +62,7 @@ const LatestArticleCardContainer = ({
           />
         ) : (
           <Image
-            src={`${STATIC_IMAGE_DIR}/img-empty.webp?${CACHE_BUSTER}`}
+            src={`${STATIC_IMAGE_DIR}/img-empty.avif?${CACHE_BUSTER}`}
             alt='After Works.'
             fill
             className={styles.LatestArticleCardMainVisual__image}
