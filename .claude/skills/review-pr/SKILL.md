@@ -5,7 +5,7 @@ description: Review a pull request against this project's style, naming, and str
 
 # review-pr
 
-このプロジェクト固有のレビュー観点を集約したスキル。`src/app/frontend/` 配下の Next.js + React + TypeScript + CSS Modules コードに対する規約準拠をレビューする。
+このプロジェクト固有のレビュー観点を集約したスキル。リポジトリ直下の Next.js + React + TypeScript + CSS Modules コードに対する規約準拠をレビューする。
 
 ## いつ発動するか
 
@@ -45,7 +45,7 @@ description: Review a pull request against this project's style, naming, and str
 
 選択したルールファイルを実際に読み、差分の各ファイルに対してルール違反を検出する。**ルールを推測で適用せず、必ずファイルから引用して根拠を示す。**
 
-判断に迷ったら `examples/style/good.md`・`examples/style/bad.md` を参照する。既存コード（例: `src/app/frontend/src/components/ui/buttons/BaseButton/`）も参考にする。
+判断に迷ったら `examples/style/good.md`・`examples/style/bad.md` を参照する。既存コード（例: `src/components/ui/buttons/BaseButton/`）も参考にする。
 
 ### 4. 出力フォーマット
 
@@ -56,7 +56,7 @@ description: Review a pull request against this project's style, naming, and str
 
 ### 🔴 Must（規約違反・修正必須）
 
-- **`src/app/frontend/src/components/ui/buttons/NewButton/index.module.css:5`**
+- **`src/components/ui/buttons/NewButton/index.module.css:5`**
   クラス名がケバブケースになっています。本プロジェクトではコンポーネント名と一致する PascalCase を採用しています（参考: `rules/style/css.md` 命名セクション、既存の `BaseButton/index.module.css`）。
   ```css
   /* Bad */
@@ -67,7 +67,7 @@ description: Review a pull request against this project's style, naming, and str
 
 ### 🟡 Should（推奨される改善）
 
-- **`src/app/frontend/src/components/ui/buttons/NewButton/index.tsx:14`**
+- **`src/components/ui/buttons/NewButton/index.tsx:14`**
   boolean Props は `is*` プレフィックスで揃えると既存と一貫します（参考: `rules/style/naming.md`）。
   - `disabled` → `isDisabled`
 
