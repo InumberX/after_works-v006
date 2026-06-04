@@ -25,9 +25,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'main' && 'production' || 'development' }}
-    defaults:
-      run:
-        working-directory: src/app/frontend
     env:
       # Build-time public env vars are inlined into the bundle by Next.js.
       NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
@@ -44,7 +41,7 @@ jobs:
         with:
           node-version: '22.x'
           cache: npm
-          cache-dependency-path: src/app/frontend/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - run: npm ci
 

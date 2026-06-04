@@ -29,5 +29,5 @@
   },
   "prettier.enable": false,
   "eslint.enable": false,
-  "oxc.fmt.configPath": "./src/app/frontend/.oxfmtrc.json",
+  "oxc.fmt.configPath": "./.oxfmtrc.json",
 }
