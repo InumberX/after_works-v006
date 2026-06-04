@@ -15,7 +15,7 @@ This repository is my portfolio site.
 
 ## Development with Node.js
 
-Start a shell such as PoworShell and navigate to the root of the project.
+Start a shell such as PowerShell and navigate to the root of the project.
 
 ### Installing packages
 
@@ -90,7 +90,7 @@ npm install
 
 ## Development with Docker
 
-Start a shell such as PoworShell and navigate to the root of the project.
+Start a shell such as PowerShell and navigate to the root of the project.
 
 ### Launching Containers
 
