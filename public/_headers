@@ -1,0 +1,18 @@
+# Cloudflare Workers Static Assets header rules.
+# https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# Long-lived immutable caching for assets whose URL changes when their content
+# changes, so the browser never needs to revalidate them:
+#
+#   /_next/static/*  : filenames embed a content hash (emitted by `next build`).
+#   /assets/*        : referenced in HTML with a build-time `?ver=` cache buster
+#                      (see NEXT_PUBLIC_CACHE_BUSTER in next.config.js).
+#
+# Non-versioned root files (e.g. /ads.txt, /robots.txt, /sitemap.xml) are
+# intentionally NOT matched here and keep their default caching.
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
