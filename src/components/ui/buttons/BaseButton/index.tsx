@@ -22,6 +22,8 @@ export type BaseButtonProps = {
   rightElm?: ReactNode
   onClick?: EventTypes['onClickButton']
   isRightArrow?: boolean
+  variant?: 'contained' | 'outlined'
+  color?: 'primary' | 'light'
 }
 
 export const BaseButton = ({
@@ -36,6 +38,8 @@ export const BaseButton = ({
   rightElm,
   onClick,
   isRightArrow,
+  variant = 'contained',
+  color = 'primary',
 }: BaseButtonProps) => {
   // 外部リンク判定
   const isExternal = useMemo(() => {
@@ -49,6 +53,8 @@ export const BaseButton = ({
       rel={rel}
       className={clsx(
         styles.BaseButton,
+        styles[`BaseButton--${variant}`],
+        styles[`BaseButton--${color}`],
         className,
         isRightArrow && styles['BaseButton--rightArrow'],
       )}
@@ -70,6 +76,8 @@ export const BaseButton = ({
       rel={rel}
       className={clsx(
         styles.BaseButton,
+        styles[`BaseButton--${variant}`],
+        styles[`BaseButton--${color}`],
         className,
         isRightArrow && styles['BaseButton--rightArrow'],
       )}
@@ -91,6 +99,8 @@ export const BaseButton = ({
       disabled={isDisabled}
       className={clsx(
         styles.BaseButton,
+        styles[`BaseButton--${variant}`],
+        styles[`BaseButton--${color}`],
         className,
         isRightArrow && styles['BaseButton--rightArrow'],
       )}

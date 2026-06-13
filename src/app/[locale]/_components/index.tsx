@@ -1,6 +1,5 @@
 import { Blog } from './Blog'
 import { Contents } from './Contents'
-import { Lead } from './Lead'
 import { MainVisual } from './MainVisual'
 import { Service } from './Service'
 
@@ -15,7 +14,6 @@ export const Index = ({ latestArticleInfos }: Props) => {
   return (
     <>
       <MainVisual />
-      <Lead />
       <Service />
       <Contents />
 
