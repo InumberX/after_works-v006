@@ -46,7 +46,7 @@
         rgb(var(--color-palette-blue-charcoal-rgb) / 95%) 0%,
         rgb(var(--color-palette-blue-charcoal-rgb) / 66%) 36%,
         rgb(var(--color-palette-blue-charcoal-rgb) / 20%) 70%,
-        rgb(var(--color-palette-blue-charcoal-rgb) / 5%) 0%
+        rgb(var(--color-palette-blue-charcoal-rgb) / 5%) 100%
       );
       z-index: 2;
     }
