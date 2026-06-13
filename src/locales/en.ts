@@ -1,6 +1,19 @@
 export default {
   home: {
     title: 'Home',
+    mainVisual: {
+      lead: {
+        text: 'Leveraging my experience as a Web Designer and Front-end Engineer, <br class="Obj__sm Obj__md Obj__lg Obj__xl" />I consistently handle everything from design to coding.',
+      },
+      button: {
+        works: {
+          text: 'See Works',
+        },
+        contact: {
+          text: 'Contact',
+        },
+      },
+    },
     blog: {
       title: 'Blog',
       subTitle: 'Blog',
@@ -20,10 +33,6 @@ export default {
           'I will introduce the works I have created for clients and as a hobby.',
         buttonText: 'Go to Achievements List',
       },
-    },
-    lead: {
-      message:
-        'Leveraging my experience as a Web Designer and Front-end Engineer, I consistently handle everything from design to coding.',
     },
     service: {
       title: 'Service',

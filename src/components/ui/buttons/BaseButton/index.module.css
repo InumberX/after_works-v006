@@ -6,11 +6,9 @@
 
   .BaseButton {
     align-items: center;
-    background: linear-gradient(90deg, var(--color-gradation-primary));
     block-size: 100%;
     border: none;
     border-radius: 100px;
-    color: var(--color-palette-white);
     cursor: pointer;
     display: flex;
     font-weight: var(--font-weight-bold);
@@ -19,16 +17,24 @@
     margin-block: 0;
     margin-inline: 0;
     padding-block: 12px;
-    padding-inline: 16px;
+    padding-inline: 24px;
     position: relative;
     text-align: center;
     text-decoration: none;
     transform-style: preserve-3d;
     transition:
       0.3s box-shadow,
-      0.3s transform;
+      0.3s transform,
+      0.3s color,
+      0.3s border-color,
+      0.3s background-color;
 
     @mixin getClampRem font-size, 18, 22;
+  }
+
+  .BaseButton.BaseButton--contained.BaseButton--primary {
+    background: linear-gradient(90deg, var(--color-gradation-primary));
+    color: var(--color-palette-white);
 
     @media (--media-hover) {
       &:hover {
@@ -36,6 +42,34 @@
           0 0 24px rgb(var(--color-palette-heliotrope-rgb) / 64%),
           0 0 24px rgb(var(--color-palette-sky-blue-rgb) / 64%);
         transform: perspective(500px) rotateY(8deg);
+      }
+    }
+  }
+
+  .BaseButton.BaseButton--outlined.BaseButton--primary {
+    background-color: transparent;
+    border: 1px solid var(--color-palette-sky-blue);
+    color: var(--color-palette-sky-blue);
+
+    @media (--media-hover) {
+      &:hover {
+        background-color: var(--color-palette-sky-blue);
+        border-color: var(--color-palette-sky-blue);
+        color: var(--color-palette-white);
+      }
+    }
+  }
+
+  .BaseButton.BaseButton--outlined.BaseButton--light {
+    background-color: transparent;
+    border: 1px solid var(--color-palette-mercury);
+    color: var(--color-palette-white);
+
+    @media (--media-hover) {
+      &:hover {
+        background-color: var(--color-palette-silver-chalice);
+        border-color: var(--color-palette-mercury);
+        color: var(--color-palette-white);
       }
     }
   }
