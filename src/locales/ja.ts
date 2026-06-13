@@ -1,6 +1,19 @@
 export default {
   home: {
     title: 'ホーム',
+    mainVisual: {
+      lead: {
+        text: 'Webデザイナー、フロントエンドエンジニアとしての経験を活かし、<br class="Obj__sm Obj__md Obj__lg Obj__xl" />デザインからコーディングまで一貫して対応します。',
+      },
+      button: {
+        works: {
+          text: '実績を見る',
+        },
+        contact: {
+          text: 'お問い合わせ',
+        },
+      },
+    },
     blog: {
       title: 'ブログ',
       subTitle: 'Blog',
@@ -20,10 +33,6 @@ export default {
           'これまでにお客様からご依頼を受けて制作したものや趣味で制作した作品について、ご紹介いたします。',
         buttonText: '実績一覧へ',
       },
-    },
-    lead: {
-      message:
-        'Webデザイナー、フロントエンドエンジニアとしての経験を活かし、<br class="Obj--lg Obj--xl" />デザインからコーディングまで一貫して対応します。',
     },
     service: {
       title: '提供サービス',

@@ -7,15 +7,63 @@
   .MainVisualBackground {
     block-size: 100%;
     inline-size: 100%;
-    inset-block-start: -40px;
+    inset-block-start: 0;
     inset-inline-start: 0;
     position: absolute;
     z-index: 1;
   }
 
-  .MainVisualBackground__image {
+  .MainVisualBackground__container {
+    block-size: 100%;
+    inline-size: 100%;
+    position: relative;
+
+    &::before,
+    &::after {
+      block-size: 100%;
+      content: '';
+      display: block;
+      inline-size: 100%;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      position: absolute;
+    }
+
+    &::before {
+      background: linear-gradient(
+        180deg,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 55%) 0%,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 0%) 24%,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 0%) 58%,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 100%) 100%
+      );
+      z-index: 3;
+    }
+
+    &::after {
+      background: linear-gradient(
+        95deg,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 95%) 0%,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 66%) 36%,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 20%) 70%,
+        rgb(var(--color-palette-blue-charcoal-rgb) / 5%) 0%
+      );
+      z-index: 2;
+    }
+  }
+
+  .MainVisualBackgroundImage {
+    block-size: 100%;
+    inline-size: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .MainVisualBackgroundImage__image {
+    block-size: 100%;
+    inline-size: 100%;
     object-fit: cover;
-    object-position: bottom center;
+    object-position: center;
   }
 
   .MainVisual__wrapper {
@@ -25,20 +73,68 @@
   }
 
   .MainVisual__container {
-    align-items: center;
-    block-size: calc(100vb - 64px);
-    block-size: calc(100svb - 64px);
-    display: flex;
-    justify-content: center;
-    max-block-size: 720px;
-    min-block-size: 400px;
-    padding-block: 80px calc(80px + 64px);
-    padding-inline: 0;
+    @mixin getClampRem padding-block, 40, 80;
+  }
+
+  .MainVisualLogo {
+    display: grid;
+    gap: 8px 16px;
+    grid-template-columns: 1fr;
+
+    @mixin getMediaQuerySm {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .MainVisualLogoImage {
+    @mixin getClampPx inline-size, 140, 160;
+  }
+
+  .MainVisualLogoImage__image {
+    block-size: auto;
+    inline-size: 100%;
+  }
+
+  .MainVisualLogo__paragraph {
+    color: var(--color-palette-sky-blue);
+
+    @mixin getClampRem font-size, 10, 12;
+  }
+
+  .MainVisualTitle {
+    margin-block-start: 24px;
   }
 
   .MainVisualTitle__text {
-    text-align: center;
+    line-height: 1.2;
 
-    @mixin getClampRem font-size, 40, 64;
+    @mixin getClampRem font-size, 40, 120;
+  }
+
+  .MainVisualLead {
+    margin-block-start: 8px;
+  }
+
+  .MainVisualLead__paragraph {
+    color: var(--color-palette-mercury);
+
+    @mixin getClampRem font-size, 14, 20;
+  }
+
+  .MainVisualButton {
+    @mixin getClampPx margin-block-start, 24, 40;
+  }
+
+  .MainVisualButton__items {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+
+    @mixin getMediaQuerySm {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }
