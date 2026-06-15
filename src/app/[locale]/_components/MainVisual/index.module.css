@@ -73,7 +73,9 @@
   }
 
   .MainVisual__container {
-    @mixin getClampRem padding-block, 40, 80;
+    padding-block-start: 80px;
+
+    @mixin getClampRem padding-block-end, 80, 120;
   }
 
   .MainVisualLogo {
@@ -114,7 +116,7 @@
   }
 
   .MainVisualLead {
-    margin-block-start: 8px;
+    margin-block-start: 16px;
   }
 
   .MainVisualLead__paragraph {
