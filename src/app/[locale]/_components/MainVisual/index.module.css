@@ -110,6 +110,8 @@
   }
 
   .MainVisualTitle__text {
+    font-family: var(--font-family-serif);
+    font-weight: var(--font-weight-bold);
     line-height: 1.2;
 
     @mixin getClampRem font-size, 40, 120;

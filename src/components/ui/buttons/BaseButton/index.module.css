@@ -29,7 +29,7 @@
       0.3s border-color,
       0.3s background-color;
 
-    @mixin getClampRem font-size, 18, 22;
+    @mixin getClampRem font-size, 16, 20;
   }
 
   .BaseButton.BaseButton--contained.BaseButton--primary {
