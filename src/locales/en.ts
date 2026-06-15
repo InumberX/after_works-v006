@@ -35,7 +35,7 @@ export default {
       },
     },
     service: {
-      title: 'Service',
+      title: 'What I Can Do',
       subTitle: 'Service',
       design: {
         title: 'Design',

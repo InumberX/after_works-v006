@@ -2,41 +2,35 @@ import clsx from 'clsx'
 
 import styles from './index.module.css'
 
+export type SvgIconVariant =
+  | 'arrowTop'
+  | 'arrowRight'
+  | 'arrowBottom'
+  | 'arrowLeft'
+  | 'x'
+  | 'instagram'
+  | 'github'
+  | 'youtube'
+  | 'qiita'
+  | 'note'
+  | 'behance'
+  | 'pixiv'
+  | 'palette'
+  | 'star'
+  | 'laptop'
+  | 'person'
+  | 'mail'
+  | 'translate'
+
 type Props = {
-  variant:
-    | 'arrowTop'
-    | 'arrowRight'
-    | 'arrowBottom'
-    | 'arrowLeft'
-    | 'x'
-    | 'instagram'
-    | 'github'
-    | 'youtube'
-    | 'qiita'
-    | 'note'
-    | 'behance'
-    | 'pixiv'
-    | 'palette'
-    | 'star'
-    | 'laptop'
-    | 'person'
-    | 'mail'
-    | 'translate'
-  color?: 'primary'
-  size?: 'large'
+  variant: SvgIconVariant
   className?: string
 }
 
-export const SvgIcon = ({ className, variant, color, size }: Props) => {
+export const SvgIcon = ({ className, variant }: Props) => {
   return (
     <i
-      className={clsx(
-        styles.SvgIcon,
-        className,
-        styles[`SvgIcon--${variant}`],
-        styles[`SvgIcon--${color}`],
-        styles[`SvgIcon--${size}`],
-      )}
+      className={clsx(styles.SvgIcon, className, styles[`SvgIcon--${variant}`])}
     />
   )
 }

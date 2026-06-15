@@ -5,9 +5,9 @@
 
   .ArticleCard__button {
     backdrop-filter: blur(20px);
-    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    background-color: rgb(var(--color-palette-sky-blue-rgb) / 8%);
     block-size: 100%;
-    border: none;
+    border: 1px solid var(--color-palette-chambray);
     border-radius: 16px;
     color: var(--color-palette-white);
     display: block;
@@ -22,7 +22,7 @@
 
     @media (--media-hover) {
       &:hover {
-        background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 80%);
+        background-color: rgb(var(--color-palette-sky-blue-rgb) / 16%);
         color: var(--color-palette-sky-blue);
       }
     }
@@ -74,6 +74,7 @@
 
     -webkit-box-orient: vertical;
     display: -webkit-box;
+    font-family: var(--font-family-serif);
     font-weight: var(--font-weight-medium);
     -webkit-line-clamp: 3;
     overflow: hidden;

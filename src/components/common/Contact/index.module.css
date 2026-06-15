@@ -4,6 +4,7 @@
   }
 
   .Contact__message {
+    color: var(--color-palette-silver-chalice);
     text-align: center;
 
     @mixin getClampRem font-size, 16, 18;

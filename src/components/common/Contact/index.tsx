@@ -29,6 +29,7 @@ export const Contact = ({ className }: Props) => {
           <SectionTitle
             subTitle={scopedT('subTitle')}
             title={scopedT('title')}
+            horizontalAlign='center'
           />
 
           <div

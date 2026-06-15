@@ -35,7 +35,7 @@ export default {
       },
     },
     service: {
-      title: '提供サービス',
+      title: 'できること',
       subTitle: 'Service',
       design: {
         title: 'デザイン',
