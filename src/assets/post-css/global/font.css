@@ -1,10 +1,13 @@
 :root {
   --font-family-main:
-    'Hiragino Kaku Gothic ProN', '游ゴシック Medium', 'Yu Gothic Medium',
-    'YuGothic', yugothic, 'Meiryo', sans-serif;
+    var(--font-zen-kaku-gothic-new), 'Hiragino Sans',
+    'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'YuGothic', yugothic, 'Meiryo',
+    sans-serif;
   --font-family-serif:
-    'Hiragino Mincho Pro', 游明朝, 'Yu Mincho', yumincho,
-    'Hiragino Mincho ProN', 'HGS明朝E', cambria, georgia, times, serif;
+    var(--font-zen-old-mincho), 'Hiragino Mincho Pro', 游明朝, 'Yu Mincho',
+    yumincho, 'Hiragino Mincho ProN', 'HGS明朝E', cambria, georgia, times, serif;
+  --font-family-en: var(--font-jost), sans-serif;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;

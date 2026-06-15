@@ -21,7 +21,7 @@
   body {
     color: var(--color-palette-white);
     font-family: var(--font-family-main);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-regular);
     inline-size: 100%;
     -webkit-line-break: strict;
     line-break: strict;
