@@ -5,9 +5,9 @@
 
   .ArticleCard__button {
     backdrop-filter: blur(20px);
-    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    background-color: rgb(var(--color-palette-sky-blue-rgb) / 8%);
     block-size: 100%;
-    border: none;
+    border: 1px solid var(--color-palette-chambray);
     border-radius: 16px;
     color: var(--color-palette-white);
     display: block;
@@ -17,12 +17,11 @@
       0.3s background-color;
 
     @mixin getFontSize 16;
-    @mixin getClampPx padding-block, 16, 24;
-    @mixin getClampPx padding-inline, 16, 24;
+    @mixin getClampPx padding-block-end, 12, 16;
 
     @media (--media-hover) {
       &:hover {
-        background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 80%);
+        background-color: rgb(var(--color-palette-sky-blue-rgb) / 16%);
         color: var(--color-palette-sky-blue);
       }
     }
@@ -36,7 +35,7 @@
 
   .ArticleCardMainVisual {
     aspect-ratio: 16 / 9;
-    border-radius: 8px;
+    border-radius: 16px 16px 0 0;
     display: block;
     margin-block-end: 16px;
     overflow: hidden;
@@ -52,12 +51,13 @@
 
   .ArticleCardDate {
     align-items: center;
-    color: var(--color-palette-white);
+    color: var(--color-palette-silver-chalice);
     display: flex;
     flex-wrap: wrap;
     margin-block-end: 8px;
 
     @mixin getFontSize 14;
+    @mixin getClampPx padding-inline, 12, 16;
   }
 
   .ArticleCardDate__separator {
@@ -67,6 +67,8 @@
 
   .ArticleCardTitle {
     display: block;
+
+    @mixin getClampPx padding-inline, 12, 16;
   }
 
   .ArticleCardTitle__text {
@@ -74,6 +76,7 @@
 
     -webkit-box-orient: vertical;
     display: -webkit-box;
+    font-family: var(--font-family-serif);
     font-weight: var(--font-weight-medium);
     -webkit-line-clamp: 3;
     overflow: hidden;
@@ -82,5 +85,7 @@
   .ArticleCardTag {
     margin-block-start: auto;
     padding-block-start: 16px;
+
+    @mixin getClampPx padding-inline, 12, 16;
   }
 }

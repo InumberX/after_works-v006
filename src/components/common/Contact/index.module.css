@@ -1,9 +1,14 @@
 @layer component-common {
+  .Contact {
+    background: var(--color-palette-gradient-contact);
+  }
+
   .Contact__contents {
     margin-block-start: 40px;
   }
 
   .Contact__message {
+    color: var(--color-palette-silver-chalice);
     text-align: center;
 
     @mixin getClampRem font-size, 16, 18;

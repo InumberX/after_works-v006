@@ -11,25 +11,37 @@ type Props = {
   className?: string
   title: ReactNode
   subTitle?: ReactNode
+  subTitleColor?: 'primary' | 'secondary'
   titleTag?: keyof JSX.IntrinsicElements
+  horizontalAlign?: 'start' | 'center' | 'end'
 }
 
 export const SectionTitle = ({
   className,
   title,
   subTitle,
+  subTitleColor = 'primary',
   titleTag,
+  horizontalAlign = 'start',
 }: Props) => {
   const Title = titleTag ?? 'h2'
   const { targetRef, isVisible } = useAnimelm<AnimelmElement>()
 
   return (
-    <div className={clsx(styles.SectionTitle, className)} ref={targetRef}>
+    <div
+      className={clsx(
+        styles.SectionTitle,
+        styles[`SectionTitle--${horizontalAlign}`],
+        className,
+      )}
+      ref={targetRef}
+    >
       <div className={styles.SectionTitle__container}>
         {subTitle && (
           <span
             className={clsx(
               styles.SectionTitleSub,
+              styles[`SectionTitleSub--${subTitleColor}`],
               isVisible && styles['SectionTitleSub--active'],
             )}
           >

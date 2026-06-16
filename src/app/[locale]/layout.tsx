@@ -5,6 +5,7 @@ import React from 'react'
 import { GoogleAnalytics } from '~/components/common/GoogleAnalytics'
 import { LayoutDefault } from '~/layouts/Default'
 import { AppProvider } from '~/providers/AppProvider'
+import { jost, zenKakuGothicNew, zenOldMincho } from '~/utils/fonts'
 
 const RootLayout = async ({
   children,
@@ -18,8 +19,12 @@ const RootLayout = async ({
   const { locale } = await params
 
   return (
-    // oxlint-disable-next-line react/no-unknown-property
-    <html lang={locale} prefix='og: http://ogp.me/ns#'>
+    <html
+      lang={locale}
+      // oxlint-disable-next-line react/no-unknown-property
+      prefix='og: http://ogp.me/ns#'
+      className={`${jost.variable} ${zenKakuGothicNew.variable} ${zenOldMincho.variable}`}
+    >
       <head>
         <GoogleAnalytics />
       </head>

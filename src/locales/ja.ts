@@ -15,13 +15,13 @@ export default {
       },
     },
     blog: {
-      title: 'ブログ',
-      subTitle: 'Blog',
+      title: '最新記事',
+      subTitle: 'BLOG',
       listPageButtonText: 'ブログ一覧へ',
     },
     contents: {
       title: 'コンテンツ',
-      subTitle: 'Contents',
+      subTitle: 'CONTENTS',
       about: {
         title: '経歴紹介',
         description: 'これまでの経歴や保有資格などをご紹介いたします。',
@@ -35,8 +35,8 @@ export default {
       },
     },
     service: {
-      title: '提供サービス',
-      subTitle: 'Service',
+      title: 'できること',
+      subTitle: 'SERVICE',
       design: {
         title: 'デザイン',
         description: `お客様のご要望にもとづき、デザインを作成いたします。
@@ -179,8 +179,9 @@ export default {
   },
   components: {
     contact: {
-      title: 'お問い合わせ',
-      subTitle: 'Contact',
+      title: `Webサイトのこと、
+お気軽にご相談ください。`,
+      subTitle: 'CONTACT',
       message: `「ランディングページを制作してほしい」、「WordPressを使って更新性の高いWebサイトを作りたい」、
 「JavaScriptを用いてWebサイトにリッチな表現を取り入れてほしい」などお客様の様々なご要望にお応えいたします。
 また、デザインのみ、コーディングのみ行ってほしいといったご依頼にも柔軟に対応できます。

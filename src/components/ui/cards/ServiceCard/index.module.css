@@ -1,4 +1,30 @@
 @layer component-ui-low {
+  .ServiceCard.ServiceCard--primary {
+    .ServiceCardIcon__container {
+      background-color: rgb(var(--color-palette-sky-blue-rgb) / 8%);
+      border-color: rgb(var(--color-palette-sky-blue-rgb) / 56%);
+    }
+
+    .ServiceCardIcon__icon {
+      &::before {
+        background-color: var(--color-palette-sky-blue);
+      }
+    }
+  }
+
+  .ServiceCard.ServiceCard--secondary {
+    .ServiceCardIcon__container {
+      background-color: rgb(var(--color-palette-heliotrope-rgb) / 8%);
+      border-color: rgb(var(--color-palette-heliotrope-rgb) / 56%);
+    }
+
+    .ServiceCardIcon__icon {
+      &::before {
+        background-color: var(--color-palette-heliotrope);
+      }
+    }
+  }
+
   .ServiceCard {
     block-size: 100%;
     position: relative;
@@ -6,27 +32,41 @@
 
   .ServiceCard__container {
     backdrop-filter: blur(20px);
-    background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
+    background-color: rgb(var(--color-palette-sky-blue-rgb) / 8%);
     block-size: 100%;
+    border: 1px solid var(--color-palette-chambray);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
 
-    @mixin getClampPx border-radius, 16, 40;
     @mixin getClampPx padding-block, 24, 40;
     @mixin getClampPx padding-inline, 24, 40;
   }
 
   .ServiceCardIcon {
+    display: flex;
+    margin-block-end: 24px;
+  }
+
+  .ServiceCardIcon__container {
     align-items: center;
+    border: 1px solid;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
-    margin-block-end: 24px;
+    padding: 12px;
+  }
+
+  .ServiceCardIcon__icon {
+    &::before {
+      inline-size: 32px;
+    }
   }
 
   .ServiceCardTitle__text {
     color: var(--color-palette-white);
+    font-family: var(--font-family-serif);
     font-weight: var(--font-weight-bold);
-    text-align: center;
 
     @mixin getClampRem font-size, 20, 24;
   }
@@ -36,6 +76,8 @@
   }
 
   .ServiceCardDescription__text {
+    color: var(--color-palette-silver-chalice);
+
     @mixin getClampRem font-size, 14, 16;
   }
 

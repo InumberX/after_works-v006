@@ -4,7 +4,7 @@ import styles from './index.module.css'
 
 import { LayoutFooter } from '~/components/common/LayoutFooter'
 import { LayoutHeader } from '~/components/common/LayoutHeader'
-import { LayoutPageBackground } from '~/components/common/LayoutPageBackground'
+// import { LayoutPageBackground } from '~/components/common/LayoutPageBackground'
 import { LayoutPortal } from '~/components/common/LayoutPortal'
 import { LayoutSvgPainter } from '~/components/common/LayoutSvgPainter'
 import { LayoutWrapper } from '~/components/ui/layouts/LayoutWrapper'
@@ -21,7 +21,9 @@ export const LayoutDefault = ({ children }: Props) => {
       <LayoutFooter />
       <LayoutPortal />
       <LayoutSvgPainter />
+      {/*
       <LayoutPageBackground />
+      */}
     </LayoutWrapper>
   )
 }
