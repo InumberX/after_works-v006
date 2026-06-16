@@ -1,4 +1,8 @@
 @layer component-common {
+  .Contact {
+    background: var(--color-palette-gradient-contact);
+  }
+
   .Contact__contents {
     margin-block-start: 40px;
   }

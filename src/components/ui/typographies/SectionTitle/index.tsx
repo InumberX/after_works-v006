@@ -11,6 +11,7 @@ type Props = {
   className?: string
   title: ReactNode
   subTitle?: ReactNode
+  subTitleColor?: 'primary' | 'secondary'
   titleTag?: keyof JSX.IntrinsicElements
   horizontalAlign?: 'start' | 'center' | 'end'
 }
@@ -19,6 +20,7 @@ export const SectionTitle = ({
   className,
   title,
   subTitle,
+  subTitleColor = 'primary',
   titleTag,
   horizontalAlign = 'start',
 }: Props) => {
@@ -39,6 +41,7 @@ export const SectionTitle = ({
           <span
             className={clsx(
               styles.SectionTitleSub,
+              styles[`SectionTitleSub--${subTitleColor}`],
               isVisible && styles['SectionTitleSub--active'],
             )}
           >

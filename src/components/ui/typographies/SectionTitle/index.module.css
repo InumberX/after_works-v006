@@ -56,10 +56,17 @@
       0.6s 0.6s filter;
   }
 
+  .SectionTitleSub.SectionTitleSub--secondary {
+    .SectionTitleSub__text {
+      color: var(--color-palette-heliotrope);
+    }
+  }
+
   .SectionTitleSub__text {
     color: var(--color-palette-sky-blue);
     display: inline-block;
-    font-weight: var(--font-weight-regular);
+    font-family: var(--font-family-en);
+    font-weight: var(--font-weight-light);
     line-height: 1.2;
     text-align: inherit;
 

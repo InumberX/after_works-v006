@@ -16,12 +16,12 @@ export default {
     },
     blog: {
       title: 'Latest Articles',
-      subTitle: 'Blog',
+      subTitle: 'BLOG',
       listPageButtonText: 'Go to Blog List',
     },
     contents: {
       title: 'Contents',
-      subTitle: 'Contents',
+      subTitle: 'CONTENTS',
       about: {
         title: 'Career Introduction',
         description: 'I will introduce my career history and qualifications.',
@@ -36,7 +36,7 @@ export default {
     },
     service: {
       title: 'What I Can Do',
-      subTitle: 'Service',
+      subTitle: 'SERVICE',
       design: {
         title: 'Design',
         description: `Based on client's requests, I create designs.
@@ -179,8 +179,9 @@ Please check if the URL of the page you are looking for is correct.`,
   },
   components: {
     contact: {
-      title: 'Contact',
-      subTitle: 'Contact',
+      title: `If you have any questions about websites,
+please feel free to contact me.`,
+      subTitle: 'CONTACT',
       message: `Whether you want a landing page, a WordPress site for high update frequency, or a website with rich expressions using JavaScript, I can meet various client requests.
 I am also flexible in handling requests for design only or coding only.
 Please feel free to contact me.`,
