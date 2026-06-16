@@ -15,7 +15,7 @@ export default {
       },
     },
     blog: {
-      title: 'Blog',
+      title: 'Latest Articles',
       subTitle: 'Blog',
       listPageButtonText: 'Go to Blog List',
     },

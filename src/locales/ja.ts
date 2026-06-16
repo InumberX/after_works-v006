@@ -15,7 +15,7 @@ export default {
       },
     },
     blog: {
-      title: 'ブログ',
+      title: '最新記事',
       subTitle: 'Blog',
       listPageButtonText: 'ブログ一覧へ',
     },
