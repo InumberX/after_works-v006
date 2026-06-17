@@ -19,6 +19,7 @@
   }
 
   .ArticleHeadTitle__text {
+    font-family: var(--font-family-serif);
     font-weight: var(--font-weight-bold);
 
     @mixin getClampRem font-size, 24, 32;
