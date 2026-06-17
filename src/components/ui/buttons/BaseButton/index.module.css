@@ -11,8 +11,8 @@
     border-radius: 100px;
     cursor: pointer;
     display: flex;
-    font-weight: var(--font-weight-bold);
-    inline-size: 100%;
+    font-weight: var(--font-weight-medium);
+    inline-size: auto;
     justify-content: center;
     margin-block: 0;
     margin-inline: 0;
@@ -29,7 +29,7 @@
       0.3s border-color,
       0.3s background-color;
 
-    @mixin getClampRem font-size, 18, 22;
+    @mixin getClampRem font-size, 16, 20;
   }
 
   .BaseButton.BaseButton--contained.BaseButton--primary {
@@ -77,7 +77,11 @@
   .BaseButton__iconArrowRight {
     inset-block-start: 50%;
     inset-inline-end: 24px;
-    margin-block-start: -12px;
     position: absolute;
+    translate: 0 -50%;
+
+    &::before {
+      inline-size: 16px;
+    }
   }
 }

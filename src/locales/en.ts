@@ -15,13 +15,13 @@ export default {
       },
     },
     blog: {
-      title: 'Blog',
-      subTitle: 'Blog',
+      title: 'Latest Articles',
+      subTitle: 'BLOG',
       listPageButtonText: 'Go to Blog List',
     },
     contents: {
       title: 'Contents',
-      subTitle: 'Contents',
+      subTitle: '',
       about: {
         title: 'Career Introduction',
         description: 'I will introduce my career history and qualifications.',
@@ -35,8 +35,8 @@ export default {
       },
     },
     service: {
-      title: 'Service',
-      subTitle: 'Service',
+      title: 'What I Can Do',
+      subTitle: 'SERVICE',
       design: {
         title: 'Design',
         description: `Based on client's requests, I create designs.
@@ -55,7 +55,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce my profile, past experiences, and duties.',
     pageTitle: 'About',
-    pageSubTitle: 'About',
+    pageSubTitle: '',
     profile: {
       title: 'NiNE',
       certification: {
@@ -71,7 +71,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of articles I have posted.',
     pageTitle: 'Blog',
-    pageSubTitle: 'Blog',
+    pageSubTitle: '',
     sideColumn: {
       latestArticle: {
         title: 'Recent Articles',
@@ -82,6 +82,7 @@ I can create various types of websites such as responsive sites that display opt
     title: 'Blog',
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
+    pageSubTitle: 'BLOG',
     dateTitle: 'Post Date',
     bottomLinkText: 'Return to Blog List',
     sideColumn: {
@@ -95,7 +96,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. Please feel free to contact me through this page.',
     pageTitle: 'Contact',
-    pageSubTitle: 'Contact',
+    pageSubTitle: '',
     message: {
       text: 'Please feel free to contact me using the form below.',
       buttonText: 'Contact',
@@ -108,7 +109,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce things I have created for my hobbies and learning.',
     pageTitle: 'Hobby',
-    pageSubTitle: 'Hobby',
+    pageSubTitle: '',
     sideColumn: {
       latestArticle: {
         title: 'Recent Articles',
@@ -119,6 +120,7 @@ I can create various types of websites such as responsive sites that display opt
     title: 'Hobby',
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
+    pageSubTitle: 'HOBBY',
     dateTitle: 'Creation Period',
     bottomLinkText: 'Return to Hobby List',
     tags: {
@@ -140,7 +142,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of my past achievements and creations.',
     pageTitle: 'Works',
-    pageSubTitle: 'Works',
+    pageSubTitle: '',
     sideColumn: {
       latestArticle: {
         title: 'Recent Works',
@@ -151,6 +153,7 @@ I can create various types of websites such as responsive sites that display opt
     title: 'Works',
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
+    pageSubTitle: 'WORKS',
     dateTitle: 'Creation Period',
     bottomLinkText: 'Return to Works List',
     tags: {
@@ -170,7 +173,7 @@ I can create various types of websites such as responsive sites that display opt
   notFound: {
     title: 'The Page You Are Looking For Could Not Be Found',
     pageTitle: 'The Page You Are Looking For Could Not Be Found',
-    pageSubTitle: 'Not Found',
+    pageSubTitle: 'NOT FOUND',
     message: {
       text: `The page you are looking for may have been deleted or is temporarily unavailable.
 Please check if the URL of the page you are looking for is correct.`,
@@ -179,8 +182,9 @@ Please check if the URL of the page you are looking for is correct.`,
   },
   components: {
     contact: {
-      title: 'Contact',
-      subTitle: 'Contact',
+      title: `If you have any questions about websites,
+please feel free to contact me.`,
+      subTitle: 'CONTACT',
       message: `Whether you want a landing page, a WordPress site for high update frequency, or a website with rich expressions using JavaScript, I can meet various client requests.
 I am also flexible in handling requests for design only or coding only.
 Please feel free to contact me.`,

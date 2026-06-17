@@ -1,6 +1,5 @@
 import styles from './index.module.css'
 
-import { SvgIcon } from '~/components/ui/icons/SvgIcon'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { ServiceCardList } from '~/components/ui/lists/ServiceCardList'
@@ -17,21 +16,17 @@ export const Contents = async () => {
       <LayoutInner>
         <div className={styles.Contents__container}>
           <SectionTitle
-            subTitle={scopedT('subTitle')}
+            subTitle={
+              scopedT('subTitle') !== 'subTitle' ? scopedT('subTitle') : ''
+            }
             title={scopedT('title')}
+            horizontalAlign='center'
           />
           <ServiceCardList
             className={styles.ContentsServiceCardList}
             infos={[
               {
-                icon: (
-                  <SvgIcon
-                    variant='person'
-                    color='primary'
-                    size='large'
-                    className={styles.ContentsServiceCardList__icon}
-                  />
-                ),
+                icon: 'person',
                 title: scopedT('about.title'),
                 description: scopedT('about.description'),
                 buttonInfo: {
@@ -43,14 +38,8 @@ export const Contents = async () => {
                 },
               },
               {
-                icon: (
-                  <SvgIcon
-                    variant='star'
-                    color='primary'
-                    size='large'
-                    className={styles.ContentsServiceCardList__icon}
-                  />
-                ),
+                color: 'secondary',
+                icon: 'star',
                 title: scopedT('works.title'),
                 description: scopedT('works.description'),
                 buttonInfo: {

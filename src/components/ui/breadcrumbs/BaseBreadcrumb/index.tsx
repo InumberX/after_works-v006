@@ -85,7 +85,10 @@ export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
                     </Link>
                   ) : (
                     <span
-                      className={styles.BaseBreadcrumb__name}
+                      className={clsx(
+                        styles.BaseBreadcrumb__name,
+                        styles['BaseBreadcrumb__name--current'],
+                      )}
                       itemProp='name'
                     >
                       {info.name}

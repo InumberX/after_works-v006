@@ -5,6 +5,7 @@ import { Service } from './Service'
 
 import { Contact } from '~/components/common/Contact'
 import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
+import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 
 type Props = {
   latestArticleInfos: ArticleCardProps[]
@@ -12,7 +13,7 @@ type Props = {
 
 export const Index = ({ latestArticleInfos }: Props) => {
   return (
-    <>
+    <LayoutPageWrapper isHiddenBackground>
       <MainVisual />
       <Service />
       <Contents />
@@ -22,6 +23,6 @@ export const Index = ({ latestArticleInfos }: Props) => {
       )}
 
       <Contact />
-    </>
+    </LayoutPageWrapper>
   )
 }

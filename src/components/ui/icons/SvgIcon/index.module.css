@@ -1,17 +1,5 @@
 @layer component-ui-low {
   /* stylelint-disable declaration-block-no-duplicate-properties */
-  .SvgIcon.SvgIcon--primary {
-    &::before {
-      background-color: var(--color-palette-sky-blue);
-    }
-  }
-
-  .SvgIcon.SvgIcon--large {
-    &::before {
-      inline-size: 80px;
-    }
-  }
-
   .SvgIcon {
     display: inline-flex;
 

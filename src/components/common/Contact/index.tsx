@@ -28,7 +28,9 @@ export const Contact = ({ className }: Props) => {
         <div className={styles.Contact__container}>
           <SectionTitle
             subTitle={scopedT('subTitle')}
-            title={scopedT('title')}
+            subTitleColor='secondary'
+            title={<ReplaceNewLineText text={scopedT('title')} />}
+            horizontalAlign='center'
           />
 
           <div

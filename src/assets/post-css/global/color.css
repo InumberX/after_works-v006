@@ -17,4 +17,10 @@
   --color-palette-line: #00b900;
   --color-gradation-primary:
     oklch(68.7% 0.254 322.8deg) 0, oklch(81.3% 0.097 219.5deg) 100%;
+  --color-palette-gradient-contact: radial-gradient(
+    115% 130% at 50% 130%,
+    #1c0f30 0%,
+    #02101f 52%,
+    #000911 100%
+  );
 }

@@ -5,8 +5,8 @@ import { Index } from './_components'
 import { getHobbyInfos } from '~/apis/fetch/hobby'
 import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
 import { AppHead } from '~/components/common/AppHead'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
@@ -38,7 +38,7 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
       }),
   })
 
-  const defaultHobbyInfos: ArticleCardProps[] = responseHobbyInfos
+  const defaultHobbyInfos: WorkCardProps[] = responseHobbyInfos
     ? responseHobbyInfos.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 

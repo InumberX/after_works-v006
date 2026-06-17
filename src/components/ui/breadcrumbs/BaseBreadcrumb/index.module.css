@@ -36,8 +36,10 @@
   }
 
   .BaseBreadcrumb__item {
+    align-items: center;
     display: flex;
     flex-shrink: 0;
+    gap: 8px;
     white-space: nowrap;
 
     @mixin getMediaQuerySm {
@@ -48,17 +50,15 @@
 
   .BaseBreadcrumb__icon {
     flex-shrink: 0;
-    margin-inline-end: 8px;
-    padding-block-start: 3px;
 
     &::before {
-      block-size: 12px;
-      inline-size: 7px;
+      background-color: var(--color-palette-silver-chalice);
+      inline-size: 8px;
     }
   }
 
   .BaseBreadcrumb__link {
-    color: var(--color-palette-white);
+    color: var(--color-palette-silver-chalice);
     display: block;
     text-decoration: none;
 
@@ -69,6 +69,10 @@
         color: var(--color-palette-sky-blue);
       }
     }
+  }
+
+  .BaseBreadcrumb__name.BaseBreadcrumb__name--current {
+    color: var(--color-palette-mercury);
   }
 
   .BaseBreadcrumb__name {

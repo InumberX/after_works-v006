@@ -6,11 +6,13 @@ import { ReactNode, JSX } from 'react'
 import styles from './index.module.css'
 
 import { BaseButton, BaseButtonProps } from '~/components/ui/buttons/BaseButton'
+import { SvgIcon, type SvgIconVariant } from '~/components/ui/icons/SvgIcon'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 
 export type ServiceCardProps = {
   className?: string
-  icon?: ReactNode
+  color?: 'primary' | 'secondary'
+  icon?: SvgIconVariant
   titleTag?: keyof JSX.IntrinsicElements
   title: ReactNode
   description?: ReactNode
@@ -19,6 +21,7 @@ export type ServiceCardProps = {
 
 export const ServiceCard = ({
   className,
+  color = 'primary',
   icon,
   titleTag,
   title,
@@ -31,11 +34,25 @@ export const ServiceCard = ({
 
   return (
     <div
-      className={clsx(styles.ServiceCard, className, 'AnimelmBlurIn')}
+      className={clsx(
+        styles.ServiceCard,
+        styles[`ServiceCard--${color}`],
+        className,
+        'AnimelmBlurIn',
+      )}
       ref={targetRef}
     >
       <div className={styles.ServiceCard__container}>
-        {icon && <div className={styles.ServiceCardIcon}>{icon}</div>}
+        {icon && (
+          <div className={styles.ServiceCardIcon}>
+            <div className={styles.ServiceCardIcon__container}>
+              <SvgIcon
+                variant={icon}
+                className={styles.ServiceCardIcon__icon}
+              />
+            </div>
+          </div>
+        )}
 
         <div className={styles.ServiceCardTitle}>
           <Title className={styles.ServiceCardTitle__text}>{title}</Title>

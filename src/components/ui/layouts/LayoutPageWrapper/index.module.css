@@ -1,0 +1,42 @@
+@layer component-ui-low {
+  .LayoutPageWrapperBackground {
+    block-size: 800px;
+    inline-size: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .LayoutPageWrapperBackground__contents.LayoutPageWrapperBackground__contents--top {
+    background: radial-gradient(
+      closest-side,
+      rgb(var(--color-palette-sky-blue-rgb) / 16%) 0%,
+      transparent 70%
+    );
+    block-size: 600px;
+    inline-size: 1200px;
+    inset-block-start: -180px;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    z-index: 1;
+  }
+
+  .LayoutPageWrapperBackground__contents.LayoutPageWrapperBackground__contents--bottom {
+    background: radial-gradient(
+      closest-side,
+      rgb(var(--color-palette-heliotrope-rgb) / 10%) 0%,
+      transparent 70%
+    );
+    block-size: 560px;
+    inline-size: 560px;
+    inset-block-start: -120px;
+    inset-inline-end: 8%;
+    z-index: 2;
+  }
+
+  .LayoutPageWrapperBackground__contents {
+    position: absolute;
+  }
+}

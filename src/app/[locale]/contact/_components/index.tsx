@@ -1,6 +1,7 @@
 import { Message } from './Message'
 
 import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
+import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '~/locales/server'
 
@@ -8,10 +9,14 @@ export const Index = async () => {
   const scopedT = await getScopedI18n('contact')
 
   return (
-    <>
+    <LayoutPageWrapper>
       <PageTitle
         title={scopedT('pageTitle')}
-        subTitle={scopedT('pageSubTitle')}
+        subTitle={
+          scopedT('pageSubTitle') !== 'pageSubTitle'
+            ? scopedT('pageSubTitle')
+            : ''
+        }
       />
       <BaseBreadcrumb
         infos={[
@@ -21,6 +26,6 @@ export const Index = async () => {
         ]}
       />
       <Message />
-    </>
+    </LayoutPageWrapper>
   )
 }
