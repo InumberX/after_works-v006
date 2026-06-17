@@ -39,7 +39,6 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
             name: articleInfo.title,
           },
         ]}
-        isTop={true}
       />
 
       <LayoutSection tag='div' isNotTopMargin>
