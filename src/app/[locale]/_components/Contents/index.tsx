@@ -16,7 +16,9 @@ export const Contents = async () => {
       <LayoutInner>
         <div className={styles.Contents__container}>
           <SectionTitle
-            subTitle={scopedT('subTitle')}
+            subTitle={
+              scopedT('subTitle') !== 'subTitle' ? scopedT('subTitle') : ''
+            }
             title={scopedT('title')}
             horizontalAlign='center'
           />

@@ -5,8 +5,8 @@ import { Index } from './_components'
 import { getBlogsInfos } from '~/apis/fetch/blogs'
 import { getTagNewsInfos } from '~/apis/fetch/tagNews'
 import { AppHead } from '~/components/common/AppHead'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
@@ -38,7 +38,7 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
       }),
   })
 
-  const defaultBlogsInfos: ArticleCardProps[] = responseBlogsInfos
+  const defaultBlogsInfos: WorkCardProps[] = responseBlogsInfos
     ? responseBlogsInfos.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 

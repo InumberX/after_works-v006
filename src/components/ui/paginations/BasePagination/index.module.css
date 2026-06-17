@@ -18,13 +18,13 @@
     border-radius: calc(infinity * 1px);
     display: flex;
     font-weight: var(--font-weight-bold);
-    inline-size: 40px;
     justify-content: center;
     padding-block: 1px;
     padding-inline: 1px;
     position: relative;
 
-    @mixin getFontSize 14;
+    @mixin getClampRem font-size, 14, 16;
+    @mixin getClampPx inline-size, 48, 56;
 
     &::after {
       background-clip: border-box;

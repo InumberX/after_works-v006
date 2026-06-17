@@ -1,7 +1,7 @@
 @layer component-ui-low {
   .CircleButton.CircleButton--small {
-    block-size: 48px;
-    inline-size: 48px;
+    @mixin getClampRem font-size, 14, 16;
+    @mixin getClampPx inline-size, 48, 56;
   }
 
   .CircleButton.CircleButton--outlined {
@@ -83,8 +83,8 @@
     position: relative;
     transition: 0.3s box-shadow;
 
-    @mixin getFontSize 14;
-    @mixin getClampPx inline-size, 48, 64;
+    @mixin getClampRem font-size, 16, 18;
+    @mixin getClampPx inline-size, 56, 64;
 
     @media (--media-hover) {
       &:hover {

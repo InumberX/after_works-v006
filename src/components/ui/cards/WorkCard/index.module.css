@@ -1,14 +1,10 @@
 @layer component-ui-low {
-  .ArticleCard {
+  .WorkCard {
     block-size: 100%;
   }
 
-  .ArticleCard__button {
-    backdrop-filter: blur(20px);
-    background-color: rgb(var(--color-palette-sky-blue-rgb) / 8%);
+  .WorkCard__button {
     block-size: 100%;
-    border: 1px solid var(--color-palette-chambray);
-    border-radius: 16px;
     color: var(--color-palette-white);
     display: block;
     text-decoration: none;
@@ -21,35 +17,39 @@
 
     @media (--media-hover) {
       &:hover {
-        background-color: rgb(var(--color-palette-sky-blue-rgb) / 16%);
         color: var(--color-palette-sky-blue);
+
+        .WorkCardMainVisual__image {
+          scale: var(--scale-hover);
+        }
       }
     }
   }
 
-  .ArticleCard__container {
+  .WorkCard__container {
     block-size: 100%;
     display: flex;
     flex-direction: column;
   }
 
-  .ArticleCardMainVisual {
+  .WorkCardMainVisual {
     aspect-ratio: 16 / 9;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
     display: block;
     margin-block-end: 16px;
     overflow: hidden;
     position: relative;
   }
 
-  .ArticleCardMainVisual__image {
+  .WorkCardMainVisual__image {
     block-size: 100%;
     inline-size: 100%;
     object-fit: cover;
     object-position: center;
+    transition: 0.3s scale;
   }
 
-  .ArticleCardDate {
+  .WorkCardDate {
     align-items: center;
     color: var(--color-palette-silver-chalice);
     display: flex;
@@ -59,21 +59,18 @@
     margin-block-end: 8px;
 
     @mixin getFontSize 14;
-    @mixin getClampPx padding-inline, 12, 16;
   }
 
-  .ArticleCardDate__separator {
+  .WorkCardDate__separator {
     margin-block: 0;
     margin-inline: 4px;
   }
 
-  .ArticleCardTitle {
+  .WorkCardTitle {
     display: block;
-
-    @mixin getClampPx padding-inline, 12, 16;
   }
 
-  .ArticleCardTitle__text {
+  .WorkCardTitle__text {
     @mixin getFontSize 16;
 
     -webkit-box-orient: vertical;
@@ -84,10 +81,8 @@
     overflow: hidden;
   }
 
-  .ArticleCardTag {
+  .WorkCardTag {
     margin-block-start: auto;
     padding-block-start: 16px;
-
-    @mixin getClampPx padding-inline, 12, 16;
   }
 }

@@ -3,9 +3,10 @@ import { SideColumn } from './SideColumn'
 
 import { Contact } from '~/components/common/Contact'
 import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 import { LayoutParallel } from '~/components/ui/layouts/LayoutParallel'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
@@ -15,7 +16,7 @@ import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tagNews'
 type Props = {
   defaultPage: number
   defaultTotalPage: number
-  defaultArticleInfos: ArticleCardProps[]
+  defaultArticleInfos: WorkCardProps[]
   latestArticleInfos: LatestArticleCardProps[]
   tagNewsInfos: ApiResponseTagNewsTag[]
 }
@@ -30,10 +31,14 @@ export const Index = async ({
   const scopedT = await getScopedI18n('blogs')
 
   return (
-    <>
+    <LayoutPageWrapper>
       <PageTitle
         title={scopedT('pageTitle')}
-        subTitle={scopedT('pageSubTitle')}
+        subTitle={
+          scopedT('pageSubTitle') !== 'pageSubTitle'
+            ? scopedT('pageSubTitle')
+            : ''
+        }
       />
 
       <BaseBreadcrumb
@@ -61,6 +66,6 @@ export const Index = async ({
       </LayoutSection>
 
       <Contact />
-    </>
+    </LayoutPageWrapper>
   )
 }

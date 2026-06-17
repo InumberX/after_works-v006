@@ -58,15 +58,6 @@ export const SectionTitle = ({
             >
               {title}
             </span>
-            <span className={styles.SectionTitleMainCurtain}>
-              <span
-                className={clsx(
-                  styles.SectionTitleMainCurtain__curtain,
-                  isVisible &&
-                    styles['SectionTitleMainCurtain__curtain--active'],
-                )}
-              />
-            </span>
           </Title>
         </span>
       </div>

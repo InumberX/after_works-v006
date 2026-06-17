@@ -6,8 +6,10 @@ import { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 import { LayoutParallel } from '~/components/ui/layouts/LayoutParallel'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
+import { PageTitle } from '~/components/ui/typographies/PageTitle'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 
@@ -17,11 +19,14 @@ type Props = {
 }
 
 export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
+  const scopedT = await getScopedI18n('blogsDetail')
   const blogsScopedT = await getScopedI18n('blogs')
   const locale = await getCurrentLocale()
 
   return (
-    <>
+    <LayoutPageWrapper>
+      <PageTitle subTitle={scopedT('pageSubTitle')} />
+
       <BaseBreadcrumb
         infos={[
           {
@@ -34,7 +39,6 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
             name: articleInfo.title,
           },
         ]}
-        isTop={true}
       />
 
       <LayoutSection tag='div' isNotTopMargin>
@@ -47,6 +51,6 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
       </LayoutSection>
 
       <Contact />
-    </>
+    </LayoutPageWrapper>
   )
 }

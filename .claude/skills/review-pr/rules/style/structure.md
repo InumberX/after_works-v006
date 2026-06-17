@@ -37,12 +37,13 @@ src/
 
 ## components/common と components/ui の使い分け
 
-| 置き場 | 用途 | 例 |
-|---|---|---|
+| 置き場               | 用途                                                                                    | 例                                                                                                              |
+| -------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `components/common/` | サイト全体のレイアウト・レイヤーに関わる **アプリ固有・1度しか使わない** コンポーネント | `LayoutHeader`、`LayoutFooter`、`LayoutPortal`、`LayoutPageBackground`、`Contact`、`AppHead`、`GoogleAnalytics` |
-| `components/ui/` | **複数箇所で再利用される汎用パーツ**。カテゴリ別ディレクトリで分類 | `buttons/BaseButton`、`cards/ArticleCard`、`tags/BaseTag` |
+| `components/ui/`     | **複数箇所で再利用される汎用パーツ**。カテゴリ別ディレクトリで分類                      | `buttons/BaseButton`、`cards/ArticleCard`、`tags/BaseTag`                                                       |
 
 判断基準:
+
 - 「サイト全体で1つだけ使う・ページ毎に再利用しない」なら `common/`
 - 「カードや一覧などで何度も再利用する」なら `ui/<category>/`
 
@@ -60,7 +61,7 @@ ui/
 ├── icons/         # アイコン（SVGR）
 ├── layouts/       # レイアウトユーティリティ
 ├── lists/         # リスト・一覧
-├── pagination/    # ページネーション
+├── paginations/    # ページネーション
 ├── sides/         # サイドバー
 ├── sliders/       # カルーセル/スライダー
 ├── tags/          # タグ
@@ -80,21 +81,22 @@ ui/buttons/BaseButton/
 ```
 
 派生:
+
 - 子コンポーネントを切り出す場合は同ディレクトリ内に追加（`SubComponent.tsx`）か、独立コンポーネントとして別ディレクトリに切る
 - 型定義をエクスポートする場合は `index.tsx` 内で `export type <Component>Props` を行う
 
 ## 関連レイヤーの配置
 
-| ロジック種別 | 置き場 | 命名 |
-|---|---|---|
-| データ取得関数 | `apis/fetch/<resource>.ts` | camelCase |
-| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | camelCase |
-| カスタムフック | `hooks/use-<name>.ts` | kebab-case + `use-` プレフィックス |
-| 純粋関数ユーティリティ | `utils/<verbName>.ts` | camelCase（動詞起点） |
-| 外部ライブラリラッパー | `libs/<lib>/<file>.ts` | ライブラリ名のディレクトリで分割 |
-| 設定値 | `config/<topic>.ts` | camelCase |
-| Jotai store | `store/<topic>/...` | camelCase ディレクトリ |
-| Provider | `providers/<Name>Provider.tsx` | PascalCase + Provider サフィックス |
+| ロジック種別             | 置き場                             | 命名                               |
+| ------------------------ | ---------------------------------- | ---------------------------------- |
+| データ取得関数           | `apis/fetch/<resource>.ts`         | camelCase                          |
+| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | camelCase                          |
+| カスタムフック           | `hooks/use-<name>.ts`              | kebab-case + `use-` プレフィックス |
+| 純粋関数ユーティリティ   | `utils/<verbName>.ts`              | camelCase（動詞起点）              |
+| 外部ライブラリラッパー   | `libs/<lib>/<file>.ts`             | ライブラリ名のディレクトリで分割   |
+| 設定値                   | `config/<topic>.ts`                | camelCase                          |
+| Jotai store              | `store/<topic>/...`                | camelCase ディレクトリ             |
+| Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス |
 
 ## バレルエクスポート
 

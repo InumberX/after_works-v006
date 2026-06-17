@@ -1,16 +1,20 @@
 @layer component-page {
+  .Message__container {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @mixin getClampPx gap, 24, 40;
+  }
+
   .MessageText__text {
     text-align: center;
+
+    @mixin getClampRem font-size, 16, 18;
   }
 
   .MessageLink {
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-block-start: 24px;
-  }
-
-  .MessageLink__button {
-    max-inline-size: 320px;
   }
 }
