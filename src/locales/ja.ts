@@ -55,7 +55,7 @@ export default {
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私のプロフィールやこれまでの経験、担当業務等をご紹介します。',
     pageTitle: '経歴',
-    pageSubTitle: 'About',
+    pageSubTitle: 'ABOUT',
     profile: {
       title: 'NiNE',
       certification: {
@@ -71,7 +71,7 @@ export default {
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私が投稿した記事の一覧を閲覧できます。',
     pageTitle: 'ブログ',
-    pageSubTitle: 'Blog',
+    pageSubTitle: 'BLOG',
     sideColumn: {
       latestArticle: {
         title: '最近の記事',
@@ -95,7 +95,7 @@ export default {
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。お問い合わせはこちらのページからお気軽にご連絡ください。',
     pageTitle: 'お問い合わせ',
-    pageSubTitle: 'Contact',
+    pageSubTitle: 'CONTACT',
     message: {
       text: '下記フォームよりお気軽にお問い合わせください。',
       buttonText: 'お問い合わせ',
@@ -108,7 +108,7 @@ export default {
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私の趣味および学習のために制作したものをご紹介します。',
     pageTitle: '趣味',
-    pageSubTitle: 'Hobby',
+    pageSubTitle: 'HOBBY',
     sideColumn: {
       latestArticle: {
         title: '最近の記事',
@@ -140,7 +140,7 @@ export default {
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私のこれまでの実績・制作物の一覧を閲覧できます。',
     pageTitle: '実績',
-    pageSubTitle: 'Works',
+    pageSubTitle: 'WORKS',
     sideColumn: {
       latestArticle: {
         title: '最近の実績',
@@ -170,7 +170,7 @@ export default {
   notFound: {
     title: 'お探しのページが見つかりませんでした',
     pageTitle: 'お探しのページが見つかりませんでした',
-    pageSubTitle: 'Not Found',
+    pageSubTitle: 'NOT FOUND',
     message: {
       text: `お探しのページは削除されたか、一時的にご利用できない可能性があります。
 お探しのページのURLが正しいかどうかご確認ください。`,

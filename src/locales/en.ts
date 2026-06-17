@@ -170,7 +170,7 @@ I can create various types of websites such as responsive sites that display opt
   notFound: {
     title: 'The Page You Are Looking For Could Not Be Found',
     pageTitle: 'The Page You Are Looking For Could Not Be Found',
-    pageSubTitle: 'Not Found',
+    pageSubTitle: 'NOT FOUND',
     message: {
       text: `The page you are looking for may have been deleted or is temporarily unavailable.
 Please check if the URL of the page you are looking for is correct.`,

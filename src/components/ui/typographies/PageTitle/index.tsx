@@ -44,15 +44,6 @@ export const PageTitle = ({ className, title, subTitle, titleTag }: Props) => {
                 >
                   {title}
                 </span>
-                <span className={styles.PageTitleMainCurtain}>
-                  <span
-                    className={clsx(
-                      styles.PageTitleMainCurtain__curtain,
-                      isVisible &&
-                        styles['PageTitleMainCurtain__curtain--active'],
-                    )}
-                  />
-                </span>
               </Title>
             </span>
           )}

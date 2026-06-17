@@ -54,6 +54,8 @@
     color: var(--color-palette-silver-chalice);
     display: flex;
     flex-wrap: wrap;
+    font-family: var(--font-family-en);
+    font-weight: var(--font-weight-light);
     margin-block-end: 8px;
 
     @mixin getFontSize 14;

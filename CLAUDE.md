@@ -128,7 +128,7 @@ Components follow a barrel export pattern with index files. UI components are ca
 - `icons/` - Icon components (uses SVGR)
 - `layouts/` - Layout utilities
 - `lists/` - List/collection components
-- `pagination/` - Pagination components
+- `paginations/` - Pagination components
 - `sides/` - Sidebar components
 - `sliders/` - Carousel/slider components
 - `tags/` - Tag components
