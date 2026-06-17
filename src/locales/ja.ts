@@ -82,6 +82,7 @@ export default {
     title: 'ブログ',
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
+    pageSubTitle: 'BLOG',
     dateTitle: '投稿日',
     bottomLinkText: 'ブログ一覧に戻る',
     sideColumn: {
@@ -119,6 +120,7 @@ export default {
     title: '趣味',
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
+    pageSubTitle: 'HOBBY',
     dateTitle: '制作期間',
     bottomLinkText: '趣味一覧に戻る',
     tags: {
@@ -151,6 +153,7 @@ export default {
     title: '実績',
     description:
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、{title}の記事を閲覧できます。',
+    pageSubTitle: 'WORKS',
     dateTitle: '制作期間',
     bottomLinkText: '実績一覧に戻る',
     tags: {

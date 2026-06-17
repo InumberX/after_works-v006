@@ -1,9 +1,9 @@
 @layer component-ui-low {
   .ArticleHeadMainVisual {
+    margin-block-start: 24px;
     overflow: hidden;
 
     @mixin getClampPx border-radius, 16, 24;
-    @mixin getClampPx margin-block-end, 24, 40;
   }
 
   .ArticleHeadMainVisual__container {

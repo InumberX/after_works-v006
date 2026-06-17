@@ -43,6 +43,10 @@ export const ArticleHead = async ({ className, info }: Props) => {
 
   return (
     <div className={clsx(styles.ArticleHead, className)}>
+      <div className={styles.ArticleHeadTitle}>
+        <h1 className={styles.ArticleHeadTitle__text}>{title}</h1>
+      </div>
+
       {mainVisual && mainVisual.src && (
         <div className={styles.ArticleHeadMainVisual}>
           <figure className={styles.ArticleHeadMainVisual__container}>
@@ -55,10 +59,6 @@ export const ArticleHead = async ({ className, info }: Props) => {
           </figure>
         </div>
       )}
-
-      <div className={styles.ArticleHeadTitle}>
-        <h1 className={styles.ArticleHeadTitle__text}>{title}</h1>
-      </div>
 
       <div className={styles.ArticleHeadInfo}>
         {(startedAtText || endedAtText) && (

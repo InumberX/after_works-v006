@@ -82,6 +82,7 @@ I can create various types of websites such as responsive sites that display opt
     title: 'Blog',
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
+    pageSubTitle: 'BLOG',
     dateTitle: 'Post Date',
     bottomLinkText: 'Return to Blog List',
     sideColumn: {
@@ -119,6 +120,7 @@ I can create various types of websites such as responsive sites that display opt
     title: 'Hobby',
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
+    pageSubTitle: 'HOBBY',
     dateTitle: 'Creation Period',
     bottomLinkText: 'Return to Hobby List',
     tags: {
@@ -151,6 +153,7 @@ I can create various types of websites such as responsive sites that display opt
     title: 'Works',
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view the article titled {title}.',
+    pageSubTitle: 'WORKS',
     dateTitle: 'Creation Period',
     bottomLinkText: 'Return to Works List',
     tags: {

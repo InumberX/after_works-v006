@@ -6,6 +6,7 @@ import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 import { LayoutParallel } from '~/components/ui/layouts/LayoutParallel'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
@@ -30,7 +31,7 @@ export const Index = async ({
   const scopedT = await getScopedI18n('blogs')
 
   return (
-    <>
+    <LayoutPageWrapper>
       <PageTitle
         title={scopedT('pageTitle')}
         subTitle={
@@ -65,6 +66,6 @@ export const Index = async ({
       </LayoutSection>
 
       <Contact />
-    </>
+    </LayoutPageWrapper>
   )
 }
