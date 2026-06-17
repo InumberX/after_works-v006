@@ -6,8 +6,8 @@ import { useState } from 'react'
 import styles from './index.module.css'
 
 import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
-import { ArticleCardList } from '~/components/ui/lists/ArticleCardList'
+import { WorkCardProps } from '~/components/ui/cards/WorkCard'
+import { WorkCardList } from '~/components/ui/lists/WorkCardList'
 import { BasePagination } from '~/components/ui/paginations/BasePagination'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
@@ -16,7 +16,7 @@ import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tagNews'
 import { actSmoothScroll } from '~/utils/actSmoothScroll'
 
 type Props = {
-  defaultArticleInfos: ArticleCardProps[]
+  defaultArticleInfos: WorkCardProps[]
   defaultPage: number
   defaultTotalPage: number
   tagNewsInfos: ApiResponseTagNewsTag[]
@@ -45,7 +45,7 @@ export const MainColumn = ({
       page: newPage,
     })
 
-    const infos: ArticleCardProps[] = responseBlogInfos
+    const infos: WorkCardProps[] = responseBlogInfos
       ? responseBlogInfos.list.map((info) => {
           const tagPosition: BaseTagProps[] = []
 
@@ -130,7 +130,7 @@ export const MainColumn = ({
   return (
     <div className={styles.MainColumn}>
       <div id='main-column-container' className={styles.MainColumn__container}>
-        <ArticleCardList infos={articleInfos} />
+        <WorkCardList infos={articleInfos} />
         <BasePagination
           className={styles.MainColumn__pagination}
           currentPage={currentPage}

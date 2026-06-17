@@ -1,0 +1,88 @@
+@layer component-ui-low {
+  .WorkCard {
+    block-size: 100%;
+  }
+
+  .WorkCard__button {
+    block-size: 100%;
+    color: var(--color-palette-white);
+    display: block;
+    text-decoration: none;
+    transition:
+      0.3s color,
+      0.3s background-color;
+
+    @mixin getFontSize 16;
+    @mixin getClampPx padding-block-end, 12, 16;
+
+    @media (--media-hover) {
+      &:hover {
+        color: var(--color-palette-sky-blue);
+
+        .WorkCardMainVisual__image {
+          scale: var(--scale-hover);
+        }
+      }
+    }
+  }
+
+  .WorkCard__container {
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .WorkCardMainVisual {
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    display: block;
+    margin-block-end: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .WorkCardMainVisual__image {
+    block-size: 100%;
+    inline-size: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s scale;
+  }
+
+  .WorkCardDate {
+    align-items: center;
+    color: var(--color-palette-silver-chalice);
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--font-family-en);
+    font-weight: var(--font-weight-light);
+    margin-block-end: 8px;
+
+    @mixin getFontSize 14;
+  }
+
+  .WorkCardDate__separator {
+    margin-block: 0;
+    margin-inline: 4px;
+  }
+
+  .WorkCardTitle {
+    display: block;
+  }
+
+  .WorkCardTitle__text {
+    @mixin getFontSize 16;
+
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-family: var(--font-family-serif);
+    font-weight: var(--font-weight-medium);
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .WorkCardTag {
+    margin-block-start: auto;
+    padding-block-start: 16px;
+  }
+}
