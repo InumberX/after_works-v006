@@ -21,7 +21,7 @@ export default {
     },
     contents: {
       title: 'Contents',
-      subTitle: 'CONTENTS',
+      subTitle: '',
       about: {
         title: 'Career Introduction',
         description: 'I will introduce my career history and qualifications.',
@@ -55,7 +55,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce my profile, past experiences, and duties.',
     pageTitle: 'About',
-    pageSubTitle: 'About',
+    pageSubTitle: '',
     profile: {
       title: 'NiNE',
       certification: {
@@ -71,7 +71,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of articles I have posted.',
     pageTitle: 'Blog',
-    pageSubTitle: 'Blog',
+    pageSubTitle: '',
     sideColumn: {
       latestArticle: {
         title: 'Recent Articles',
@@ -95,7 +95,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. Please feel free to contact me through this page.',
     pageTitle: 'Contact',
-    pageSubTitle: 'Contact',
+    pageSubTitle: '',
     message: {
       text: 'Please feel free to contact me using the form below.',
       buttonText: 'Contact',
@@ -108,7 +108,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce things I have created for my hobbies and learning.',
     pageTitle: 'Hobby',
-    pageSubTitle: 'Hobby',
+    pageSubTitle: '',
     sideColumn: {
       latestArticle: {
         title: 'Recent Articles',
@@ -140,7 +140,7 @@ I can create various types of websites such as responsive sites that display opt
     description:
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of my past achievements and creations.',
     pageTitle: 'Works',
-    pageSubTitle: 'Works',
+    pageSubTitle: '',
     sideColumn: {
       latestArticle: {
         title: 'Recent Works',

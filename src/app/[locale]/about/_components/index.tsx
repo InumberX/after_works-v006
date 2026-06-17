@@ -20,7 +20,11 @@ export const Index = async ({ leadInfo, profileInfo, historyInfo }: Props) => {
     <>
       <PageTitle
         title={scopedT('pageTitle')}
-        subTitle={scopedT('pageSubTitle')}
+        subTitle={
+          scopedT('pageSubTitle') !== 'pageSubTitle'
+            ? scopedT('pageSubTitle')
+            : ''
+        }
       />
 
       <BaseBreadcrumb

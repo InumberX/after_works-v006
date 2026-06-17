@@ -10,7 +10,7 @@ import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 
 type Props = {
   className?: string
-  title: ReactNode
+  title?: ReactNode
   subTitle?: ReactNode
   titleTag?: keyof JSX.IntrinsicElements
 }
@@ -33,27 +33,29 @@ export const PageTitle = ({ className, title, subTitle, titleTag }: Props) => {
               <span className={styles.PageTitleSub__text}>{subTitle}</span>
             </span>
           )}
-          <span className={styles.PageTitleMain}>
-            <Title className={styles.PageTitleMain__paragraph}>
-              <span
-                className={clsx(
-                  styles.PageTitleMain__text,
-                  isVisible && styles['PageTitleMain__text--active'],
-                )}
-              >
-                {title}
-              </span>
-              <span className={styles.PageTitleMainCurtain}>
+          {title && (
+            <span className={styles.PageTitleMain}>
+              <Title className={styles.PageTitleMain__paragraph}>
                 <span
                   className={clsx(
-                    styles.PageTitleMainCurtain__curtain,
-                    isVisible &&
-                      styles['PageTitleMainCurtain__curtain--active'],
+                    styles.PageTitleMain__text,
+                    isVisible && styles['PageTitleMain__text--active'],
                   )}
-                />
-              </span>
-            </Title>
-          </span>
+                >
+                  {title}
+                </span>
+                <span className={styles.PageTitleMainCurtain}>
+                  <span
+                    className={clsx(
+                      styles.PageTitleMainCurtain__curtain,
+                      isVisible &&
+                        styles['PageTitleMainCurtain__curtain--active'],
+                    )}
+                  />
+                </span>
+              </Title>
+            </span>
+          )}
         </div>
       </LayoutInner>
     </div>

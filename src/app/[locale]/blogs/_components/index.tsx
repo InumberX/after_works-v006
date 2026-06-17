@@ -33,7 +33,11 @@ export const Index = async ({
     <>
       <PageTitle
         title={scopedT('pageTitle')}
-        subTitle={scopedT('pageSubTitle')}
+        subTitle={
+          scopedT('pageSubTitle') !== 'pageSubTitle'
+            ? scopedT('pageSubTitle')
+            : ''
+        }
       />
 
       <BaseBreadcrumb
