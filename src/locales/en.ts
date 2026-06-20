@@ -14,25 +14,16 @@ export default {
         },
       },
     },
+    works: {
+      title: 'Latest Works',
+      subTitle: 'WORKS',
+      lead: 'Some of the sites I have created for clients.\nI design them regardless of industry or tone, based on the purpose.',
+      listPageButtonText: 'Go to Works List',
+    },
     blog: {
       title: 'Latest Articles',
       subTitle: 'BLOG',
       listPageButtonText: 'Go to Blog List',
-    },
-    contents: {
-      title: 'Contents',
-      subTitle: '',
-      about: {
-        title: 'Career Introduction',
-        description: 'I will introduce my career history and qualifications.',
-        buttonText: 'Go to Career Introduction',
-      },
-      works: {
-        title: 'Achievements Introduction',
-        description:
-          'I will introduce the works I have created for clients and as a hobby.',
-        buttonText: 'Go to Achievements List',
-      },
     },
     service: {
       title: 'What I Can Do',
@@ -56,8 +47,11 @@ I can create various types of websites such as responsive sites that display opt
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, I introduce my profile, past experiences, and duties.',
     pageTitle: 'About',
     pageSubTitle: '',
+    lead: 'I am a Front-end Engineer living in Tokyo. This is my portfolio website.\nOn this page, I introduce my profile, past experiences, and duties.',
     profile: {
-      title: 'NiNE',
+      name: 'NiNE',
+      position: 'Front-end Engineer',
+      lead: 'I handle everything from design to coding, from start to finish.',
       certification: {
         title: 'Certifications',
       },
@@ -143,6 +137,7 @@ I can create various types of websites such as responsive sites that display opt
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of my past achievements and creations.',
     pageTitle: 'Works',
     pageSubTitle: '',
+    lead: 'I have created a list of websites and creations I have worked on for clients and as a hobby.\nMy responsibilities range from direction, design, and coding to various other areas.',
     sideColumn: {
       latestArticle: {
         title: 'Recent Works',

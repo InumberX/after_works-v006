@@ -39,6 +39,7 @@ export type WorkCardProps = {
   className?: string
   onClick?: EventTypes['onClickButton']
   isNotActiveAnimelm?: boolean
+  size?: 'medium' | 'pcLarge'
 } & WorkCardContainerProps
 
 const WorkCardContainer = ({
@@ -149,6 +150,7 @@ export const WorkCard = ({
   titleTag,
   tags,
   isNotActiveAnimelm,
+  size = 'medium',
 }: WorkCardProps) => {
   const { targetRef } = useAnimelm<AnimelmElement>()
 
@@ -159,7 +161,11 @@ export const WorkCard = ({
 
   return (
     <div
-      className={clsx(styles.WorkCard, !isNotActiveAnimelm && 'AnimelmBlurIn')}
+      className={clsx(
+        styles.WorkCard,
+        styles[`WorkCard--${size}`],
+        !isNotActiveAnimelm && 'AnimelmBlurIn',
+      )}
       ref={isNotActiveAnimelm ? null : targetRef}
     >
       {isExternal ? (

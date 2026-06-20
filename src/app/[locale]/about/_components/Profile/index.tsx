@@ -7,90 +7,52 @@ import styles from './index.module.css'
 
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
+import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
+import { SectionTitle } from '~/components/ui/typographies/SectionTitle'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useScopedI18n } from '~/locales/client'
 
 export type ProfileProps = {
-  certifications: {
-    name: string
-    url: string
-  }[]
-  skills: string[]
+  lead: string
 }
 
-export const Profile = ({ certifications, skills }: ProfileProps) => {
+export const Profile = ({ lead }: ProfileProps) => {
   const scopedT = useScopedI18n('about.profile')
   const { targetRef } = useAnimelm<AnimelmElement>()
 
   return (
     <LayoutSection className={styles.Profile}>
-      <LayoutInner size='small'>
+      <LayoutInner>
         <div
           className={clsx(styles.Profile__container, 'AnimelmBlurIn')}
           ref={targetRef}
         >
-          <figure className={styles.ProfileIcon}>
-            <Image
-              src={`${STATIC_IMAGE_DIR}/img-profile.avif?${CACHE_BUSTER}`}
-              width={80}
-              height={80}
-              alt={scopedT('title')}
-              className={styles.ProfileIcon__image}
-            />
-          </figure>
+          <div className={styles.ProfileIcon}>
+            <figure className={styles.ProfileIconImage}>
+              <Image
+                src={`${STATIC_IMAGE_DIR}/img-profile.avif?${CACHE_BUSTER}`}
+                width={880}
+                height={1200}
+                alt={scopedT('name')}
+                className={styles.ProfileIconImage__image}
+              />
+            </figure>
 
-          <div className={styles.ProfileTitle}>
-            <h2 className={styles.ProfileTitle__main}>{scopedT('title')}</h2>
+            <div className={styles.ProfileIconTitle}>
+              <h2 className={styles.ProfileIconTitle__main}>
+                {scopedT('name')}
+              </h2>
+              <span className={styles.ProfileIconTitle__sub}>
+                {scopedT('position')}
+              </span>
+            </div>
           </div>
-
-          <div className={styles.ProfileInfo}>
-            <div className={styles.ProfileInfo__contents}>
-              <div className={styles.ProfileInfoTitle}>
-                <h3 className={styles.ProfileInfoTitle__text}>
-                  {scopedT('certification.title')}
-                </h3>
-              </div>
-
-              <div className={styles.ProfileInfoDescription}>
-                <ul className={styles.ProfileInfoDescription__items}>
-                  {certifications.map((info, i) => (
-                    <li key={i} className={styles.ProfileInfoDescription__item}>
-                      <a
-                        href={info.url}
-                        className={styles.ProfileInfoDescription__link}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        <span className={styles.ProfileInfoDescription__text}>
-                          {info.name}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.ProfileInfo__contents}>
-              <div className={styles.ProfileInfoTitle}>
-                <h3 className={styles.ProfileInfoTitle__text}>
-                  {scopedT('skill.title')}
-                </h3>
-              </div>
-
-              <div className={styles.ProfileInfoDescription}>
-                <ul className={styles.ProfileInfoDescription__items}>
-                  {skills.map((info, i) => (
-                    <li key={i} className={styles.ProfileInfoDescription__item}>
-                      <span className={styles.ProfileInfoDescription__text}>
-                        {info}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <div className={styles.ProfileContents}>
+            <SectionTitle subTitle='PROFILE' title={scopedT('lead')} />
+            <p className={styles.ProfileContents__lead}>
+              <ReplaceNewLineText text={lead} />
+            </p>
           </div>
         </div>
       </LayoutInner>

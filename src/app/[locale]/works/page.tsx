@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import { Index } from './_components'
 
-import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
+import { getTagPosition } from '~/apis/fetch/tagPosition'
 import { getWorksInfos } from '~/apis/fetch/works'
 import { AppHead } from '~/components/common/AppHead'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
@@ -13,8 +13,10 @@ import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import { NextPageProps } from '~/types/next'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('works')
+  const [locale, scopedT] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('works'),
+  ])
 
   return AppHead({
     title: scopedT('title'),
@@ -27,16 +29,23 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const WorksPage = async ({ searchParams }: NextPageProps) => {
-  const locale = await getCurrentLocale()
-  const tagPositionInfos = await getTagPositionInfos()
-  const currentSearchParams = await searchParams
+  const [locale, responseTagPosition, currentSearchParams] = await Promise.all([
+    getCurrentLocale(),
+    getTagPosition(),
+    searchParams,
+  ])
 
-  const responseWorksInfos = await getWorksInfos({
-    ...(currentSearchParams &&
-      currentSearchParams.page && {
-        page: parseInt(currentSearchParams.page as string, 10),
-      }),
-  })
+  const [responseWorksInfos, responseLatestWorksInfos] = await Promise.all([
+    getWorksInfos({
+      ...(currentSearchParams &&
+        currentSearchParams.page && {
+          page: parseInt(currentSearchParams.page as string, 10),
+        }),
+    }),
+    getWorksInfos({
+      cnt: 5,
+    }),
+  ])
 
   const defaultWorksInfos: WorkCardProps[] = responseWorksInfos
     ? responseWorksInfos.list.map((info) => {
@@ -46,11 +55,11 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
           const tag = info.tags[i]
 
           for (
-            let j = 0, jLength = tagPositionInfos.length;
+            let j = 0, jLength = responseTagPosition.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagPositionInfos[j]
+            const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
               let name = ''
@@ -95,10 +104,6 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const responseLatestWorksInfos = await getWorksInfos({
-    cnt: 5,
-  })
-
   const latestWorksInfos: LatestArticleCardProps[] = responseLatestWorksInfos
     ? responseLatestWorksInfos.list.map((info) => {
         return {
@@ -133,7 +138,7 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
       }
       defaultArticleInfos={defaultWorksInfos}
       latestArticleInfos={latestWorksInfos}
-      tagPositionInfos={tagPositionInfos}
+      responseTagPosition={responseTagPosition}
     />
   )
 }

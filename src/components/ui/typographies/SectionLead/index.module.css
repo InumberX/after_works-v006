@@ -1,0 +1,7 @@
+@layer component-ui-low {
+  .SectionLead__paragraph {
+    color: var(--color-palette-silver-chalice);
+
+    @mixin getClampRem font-size, 16, 18;
+  }
+}

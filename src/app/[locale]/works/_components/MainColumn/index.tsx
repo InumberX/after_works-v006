@@ -10,6 +10,8 @@ import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { WorkCardList } from '~/components/ui/lists/WorkCardList'
 import { BasePagination } from '~/components/ui/paginations/BasePagination'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
+import { SectionLead } from '~/components/ui/typographies/SectionLead'
 import { routes } from '~/config/routes'
 import { useCurrentLocale } from '~/locales/client'
 import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tagPosition'
@@ -19,14 +21,16 @@ type Props = {
   defaultArticleInfos: WorkCardProps[]
   defaultPage: number
   defaultTotalPage: number
-  tagPositionInfos: ApiResponseTagPositionTag[]
+  responseTagPosition: ApiResponseTagPositionTag[]
+  lead: string
 }
 
 export const MainColumn = ({
   defaultArticleInfos,
   defaultPage,
   defaultTotalPage,
-  tagPositionInfos,
+  responseTagPosition,
+  lead,
 }: Props) => {
   const locale = useCurrentLocale()
   const router = useRouter()
@@ -53,11 +57,11 @@ export const MainColumn = ({
             const tag = info.tags[i]
 
             for (
-              let j = 0, jLength = tagPositionInfos.length;
+              let j = 0, jLength = responseTagPosition.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagPositionInfos[j]
+              const target = responseTagPosition[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''
@@ -131,6 +135,7 @@ export const MainColumn = ({
   return (
     <div className={styles.MainColumn}>
       <div id='main-column-container' className={styles.MainColumn__container}>
+        <SectionLead lead={<ReplaceNewLineText text={lead} />} />
         <WorkCardList infos={articleInfos} />
         <BasePagination
           className={styles.MainColumn__pagination}

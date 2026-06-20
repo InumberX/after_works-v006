@@ -18,7 +18,7 @@ type Props = {
   defaultTotalPage: number
   defaultArticleInfos: WorkCardProps[]
   latestArticleInfos: LatestArticleCardProps[]
-  tagPositionInfos: ApiResponseTagPositionTag[]
+  responseTagPosition: ApiResponseTagPositionTag[]
 }
 
 export const Index = async ({
@@ -26,7 +26,7 @@ export const Index = async ({
   defaultTotalPage,
   defaultArticleInfos,
   latestArticleInfos,
-  tagPositionInfos,
+  responseTagPosition,
 }: Props) => {
   const scopedT = await getScopedI18n('works')
 
@@ -53,10 +53,11 @@ export const Index = async ({
           <LayoutParallel
             mainColumn={
               <MainColumn
+                lead={scopedT('lead')}
                 defaultPage={defaultPage}
                 defaultTotalPage={defaultTotalPage}
                 defaultArticleInfos={defaultArticleInfos}
-                tagPositionInfos={tagPositionInfos}
+                responseTagPosition={responseTagPosition}
               />
             }
             sideColumn={<SideColumn latestArticleInfos={latestArticleInfos} />}

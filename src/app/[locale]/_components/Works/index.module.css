@@ -1,0 +1,19 @@
+@layer component-page {
+  .Works__container {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+  }
+
+  .WorksTitle__container {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
+
+  .WorksButton__container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}

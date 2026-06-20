@@ -3,11 +3,11 @@ import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
 
-import { getTagCmsInfos } from '~/apis/fetch/tagCms'
-import { getTagDesignInfos } from '~/apis/fetch/tagDesign'
-import { getTagOtherInfos } from '~/apis/fetch/tagOther'
-import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
-import { getTagProgramInfos } from '~/apis/fetch/tagProgram'
+import { getTagCms } from '~/apis/fetch/tagCms'
+import { getTagDesign } from '~/apis/fetch/tagDesign'
+import { getTagOther } from '~/apis/fetch/tagOther'
+import { getTagPosition } from '~/apis/fetch/tagPosition'
+import { getTagProgram } from '~/apis/fetch/tagProgram'
 import { getWorksInfos } from '~/apis/fetch/works'
 import { getWorksDetailInfo } from '~/apis/fetch/worksDetail'
 import { AppHead } from '~/components/common/AppHead'
@@ -28,12 +28,13 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('worksDetail')
-
-  const responseWorksDetailInfo = await getWorksDetailInfo({
-    id: String(id),
-  })
+  const [locale, scopedT, responseWorksDetailInfo] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('worksDetail'),
+    getWorksDetailInfo({
+      id: String(id),
+    }),
+  ])
 
   if (!responseWorksDetailInfo) {
     notFound()
@@ -73,18 +74,31 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('worksDetail')
-
-  const tagPositionInfos = await getTagPositionInfos()
-  const tagProgramInfos = await getTagProgramInfos()
-  const tagDesignInfos = await getTagDesignInfos()
-  const tagCmsInfos = await getTagCmsInfos()
-  const tagOtherInfos = await getTagOtherInfos()
-
-  const responseWorksDetailInfo = await getWorksDetailInfo({
-    id: String(id),
-  })
+  const [
+    locale,
+    scopedT,
+    responseTagPosition,
+    responseTagProgram,
+    responseTagDesign,
+    responseTagCms,
+    responseTagOther,
+    responseWorksDetailInfo,
+    responseLatestWorksInfos,
+  ] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('worksDetail'),
+    getTagPosition(),
+    getTagProgram(),
+    getTagDesign(),
+    getTagCms(),
+    getTagOther(),
+    getWorksDetailInfo({
+      id: String(id),
+    }),
+    getWorksInfos({
+      cnt: 5,
+    }),
+  ])
 
   if (!responseWorksDetailInfo) {
     notFound()
@@ -103,8 +117,12 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
   ) {
     const tag = responseWorksDetailInfo.tags[i]
 
-    for (let j = 0, jLength = tagPositionInfos.length; j < jLength; j = j + 1) {
-      const target = tagPositionInfos[j]
+    for (
+      let j = 0, jLength = responseTagPosition.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -126,8 +144,12 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagProgramInfos.length; j < jLength; j = j + 1) {
-      const target = tagProgramInfos[j]
+    for (
+      let j = 0, jLength = responseTagProgram.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -149,8 +171,12 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagDesignInfos.length; j < jLength; j = j + 1) {
-      const target = tagDesignInfos[j]
+    for (
+      let j = 0, jLength = responseTagDesign.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -172,8 +198,8 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagCmsInfos.length; j < jLength; j = j + 1) {
-      const target = tagCmsInfos[j]
+    for (let j = 0, jLength = responseTagCms.length; j < jLength; j = j + 1) {
+      const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -195,8 +221,8 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagOtherInfos.length; j < jLength; j = j + 1) {
-      const target = tagOtherInfos[j]
+    for (let j = 0, jLength = responseTagOther.length; j < jLength; j = j + 1) {
+      const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -267,10 +293,6 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
         : []),
     ],
   }
-
-  const responseLatestWorksInfos = await getWorksInfos({
-    cnt: 5,
-  })
 
   const latestWorksInfos: LatestArticleCardProps[] = responseLatestWorksInfos
     ? responseLatestWorksInfos.list.map((info) => {
