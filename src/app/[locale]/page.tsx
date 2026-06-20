@@ -139,7 +139,7 @@ const HomePage = async () => {
         }
 
         return {
-          url: routes.blogsDetail.url({
+          url: routes.worksDetail.url({
             isFullPath: true,
             locale,
             id: String(info.topics_id),

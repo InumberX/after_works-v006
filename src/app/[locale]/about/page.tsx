@@ -52,6 +52,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
     getTagOther(),
   ])
 
+  /*
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
         return {
@@ -63,8 +64,9 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
         }
       })
     : []
+    */
 
-  const skills = aboutInfo ? aboutInfo.skills : []
+  // const skills = aboutInfo ? aboutInfo.skills : []
 
   const categoryAboutHistoryInfos = await getCategoryAboutHistoryInfos({})
 
@@ -261,16 +263,12 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
 
   return (
     <Index
-      leadInfo={{
+      profileInfo={{
         lead: aboutInfo
           ? locale === 'en'
             ? aboutInfo.lead_en
             : aboutInfo.lead
           : '',
-      }}
-      profileInfo={{
-        certifications,
-        skills,
       }}
       historyInfo={{
         defaultYearId,
