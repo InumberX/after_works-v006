@@ -18,7 +18,7 @@ type Props = {
   defaultTotalPage: number
   defaultArticleInfos: WorkCardProps[]
   latestArticleInfos: LatestArticleCardProps[]
-  tagNewsInfos: ApiResponseTagNewsTag[]
+  responseTagNews: ApiResponseTagNewsTag[]
 }
 
 export const Index = async ({
@@ -26,7 +26,7 @@ export const Index = async ({
   defaultTotalPage,
   defaultArticleInfos,
   latestArticleInfos,
-  tagNewsInfos,
+  responseTagNews,
 }: Props) => {
   const scopedT = await getScopedI18n('blogs')
 
@@ -57,7 +57,7 @@ export const Index = async ({
                 defaultPage={defaultPage}
                 defaultTotalPage={defaultTotalPage}
                 defaultArticleInfos={defaultArticleInfos}
-                tagNewsInfos={tagNewsInfos}
+                responseTagNews={responseTagNews}
               />
             }
             sideColumn={<SideColumn latestArticleInfos={latestArticleInfos} />}

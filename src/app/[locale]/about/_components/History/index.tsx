@@ -33,22 +33,22 @@ export type HistoryProps = {
     label: string
   }[]
   defaultItems: HistoryItem[]
-  tagPositionInfos: ApiResponseTagPositionTag[]
-  tagProgramInfos: ApiResponseTagProgramTag[]
-  tagCmsInfos: ApiResponseTagCmsTag[]
-  tagDesignInfos: ApiResponseTagDesignTag[]
-  tagOtherInfos: ApiResponseTagOtherTag[]
+  responseTagPosition: ApiResponseTagPositionTag[]
+  responseTagProgram: ApiResponseTagProgramTag[]
+  responseTagCms: ApiResponseTagCmsTag[]
+  responseTagDesign: ApiResponseTagDesignTag[]
+  responseTagOther: ApiResponseTagOtherTag[]
 }
 
 export const History = ({
   defaultYearId,
   years,
   defaultItems,
-  tagPositionInfos,
-  tagProgramInfos,
-  tagCmsInfos,
-  tagDesignInfos,
-  tagOtherInfos,
+  responseTagPosition,
+  responseTagProgram,
+  responseTagCms,
+  responseTagDesign,
+  responseTagOther,
 }: HistoryProps) => {
   const locale = useCurrentLocale()
   const router = useRouter()
@@ -77,11 +77,11 @@ export const History = ({
             const tag = info.tags[i]
 
             for (
-              let j = 0, jLength = tagPositionInfos.length;
+              let j = 0, jLength = responseTagPosition.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagPositionInfos[j]
+              const target = responseTagPosition[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''
@@ -107,11 +107,11 @@ export const History = ({
             }
 
             for (
-              let j = 0, jLength = tagProgramInfos.length;
+              let j = 0, jLength = responseTagProgram.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagProgramInfos[j]
+              const target = responseTagProgram[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''
@@ -137,11 +137,11 @@ export const History = ({
             }
 
             for (
-              let j = 0, jLength = tagCmsInfos.length;
+              let j = 0, jLength = responseTagCms.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagCmsInfos[j]
+              const target = responseTagCms[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''
@@ -167,11 +167,11 @@ export const History = ({
             }
 
             for (
-              let j = 0, jLength = tagDesignInfos.length;
+              let j = 0, jLength = responseTagDesign.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagDesignInfos[j]
+              const target = responseTagDesign[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''
@@ -197,11 +197,11 @@ export const History = ({
             }
 
             for (
-              let j = 0, jLength = tagOtherInfos.length;
+              let j = 0, jLength = responseTagOther.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagOtherInfos[j]
+              const target = responseTagOther[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''

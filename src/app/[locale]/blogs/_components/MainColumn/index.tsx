@@ -19,14 +19,14 @@ type Props = {
   defaultArticleInfos: WorkCardProps[]
   defaultPage: number
   defaultTotalPage: number
-  tagNewsInfos: ApiResponseTagNewsTag[]
+  responseTagNews: ApiResponseTagNewsTag[]
 }
 
 export const MainColumn = ({
   defaultArticleInfos,
   defaultPage,
   defaultTotalPage,
-  tagNewsInfos,
+  responseTagNews,
 }: Props) => {
   const locale = useCurrentLocale()
   const router = useRouter()
@@ -53,11 +53,11 @@ export const MainColumn = ({
             const tag = info.tags[i]
 
             for (
-              let j = 0, jLength = tagNewsInfos.length;
+              let j = 0, jLength = responseTagNews.length;
               j < jLength;
               j = j + 1
             ) {
-              const target = tagNewsInfos[j]
+              const target = responseTagNews[j]
 
               if (tag.tag_id === target.tag_id) {
                 let name = ''

@@ -1,10 +1,10 @@
 import { API_URL } from '~/config/env'
 import { TagNews, Tag } from '~/types/apis/fetch/tagNews'
 
-export type ResponseGetTagNewsInfos = Tag[]
+export type ResponseGetTagNews = Tag[]
 
-export const getTagNewsInfos = async (): Promise<ResponseGetTagNewsInfos> => {
-  const result: ResponseGetTagNewsInfos = []
+export const getTagNews = async (): Promise<ResponseGetTagNews> => {
+  const result: ResponseGetTagNews = []
 
   const response = await fetch(`${API_URL}/tags/news`, {
     cache: 'no-store',

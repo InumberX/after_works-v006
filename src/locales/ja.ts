@@ -14,25 +14,16 @@ export default {
         },
       },
     },
+    works: {
+      title: '最新の実績',
+      subTitle: 'WORKS',
+      lead: 'ご依頼を受けて制作したサイトの一部です。\n業種やトーンを問わず、目的に合わせて設計しています。',
+      listPageButtonText: '実績一覧へ',
+    },
     blog: {
-      title: '最新記事',
+      title: '最新の記事',
       subTitle: 'BLOG',
       listPageButtonText: 'ブログ一覧へ',
-    },
-    contents: {
-      title: 'コンテンツ',
-      subTitle: 'CONTENTS',
-      about: {
-        title: '経歴紹介',
-        description: 'これまでの経歴や保有資格などをご紹介いたします。',
-        buttonText: '経歴紹介へ',
-      },
-      works: {
-        title: '実績紹介',
-        description:
-          'これまでにお客様からご依頼を受けて制作したものや趣味で制作した作品について、ご紹介いたします。',
-        buttonText: '実績一覧へ',
-      },
     },
     service: {
       title: 'できること',
