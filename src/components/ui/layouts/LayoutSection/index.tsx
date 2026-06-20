@@ -9,6 +9,7 @@ type Props = {
   tag?: keyof JSX.IntrinsicElements
   isFirst?: boolean
   isNotTopMargin?: boolean
+  isNotBottomMargin?: boolean
 }
 
 export const LayoutSection = ({
@@ -17,6 +18,7 @@ export const LayoutSection = ({
   tag,
   isFirst,
   isNotTopMargin,
+  isNotBottomMargin,
 }: Props) => {
   const Tag = tag ?? 'section'
 
@@ -27,6 +29,7 @@ export const LayoutSection = ({
         className,
         isFirst && styles['LayoutSection--first'],
         isNotTopMargin && styles['LayoutSection--notTopMargin'],
+        isNotBottomMargin && styles['LayoutSection--notBottomMargin'],
       )}
     >
       {children}

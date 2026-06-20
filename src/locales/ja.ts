@@ -47,8 +47,11 @@ export default {
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私のプロフィールやこれまでの経験、担当業務等をご紹介します。',
     pageTitle: '経歴',
     pageSubTitle: 'ABOUT',
+    lead: '東京都在住のWebデザイナー/フロントエンドエンジニア。\nこれまでの歩み、担当業務、スキルをご紹介します。',
     profile: {
-      title: 'NiNE',
+      name: 'NiNE',
+      position: 'フロントエンドエンジニア',
+      lead: 'デザインからコーディングまで、一貫して対応いたします。',
       certification: {
         title: '資格',
       },
@@ -134,6 +137,7 @@ export default {
       '東京都在住のフロントエンドエンジニア：NiNEのポートフォリオ用Webサイトです。このページでは、私のこれまでの実績・制作物の一覧を閲覧できます。',
     pageTitle: '実績',
     pageSubTitle: 'WORKS',
+    lead: 'ご依頼を受けて制作したWebサイトや、趣味で制作した作品をご紹介します。\n担当範囲はディレクション・デザイン・コーディングまで様々です。',
     sideColumn: {
       latestArticle: {
         title: '最近の実績',

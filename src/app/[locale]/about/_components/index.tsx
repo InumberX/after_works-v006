@@ -1,5 +1,5 @@
 import { History, HistoryProps } from './History'
-import { Lead, LeadProps } from './Lead'
+import { Lead } from './Lead'
 import { Profile, ProfileProps } from './Profile'
 
 import { Contact } from '~/components/common/Contact'
@@ -9,12 +9,11 @@ import { PageTitle } from '~/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '~/locales/server'
 
 type Props = {
-  leadInfo: LeadProps
   profileInfo: ProfileProps
   historyInfo: HistoryProps
 }
 
-export const Index = async ({ leadInfo, profileInfo, historyInfo }: Props) => {
+export const Index = async ({ profileInfo, historyInfo }: Props) => {
   const scopedT = await getScopedI18n('about')
 
   return (
@@ -36,7 +35,7 @@ export const Index = async ({ leadInfo, profileInfo, historyInfo }: Props) => {
         ]}
       />
 
-      <Lead {...leadInfo} />
+      <Lead lead={scopedT('lead')} />
 
       <Profile {...profileInfo} />
 

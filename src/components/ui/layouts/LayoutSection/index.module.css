@@ -7,6 +7,10 @@
     padding-block-start: 0;
   }
 
+  .LayoutSection.LayoutSection--notBottomMargin {
+    padding-block-end: 0;
+  }
+
   .LayoutSection {
     padding-inline: 0;
 

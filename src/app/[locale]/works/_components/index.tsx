@@ -53,6 +53,7 @@ export const Index = async ({
           <LayoutParallel
             mainColumn={
               <MainColumn
+                lead={scopedT('lead')}
                 defaultPage={defaultPage}
                 defaultTotalPage={defaultTotalPage}
                 defaultArticleInfos={defaultArticleInfos}

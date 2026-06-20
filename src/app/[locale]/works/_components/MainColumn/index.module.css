@@ -1,5 +1,7 @@
 @layer component-page {
-  .MainColumn__pagination {
-    margin-block-start: 40px;
+  .MainColumn__container {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
   }
 }
