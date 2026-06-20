@@ -1,5 +1,4 @@
 import { Blog } from './Blog'
-import { Contents } from './Contents'
 import { MainVisual } from './MainVisual'
 import { Service } from './Service'
 import { Works } from './Works'
@@ -20,7 +19,6 @@ export const Index = ({ latestBlogs, latestWorks }: Props) => {
       <MainVisual />
       {latestWorks.length > 0 && <Works articleInfos={latestWorks} />}
       <Service />
-      <Contents />
       {latestBlogs.length > 0 && <Blog articleInfos={latestBlogs} />}
       <Contact />
     </LayoutPageWrapper>

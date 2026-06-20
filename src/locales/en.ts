@@ -17,27 +17,13 @@ export default {
     works: {
       title: 'Latest Works',
       subTitle: 'WORKS',
+      lead: 'Some of the sites I have created for clients.\nI design them regardless of industry or tone, based on the purpose.',
       listPageButtonText: 'Go to Works List',
     },
     blog: {
       title: 'Latest Articles',
       subTitle: 'BLOG',
       listPageButtonText: 'Go to Blog List',
-    },
-    contents: {
-      title: 'Contents',
-      subTitle: '',
-      about: {
-        title: 'Career Introduction',
-        description: 'I will introduce my career history and qualifications.',
-        buttonText: 'Go to Career Introduction',
-      },
-      works: {
-        title: 'Achievements Introduction',
-        description:
-          'I will introduce the works I have created for clients and as a hobby.',
-        buttonText: 'Go to Achievements List',
-      },
     },
     service: {
       title: 'What I Can Do',

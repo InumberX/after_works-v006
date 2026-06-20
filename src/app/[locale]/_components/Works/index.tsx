@@ -8,7 +8,9 @@ import { BaseButton } from '~/components/ui/buttons/BaseButton'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
-import { ArticleSlider } from '~/components/ui/sliders/ArticleSlider'
+import { WorkCardList } from '~/components/ui/lists/WorkCardList'
+import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
+import { SectionLead } from '~/components/ui/typographies/SectionLead'
 import { SectionTitle } from '~/components/ui/typographies/SectionTitle'
 import { routes } from '~/config/routes'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
@@ -28,23 +30,32 @@ export const Works = ({ articleInfos }: Props) => {
       <div className={styles.Works__container}>
         <div className={styles.WorksTitle}>
           <LayoutInner>
-            <SectionTitle
-              subTitle={scopedT('subTitle')}
-              title={scopedT('title')}
-            />
+            <div className={styles.WorksTitle__container}>
+              <SectionTitle
+                subTitle={scopedT('subTitle')}
+                title={scopedT('title')}
+              />
+              <SectionLead
+                lead={<ReplaceNewLineText text={scopedT('lead')} />}
+              />
+            </div>
           </LayoutInner>
         </div>
 
         <div className={styles.WorksSlider}>
-          <div
-            className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
-            ref={sliderTargetRef}
-          >
-            <ArticleSlider
-              className={clsx(styles.WorksSlider__slider)}
-              articleInfos={articleInfos}
-            />
-          </div>
+          <LayoutInner>
+            <div
+              className={clsx(styles.BlogSlider__container, 'AnimelmBlurIn')}
+              ref={sliderTargetRef}
+            >
+              <WorkCardList
+                infos={articleInfos.map((article, articleIndex) => ({
+                  ...article,
+                  size: articleIndex === 0 ? 'pcLarge' : 'medium',
+                }))}
+              />
+            </div>
+          </LayoutInner>
         </div>
 
         <div className={styles.WorksButton}>

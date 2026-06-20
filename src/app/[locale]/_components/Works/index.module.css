@@ -1,20 +1,19 @@
 @layer component-page {
-  .WorksSlider {
-    margin-block-start: 40px;
-    overflow: hidden;
+  .Works__container {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
   }
 
-  .WorksButton {
-    margin-block-start: 40px;
+  .WorksTitle__container {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
   }
 
   .WorksButton__container {
     align-items: center;
     display: flex;
     justify-content: center;
-  }
-
-  .WorksButton__button {
-    max-inline-size: 320px;
   }
 }

@@ -1,8 +1,28 @@
 @layer component-ui-middle {
   .WorkCardList__items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    grid-template-columns: repeat(1, 1fr);
 
     @mixin getClampPx gap, 24, 40;
+
+    @mixin getMediaQuerySm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @mixin getMediaQueryMd {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .WorkCardList__item.WorkCardList__item--pcLarge {
+    grid-column: span 1;
+
+    @mixin getMediaQuerySm {
+      grid-column: span 2;
+    }
+
+    @mixin getMediaQueryMd {
+      grid-column: span 3;
+    }
   }
 }
