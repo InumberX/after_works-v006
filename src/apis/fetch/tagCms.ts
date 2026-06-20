@@ -1,10 +1,10 @@
 import { API_URL } from '~/config/env'
 import { TagCMS, Tag } from '~/types/apis/fetch/tagCms'
 
-export type ResponseGetTagCmsInfos = Tag[]
+export type ResponseGetTagCms = Tag[]
 
-export const getTagCmsInfos = async (): Promise<ResponseGetTagCmsInfos> => {
-  const result: ResponseGetTagCmsInfos = []
+export const getTagCms = async (): Promise<ResponseGetTagCms> => {
+  const result: ResponseGetTagCms = []
 
   const response = await fetch(`${API_URL}/tags/cms`, {
     cache: 'no-store',

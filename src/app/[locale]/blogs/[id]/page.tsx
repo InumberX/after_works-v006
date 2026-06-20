@@ -5,12 +5,12 @@ import { Index } from './_components'
 
 import { getBlogsInfos } from '~/apis/fetch/blogs'
 import { getBlogsDetailInfo } from '~/apis/fetch/blogsDetail'
-import { getTagCmsInfos } from '~/apis/fetch/tagCms'
-import { getTagDesignInfos } from '~/apis/fetch/tagDesign'
-import { getTagNewsInfos } from '~/apis/fetch/tagNews'
-import { getTagOtherInfos } from '~/apis/fetch/tagOther'
-import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
-import { getTagProgramInfos } from '~/apis/fetch/tagProgram'
+import { getTagCms } from '~/apis/fetch/tagCms'
+import { getTagDesign } from '~/apis/fetch/tagDesign'
+import { getTagNews } from '~/apis/fetch/tagNews'
+import { getTagOther } from '~/apis/fetch/tagOther'
+import { getTagPosition } from '~/apis/fetch/tagPosition'
+import { getTagProgram } from '~/apis/fetch/tagProgram'
 import { AppHead } from '~/components/common/AppHead'
 import { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
@@ -29,12 +29,13 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('blogsDetail')
-
-  const responseBlogsDetailInfo = await getBlogsDetailInfo({
-    id: String(id),
-  })
+  const [locale, scopedT, responseBlogsDetailInfo] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('blogsDetail'),
+    getBlogsDetailInfo({
+      id: String(id),
+    }),
+  ])
 
   if (!responseBlogsDetailInfo) {
     notFound()
@@ -74,19 +75,33 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('blogsDetail')
-
-  const tagNewsInfos = await getTagNewsInfos()
-  const tagPositionInfos = await getTagPositionInfos()
-  const tagProgramInfos = await getTagProgramInfos()
-  const tagDesignInfos = await getTagDesignInfos()
-  const tagCmsInfos = await getTagCmsInfos()
-  const tagOtherInfos = await getTagOtherInfos()
-
-  const responseBlogsDetailInfo = await getBlogsDetailInfo({
-    id: String(id),
-  })
+  const [
+    locale,
+    scopedT,
+    responseTagNews,
+    responseTagPosition,
+    responseTagProgram,
+    responseTagDesign,
+    responseTagCms,
+    responseTagOther,
+    responseBlogsDetailInfo,
+    responseLatestBlogsInfos,
+  ] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('blogsDetail'),
+    getTagNews(),
+    getTagPosition(),
+    getTagProgram(),
+    getTagDesign(),
+    getTagCms(),
+    getTagOther(),
+    getBlogsDetailInfo({
+      id: String(id),
+    }),
+    getBlogsInfos({
+      cnt: 5,
+    }),
+  ])
 
   if (!responseBlogsDetailInfo) {
     notFound()
@@ -106,8 +121,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   ) {
     const tag = responseBlogsDetailInfo.tags[i]
 
-    for (let j = 0, jLength = tagNewsInfos.length; j < jLength; j = j + 1) {
-      const target = tagNewsInfos[j]
+    for (let j = 0, jLength = responseTagNews.length; j < jLength; j = j + 1) {
+      const target = responseTagNews[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -129,8 +144,12 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagPositionInfos.length; j < jLength; j = j + 1) {
-      const target = tagPositionInfos[j]
+    for (
+      let j = 0, jLength = responseTagPosition.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -152,8 +171,12 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagProgramInfos.length; j < jLength; j = j + 1) {
-      const target = tagProgramInfos[j]
+    for (
+      let j = 0, jLength = responseTagProgram.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -175,8 +198,12 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagDesignInfos.length; j < jLength; j = j + 1) {
-      const target = tagDesignInfos[j]
+    for (
+      let j = 0, jLength = responseTagDesign.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -198,8 +225,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagCmsInfos.length; j < jLength; j = j + 1) {
-      const target = tagCmsInfos[j]
+    for (let j = 0, jLength = responseTagCms.length; j < jLength; j = j + 1) {
+      const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -221,8 +248,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagOtherInfos.length; j < jLength; j = j + 1) {
-      const target = tagOtherInfos[j]
+    for (let j = 0, jLength = responseTagOther.length; j < jLength; j = j + 1) {
+      const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -287,10 +314,6 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
           ]
         : [],
   }
-
-  const responseLatestBlogsInfos = await getBlogsInfos({
-    cnt: 5,
-  })
 
   const latestBlogsInfos: LatestArticleCardProps[] = responseLatestBlogsInfos
     ? responseLatestBlogsInfos.list.map((info) => {

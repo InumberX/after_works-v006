@@ -5,11 +5,11 @@ import { Index } from './_components'
 
 import { getHobbyInfos } from '~/apis/fetch/hobby'
 import { getHobbyDetailInfo } from '~/apis/fetch/hobbyDetail'
-import { getTagCmsInfos } from '~/apis/fetch/tagCms'
-import { getTagDesignInfos } from '~/apis/fetch/tagDesign'
-import { getTagOtherInfos } from '~/apis/fetch/tagOther'
-import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
-import { getTagProgramInfos } from '~/apis/fetch/tagProgram'
+import { getTagCms } from '~/apis/fetch/tagCms'
+import { getTagDesign } from '~/apis/fetch/tagDesign'
+import { getTagOther } from '~/apis/fetch/tagOther'
+import { getTagPosition } from '~/apis/fetch/tagPosition'
+import { getTagProgram } from '~/apis/fetch/tagProgram'
 import { AppHead } from '~/components/common/AppHead'
 import { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
@@ -28,12 +28,13 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('hobbyDetail')
-
-  const responseHobbyDetailInfo = await getHobbyDetailInfo({
-    id: String(id),
-  })
+  const [locale, scopedT, responseHobbyDetailInfo] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('hobbyDetail'),
+    getHobbyDetailInfo({
+      id: String(id),
+    }),
+  ])
 
   if (!responseHobbyDetailInfo) {
     notFound()
@@ -73,18 +74,31 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('hobbyDetail')
-
-  const tagPositionInfos = await getTagPositionInfos()
-  const tagProgramInfos = await getTagProgramInfos()
-  const tagDesignInfos = await getTagDesignInfos()
-  const tagCmsInfos = await getTagCmsInfos()
-  const tagOtherInfos = await getTagOtherInfos()
-
-  const responseHobbyDetailInfo = await getHobbyDetailInfo({
-    id: String(id),
-  })
+  const [
+    locale,
+    scopedT,
+    responseTagPosition,
+    responseTagProgram,
+    responseTagDesign,
+    responseTagCms,
+    responseTagOther,
+    responseHobbyDetailInfo,
+    responseLatestHobbyInfos,
+  ] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('hobbyDetail'),
+    getTagPosition(),
+    getTagProgram(),
+    getTagDesign(),
+    getTagCms(),
+    getTagOther(),
+    getHobbyDetailInfo({
+      id: String(id),
+    }),
+    getHobbyInfos({
+      cnt: 5,
+    }),
+  ])
 
   if (!responseHobbyDetailInfo) {
     notFound()
@@ -103,8 +117,12 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
   ) {
     const tag = responseHobbyDetailInfo.tags[i]
 
-    for (let j = 0, jLength = tagPositionInfos.length; j < jLength; j = j + 1) {
-      const target = tagPositionInfos[j]
+    for (
+      let j = 0, jLength = responseTagPosition.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -126,8 +144,12 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagProgramInfos.length; j < jLength; j = j + 1) {
-      const target = tagProgramInfos[j]
+    for (
+      let j = 0, jLength = responseTagProgram.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -149,8 +171,12 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagDesignInfos.length; j < jLength; j = j + 1) {
-      const target = tagDesignInfos[j]
+    for (
+      let j = 0, jLength = responseTagDesign.length;
+      j < jLength;
+      j = j + 1
+    ) {
+      const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -172,8 +198,8 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagCmsInfos.length; j < jLength; j = j + 1) {
-      const target = tagCmsInfos[j]
+    for (let j = 0, jLength = responseTagCms.length; j < jLength; j = j + 1) {
+      const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -195,8 +221,8 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       }
     }
 
-    for (let j = 0, jLength = tagOtherInfos.length; j < jLength; j = j + 1) {
-      const target = tagOtherInfos[j]
+    for (let j = 0, jLength = responseTagOther.length; j < jLength; j = j + 1) {
+      const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
         let name = ''
@@ -267,10 +293,6 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
         : []),
     ],
   }
-
-  const responseLatestHobbyInfos = await getHobbyInfos({
-    cnt: 5,
-  })
 
   const latestHobbyInfos: LatestArticleCardProps[] = responseLatestHobbyInfos
     ? responseLatestHobbyInfos.list.map((info) => {

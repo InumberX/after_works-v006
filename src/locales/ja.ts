@@ -14,8 +14,13 @@ export default {
         },
       },
     },
+    works: {
+      title: '最新の実績',
+      subTitle: 'WORKS',
+      listPageButtonText: '実績一覧へ',
+    },
     blog: {
-      title: '最新記事',
+      title: '最新の記事',
       subTitle: 'BLOG',
       listPageButtonText: 'ブログ一覧へ',
     },

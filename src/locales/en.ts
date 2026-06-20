@@ -14,6 +14,11 @@ export default {
         },
       },
     },
+    works: {
+      title: 'Latest Works',
+      subTitle: 'WORKS',
+      listPageButtonText: 'Go to Works List',
+    },
     blog: {
       title: 'Latest Articles',
       subTitle: 'BLOG',

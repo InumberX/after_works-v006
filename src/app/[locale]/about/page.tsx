@@ -5,19 +5,21 @@ import { Index } from './_components'
 import { getAboutInfo } from '~/apis/fetch/about'
 import { getAboutHistoryInfo } from '~/apis/fetch/aboutHistory'
 import { getCategoryAboutHistoryInfos } from '~/apis/fetch/categoryAboutHistory'
-import { getTagCmsInfos } from '~/apis/fetch/tagCms'
-import { getTagDesignInfos } from '~/apis/fetch/tagDesign'
-import { getTagOtherInfos } from '~/apis/fetch/tagOther'
-import { getTagPositionInfos } from '~/apis/fetch/tagPosition'
-import { getTagProgramInfos } from '~/apis/fetch/tagProgram'
+import { getTagCms } from '~/apis/fetch/tagCms'
+import { getTagDesign } from '~/apis/fetch/tagDesign'
+import { getTagOther } from '~/apis/fetch/tagOther'
+import { getTagPosition } from '~/apis/fetch/tagPosition'
+import { getTagProgram } from '~/apis/fetch/tagProgram'
 import { AppHead } from '~/components/common/AppHead'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import { NextPageProps } from '~/types/next'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = await getCurrentLocale()
-  const scopedT = await getScopedI18n('about')
+  const [locale, scopedT] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('about'),
+  ])
 
   return AppHead({
     title: scopedT('title'),
@@ -29,10 +31,26 @@ export const generateMetadata = async (): Promise<Metadata> => {
   })
 }
 
-const HomePage = async ({ searchParams }: NextPageProps) => {
-  const locale = await getCurrentLocale()
-  const aboutInfo = await getAboutInfo({})
-  const currentSearchParams = await searchParams
+const AboutPage = async ({ searchParams }: NextPageProps) => {
+  const [
+    locale,
+    aboutInfo,
+    currentSearchParams,
+    responseTagPosition,
+    responseTagProgram,
+    responseTagCms,
+    responseTagDesign,
+    responseTagOther,
+  ] = await Promise.all([
+    getCurrentLocale(),
+    getAboutInfo({}),
+    searchParams,
+    getTagPosition(),
+    getTagProgram(),
+    getTagCms(),
+    getTagDesign(),
+    getTagOther(),
+  ])
 
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
@@ -79,16 +97,6 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
     defaultYearId = years[0].id
   }
 
-  const tagPositionInfos = await getTagPositionInfos()
-
-  const tagProgramInfos = await getTagProgramInfos()
-
-  const tagCmsInfos = await getTagCmsInfos()
-
-  const tagDesignInfos = await getTagDesignInfos()
-
-  const tagOtherInfos = await getTagOtherInfos()
-
   const defaultAboutHistoryInfo = await getAboutHistoryInfo({
     categoryId: defaultYearId,
   })
@@ -102,11 +110,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
           const tag = info.tags[i]
 
           for (
-            let j = 0, jLength = tagPositionInfos.length;
+            let j = 0, jLength = responseTagPosition.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagPositionInfos[j]
+            const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
               let name = ''
@@ -128,11 +136,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
           }
 
           for (
-            let j = 0, jLength = tagProgramInfos.length;
+            let j = 0, jLength = responseTagProgram.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagProgramInfos[j]
+            const target = responseTagProgram[j]
 
             if (tag.tag_id === target.tag_id) {
               let name = ''
@@ -154,11 +162,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
           }
 
           for (
-            let j = 0, jLength = tagCmsInfos.length;
+            let j = 0, jLength = responseTagCms.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagCmsInfos[j]
+            const target = responseTagCms[j]
 
             if (tag.tag_id === target.tag_id) {
               let name = ''
@@ -180,11 +188,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
           }
 
           for (
-            let j = 0, jLength = tagDesignInfos.length;
+            let j = 0, jLength = responseTagDesign.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagDesignInfos[j]
+            const target = responseTagDesign[j]
 
             if (tag.tag_id === target.tag_id) {
               let name = ''
@@ -206,11 +214,11 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
           }
 
           for (
-            let j = 0, jLength = tagOtherInfos.length;
+            let j = 0, jLength = responseTagOther.length;
             j < jLength;
             j = j + 1
           ) {
-            const target = tagOtherInfos[j]
+            const target = responseTagOther[j]
 
             if (tag.tag_id === target.tag_id) {
               let name = ''
@@ -268,14 +276,14 @@ const HomePage = async ({ searchParams }: NextPageProps) => {
         defaultYearId,
         years,
         defaultItems: defaultAboutHistoryItems,
-        tagPositionInfos,
-        tagProgramInfos,
-        tagCmsInfos,
-        tagDesignInfos,
-        tagOtherInfos,
+        responseTagPosition,
+        responseTagProgram,
+        responseTagCms,
+        responseTagDesign,
+        responseTagOther,
       }}
     />
   )
 }
 
-export default HomePage
+export default AboutPage

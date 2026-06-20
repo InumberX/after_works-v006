@@ -7,8 +7,10 @@ import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const scopedT = await getScopedI18n('contact')
-  const locale = await getCurrentLocale()
+  const [locale, scopedT] = await Promise.all([
+    getCurrentLocale(),
+    getScopedI18n('contact'),
+  ])
 
   return AppHead({
     title: scopedT('title'),

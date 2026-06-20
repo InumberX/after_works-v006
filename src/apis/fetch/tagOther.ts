@@ -1,10 +1,10 @@
 import { API_URL } from '~/config/env'
 import { TagOther, Tag } from '~/types/apis/fetch/tagOther'
 
-export type ResponseGetTagOtherInfos = Tag[]
+export type ResponseGetTagOther = Tag[]
 
-export const getTagOtherInfos = async (): Promise<ResponseGetTagOtherInfos> => {
-  const result: ResponseGetTagOtherInfos = []
+export const getTagOther = async (): Promise<ResponseGetTagOther> => {
+  const result: ResponseGetTagOther = []
 
   const response = await fetch(`${API_URL}/tags/other`, {
     cache: 'no-store',
