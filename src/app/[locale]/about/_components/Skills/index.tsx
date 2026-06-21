@@ -26,7 +26,8 @@ export type SkillsProps = {
 
 export const Skills = ({ qualification, skill }: SkillsProps) => {
   const { targetRef } = useAnimelm<AnimelmElement>()
-  const scopedT = useScopedI18n('about.skills')
+  const scopedTQualification = useScopedI18n('about.skills.qualifications')
+  const scopedTSkill = useScopedI18n('about.skills.skills')
 
   return (
     <LayoutSection className={styles.Skills} tag='div'>
@@ -39,11 +40,11 @@ export const Skills = ({ qualification, skill }: SkillsProps) => {
             <div className={styles.SkillsList__container}>
               <SectionTitle
                 subTitle={
-                  scopedT('qualifications.subTitle') !== 'subTitle'
-                    ? scopedT('qualifications.subTitle')
+                  scopedTQualification('subTitle') !== 'subTitle'
+                    ? scopedTQualification('subTitle')
                     : ''
                 }
-                title={scopedT('qualifications.title')}
+                title={scopedTQualification('title')}
               />
               <ul className={styles.SkillsList__items}>
                 {qualification.items.map(
@@ -69,11 +70,11 @@ export const Skills = ({ qualification, skill }: SkillsProps) => {
             <div className={styles.SkillsList__container}>
               <SectionTitle
                 subTitle={
-                  scopedT('skills.subTitle') !== 'subTitle'
-                    ? scopedT('skills.subTitle')
+                  scopedTSkill('subTitle') !== 'subTitle'
+                    ? scopedTSkill('subTitle')
                     : ''
                 }
-                title={scopedT('skills.title')}
+                title={scopedTSkill('title')}
               />
               <ul className={styles.SkillsList__items}>
                 {skill.items.map((skill, skillIndex) => (
