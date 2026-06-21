@@ -38,7 +38,7 @@ const HomePage = async () => {
       cnt: 5,
     }),
     getWorksList({
-      cnt: 5,
+      cnt: 4,
     }),
   ])
 

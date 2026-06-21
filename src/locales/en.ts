@@ -52,11 +52,20 @@ I can create various types of websites such as responsive sites that display opt
       name: 'NiNE',
       position: 'Front-end Engineer',
       lead: 'I handle everything from design to coding, from start to finish.',
-      certification: {
-        title: 'Certifications',
+    },
+    history: {
+      title: 'My History',
+      description:
+        'My history and duties by year. Selecting a year will change the content.',
+    },
+    skills: {
+      qualifications: {
+        title: 'Qualifications',
+        subTitle: '',
       },
-      skill: {
+      skills: {
         title: 'Skills',
+        subTitle: '',
       },
     },
   },
