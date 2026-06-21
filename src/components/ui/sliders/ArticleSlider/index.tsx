@@ -7,7 +7,7 @@ import styles from './index.module.css'
 
 import { CircleButton } from '~/components/ui/buttons/CircleButton'
 import {
-  ArticleCardProps,
+  type ArticleCardProps,
   ArticleCard,
 } from '~/components/ui/cards/ArticleCard'
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'

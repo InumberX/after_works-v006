@@ -1,7 +1,7 @@
-import { History, HistoryProps } from './History'
+import { History, type HistoryProps } from './History'
 import { Lead } from './Lead'
-import { Profile, ProfileProps } from './Profile'
-import { Skills, SkillsProps } from './Skills'
+import { Profile, type ProfileProps } from './Profile'
+import { Skills, type SkillsProps } from './Skills'
 
 import { Contact } from '~/components/common/Contact'
 import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'

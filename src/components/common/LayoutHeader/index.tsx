@@ -5,7 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useMemo, useEffect, useCallback, MouseEvent } from 'react'
+import {
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+  type MouseEvent,
+} from 'react'
 
 import styles from './index.module.css'
 

@@ -2,12 +2,21 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-import { AriaRole, AriaAttributes, ReactNode, useMemo } from 'react'
+import {
+  type AriaRole,
+  type AriaAttributes,
+  type ReactNode,
+  useMemo,
+} from 'react'
 
 import styles from './index.module.css'
 
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
+import { type EventTypes } from '~/types/event'
+import {
+  type ButtonType,
+  type AnchorTarget,
+  type AnchorRel,
+} from '~/types/html'
 
 export type PrimitiveButtonProps = {
   url?: string

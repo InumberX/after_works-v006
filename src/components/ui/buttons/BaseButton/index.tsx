@@ -1,13 +1,13 @@
 'use client'
 
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 import styles from './index.module.css'
 
 import {
   PrimitiveButton,
-  PrimitiveButtonProps,
+  type PrimitiveButtonProps,
 } from '~/components/primitives/buttons/PrimitiveButton'
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'
 

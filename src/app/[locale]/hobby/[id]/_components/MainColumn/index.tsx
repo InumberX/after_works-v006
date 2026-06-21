@@ -2,7 +2,7 @@ import styles from './index.module.css'
 
 import {
   BaseArticle,
-  BaseArticleInfo,
+  type BaseArticleInfo,
 } from '~/components/ui/articles/BaseArticle'
 
 type Props = {

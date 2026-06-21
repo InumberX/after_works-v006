@@ -6,7 +6,7 @@ import styles from './index.module.css'
 
 import {
   PrimitiveButton,
-  PrimitiveButtonProps,
+  type PrimitiveButtonProps,
 } from '~/components/primitives/buttons/PrimitiveButton'
 
 export type CircleButtonProps = PrimitiveButtonProps & {

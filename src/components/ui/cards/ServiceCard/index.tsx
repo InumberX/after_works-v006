@@ -1,11 +1,14 @@
 'use client'
 
 import clsx from 'clsx'
-import { ReactNode, JSX } from 'react'
+import { type ReactNode, type JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { BaseButton, BaseButtonProps } from '~/components/ui/buttons/BaseButton'
+import {
+  BaseButton,
+  type BaseButtonProps,
+} from '~/components/ui/buttons/BaseButton'
 import { SvgIcon, type SvgIconVariant } from '~/components/ui/icons/SvgIcon'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 

@@ -3,13 +3,13 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import { JSX } from 'react'
+import { type JSX } from 'react'
 
 import styles from './index.module.css'
 
 import {
   PrimitiveButton,
-  PrimitiveButtonProps,
+  type PrimitiveButtonProps,
 } from '~/components/primitives/buttons/PrimitiveButton'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useCurrentLocale } from '~/locales/client'

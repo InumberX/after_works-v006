@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 
 import { Index } from './_components'
 
@@ -6,9 +6,9 @@ import { getBlogsList } from '~/apis/fetch/blogs'
 import { getTagPosition } from '~/apis/fetch/tag-position'
 import { getWorksList } from '~/apis/fetch/works'
 import { AppHead } from '~/components/common/AppHead'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
-import { WorkCardProps } from '~/components/ui/cards/WorkCard'
-import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import { type ArticleCardProps } from '~/components/ui/cards/ArticleCard'
+import { type WorkCardProps } from '~/components/ui/cards/WorkCard'
+import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getCurrentLocale } from '~/locales/server'
 

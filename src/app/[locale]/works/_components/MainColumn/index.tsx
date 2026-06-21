@@ -6,15 +6,15 @@ import { useState } from 'react'
 import styles from './index.module.css'
 
 import { getWorksList } from '~/apis/fetch/works'
-import { WorkCardProps } from '~/components/ui/cards/WorkCard'
+import { type WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { WorkCardList } from '~/components/ui/lists/WorkCardList'
 import { BasePagination } from '~/components/ui/paginations/BasePagination'
-import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
 import { SectionLead } from '~/components/ui/typographies/SectionLead'
 import { routes } from '~/config/routes'
 import { useCurrentLocale } from '~/locales/client'
-import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
+import { type Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
 import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
 type Props = {

@@ -6,13 +6,13 @@ import { useState } from 'react'
 import styles from './index.module.css'
 
 import { getBlogsList } from '~/apis/fetch/blogs'
-import { WorkCardProps } from '~/components/ui/cards/WorkCard'
+import { type WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { WorkCardList } from '~/components/ui/lists/WorkCardList'
 import { BasePagination } from '~/components/ui/paginations/BasePagination'
-import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { useCurrentLocale } from '~/locales/client'
-import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tag-news'
+import { type Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tag-news'
 import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
 type Props = {

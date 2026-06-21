@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import { type MetadataRoute } from 'next'
 
 import { getBlogsList } from '~/apis/fetch/blogs'
 import { getHobbyList } from '~/apis/fetch/hobby'

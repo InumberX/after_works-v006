@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import { ReactNode, JSX } from 'react'
+import { type ReactNode, type JSX } from 'react'
 
 import styles from './index.module.css'
 

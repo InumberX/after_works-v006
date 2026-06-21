@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 
 import { Index } from './_components'
 
@@ -13,7 +13,7 @@ import { getTagProgram } from '~/apis/fetch/tag-program'
 import { AppHead } from '~/components/common/AppHead'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
-import { NextPageProps } from '~/types/next'
+import { type NextPageProps } from '~/types/next'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const [locale, scopedT] = await Promise.all([

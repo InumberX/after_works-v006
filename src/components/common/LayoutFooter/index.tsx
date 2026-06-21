@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 import styles from './index.module.css'
 
