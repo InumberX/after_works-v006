@@ -7,11 +7,12 @@ import { JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { PrimitiveButton } from '~/components/primitives/buttons/PrimitiveButton'
+import {
+  PrimitiveButton,
+  PrimitiveButtonProps,
+} from '~/components/primitives/buttons/PrimitiveButton'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useCurrentLocale } from '~/locales/client'
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 type LatestArticleCardContainerProps = {
   mainVisual?: {
@@ -26,15 +27,17 @@ type LatestArticleCardContainerProps = {
   isButton?: boolean
 }
 
-export type LatestArticleCardProps = {
-  url?: string
-  target?: AnchorTarget
-  rel?: AnchorRel
-  buttonType?: ButtonType
-  isDisabled?: boolean
-  className?: string
-  onClick?: EventTypes['onClickButton']
-} & LatestArticleCardContainerProps
+export type LatestArticleCardProps = Pick<
+  PrimitiveButtonProps,
+  | 'url'
+  | 'target'
+  | 'rel'
+  | 'buttonType'
+  | 'isDisabled'
+  | 'className'
+  | 'onClick'
+> &
+  LatestArticleCardContainerProps
 
 const LatestArticleCardContainer = ({
   mainVisual,

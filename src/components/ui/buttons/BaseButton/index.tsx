@@ -5,50 +5,36 @@ import { ReactNode } from 'react'
 
 import styles from './index.module.css'
 
-import { PrimitiveButton } from '~/components/primitives/buttons/PrimitiveButton'
+import {
+  PrimitiveButton,
+  PrimitiveButtonProps,
+} from '~/components/primitives/buttons/PrimitiveButton'
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
-export type BaseButtonProps = {
-  url?: string
-  target?: AnchorTarget
-  rel?: AnchorRel
-  buttonType?: ButtonType
-  isDisabled?: boolean
-  className?: string
+export type BaseButtonProps = Omit<PrimitiveButtonProps, 'children'> & {
   text: ReactNode
   leftElm?: ReactNode
   rightElm?: ReactNode
-  onClick?: EventTypes['onClickButton']
   isRightArrow?: boolean
   variant?: 'contained' | 'outlined'
   color?: 'primary' | 'light'
 }
 
 export const BaseButton = ({
-  url,
-  target,
-  rel,
-  buttonType,
-  isDisabled,
-  className,
   text,
   leftElm,
   rightElm,
-  onClick,
   isRightArrow,
   variant = 'contained',
   color = 'primary',
+  className,
+  buttonType,
+  ...rest
 }: BaseButtonProps) => {
   return (
     <PrimitiveButton
-      url={url}
-      target={target}
-      rel={rel}
+      {...rest}
       buttonType={buttonType ?? 'button'}
-      isDisabled={isDisabled}
-      onClick={onClick}
       className={clsx(
         styles.BaseButton,
         styles[`BaseButton--${variant}`],

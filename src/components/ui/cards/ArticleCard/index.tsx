@@ -7,14 +7,15 @@ import { JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { PrimitiveButton } from '~/components/primitives/buttons/PrimitiveButton'
+import {
+  PrimitiveButton,
+  PrimitiveButtonProps,
+} from '~/components/primitives/buttons/PrimitiveButton'
 import { BaseTagList } from '~/components/ui/lists/BaseTagList'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useCurrentLocale } from '~/locales/client'
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 type ArticleCardContainerProps = {
   mainVisual?: {
@@ -30,14 +31,16 @@ type ArticleCardContainerProps = {
   isButton?: boolean
 }
 
-export type ArticleCardProps = {
-  url?: string
-  target?: AnchorTarget
-  rel?: AnchorRel
-  buttonType?: ButtonType
-  isDisabled?: boolean
-  className?: string
-  onClick?: EventTypes['onClickButton']
+export type ArticleCardProps = Pick<
+  PrimitiveButtonProps,
+  | 'url'
+  | 'target'
+  | 'rel'
+  | 'buttonType'
+  | 'isDisabled'
+  | 'className'
+  | 'onClick'
+> & {
   isNotActiveAnimelm?: boolean
 } & ArticleCardContainerProps
 
