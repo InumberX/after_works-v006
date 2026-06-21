@@ -3,15 +3,15 @@ import { SideColumn } from './SideColumn'
 
 import { Contact } from '~/components/common/Contact'
 import { BaseBreadcrumb } from '~/components/ui/breadcrumbs/BaseBreadcrumb'
-import { type LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
-import { type WorkCardProps } from '~/components/ui/cards/WorkCard'
+import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 import { LayoutParallel } from '~/components/ui/layouts/LayoutParallel'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '~/locales/server'
-import { type Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tag-news'
+import type { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tag-news'
 
 type Props = {
   defaultPage: number

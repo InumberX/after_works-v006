@@ -16,11 +16,11 @@ import { SectionTitle } from '~/components/ui/typographies/SectionTitle'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useScopedI18n } from '~/locales/client'
 import { useCurrentLocale } from '~/locales/client'
-import { type Tag as ApiResponseTagCmsTag } from '~/types/apis/fetch/tag-cms'
-import { type Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tag-design'
-import { type Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tag-other'
-import { type Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
-import { type Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tag-program'
+import type { Tag as ApiResponseTagCmsTag } from '~/types/apis/fetch/tag-cms'
+import type { Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tag-design'
+import type { Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tag-other'
+import type { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
+import type { Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tag-program'
 
 export type HistoryItem = {
   title: string

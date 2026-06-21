@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import styles from './index.module.css'
 
 import { BaseButton } from '~/components/ui/buttons/BaseButton'
-import { type WorkCardProps } from '~/components/ui/cards/WorkCard'
+import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { WorkCardList } from '~/components/ui/lists/WorkCardList'

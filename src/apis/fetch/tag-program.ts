@@ -1,5 +1,5 @@
 import { API_URL } from '~/config/env'
-import { type TagProgram, type Tag } from '~/types/apis/fetch/tag-program'
+import type { TagProgram, Tag } from '~/types/apis/fetch/tag-program'
 
 export type ResponseGetTagProgram = Tag[]
 

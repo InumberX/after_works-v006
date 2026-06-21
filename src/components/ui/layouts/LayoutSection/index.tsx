@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { type ReactNode, type JSX } from 'react'
+import type { ReactNode, JSX } from 'react'
 
 import styles from './index.module.css'
 

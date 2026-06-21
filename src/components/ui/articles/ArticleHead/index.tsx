@@ -5,7 +5,7 @@ import Image from 'next/image'
 import styles from './index.module.css'
 
 import { BaseTagList } from '~/components/ui/lists/BaseTagList'
-import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
+import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { getCurrentLocale } from '~/locales/server'
 
 type Props = {

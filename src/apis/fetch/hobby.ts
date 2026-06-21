@@ -1,5 +1,5 @@
 import { API_URL } from '~/config/env'
-import { type Hobby, type List, type PageInfo } from '~/types/apis/fetch/hobby'
+import type { Hobby, List, PageInfo } from '~/types/apis/fetch/hobby'
 
 export type ResponseGetHobbyList =
   | {

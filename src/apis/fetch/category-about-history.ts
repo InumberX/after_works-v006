@@ -1,8 +1,8 @@
 import { API_URL } from '~/config/env'
-import {
-  type CategoryAboutHistory,
-  type List,
-  type PageInfo,
+import type {
+  CategoryAboutHistory,
+  List,
+  PageInfo,
 } from '~/types/apis/fetch/category-about-history'
 
 export type ResponseGetCategoryAboutHistory =

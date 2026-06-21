@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import { type JSX } from 'react'
+import type { JSX } from 'react'
 
 import styles from './index.module.css'
 
@@ -12,7 +12,7 @@ import {
   type PrimitiveButtonProps,
 } from '~/components/primitives/buttons/PrimitiveButton'
 import { BaseTagList } from '~/components/ui/lists/BaseTagList'
-import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
+import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useCurrentLocale } from '~/locales/client'

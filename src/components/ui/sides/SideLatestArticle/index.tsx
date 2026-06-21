@@ -1,11 +1,11 @@
 'use client'
 
 import clsx from 'clsx'
-import { type JSX } from 'react'
+import type { JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { type LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import { LatestArticleCardList } from '~/components/ui/lists/LatestArticleCardList'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 

@@ -1,4 +1,4 @@
-import { type Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
@@ -12,12 +12,12 @@ import { getTagOther } from '~/apis/fetch/tag-other'
 import { getTagPosition } from '~/apis/fetch/tag-position'
 import { getTagProgram } from '~/apis/fetch/tag-program'
 import { AppHead } from '~/components/common/AppHead'
-import { type BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
-import { type LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
-import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
+import type { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
+import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
-import { type NextPageProps } from '~/types/next'
+import type { NextPageProps } from '~/types/next'
 
 export const generateMetadata = async ({
   params,

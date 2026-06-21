@@ -1,5 +1,5 @@
 import { API_URL } from '~/config/env'
-import { type WorksDetail, type Details } from '~/types/apis/fetch/works-detail'
+import type { WorksDetail, Details } from '~/types/apis/fetch/works-detail'
 
 export type ResponseGetWorksDetailInfo = Details | undefined
 

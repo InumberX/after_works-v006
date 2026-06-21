@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import { type JSX } from 'react'
+import type { JSX } from 'react'
 
 import styles from './index.module.css'
 

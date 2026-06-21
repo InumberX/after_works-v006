@@ -1,16 +1,16 @@
-import { type Metadata } from 'next'
+import type { Metadata } from 'next'
 
 import { Index } from './_components'
 
 import { getTagPosition } from '~/apis/fetch/tag-position'
 import { getWorksList } from '~/apis/fetch/works'
 import { AppHead } from '~/components/common/AppHead'
-import { type LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
-import { type WorkCardProps } from '~/components/ui/cards/WorkCard'
-import { type BaseTagProps } from '~/components/ui/tags/BaseTag'
+import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
+import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
+import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
-import { type NextPageProps } from '~/types/next'
+import type { NextPageProps } from '~/types/next'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const [locale, scopedT] = await Promise.all([

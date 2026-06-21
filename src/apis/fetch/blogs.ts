@@ -1,5 +1,5 @@
 import { API_URL } from '~/config/env'
-import { type Blogs, type List, type PageInfo } from '~/types/apis/fetch/blogs'
+import type { Blogs, List, PageInfo } from '~/types/apis/fetch/blogs'
 
 export type ResponseGetBlogsList =
   | {

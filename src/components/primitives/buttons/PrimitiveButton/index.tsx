@@ -11,12 +11,8 @@ import {
 
 import styles from './index.module.css'
 
-import { type EventTypes } from '~/types/event'
-import {
-  type ButtonType,
-  type AnchorTarget,
-  type AnchorRel,
-} from '~/types/html'
+import type { EventTypes } from '~/types/event'
+import type { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 export type PrimitiveButtonProps = {
   url?: string
