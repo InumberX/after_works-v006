@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
 
-import { getHobbyInfos } from '~/apis/fetch/hobby'
-import { getHobbyDetailInfo } from '~/apis/fetch/hobbyDetail'
-import { getTagCms } from '~/apis/fetch/tagCms'
-import { getTagDesign } from '~/apis/fetch/tagDesign'
-import { getTagOther } from '~/apis/fetch/tagOther'
-import { getTagPosition } from '~/apis/fetch/tagPosition'
-import { getTagProgram } from '~/apis/fetch/tagProgram'
+import { getHobbyList } from '~/apis/fetch/hobby'
+import { getHobbyDetailInfo } from '~/apis/fetch/hobby-detail'
+import { getTagCms } from '~/apis/fetch/tag-cms'
+import { getTagDesign } from '~/apis/fetch/tag-design'
+import { getTagOther } from '~/apis/fetch/tag-other'
+import { getTagPosition } from '~/apis/fetch/tag-position'
+import { getTagProgram } from '~/apis/fetch/tag-program'
 import { AppHead } from '~/components/common/AppHead'
 import { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
@@ -83,7 +83,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     responseTagCms,
     responseTagOther,
     responseHobbyDetailInfo,
-    responseLatestHobbyInfos,
+    responseLatestHobby,
   ] = await Promise.all([
     getCurrentLocale(),
     getScopedI18n('hobbyDetail'),
@@ -95,7 +95,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     getHobbyDetailInfo({
       id: String(id),
     }),
-    getHobbyInfos({
+    getHobbyList({
       cnt: 5,
     }),
   ])
@@ -294,8 +294,8 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     ],
   }
 
-  const latestHobbyInfos: LatestArticleCardProps[] = responseLatestHobbyInfos
-    ? responseLatestHobbyInfos.list.map((info) => {
+  const latestHobby: LatestArticleCardProps[] = responseLatestHobby
+    ? responseLatestHobby.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
             locale,
@@ -316,9 +316,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       })
     : []
 
-  return (
-    <Index latestArticleInfos={latestHobbyInfos} articleInfo={articleInfo} />
-  )
+  return <Index latestArticles={latestHobby} articleInfo={articleInfo} />
 }
 
 export default HobbyDetailPage

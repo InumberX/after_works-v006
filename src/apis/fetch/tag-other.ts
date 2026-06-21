@@ -1,12 +1,12 @@
 import { API_URL } from '~/config/env'
-import { TagCMS, Tag } from '~/types/apis/fetch/tagCms'
+import { TagOther, Tag } from '~/types/apis/fetch/tag-other'
 
-export type ResponseGetTagCms = Tag[]
+export type ResponseGetTagOther = Tag[]
 
-export const getTagCms = async (): Promise<ResponseGetTagCms> => {
-  const result: ResponseGetTagCms = []
+export const getTagOther = async (): Promise<ResponseGetTagOther> => {
+  const result: ResponseGetTagOther = []
 
-  const response = await fetch(`${API_URL}/tags/cms`, {
+  const response = await fetch(`${API_URL}/tags/other`, {
     cache: 'no-store',
   })
 
@@ -16,7 +16,7 @@ export const getTagCms = async (): Promise<ResponseGetTagCms> => {
 
   const value = await response
     .json()
-    .then((data: TagCMS) => data)
+    .then((data: TagOther) => data)
     .catch(() => undefined)
 
   if (!value || value.list.length === 0) {

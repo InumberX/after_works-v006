@@ -1,13 +1,13 @@
 import { MetadataRoute } from 'next'
 
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { getHobbyInfos } from '~/apis/fetch/hobby'
-import { getWorksInfos } from '~/apis/fetch/works'
+import { getBlogsList } from '~/apis/fetch/blogs'
+import { getHobbyList } from '~/apis/fetch/hobby'
+import { getWorksList } from '~/apis/fetch/works'
 import { LASTMOD } from '~/config/env'
 import { routes } from '~/config/routes'
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const sitemapInfos: MetadataRoute.Sitemap = [
+  const sitemapEntries: MetadataRoute.Sitemap = [
     {
       url: routes.home.url({
         isFullPath: true,
@@ -106,45 +106,45 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     },
   ]
 
-  const responseBlogsTotalCnt = await getBlogsInfos({
+  const responseBlogsTotalCount = await getBlogsList({
     cnt: 1,
   })
 
-  const responseBlogsInfos = responseBlogsTotalCnt
-    ? await getBlogsInfos({
-        cnt: responseBlogsTotalCnt.pageInfo.totalCnt,
+  const responseBlogs = responseBlogsTotalCount
+    ? await getBlogsList({
+        cnt: responseBlogsTotalCount.pageInfo.totalCnt,
       })
     : undefined
 
-  const responseWorksTotalCnt = await getWorksInfos({
+  const responseWorksTotalCount = await getWorksList({
     cnt: 1,
   })
 
-  const responseWorksInfos = responseWorksTotalCnt
-    ? await getWorksInfos({
-        cnt: responseWorksTotalCnt.pageInfo.totalCnt,
+  const responseWorks = responseWorksTotalCount
+    ? await getWorksList({
+        cnt: responseWorksTotalCount.pageInfo.totalCnt,
       })
     : undefined
 
-  const responseHobbyTotalCnt = await getHobbyInfos({
+  const responseHobbyTotalCount = await getHobbyList({
     cnt: 1,
   })
 
-  const responseHobbyInfos = responseHobbyTotalCnt
-    ? await getHobbyInfos({
-        cnt: responseHobbyTotalCnt.pageInfo.totalCnt,
+  const responseHobby = responseHobbyTotalCount
+    ? await getHobbyList({
+        cnt: responseHobbyTotalCount.pageInfo.totalCnt,
       })
     : undefined
 
-  if (responseBlogsInfos && responseBlogsInfos.list.length > 0) {
+  if (responseBlogs && responseBlogs.list.length > 0) {
     for (
-      let i = 0, iLength = responseBlogsInfos.list.length;
+      let i = 0, iLength = responseBlogs.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseBlogsInfos.list[i]
+      const info = responseBlogs.list[i]
 
-      sitemapInfos.push({
+      sitemapEntries.push({
         url: routes.blogsDetail.url({
           isFullPath: true,
           locale: 'ja',
@@ -154,7 +154,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
         priority: 0.5,
       })
 
-      sitemapInfos.push({
+      sitemapEntries.push({
         url: routes.blogsDetail.url({
           isFullPath: true,
           locale: 'en',
@@ -166,15 +166,15 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     }
   }
 
-  if (responseWorksInfos && responseWorksInfos.list.length > 0) {
+  if (responseWorks && responseWorks.list.length > 0) {
     for (
-      let i = 0, iLength = responseWorksInfos.list.length;
+      let i = 0, iLength = responseWorks.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseWorksInfos.list[i]
+      const info = responseWorks.list[i]
 
-      sitemapInfos.push({
+      sitemapEntries.push({
         url: routes.worksDetail.url({
           isFullPath: true,
           locale: 'ja',
@@ -184,7 +184,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
         priority: 0.5,
       })
 
-      sitemapInfos.push({
+      sitemapEntries.push({
         url: routes.worksDetail.url({
           isFullPath: true,
           locale: 'en',
@@ -196,15 +196,15 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     }
   }
 
-  if (responseHobbyInfos && responseHobbyInfos.list.length > 0) {
+  if (responseHobby && responseHobby.list.length > 0) {
     for (
-      let i = 0, iLength = responseHobbyInfos.list.length;
+      let i = 0, iLength = responseHobby.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseHobbyInfos.list[i]
+      const info = responseHobby.list[i]
 
-      sitemapInfos.push({
+      sitemapEntries.push({
         url: routes.hobbyDetail.url({
           isFullPath: true,
           locale: 'ja',
@@ -214,7 +214,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
         priority: 0.5,
       })
 
-      sitemapInfos.push({
+      sitemapEntries.push({
         url: routes.hobbyDetail.url({
           isFullPath: true,
           locale: 'en',
@@ -226,7 +226,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     }
   }
 
-  return sitemapInfos
+  return sitemapEntries
 }
 
 export default sitemap

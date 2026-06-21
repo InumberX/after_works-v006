@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 
 import { Index } from './_components'
 
-import { getHobbyInfos } from '~/apis/fetch/hobby'
-import { getTagPosition } from '~/apis/fetch/tagPosition'
+import { getHobbyList } from '~/apis/fetch/hobby'
+import { getTagPosition } from '~/apis/fetch/tag-position'
 import { AppHead } from '~/components/common/AppHead'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
@@ -35,20 +35,20 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
     searchParams,
   ])
 
-  const [responseHobbyInfos, responseLatestHobbyInfos] = await Promise.all([
-    getHobbyInfos({
+  const [responseHobby, responseLatestHobby] = await Promise.all([
+    getHobbyList({
       ...(currentSearchParams &&
         currentSearchParams.page && {
           page: parseInt(currentSearchParams.page as string, 10),
         }),
     }),
-    getHobbyInfos({
+    getHobbyList({
       cnt: 5,
     }),
   ])
 
-  const defaultHobbyInfos: WorkCardProps[] = responseHobbyInfos
-    ? responseHobbyInfos.list.map((info) => {
+  const defaultHobby: WorkCardProps[] = responseHobby
+    ? responseHobby.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -104,8 +104,8 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const latestHobbyInfos: LatestArticleCardProps[] = responseLatestHobbyInfos
-    ? responseLatestHobbyInfos.list.map((info) => {
+  const latestHobby: LatestArticleCardProps[] = responseLatestHobby
+    ? responseLatestHobby.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
             locale,
@@ -133,11 +133,9 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
           ? parseInt(currentSearchParams.page as string, 10)
           : 1
       }
-      defaultTotalPage={
-        responseHobbyInfos ? responseHobbyInfos.pageInfo.totalPageCnt : 0
-      }
-      defaultArticleInfos={defaultHobbyInfos}
-      latestArticleInfos={latestHobbyInfos}
+      defaultTotalPage={responseHobby ? responseHobby.pageInfo.totalPageCnt : 0}
+      defaultArticles={defaultHobby}
+      latestArticles={latestHobby}
       responseTagPosition={responseTagPosition}
     />
   )

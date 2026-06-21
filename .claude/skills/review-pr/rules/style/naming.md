@@ -42,9 +42,11 @@
 | コンポーネントスタイル | `index.module.css` 固定 | `BaseButton/index.module.css` |
 | UIカテゴリディレクトリ | 複数形 kebab-case | `buttons/`、`cards/`、`lists/`、`typographies/` |
 | hooks | `use-kebab-case.ts` | `use-animelm.ts` |
-| utils / libs / config 関数ファイル | camelCase.ts | `actSmoothScroll.ts`、`zodCustomErrorMessage.ts`、`routes.ts` |
-| 型定義（.d.ts） | 短い英単語 | `event.d.ts`、`html.d.ts`、`gtag.d.ts` |
-| store | camelCase ディレクトリ | `breakpoints/`、`headerInfos/` |
+| utils / libs / config / apis 関数ファイル | kebab-case.ts | `act-smooth-scroll.ts`、`zod-custom-error-message.ts`、`works-detail.ts`、`routes.ts` |
+| 型定義（.d.ts） | kebab-case | `event.d.ts`、`html.d.ts`、`gtag.d.ts`、`category-about-history.d.ts` |
+| store | kebab-case ディレクトリ | `breakpoints/`、`header/` |
+
+> **原則**: コンポーネント（ディレクトリ + エントリファイル）のみ PascalCase。それ以外のファイル・ディレクトリはすべて kebab-case で統一する。
 
 ## 変数 / 関数
 
@@ -84,6 +86,6 @@ oxfmt/oxlint で自動整形される領域だが、レビュー時に違反が�
 - ❌ boolean Props に `is*` がない（`disabled`、`rightArrow` のまま）
 - ❌ コンポーネントディレクトリが kebab-case（`base-button/`）
 - ❌ hook ファイルが PascalCase / camelCase（`useAnimelm.ts` ではなく `use-animelm.ts` が本プロジェクトの規約）
-- ❌ utils ファイルが kebab-case（`act-smooth-scroll.ts` ではなく `actSmoothScroll.ts`）
+- ❌ 非コンポーネントファイルが camelCase（`actSmoothScroll.ts` ではなく `act-smooth-scroll.ts`。utils / libs / config / apis / 型定義はすべて kebab-case）
 - ❌ HTML属性そのままの名前を Props に使う（`disabled` → `isDisabled` に揃える）
 - ❌ コールバック Props 名が `handle*`（→ `on*` に揃える。ローカル関数側は `handle*` のままで OK）

@@ -7,16 +7,16 @@ import { useState } from 'react'
 
 import styles from './index.module.css'
 
-import { getAboutHistoryInfo } from '~/apis/fetch/aboutHistory'
+import { getAboutHistoryInfo } from '~/apis/fetch/about-history'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useCurrentLocale } from '~/locales/client'
-import { Tag as ApiResponseTagCmsTag } from '~/types/apis/fetch/tagCms'
-import { Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tagDesign'
-import { Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tagOther'
-import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tagPosition'
-import { Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tagProgram'
+import { Tag as ApiResponseTagCmsTag } from '~/types/apis/fetch/tag-cms'
+import { Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tag-design'
+import { Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tag-other'
+import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
+import { Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tag-program'
 
 export type HistoryItem = {
   title: string

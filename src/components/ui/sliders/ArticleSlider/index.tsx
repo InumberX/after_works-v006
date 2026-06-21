@@ -16,10 +16,10 @@ import { BREAKPOINTS } from '~/providers/BreakpointsProvider'
 
 type Props = {
   className?: string
-  articleInfos: ArticleCardProps[]
+  articles: ArticleCardProps[]
 }
 
-export const ArticleSlider = ({ className, articleInfos }: Props) => {
+export const ArticleSlider = ({ className, articles }: Props) => {
   const [sliderRef, instanceRef] = useKeenSlider(
     {
       loop: true,
@@ -54,7 +54,7 @@ export const ArticleSlider = ({ className, articleInfos }: Props) => {
             ref={sliderRef}
             className={clsx(styles.ArticleSlider__items, 'keen-slider')}
           >
-            {articleInfos.map((articleInfo, i) => (
+            {articles.map((articleInfo, i) => (
               <div
                 key={i}
                 className={clsx(

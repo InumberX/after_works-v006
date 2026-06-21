@@ -13,14 +13,14 @@ type Props = {
   className?: string
   title: string
   titleTag?: keyof JSX.IntrinsicElements
-  infos: LatestArticleCardProps[]
+  items: LatestArticleCardProps[]
 }
 
 export const SideLatestArticle = ({
   className,
   title,
   titleTag,
-  infos,
+  items,
 }: Props) => {
   const Title = titleTag ?? 'h2'
 
@@ -37,7 +37,7 @@ export const SideLatestArticle = ({
         </div>
 
         <div className={styles.SideLatestArticle__contents}>
-          <LatestArticleCardList infos={infos} />
+          <LatestArticleCardList items={items} />
         </div>
       </div>
     </div>

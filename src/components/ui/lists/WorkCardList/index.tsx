@@ -6,14 +6,14 @@ import { WorkCard, WorkCardProps } from '~/components/ui/cards/WorkCard'
 
 type Props = {
   className?: string
-  infos: WorkCardProps[]
+  items: WorkCardProps[]
 }
 
-export const WorkCardList = ({ className, infos }: Props) => {
+export const WorkCardList = ({ className, items }: Props) => {
   return (
     <div className={clsx(styles.WorkCardList, className)}>
       <div className={styles.WorkCardList__items}>
-        {infos.map((info, i) => (
+        {items.map((info, i) => (
           <article
             key={i}
             className={clsx(

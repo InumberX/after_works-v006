@@ -6,10 +6,10 @@ import { SideLatestArticle } from '~/components/ui/sides/SideLatestArticle'
 import { getScopedI18n } from '~/locales/server'
 
 type Props = {
-  latestArticleInfos: LatestArticleCardProps[]
+  latestArticles: LatestArticleCardProps[]
 }
 
-export const SideColumn = async ({ latestArticleInfos }: Props) => {
+export const SideColumn = async ({ latestArticles }: Props) => {
   const scopedT = await getScopedI18n('hobby')
 
   return (
@@ -17,11 +17,11 @@ export const SideColumn = async ({ latestArticleInfos }: Props) => {
       <div className={styles.SideColumn__container}>
         <SideLatestArticle
           title={scopedT('sideColumn.latestArticle.title')}
-          infos={latestArticleInfos}
+          items={latestArticles}
         />
         <GoogleAdList
           className={styles.SideColumn__googleAdList}
-          infos={[
+          items={[
             {
               slot: '7889882209',
             },

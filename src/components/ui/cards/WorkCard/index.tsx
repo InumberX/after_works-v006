@@ -128,7 +128,7 @@ const WorkCardContainer = ({
       </Div>
 
       {tags.length > 0 && (
-        <BaseTagList className={styles.WorkCardTag} infos={tags} isJustifyEnd />
+        <BaseTagList className={styles.WorkCardTag} items={tags} isJustifyEnd />
       )}
     </Div>
   )

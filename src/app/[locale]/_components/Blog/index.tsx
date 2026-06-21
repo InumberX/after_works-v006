@@ -15,10 +15,10 @@ import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useScopedI18n, useCurrentLocale } from '~/locales/client'
 
 type Props = {
-  articleInfos: ArticleCardProps[]
+  articles: ArticleCardProps[]
 }
 
-export const Blog = ({ articleInfos }: Props) => {
+export const Blog = ({ articles }: Props) => {
   const scopedT = useScopedI18n('home.blog')
   const { targetRef: sliderTargetRef } = useAnimelm<AnimelmElement>()
   const { targetRef: buttonTargetRef } = useAnimelm<AnimelmElement>()
@@ -42,7 +42,7 @@ export const Blog = ({ articleInfos }: Props) => {
           >
             <ArticleSlider
               className={clsx(styles.BlogSlider__slider)}
-              articleInfos={articleInfos}
+              articles={articles}
             />
           </div>
         </div>

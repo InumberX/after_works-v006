@@ -21,7 +21,7 @@ export const Service = async () => {
           />
           <ServiceCardList
             className={styles.ServiceServiceCardList}
-            infos={[
+            items={[
               {
                 icon: 'palette',
                 title: scopedT('design.title'),

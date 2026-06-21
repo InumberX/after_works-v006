@@ -3,7 +3,7 @@ import {
   CategoryAboutHistory,
   List,
   PageInfo,
-} from '~/types/apis/fetch/categoryAboutHistory'
+} from '~/types/apis/fetch/category-about-history'
 
 export type ResponseGetCategoryAboutHistory =
   | {
@@ -12,7 +12,7 @@ export type ResponseGetCategoryAboutHistory =
     }
   | undefined
 
-export const getCategoryAboutHistoryInfos = async ({
+export const getCategoryAboutHistoryList = async ({
   cnt = 0,
   page = 1,
 }: {

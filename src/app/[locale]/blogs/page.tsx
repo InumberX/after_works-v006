@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 
 import { Index } from './_components'
 
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { getTagNews } from '~/apis/fetch/tagNews'
+import { getBlogsList } from '~/apis/fetch/blogs'
+import { getTagNews } from '~/apis/fetch/tag-news'
 import { AppHead } from '~/components/common/AppHead'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
@@ -35,20 +35,20 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
     searchParams,
   ])
 
-  const [responseBlogsInfos, responseLatestBlogsInfos] = await Promise.all([
-    getBlogsInfos({
+  const [responseBlogs, responseLatestBlogs] = await Promise.all([
+    getBlogsList({
       ...(currentSearchParams &&
         currentSearchParams.page && {
           page: parseInt(currentSearchParams.page as string, 10),
         }),
     }),
-    getBlogsInfos({
+    getBlogsList({
       cnt: 5,
     }),
   ])
 
-  const defaultBlogsInfos: WorkCardProps[] = responseBlogsInfos
-    ? responseBlogsInfos.list.map((info) => {
+  const defaultBlogs: WorkCardProps[] = responseBlogs
+    ? responseBlogs.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -103,8 +103,8 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const latestBlogsInfos: LatestArticleCardProps[] = responseLatestBlogsInfos
-    ? responseLatestBlogsInfos.list.map((info) => {
+  const latestBlogs: LatestArticleCardProps[] = responseLatestBlogs
+    ? responseLatestBlogs.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
             locale,
@@ -131,11 +131,9 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
           ? parseInt(currentSearchParams.page as string, 10)
           : 1
       }
-      defaultTotalPage={
-        responseBlogsInfos ? responseBlogsInfos.pageInfo.totalPageCnt : 0
-      }
-      defaultArticleInfos={defaultBlogsInfos}
-      latestArticleInfos={latestBlogsInfos}
+      defaultTotalPage={responseBlogs ? responseBlogs.pageInfo.totalPageCnt : 0}
+      defaultArticles={defaultBlogs}
+      latestArticles={latestBlogs}
       responseTagNews={responseTagNews}
     />
   )

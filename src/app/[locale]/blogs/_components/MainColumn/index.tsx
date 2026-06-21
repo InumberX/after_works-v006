@@ -5,25 +5,25 @@ import { useState } from 'react'
 
 import styles from './index.module.css'
 
-import { getBlogsInfos } from '~/apis/fetch/blogs'
+import { getBlogsList } from '~/apis/fetch/blogs'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { WorkCardList } from '~/components/ui/lists/WorkCardList'
 import { BasePagination } from '~/components/ui/paginations/BasePagination'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { useCurrentLocale } from '~/locales/client'
-import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tagNews'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
+import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tag-news'
+import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
 type Props = {
-  defaultArticleInfos: WorkCardProps[]
+  defaultArticles: WorkCardProps[]
   defaultPage: number
   defaultTotalPage: number
   responseTagNews: ApiResponseTagNewsTag[]
 }
 
 export const MainColumn = ({
-  defaultArticleInfos,
+  defaultArticles,
   defaultPage,
   defaultTotalPage,
   responseTagNews,
@@ -31,7 +31,7 @@ export const MainColumn = ({
   const locale = useCurrentLocale()
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
-  const [articleInfos, setArticleInfos] = useState(defaultArticleInfos)
+  const [articles, setArticles] = useState(defaultArticles)
   const [currentPage, setCurrentPage] = useState(defaultPage)
   const [totalPage, setTotalPage] = useState(defaultTotalPage)
   const handleChangePage = async (newPage: number) => {
@@ -41,12 +41,12 @@ export const MainColumn = ({
 
     setIsSending(true)
 
-    const responseBlogInfos = await getBlogsInfos({
+    const responseBlogs = await getBlogsList({
       page: newPage,
     })
 
-    const infos: WorkCardProps[] = responseBlogInfos
-      ? responseBlogInfos.list.map((info) => {
+    const items: WorkCardProps[] = responseBlogs
+      ? responseBlogs.list.map((info) => {
           const tagPosition: BaseTagProps[] = []
 
           for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -105,11 +105,9 @@ export const MainColumn = ({
         })
       : []
 
-    setArticleInfos(infos)
+    setArticles(items)
     setCurrentPage(newPage)
-    setTotalPage(
-      responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
-    )
+    setTotalPage(responseBlogs ? responseBlogs.pageInfo.totalPageCnt : 0)
 
     router.push(
       `${routes.blogs.url({
@@ -130,7 +128,7 @@ export const MainColumn = ({
   return (
     <div className={styles.MainColumn}>
       <div id='main-column-container' className={styles.MainColumn__container}>
-        <WorkCardList infos={articleInfos} />
+        <WorkCardList items={articles} />
         <BasePagination
           className={styles.MainColumn__pagination}
           currentPage={currentPage}

@@ -6,14 +6,14 @@ import { GoogleAd, GoogleAdProps } from '~/components/ui/ads/GoogleAd'
 
 type Props = {
   className?: string
-  infos: GoogleAdProps[]
+  items: GoogleAdProps[]
 }
 
-export const GoogleAdList = ({ className, infos }: Props) => {
+export const GoogleAdList = ({ className, items }: Props) => {
   return (
     <div className={clsx(styles.GoogleAdList, className)}>
       <ul className={styles.GoogleAdList__items}>
-        {infos.map((info, i) => (
+        {items.map((info, i) => (
           <li key={i} className={styles.GoogleAdList__item}>
             <GoogleAd {...info} />
           </li>
