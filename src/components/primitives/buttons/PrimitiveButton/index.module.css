@@ -1,0 +1,32 @@
+@layer component-ui-primitive {
+  .PrimitiveButton {
+    align-items: center;
+    background-color: transparent;
+    block-size: auto;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    display: inline-flex;
+    inline-size: auto;
+    justify-content: flex-start;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    position: relative;
+    text-align: start;
+    text-decoration: none;
+    transition:
+      0.3s color,
+      0.3s opacity,
+      0.3s background-color,
+      0.3s border-color;
+
+    @mixin getClampRem font-size, 14, 16;
+  }
+
+  .PrimitiveButton.PrimitiveButton--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
