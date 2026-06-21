@@ -1,0 +1,45 @@
+@layer component-page {
+  .Skills__container {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+
+    @mixin getMediaQuerySm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .SkillsList__container {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
+
+  .SkillsList__items {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr;
+  }
+
+  .SkillsList__paragraph {
+    color: var(--color-palette-silver-chalice);
+    font-family: var(--font-family-en);
+    font-weight: var(--font-weight-light);
+
+    @mixin getClampRem font-size, 14, 16;
+  }
+
+  .SkillsList__link {
+    color: var(--color-palette-silver-chalice);
+    font-family: var(--font-family-en);
+    font-weight: var(--font-weight-light);
+
+    @mixin getClampRem font-size, 14, 16;
+
+    @media (--media-hover) {
+      &:hover {
+        color: var(--color-palette-sky-blue);
+      }
+    }
+  }
+}

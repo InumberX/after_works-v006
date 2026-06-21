@@ -52,7 +52,6 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
     getTagOther(),
   ])
 
-  /*
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
         return {
@@ -64,9 +63,8 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
         }
       })
     : []
-    */
 
-  // const skills = aboutInfo ? aboutInfo.skills : []
+  const skills = aboutInfo ? aboutInfo.skills : []
 
   const categoryAboutHistory = await getCategoryAboutHistoryList({})
 
@@ -279,6 +277,23 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
         responseTagCms,
         responseTagDesign,
         responseTagOther,
+      }}
+      skillsInfo={{
+        qualification: {
+          items: certifications.map((info) => {
+            return {
+              text: info.name,
+              url: info.url,
+            }
+          }),
+        },
+        skill: {
+          items: skills.map((info) => {
+            return {
+              text: info,
+            }
+          }),
+        },
       }}
     />
   )
