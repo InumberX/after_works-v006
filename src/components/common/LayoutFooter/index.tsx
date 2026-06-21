@@ -13,9 +13,9 @@ import { SvgIcon } from '~/components/ui/icons/SvgIcon'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { STATIC_IMAGE_DIR, SITE_NAME, CACHE_BUSTER } from '~/config/env'
 import { routes } from '~/config/routes'
-import { snsInfos } from '~/config/sns'
+import { snsLinks } from '~/config/sns'
 import { useI18n, useCurrentLocale } from '~/locales/client'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
+import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
 export const LayoutFooter = () => {
   const locale = useCurrentLocale()
@@ -23,7 +23,7 @@ export const LayoutFooter = () => {
   const router = useRouter()
   const currentYear: number = new Date().getFullYear()
 
-  const footerMenuInfos: {
+  const footerMenuItems: {
     id: string
     title: string
     url: string
@@ -73,68 +73,68 @@ export const LayoutFooter = () => {
     },
   ]
 
-  const footerSnsInfos: {
+  const footerSnsLinks: {
     id: string
     url: string
     title: string
     icon: ReactNode
   }[] = [
     {
-      id: snsInfos.x.id,
-      url: snsInfos.x.url,
-      title: snsInfos.x.title,
+      id: snsLinks.x.id,
+      url: snsLinks.x.url,
+      title: snsLinks.x.title,
       icon: <SvgIcon variant='x' className={styles.LayoutFooterSns__icon} />,
     },
     {
-      id: snsInfos.instagram.id,
-      url: snsInfos.instagram.url,
-      title: snsInfos.instagram.title,
+      id: snsLinks.instagram.id,
+      url: snsLinks.instagram.url,
+      title: snsLinks.instagram.title,
       icon: (
         <SvgIcon variant='instagram' className={styles.LayoutFooterSns__icon} />
       ),
     },
     {
-      id: snsInfos.github.id,
-      url: snsInfos.github.url,
-      title: snsInfos.github.title,
+      id: snsLinks.github.id,
+      url: snsLinks.github.url,
+      title: snsLinks.github.title,
       icon: (
         <SvgIcon variant='github' className={styles.LayoutFooterSns__icon} />
       ),
     },
     {
-      id: snsInfos.youtube.id,
-      url: snsInfos.youtube.url,
-      title: snsInfos.youtube.title,
+      id: snsLinks.youtube.id,
+      url: snsLinks.youtube.url,
+      title: snsLinks.youtube.title,
       icon: (
         <SvgIcon variant='youtube' className={styles.LayoutFooterSns__icon} />
       ),
     },
     {
-      id: snsInfos.qiita.id,
-      url: snsInfos.qiita.url,
-      title: snsInfos.qiita.title,
+      id: snsLinks.qiita.id,
+      url: snsLinks.qiita.url,
+      title: snsLinks.qiita.title,
       icon: (
         <SvgIcon variant='qiita' className={styles.LayoutFooterSns__icon} />
       ),
     },
     {
-      id: snsInfos.note.id,
-      url: snsInfos.note.url,
-      title: snsInfos.note.title,
+      id: snsLinks.note.id,
+      url: snsLinks.note.url,
+      title: snsLinks.note.title,
       icon: <SvgIcon variant='note' className={styles.LayoutFooterSns__icon} />,
     },
     {
-      id: snsInfos.behance.id,
-      url: snsInfos.behance.url,
-      title: snsInfos.behance.title,
+      id: snsLinks.behance.id,
+      url: snsLinks.behance.url,
+      title: snsLinks.behance.title,
       icon: (
         <SvgIcon variant='behance' className={styles.LayoutFooterSns__icon} />
       ),
     },
     {
-      id: snsInfos.pixiv.id,
-      url: snsInfos.pixiv.url,
-      title: snsInfos.pixiv.title,
+      id: snsLinks.pixiv.id,
+      url: snsLinks.pixiv.url,
+      title: snsLinks.pixiv.title,
       icon: (
         <SvgIcon variant='pixiv' className={styles.LayoutFooterSns__icon} />
       ),
@@ -188,7 +188,7 @@ export const LayoutFooter = () => {
               <div className={styles.LayoutFooterNavigation}>
                 <nav className={styles.LayoutFooterNavigation__container}>
                   <ul className={styles.LayoutFooterNavigation__items}>
-                    {footerMenuInfos.map((info) => (
+                    {footerMenuItems.map((info) => (
                       <li
                         className={styles.LayoutFooterNavigation__item}
                         key={info.id}
@@ -238,7 +238,7 @@ export const LayoutFooter = () => {
 
               <div className={styles.LayoutFooterSns}>
                 <ul className={styles.LayoutFooterSns__items}>
-                  {footerSnsInfos.map((info) => (
+                  {footerSnsLinks.map((info) => (
                     <li className={styles.LayoutFooterSns__item} key={info.id}>
                       <a
                         href={info.url}

@@ -1,12 +1,12 @@
 import { API_URL } from '~/config/env'
-import { TagProgram, Tag } from '~/types/apis/fetch/tagProgram'
+import { TagCMS, Tag } from '~/types/apis/fetch/tag-cms'
 
-export type ResponseGetTagProgram = Tag[]
+export type ResponseGetTagCms = Tag[]
 
-export const getTagProgram = async (): Promise<ResponseGetTagProgram> => {
-  const result: ResponseGetTagProgram = []
+export const getTagCms = async (): Promise<ResponseGetTagCms> => {
+  const result: ResponseGetTagCms = []
 
-  const response = await fetch(`${API_URL}/tags/program`, {
+  const response = await fetch(`${API_URL}/tags/cms`, {
     cache: 'no-store',
   })
 
@@ -16,7 +16,7 @@ export const getTagProgram = async (): Promise<ResponseGetTagProgram> => {
 
   const value = await response
     .json()
-    .then((data: TagProgram) => data)
+    .then((data: TagCMS) => data)
     .catch(() => undefined)
 
   if (!value || value.list.length === 0) {

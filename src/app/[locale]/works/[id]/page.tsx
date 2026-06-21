@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
 
-import { getTagCms } from '~/apis/fetch/tagCms'
-import { getTagDesign } from '~/apis/fetch/tagDesign'
-import { getTagOther } from '~/apis/fetch/tagOther'
-import { getTagPosition } from '~/apis/fetch/tagPosition'
-import { getTagProgram } from '~/apis/fetch/tagProgram'
-import { getWorksInfos } from '~/apis/fetch/works'
-import { getWorksDetailInfo } from '~/apis/fetch/worksDetail'
+import { getTagCms } from '~/apis/fetch/tag-cms'
+import { getTagDesign } from '~/apis/fetch/tag-design'
+import { getTagOther } from '~/apis/fetch/tag-other'
+import { getTagPosition } from '~/apis/fetch/tag-position'
+import { getTagProgram } from '~/apis/fetch/tag-program'
+import { getWorksList } from '~/apis/fetch/works'
+import { getWorksDetailInfo } from '~/apis/fetch/works-detail'
 import { AppHead } from '~/components/common/AppHead'
 import { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
@@ -83,7 +83,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     responseTagCms,
     responseTagOther,
     responseWorksDetailInfo,
-    responseLatestWorksInfos,
+    responseLatestWorks,
   ] = await Promise.all([
     getCurrentLocale(),
     getScopedI18n('worksDetail'),
@@ -95,7 +95,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     getWorksDetailInfo({
       id: String(id),
     }),
-    getWorksInfos({
+    getWorksList({
       cnt: 5,
     }),
   ])
@@ -294,8 +294,8 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     ],
   }
 
-  const latestWorksInfos: LatestArticleCardProps[] = responseLatestWorksInfos
-    ? responseLatestWorksInfos.list.map((info) => {
+  const latestWorks: LatestArticleCardProps[] = responseLatestWorks
+    ? responseLatestWorks.list.map((info) => {
         return {
           url: routes.worksDetail.url({
             locale,
@@ -316,9 +316,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       })
     : []
 
-  return (
-    <Index latestArticleInfos={latestWorksInfos} articleInfo={articleInfo} />
-  )
+  return <Index latestArticles={latestWorks} articleInfo={articleInfo} />
 }
 
 export default WorksDetailPage

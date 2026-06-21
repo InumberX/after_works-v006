@@ -19,7 +19,7 @@ export const Index = async () => {
         }
       />
       <BaseBreadcrumb
-        infos={[
+        items={[
           {
             name: scopedT('pageTitle'),
           },

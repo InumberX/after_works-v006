@@ -28,7 +28,7 @@ export const Index = async ({ profileInfo, historyInfo }: Props) => {
       />
 
       <BaseBreadcrumb
-        infos={[
+        items={[
           {
             name: scopedT('pageTitle'),
           },

@@ -9,14 +9,14 @@ import {
 
 type Props = {
   className?: string
-  infos: LatestArticleCardProps[]
+  items: LatestArticleCardProps[]
 }
 
-export const LatestArticleCardList = ({ className, infos }: Props) => {
+export const LatestArticleCardList = ({ className, items }: Props) => {
   return (
     <div className={clsx(styles.LatestArticleCardList, className)}>
       <div className={styles.LatestArticleCardList__items}>
-        {infos.map((info, i) => (
+        {items.map((info, i) => (
           <article key={i} className={styles.LatestArticleCardList__item}>
             <LatestArticleCard {...info} />
           </article>

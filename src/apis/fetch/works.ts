@@ -1,14 +1,14 @@
 import { API_URL } from '~/config/env'
 import { Works, List, PageInfo } from '~/types/apis/fetch/works'
 
-export type ResponseGetWorksInfos =
+export type ResponseGetWorksList =
   | {
       list: List[]
       pageInfo: PageInfo
     }
   | undefined
 
-export const getWorksInfos = async ({
+export const getWorksList = async ({
   cnt = 12,
   page = 1,
   orderQuery = 'inst_ymdhi=DESC',
@@ -16,7 +16,7 @@ export const getWorksInfos = async ({
   cnt?: number
   page?: number
   orderQuery?: string
-}): Promise<ResponseGetWorksInfos> => {
+}): Promise<ResponseGetWorksList> => {
   const param = [
     `cnt=${cnt}`,
     `pageID=${page}`,

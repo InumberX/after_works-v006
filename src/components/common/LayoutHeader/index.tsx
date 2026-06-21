@@ -21,7 +21,7 @@ import {
   isBreakpointXlAtom,
   isBreakpointXxlAtom,
 } from '~/store/breakpoints'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
+import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
 export const LayoutHeader = () => {
   const locale = useCurrentLocale()
@@ -34,7 +34,7 @@ export const LayoutHeader = () => {
   const [isBreakpointXxl] = useAtom(isBreakpointXxlAtom)
   const [isShowLocalesMenu, setIsShowLocalesMenu] = useState(false)
 
-  const headerMenuGlobalInfos: {
+  const globalMenuItems: {
     id: string
     title: string
     url: string
@@ -193,7 +193,7 @@ export const LayoutHeader = () => {
                 <div className={styles.LayoutHeaderMenuGlobal}>
                   <nav className={styles.LayoutHeaderMenuGlobal__navigation}>
                     <ul className={styles.LayoutHeaderMenuGlobal__items}>
-                      {headerMenuGlobalInfos.map((info) => (
+                      {globalMenuItems.map((info) => (
                         <li
                           className={styles.LayoutHeaderMenuGlobal__item}
                           key={info.id}
@@ -403,7 +403,7 @@ export const LayoutHeader = () => {
                       animate='show'
                       className={styles.LayoutHeaderMenuOuterNavigation__items}
                     >
-                      {headerMenuGlobalInfos.map((info, i) => (
+                      {globalMenuItems.map((info, i) => (
                         <motion.li
                           variants={{
                             hidden: {

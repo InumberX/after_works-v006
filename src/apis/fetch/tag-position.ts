@@ -1,12 +1,12 @@
 import { API_URL } from '~/config/env'
-import { TagNews, Tag } from '~/types/apis/fetch/tagNews'
+import { TagPosition, Tag } from '~/types/apis/fetch/tag-position'
 
-export type ResponseGetTagNews = Tag[]
+export type ResponseGetTagPosition = Tag[]
 
-export const getTagNews = async (): Promise<ResponseGetTagNews> => {
-  const result: ResponseGetTagNews = []
+export const getTagPosition = async (): Promise<ResponseGetTagPosition> => {
+  const result: ResponseGetTagPosition = []
 
-  const response = await fetch(`${API_URL}/tags/news`, {
+  const response = await fetch(`${API_URL}/tags/position`, {
     cache: 'no-store',
   })
 
@@ -16,7 +16,7 @@ export const getTagNews = async (): Promise<ResponseGetTagNews> => {
 
   const value = await response
     .json()
-    .then((data: TagNews) => data)
+    .then((data: TagPosition) => data)
     .catch(() => undefined)
 
   if (!value || value.list.length === 0) {

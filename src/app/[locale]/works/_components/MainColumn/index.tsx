@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import styles from './index.module.css'
 
-import { getWorksInfos } from '~/apis/fetch/works'
+import { getWorksList } from '~/apis/fetch/works'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { WorkCardList } from '~/components/ui/lists/WorkCardList'
 import { BasePagination } from '~/components/ui/paginations/BasePagination'
@@ -14,11 +14,11 @@ import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineT
 import { SectionLead } from '~/components/ui/typographies/SectionLead'
 import { routes } from '~/config/routes'
 import { useCurrentLocale } from '~/locales/client'
-import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tagPosition'
-import { actSmoothScroll } from '~/utils/actSmoothScroll'
+import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
+import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
 type Props = {
-  defaultArticleInfos: WorkCardProps[]
+  defaultArticles: WorkCardProps[]
   defaultPage: number
   defaultTotalPage: number
   responseTagPosition: ApiResponseTagPositionTag[]
@@ -26,7 +26,7 @@ type Props = {
 }
 
 export const MainColumn = ({
-  defaultArticleInfos,
+  defaultArticles,
   defaultPage,
   defaultTotalPage,
   responseTagPosition,
@@ -35,7 +35,7 @@ export const MainColumn = ({
   const locale = useCurrentLocale()
   const router = useRouter()
   const [isSending, setIsSending] = useState(false)
-  const [articleInfos, setArticleInfos] = useState(defaultArticleInfos)
+  const [articles, setArticles] = useState(defaultArticles)
   const [currentPage, setCurrentPage] = useState(defaultPage)
   const [totalPage, setTotalPage] = useState(defaultTotalPage)
   const handleChangePage = async (newPage: number) => {
@@ -45,12 +45,12 @@ export const MainColumn = ({
 
     setIsSending(true)
 
-    const responseBlogInfos = await getWorksInfos({
+    const responseWorks = await getWorksList({
       page: newPage,
     })
 
-    const infos: WorkCardProps[] = responseBlogInfos
-      ? responseBlogInfos.list.map((info) => {
+    const items: WorkCardProps[] = responseWorks
+      ? responseWorks.list.map((info) => {
           const tagPosition: BaseTagProps[] = []
 
           for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -110,11 +110,9 @@ export const MainColumn = ({
         })
       : []
 
-    setArticleInfos(infos)
+    setArticles(items)
     setCurrentPage(newPage)
-    setTotalPage(
-      responseBlogInfos ? responseBlogInfos.pageInfo.totalPageCnt : 0,
-    )
+    setTotalPage(responseWorks ? responseWorks.pageInfo.totalPageCnt : 0)
 
     router.push(
       `${routes.works.url({
@@ -136,7 +134,7 @@ export const MainColumn = ({
     <div className={styles.MainColumn}>
       <div id='main-column-container' className={styles.MainColumn__container}>
         <SectionLead lead={<ReplaceNewLineText text={lead} />} />
-        <WorkCardList infos={articleInfos} />
+        <WorkCardList items={articles} />
         <BasePagination
           className={styles.MainColumn__pagination}
           currentPage={currentPage}

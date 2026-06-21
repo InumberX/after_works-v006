@@ -14,11 +14,11 @@ import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 
 type Props = {
-  latestArticleInfos: LatestArticleCardProps[]
+  latestArticles: LatestArticleCardProps[]
   articleInfo: BaseArticleInfo
 }
 
-export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
+export const Index = async ({ latestArticles, articleInfo }: Props) => {
   const scopedT = await getScopedI18n('blogsDetail')
   const blogsScopedT = await getScopedI18n('blogs')
   const locale = await getCurrentLocale()
@@ -28,7 +28,7 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
       <PageTitle subTitle={scopedT('pageSubTitle')} />
 
       <BaseBreadcrumb
-        infos={[
+        items={[
           {
             name: blogsScopedT('pageTitle'),
             url: routes.blogs.url({
@@ -45,7 +45,7 @@ export const Index = async ({ latestArticleInfos, articleInfo }: Props) => {
         <LayoutInner>
           <LayoutParallel
             mainColumn={<MainColumn articleInfo={articleInfo} />}
-            sideColumn={<SideColumn latestArticleInfos={latestArticleInfos} />}
+            sideColumn={<SideColumn latestArticles={latestArticles} />}
           />
         </LayoutInner>
       </LayoutSection>

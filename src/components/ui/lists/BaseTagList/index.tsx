@@ -6,14 +6,14 @@ import { BaseTag, BaseTagProps } from '~/components/ui/tags/BaseTag'
 
 type Props = {
   className?: string
-  infos: BaseTagProps[]
+  items: BaseTagProps[]
   isNotSemantic?: boolean
   isJustifyEnd?: boolean
 }
 
 export const BaseTagList = ({
   className,
-  infos,
+  items,
   isNotSemantic,
   isJustifyEnd,
 }: Props) => {
@@ -28,7 +28,7 @@ export const BaseTagList = ({
           )}
         >
           <span className={styles.BaseTagList__items}>
-            {infos.map((info, i) => (
+            {items.map((info, i) => (
               <span key={i} className={styles.BaseTagList__item}>
                 <BaseTag {...info} />
               </span>
@@ -44,7 +44,7 @@ export const BaseTagList = ({
           )}
         >
           <ul className={styles.BaseTagList__items}>
-            {infos.map((info, i) => (
+            {items.map((info, i) => (
               <li key={i} className={styles.BaseTagList__item}>
                 <BaseTag {...info} />
               </li>

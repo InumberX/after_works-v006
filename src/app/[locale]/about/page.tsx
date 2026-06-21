@@ -3,13 +3,13 @@ import { Metadata } from 'next'
 import { Index } from './_components'
 
 import { getAboutInfo } from '~/apis/fetch/about'
-import { getAboutHistoryInfo } from '~/apis/fetch/aboutHistory'
-import { getCategoryAboutHistoryInfos } from '~/apis/fetch/categoryAboutHistory'
-import { getTagCms } from '~/apis/fetch/tagCms'
-import { getTagDesign } from '~/apis/fetch/tagDesign'
-import { getTagOther } from '~/apis/fetch/tagOther'
-import { getTagPosition } from '~/apis/fetch/tagPosition'
-import { getTagProgram } from '~/apis/fetch/tagProgram'
+import { getAboutHistoryInfo } from '~/apis/fetch/about-history'
+import { getCategoryAboutHistoryList } from '~/apis/fetch/category-about-history'
+import { getTagCms } from '~/apis/fetch/tag-cms'
+import { getTagDesign } from '~/apis/fetch/tag-design'
+import { getTagOther } from '~/apis/fetch/tag-other'
+import { getTagPosition } from '~/apis/fetch/tag-position'
+import { getTagProgram } from '~/apis/fetch/tag-program'
 import { AppHead } from '~/components/common/AppHead'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
@@ -68,10 +68,10 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
 
   // const skills = aboutInfo ? aboutInfo.skills : []
 
-  const categoryAboutHistoryInfos = await getCategoryAboutHistoryInfos({})
+  const categoryAboutHistory = await getCategoryAboutHistoryList({})
 
-  const years = categoryAboutHistoryInfos
-    ? categoryAboutHistoryInfos.list
+  const years = categoryAboutHistory
+    ? categoryAboutHistory.list
         .filter((info) => {
           return info.ext_col_01 !== ''
         })
