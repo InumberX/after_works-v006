@@ -1,5 +1,5 @@
 import { API_URL } from '~/config/env'
-import {
+import type {
   CategoryAboutHistory,
   List,
   PageInfo,

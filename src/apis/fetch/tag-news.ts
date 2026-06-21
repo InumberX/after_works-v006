@@ -1,5 +1,5 @@
 import { API_URL } from '~/config/env'
-import { TagNews, Tag } from '~/types/apis/fetch/tag-news'
+import type { TagNews, Tag } from '~/types/apis/fetch/tag-news'
 
 export type ResponseGetTagNews = Tag[]
 

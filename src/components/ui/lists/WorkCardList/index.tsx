@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 import styles from './index.module.css'
 
-import { WorkCard, WorkCardProps } from '~/components/ui/cards/WorkCard'
+import { WorkCard, type WorkCardProps } from '~/components/ui/cards/WorkCard'
 
 type Props = {
   className?: string
