@@ -59,6 +59,11 @@ export default {
         title: 'スキル',
       },
     },
+    history: {
+      title: 'これまでの歩み',
+      description:
+        '年ごとの担当業務と使用技術です。年を選ぶと内容が切り替わります。',
+    },
   },
   blogs: {
     title: 'ブログ',

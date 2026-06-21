@@ -59,6 +59,11 @@ I can create various types of websites such as responsive sites that display opt
         title: 'Skills',
       },
     },
+    history: {
+      title: 'My History',
+      description:
+        'My history and duties by year. Selecting a year will change the content.',
+    },
   },
   blogs: {
     title: 'Blog',
