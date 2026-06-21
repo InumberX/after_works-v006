@@ -1,11 +1,11 @@
 'use client'
 
 import clsx from 'clsx'
-import Link from 'next/link'
-import { ReactNode, useMemo } from 'react'
+import { ReactNode } from 'react'
 
 import styles from './index.module.css'
 
+import { PrimitiveButton } from '~/components/primitives/buttons/PrimitiveButton'
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'
 import { EventTypes } from '~/types/event'
 import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
@@ -41,62 +41,14 @@ export const BaseButton = ({
   variant = 'contained',
   color = 'primary',
 }: BaseButtonProps) => {
-  // 外部リンク判定
-  const isExternal = useMemo(() => {
-    return url ? url.startsWith('http://') || url.startsWith('https://') : false
-  }, [url])
-
-  return isExternal ? (
-    <a
-      href={url}
+  return (
+    <PrimitiveButton
+      url={url}
       target={target}
       rel={rel}
-      className={clsx(
-        styles.BaseButton,
-        styles[`BaseButton--${variant}`],
-        styles[`BaseButton--${color}`],
-        className,
-        isRightArrow && styles['BaseButton--rightArrow'],
-      )}
-    >
-      {leftElm && leftElm}
-      <span className={styles.BaseButton__text}>{text}</span>
-      {rightElm && rightElm}
-      {isRightArrow && (
-        <SvgIcon
-          variant='arrowRight'
-          className={styles.BaseButton__iconArrowRight}
-        />
-      )}
-    </a>
-  ) : url ? (
-    <Link
-      href={url}
-      target={target}
-      rel={rel}
-      className={clsx(
-        styles.BaseButton,
-        styles[`BaseButton--${variant}`],
-        styles[`BaseButton--${color}`],
-        className,
-        isRightArrow && styles['BaseButton--rightArrow'],
-      )}
-    >
-      {leftElm && leftElm}
-      <span className={styles.BaseButton__text}>{text}</span>
-      {rightElm && rightElm}
-      {isRightArrow && (
-        <SvgIcon
-          variant='arrowRight'
-          className={styles.BaseButton__iconArrowRight}
-        />
-      )}
-    </Link>
-  ) : (
-    <button
-      type={buttonType ?? 'button'}
+      buttonType={buttonType ?? 'button'}
+      isDisabled={isDisabled}
       onClick={onClick}
-      disabled={isDisabled}
       className={clsx(
         styles.BaseButton,
         styles[`BaseButton--${variant}`],
@@ -114,6 +66,6 @@ export const BaseButton = ({
           className={styles.BaseButton__iconArrowRight}
         />
       )}
-    </button>
+    </PrimitiveButton>
   )
 }

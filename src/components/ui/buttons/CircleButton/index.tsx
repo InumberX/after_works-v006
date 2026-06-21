@@ -1,11 +1,11 @@
 'use client'
 
 import clsx from 'clsx'
-import Link from 'next/link'
-import { ReactNode, useMemo } from 'react'
+import { ReactNode } from 'react'
 
 import styles from './index.module.css'
 
+import { PrimitiveButton } from '~/components/primitives/buttons/PrimitiveButton'
 import { EventTypes } from '~/types/event'
 import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
@@ -36,48 +36,14 @@ export const CircleButton = ({
   onClick,
   title,
 }: Props) => {
-  // 外部リンク判定
-  const isExternal = useMemo(() => {
-    return url ? url.startsWith('http://') || url.startsWith('https://') : false
-  }, [url])
-
-  return isExternal ? (
-    <a
-      href={url}
+  return (
+    <PrimitiveButton
+      url={url}
       target={target}
       rel={rel}
-      className={clsx(
-        styles.CircleButton,
-        className,
-        variant && styles[`CircleButton--${variant}`],
-        size && styles[`CircleButton--${size}`],
-      )}
-      title={title}
-      aria-label={title}
-    >
-      <span className={styles.CircleButton__container}>{children}</span>
-    </a>
-  ) : url ? (
-    <Link
-      href={url}
-      target={target}
-      rel={rel}
-      className={clsx(
-        styles.CircleButton,
-        className,
-        variant && styles[`CircleButton--${variant}`],
-        size && styles[`CircleButton--${size}`],
-      )}
-      title={title}
-      aria-label={title}
-    >
-      <span className={styles.CircleButton__container}>{children}</span>
-    </Link>
-  ) : (
-    <button
-      type={buttonType ?? 'button'}
+      buttonType={buttonType ?? 'button'}
+      isDisabled={isDisabled}
       onClick={onClick}
-      disabled={isDisabled}
       className={clsx(
         styles.CircleButton,
         className,
@@ -85,9 +51,9 @@ export const CircleButton = ({
         size && styles[`CircleButton--${size}`],
       )}
       title={title}
-      aria-label={title}
+      ariaLabel={title}
     >
       <span className={styles.CircleButton__container}>{children}</span>
-    </button>
+    </PrimitiveButton>
   )
 }

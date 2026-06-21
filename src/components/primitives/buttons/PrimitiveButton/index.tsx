@@ -2,10 +2,11 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-import { AriaRole, AriaAttributes, MouseEvent, ReactNode, useMemo } from 'react'
+import { AriaRole, AriaAttributes, ReactNode, useMemo } from 'react'
 
 import styles from './index.module.css'
 
+import { EventTypes } from '~/types/event'
 import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 export type PrimitiveButtonProps = {
@@ -16,7 +17,7 @@ export type PrimitiveButtonProps = {
   isDisabled?: boolean
   className?: string
   children?: ReactNode
-  onClick?: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void
+  onClick?: EventTypes['onClickButton']
   name?: string
   value?: string
   title?: string
@@ -67,7 +68,6 @@ export const PrimitiveButton = ({
       target={target}
       rel={rel}
       className={primitiveButtonClassName}
-      onClick={onClick}
       title={title}
       role={role}
       tabIndex={tabIndex}
@@ -83,7 +83,6 @@ export const PrimitiveButton = ({
       target={target}
       rel={rel}
       className={primitiveButtonClassName}
-      onClick={onClick}
       title={title}
       role={role}
       tabIndex={tabIndex}

@@ -3,11 +3,11 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useMemo, JSX } from 'react'
+import { JSX } from 'react'
 
 import styles from './index.module.css'
 
+import { PrimitiveButton } from '~/components/primitives/buttons/PrimitiveButton'
 import { BaseTagList } from '~/components/ui/lists/BaseTagList'
 import { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
@@ -156,11 +156,6 @@ export const ArticleCard = ({
 }: ArticleCardProps) => {
   const { targetRef } = useAnimelm<AnimelmElement>()
 
-  // 外部リンク判定
-  const isExternal = useMemo(() => {
-    return url ? url.startsWith('http://') || url.startsWith('https://') : false
-  }, [url])
-
   return (
     <div
       className={clsx(
@@ -169,65 +164,28 @@ export const ArticleCard = ({
       )}
       ref={isNotActiveAnimelm ? null : targetRef}
     >
-      {isExternal ? (
-        <a
-          href={url}
-          target={target}
-          rel={rel}
-          className={clsx(styles.ArticleCard__button, className)}
+      <PrimitiveButton
+        url={url}
+        target={target}
+        rel={rel}
+        buttonType={buttonType ?? 'button'}
+        isDisabled={isDisabled}
+        onClick={onClick}
+        className={clsx(styles.ArticleCard__button, className)}
+        title={title}
+        ariaLabel={title}
+      >
+        <ArticleCardContainer
+          mainVisual={mainVisual}
+          publishedAt={publishedAt}
+          startedAt={startedAt}
+          endedAt={endedAt}
           title={title}
-          aria-label={title}
-        >
-          <ArticleCardContainer
-            mainVisual={mainVisual}
-            publishedAt={publishedAt}
-            startedAt={startedAt}
-            endedAt={endedAt}
-            title={title}
-            titleTag={titleTag}
-            tags={tags}
-          />
-        </a>
-      ) : url ? (
-        <Link
-          href={url}
-          target={target}
-          rel={rel}
-          className={clsx(styles.ArticleCard__button, className)}
-          title={title}
-          aria-label={title}
-        >
-          <ArticleCardContainer
-            mainVisual={mainVisual}
-            publishedAt={publishedAt}
-            startedAt={startedAt}
-            endedAt={endedAt}
-            title={title}
-            titleTag={titleTag}
-            tags={tags}
-          />
-        </Link>
-      ) : (
-        <button
-          type={buttonType ?? 'button'}
-          onClick={onClick}
-          disabled={isDisabled}
-          className={clsx(styles.ArticleCard__button, className)}
-          title={title}
-          aria-label={title}
-        >
-          <ArticleCardContainer
-            mainVisual={mainVisual}
-            publishedAt={publishedAt}
-            startedAt={startedAt}
-            endedAt={endedAt}
-            title={title}
-            titleTag={titleTag}
-            tags={tags}
-            isButton
-          />
-        </button>
-      )}
+          titleTag={titleTag}
+          tags={tags}
+          isButton={!url}
+        />
+      </PrimitiveButton>
     </div>
   )
 }
