@@ -3,14 +3,14 @@ import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
 
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { getBlogsDetailInfo } from '~/apis/fetch/blogsDetail'
-import { getTagCms } from '~/apis/fetch/tagCms'
-import { getTagDesign } from '~/apis/fetch/tagDesign'
-import { getTagNews } from '~/apis/fetch/tagNews'
-import { getTagOther } from '~/apis/fetch/tagOther'
-import { getTagPosition } from '~/apis/fetch/tagPosition'
-import { getTagProgram } from '~/apis/fetch/tagProgram'
+import { getBlogsList } from '~/apis/fetch/blogs'
+import { getBlogsDetailInfo } from '~/apis/fetch/blogs-detail'
+import { getTagCms } from '~/apis/fetch/tag-cms'
+import { getTagDesign } from '~/apis/fetch/tag-design'
+import { getTagNews } from '~/apis/fetch/tag-news'
+import { getTagOther } from '~/apis/fetch/tag-other'
+import { getTagPosition } from '~/apis/fetch/tag-position'
+import { getTagProgram } from '~/apis/fetch/tag-program'
 import { AppHead } from '~/components/common/AppHead'
 import { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
@@ -85,7 +85,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     responseTagCms,
     responseTagOther,
     responseBlogsDetailInfo,
-    responseLatestBlogsInfos,
+    responseLatestBlogs,
   ] = await Promise.all([
     getCurrentLocale(),
     getScopedI18n('blogsDetail'),
@@ -98,7 +98,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     getBlogsDetailInfo({
       id: String(id),
     }),
-    getBlogsInfos({
+    getBlogsList({
       cnt: 5,
     }),
   ])
@@ -315,8 +315,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
         : [],
   }
 
-  const latestBlogsInfos: LatestArticleCardProps[] = responseLatestBlogsInfos
-    ? responseLatestBlogsInfos.list.map((info) => {
+  const latestBlogs: LatestArticleCardProps[] = responseLatestBlogs
+    ? responseLatestBlogs.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
             locale,
@@ -336,9 +336,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       })
     : []
 
-  return (
-    <Index latestArticleInfos={latestBlogsInfos} articleInfo={articleInfo} />
-  )
+  return <Index latestArticles={latestBlogs} articleInfo={articleInfo} />
 }
 
 export default BlogsDetailPage

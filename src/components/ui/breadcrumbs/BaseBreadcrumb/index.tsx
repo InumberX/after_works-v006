@@ -10,14 +10,14 @@ import { getI18n, getCurrentLocale } from '~/locales/server'
 
 type Props = {
   className?: string
-  infos: {
+  items: {
     url?: string
     name: string
   }[]
   isTop?: boolean
 }
 
-export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
+export const BaseBreadcrumb = async ({ className, items, isTop }: Props) => {
   const t = await getI18n()
   const locale = await getCurrentLocale()
 
@@ -57,7 +57,7 @@ export const BaseBreadcrumb = async ({ className, infos, isTop }: Props) => {
                 <meta itemProp='position' content='1' />
               </li>
 
-              {infos.map((info, i) => (
+              {items.map((info, i) => (
                 <li
                   key={i}
                   className={styles.BaseBreadcrumb__item}

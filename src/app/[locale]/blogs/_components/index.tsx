@@ -11,21 +11,21 @@ import { LayoutParallel } from '~/components/ui/layouts/LayoutParallel'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
 import { getScopedI18n } from '~/locales/server'
-import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tagNews'
+import { Tag as ApiResponseTagNewsTag } from '~/types/apis/fetch/tag-news'
 
 type Props = {
   defaultPage: number
   defaultTotalPage: number
-  defaultArticleInfos: WorkCardProps[]
-  latestArticleInfos: LatestArticleCardProps[]
+  defaultArticles: WorkCardProps[]
+  latestArticles: LatestArticleCardProps[]
   responseTagNews: ApiResponseTagNewsTag[]
 }
 
 export const Index = async ({
   defaultPage,
   defaultTotalPage,
-  defaultArticleInfos,
-  latestArticleInfos,
+  defaultArticles,
+  latestArticles,
   responseTagNews,
 }: Props) => {
   const scopedT = await getScopedI18n('blogs')
@@ -42,7 +42,7 @@ export const Index = async ({
       />
 
       <BaseBreadcrumb
-        infos={[
+        items={[
           {
             name: scopedT('pageTitle'),
           },
@@ -56,11 +56,11 @@ export const Index = async ({
               <MainColumn
                 defaultPage={defaultPage}
                 defaultTotalPage={defaultTotalPage}
-                defaultArticleInfos={defaultArticleInfos}
+                defaultArticles={defaultArticles}
                 responseTagNews={responseTagNews}
               />
             }
-            sideColumn={<SideColumn latestArticleInfos={latestArticleInfos} />}
+            sideColumn={<SideColumn latestArticles={latestArticles} />}
           />
         </LayoutInner>
       </LayoutSection>

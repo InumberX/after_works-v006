@@ -7,16 +7,20 @@ import { useState } from 'react'
 
 import styles from './index.module.css'
 
-import { getAboutHistoryInfo } from '~/apis/fetch/aboutHistory'
+import { getAboutHistoryInfo } from '~/apis/fetch/about-history'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
+import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
+import { SectionLead } from '~/components/ui/typographies/SectionLead'
+import { SectionTitle } from '~/components/ui/typographies/SectionTitle'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
+import { useScopedI18n } from '~/locales/client'
 import { useCurrentLocale } from '~/locales/client'
-import { Tag as ApiResponseTagCmsTag } from '~/types/apis/fetch/tagCms'
-import { Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tagDesign'
-import { Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tagOther'
-import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tagPosition'
-import { Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tagProgram'
+import { Tag as ApiResponseTagCmsTag } from '~/types/apis/fetch/tag-cms'
+import { Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tag-design'
+import { Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tag-other'
+import { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
+import { Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tag-program'
 
 export type HistoryItem = {
   title: string
@@ -57,6 +61,7 @@ export const History = ({
   const [contentsItems, setContentsItems] = useState(defaultItems)
   const [isSending, setIsSending] = useState(false)
   const { targetRef } = useAnimelm<AnimelmElement>()
+  const scopedT = useScopedI18n('about.history')
   const handleClickYear = async (id: string) => {
     if (isSending || currentYearId === id) {
       return
@@ -276,17 +281,32 @@ export const History = ({
           className={clsx(styles.History__container, 'AnimelmBlurIn')}
           ref={targetRef}
         >
+          <div className={styles.HistoryTitle}>
+            <div className={styles.HistoryTitle__container}>
+              <SectionTitle
+                subTitle='HISTORY'
+                title={<ReplaceNewLineText text={scopedT('title')} />}
+              />
+              <SectionLead
+                lead={<ReplaceNewLineText text={scopedT('description')} />}
+              />
+            </div>
+          </div>
           <div className={styles.History__parallel}>
             <aside className={styles.History__side}>
               <div className={styles.HistoryYear}>
                 <ul className={styles.HistoryYear__items}>
-                  {years.map((info) => (
-                    <li key={info.id} className={styles.HistoryYear__item}>
-                      {info.id === currentYearId ? (
-                        <h2
+                  {years.map((info) => {
+                    const isCurrentYear = info.id === currentYearId
+                    const Title = isCurrentYear ? 'h3' : 'div'
+
+                    return (
+                      <li key={info.id} className={styles.HistoryYear__item}>
+                        <Title
                           className={clsx(
                             styles.HistoryYear__title,
-                            styles['HistoryYear__title--active'],
+                            isCurrentYear &&
+                              styles['HistoryYear__title--active'],
                           )}
                         >
                           <button
@@ -303,27 +323,10 @@ export const History = ({
                               {info.label}
                             </time>
                           </button>
-                        </h2>
-                      ) : (
-                        <div className={styles.HistoryYear__title}>
-                          <button
-                            type='button'
-                            className={styles.HistoryYear__button}
-                            onClick={async () => {
-                              await handleClickYear(info.id)
-                            }}
-                          >
-                            <time
-                              className={styles.HistoryYear__text}
-                              dateTime={info.value}
-                            >
-                              {info.label}
-                            </time>
-                          </button>
-                        </div>
-                      )}
-                    </li>
-                  ))}
+                        </Title>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </aside>
@@ -336,70 +339,78 @@ export const History = ({
                       <div className={styles.HistoryContens__contents}>
                         {(info.startedAt || info.endedAt) && (
                           <div className={styles.HistoryContensDate}>
-                            {info.startedAt &&
-                            info.endedAt &&
-                            format(new Date(info.startedAt), 'yyyy-MM') ===
-                              format(new Date(info.endedAt), 'yyyy-MM') ? (
-                              <time
-                                className={styles.HistoryContensDate__text}
-                                dateTime={format(
-                                  new Date(info.startedAt),
-                                  'yyyy-MM',
-                                )}
-                              >
-                                {format(
-                                  new Date(info.startedAt),
-                                  locale === 'en' ? 'MMMM' : 'M月',
-                                )}
-                              </time>
-                            ) : (
-                              <>
-                                {info.startedAt && (
-                                  <time
-                                    className={styles.HistoryContensDate__text}
-                                    dateTime={format(
-                                      new Date(info.startedAt),
-                                      'yyyy-MM',
-                                    )}
-                                  >
-                                    {format(
-                                      new Date(info.startedAt),
-                                      locale === 'en' ? 'MMMM' : 'M月',
-                                    )}
-                                  </time>
-                                )}
-
-                                <span
-                                  className={
-                                    styles.HistoryContensDate__separator
-                                  }
+                            <div
+                              className={styles.HistoryContensDate__container}
+                            >
+                              {info.startedAt &&
+                              info.endedAt &&
+                              format(new Date(info.startedAt), 'yyyy-MM') ===
+                                format(new Date(info.endedAt), 'yyyy-MM') ? (
+                                <time
+                                  className={styles.HistoryContensDate__text}
+                                  dateTime={format(
+                                    new Date(info.startedAt),
+                                    'yyyy-MM',
+                                  )}
                                 >
-                                  {locale === 'en' ? '-' : '〜'}
-                                </span>
+                                  {format(
+                                    new Date(info.startedAt),
+                                    locale === 'en' ? 'MMMM' : 'M月',
+                                  )}
+                                </time>
+                              ) : (
+                                <>
+                                  {info.startedAt && (
+                                    <time
+                                      className={
+                                        styles.HistoryContensDate__text
+                                      }
+                                      dateTime={format(
+                                        new Date(info.startedAt),
+                                        'yyyy-MM',
+                                      )}
+                                    >
+                                      {format(
+                                        new Date(info.startedAt),
+                                        locale === 'en' ? 'MMMM' : 'M月',
+                                      )}
+                                    </time>
+                                  )}
 
-                                {info.endedAt && (
-                                  <time
-                                    className={styles.HistoryContensDate__text}
-                                    dateTime={format(
-                                      new Date(info.endedAt),
-                                      'yyyy-MM',
-                                    )}
+                                  <span
+                                    className={
+                                      styles.HistoryContensDate__separator
+                                    }
                                   >
-                                    {format(
-                                      new Date(info.endedAt),
-                                      locale === 'en' ? 'MMMM' : 'M月',
-                                    )}
-                                  </time>
-                                )}
-                              </>
-                            )}
+                                    {locale === 'en' ? '-' : '〜'}
+                                  </span>
+
+                                  {info.endedAt && (
+                                    <time
+                                      className={
+                                        styles.HistoryContensDate__text
+                                      }
+                                      dateTime={format(
+                                        new Date(info.endedAt),
+                                        'yyyy-MM',
+                                      )}
+                                    >
+                                      {format(
+                                        new Date(info.endedAt),
+                                        locale === 'en' ? 'MMMM' : 'M月',
+                                      )}
+                                    </time>
+                                  )}
+                                </>
+                              )}
+                            </div>
                           </div>
                         )}
 
                         <div className={styles.HistoryContensTitle}>
-                          <h3 className={styles.HistoryContensTitle__text}>
+                          <h4 className={styles.HistoryContensTitle__text}>
                             {info.title}
-                          </h3>
+                          </h4>
                         </div>
 
                         {info.tags.length > 0 && (

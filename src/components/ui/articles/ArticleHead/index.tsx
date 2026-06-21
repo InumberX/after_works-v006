@@ -127,7 +127,7 @@ export const ArticleHead = async ({ className, info }: Props) => {
                     </div>
                   )}
                   <div className={styles.ArticleHeadTag__list}>
-                    <BaseTagList infos={item.items} />
+                    <BaseTagList items={item.items} />
                   </div>
                 </div>
               </li>

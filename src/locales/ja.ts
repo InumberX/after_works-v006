@@ -52,11 +52,20 @@ export default {
       name: 'NiNE',
       position: 'フロントエンドエンジニア',
       lead: 'デザインからコーディングまで、一貫して対応いたします。',
-      certification: {
+    },
+    history: {
+      title: 'これまでの歩み',
+      description:
+        '年ごとの担当業務と使用技術です。年を選ぶと内容が切り替わります。',
+    },
+    skills: {
+      qualifications: {
         title: '資格',
+        subTitle: 'QUALIFICATIONS',
       },
-      skill: {
+      skills: {
         title: 'スキル',
+        subTitle: 'SKILLS',
       },
     },
   },

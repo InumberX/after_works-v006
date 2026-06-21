@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 
 import { Index } from './_components'
 
-import { getTagPosition } from '~/apis/fetch/tagPosition'
-import { getWorksInfos } from '~/apis/fetch/works'
+import { getTagPosition } from '~/apis/fetch/tag-position'
+import { getWorksList } from '~/apis/fetch/works'
 import { AppHead } from '~/components/common/AppHead'
 import { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
@@ -35,20 +35,20 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
     searchParams,
   ])
 
-  const [responseWorksInfos, responseLatestWorksInfos] = await Promise.all([
-    getWorksInfos({
+  const [responseWorks, responseLatestWorks] = await Promise.all([
+    getWorksList({
       ...(currentSearchParams &&
         currentSearchParams.page && {
           page: parseInt(currentSearchParams.page as string, 10),
         }),
     }),
-    getWorksInfos({
+    getWorksList({
       cnt: 5,
     }),
   ])
 
-  const defaultWorksInfos: WorkCardProps[] = responseWorksInfos
-    ? responseWorksInfos.list.map((info) => {
+  const defaultWorks: WorkCardProps[] = responseWorks
+    ? responseWorks.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -104,8 +104,8 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const latestWorksInfos: LatestArticleCardProps[] = responseLatestWorksInfos
-    ? responseLatestWorksInfos.list.map((info) => {
+  const latestWorks: LatestArticleCardProps[] = responseLatestWorks
+    ? responseLatestWorks.list.map((info) => {
         return {
           url: routes.worksDetail.url({
             locale,
@@ -133,11 +133,9 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
           ? parseInt(currentSearchParams.page as string, 10)
           : 1
       }
-      defaultTotalPage={
-        responseWorksInfos ? responseWorksInfos.pageInfo.totalPageCnt : 0
-      }
-      defaultArticleInfos={defaultWorksInfos}
-      latestArticleInfos={latestWorksInfos}
+      defaultTotalPage={responseWorks ? responseWorks.pageInfo.totalPageCnt : 0}
+      defaultArticles={defaultWorks}
+      latestArticles={latestWorks}
       responseTagPosition={responseTagPosition}
     />
   )

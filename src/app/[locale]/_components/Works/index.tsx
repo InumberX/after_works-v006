@@ -17,10 +17,10 @@ import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useScopedI18n, useCurrentLocale } from '~/locales/client'
 
 type Props = {
-  articleInfos: WorkCardProps[]
+  articles: WorkCardProps[]
 }
 
-export const Works = ({ articleInfos }: Props) => {
+export const Works = ({ articles }: Props) => {
   const scopedT = useScopedI18n('home.works')
   const { targetRef: sliderTargetRef } = useAnimelm<AnimelmElement>()
   const { targetRef: buttonTargetRef } = useAnimelm<AnimelmElement>()
@@ -49,7 +49,7 @@ export const Works = ({ articleInfos }: Props) => {
               ref={sliderTargetRef}
             >
               <WorkCardList
-                infos={articleInfos.map((article, articleIndex) => ({
+                items={articles.map((article, articleIndex) => ({
                   ...article,
                   size: articleIndex === 0 ? 'pcLarge' : 'medium',
                 }))}

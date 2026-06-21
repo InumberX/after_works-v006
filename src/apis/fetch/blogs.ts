@@ -1,14 +1,14 @@
 import { API_URL } from '~/config/env'
 import { Blogs, List, PageInfo } from '~/types/apis/fetch/blogs'
 
-export type ResponseGetBlogsInfos =
+export type ResponseGetBlogsList =
   | {
       list: List[]
       pageInfo: PageInfo
     }
   | undefined
 
-export const getBlogsInfos = async ({
+export const getBlogsList = async ({
   cnt = 12,
   page = 1,
   orderQuery = 'inst_ymdhi=DESC',
@@ -16,7 +16,7 @@ export const getBlogsInfos = async ({
   cnt?: number
   page?: number
   orderQuery?: string
-}): Promise<ResponseGetBlogsInfos> => {
+}): Promise<ResponseGetBlogsList> => {
   const param = [
     `cnt=${cnt}`,
     `pageID=${page}`,

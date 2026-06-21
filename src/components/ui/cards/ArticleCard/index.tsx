@@ -129,7 +129,7 @@ const ArticleCardContainer = ({
       {tags.length > 0 && (
         <BaseTagList
           className={styles.ArticleCardTag}
-          infos={tags}
+          items={tags}
           isJustifyEnd
         />
       )}

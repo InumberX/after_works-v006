@@ -62,7 +62,7 @@ npm run upgrade         # Upgrade all packages (use with caution)
 - **Jotai** for global state (atomic state management)
 - Key stores in `src/store/`:
   - `breakpoints/` - Responsive breakpoint detection
-  - `headerInfos/` - Header state management
+  - `header/` - Header state management
 
 ### Providers Architecture
 

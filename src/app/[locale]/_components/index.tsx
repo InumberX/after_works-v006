@@ -17,9 +17,9 @@ export const Index = ({ latestBlogs, latestWorks }: Props) => {
   return (
     <LayoutPageWrapper isHiddenBackground>
       <MainVisual />
-      {latestWorks.length > 0 && <Works articleInfos={latestWorks} />}
+      {latestWorks.length > 0 && <Works articles={latestWorks} />}
       <Service />
-      {latestBlogs.length > 0 && <Blog articleInfos={latestBlogs} />}
+      {latestBlogs.length > 0 && <Blog articles={latestBlogs} />}
       <Contact />
     </LayoutPageWrapper>
   )

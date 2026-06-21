@@ -14,7 +14,7 @@ type SnsInfo = {
   title: string
 }
 
-export const snsInfos: {
+export const snsLinks: {
   [key in SnsKey]: SnsInfo
 } = {
   x: {

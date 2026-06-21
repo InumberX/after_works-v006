@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 
 import { Index } from './_components'
 
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { getTagPosition } from '~/apis/fetch/tagPosition'
-import { getWorksInfos } from '~/apis/fetch/works'
+import { getBlogsList } from '~/apis/fetch/blogs'
+import { getTagPosition } from '~/apis/fetch/tag-position'
+import { getWorksList } from '~/apis/fetch/works'
 import { AppHead } from '~/components/common/AppHead'
 import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
 import { WorkCardProps } from '~/components/ui/cards/WorkCard'
@@ -29,21 +29,21 @@ const HomePage = async () => {
   const [
     locale,
     responseTagPosition,
-    responseLatestBlogInfos,
-    responseLatestWorksInfos,
+    responseLatestBlogs,
+    responseLatestWorks,
   ] = await Promise.all([
     getCurrentLocale(),
     getTagPosition(),
-    getBlogsInfos({
+    getBlogsList({
       cnt: 5,
     }),
-    getWorksInfos({
-      cnt: 5,
+    getWorksList({
+      cnt: 4,
     }),
   ])
 
-  const latestBlogs: ArticleCardProps[] = responseLatestBlogInfos
-    ? responseLatestBlogInfos.list.map((info) => {
+  const latestBlogs: ArticleCardProps[] = responseLatestBlogs
+    ? responseLatestBlogs.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -101,8 +101,8 @@ const HomePage = async () => {
       })
     : []
 
-  const latestWorks: WorkCardProps[] = responseLatestWorksInfos
-    ? responseLatestWorksInfos.list.map((info) => {
+  const latestWorks: WorkCardProps[] = responseLatestWorks
+    ? responseLatestWorks.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {

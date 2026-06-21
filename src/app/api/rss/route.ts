@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 
-import { getBlogsInfos } from '~/apis/fetch/blogs'
-import { getHobbyInfos } from '~/apis/fetch/hobby'
-import { getWorksInfos } from '~/apis/fetch/works'
+import { getBlogsList } from '~/apis/fetch/blogs'
+import { getHobbyList } from '~/apis/fetch/hobby'
+import { getWorksList } from '~/apis/fetch/works'
 import { baseDescriptions } from '~/components/common/AppHead'
 import { SITE_NAME, SITE_URL } from '~/config/env'
 import { routes } from '~/config/routes'
@@ -18,43 +18,43 @@ export const GET = async () => {
     '<language>ja-JP</language>',
   ]
 
-  const responseBlogsTotalCnt = await getBlogsInfos({
+  const responseBlogsTotalCount = await getBlogsList({
     cnt: 1,
   })
 
-  const responseBlogsInfos = responseBlogsTotalCnt
-    ? await getBlogsInfos({
-        cnt: responseBlogsTotalCnt.pageInfo.totalCnt,
+  const responseBlogs = responseBlogsTotalCount
+    ? await getBlogsList({
+        cnt: responseBlogsTotalCount.pageInfo.totalCnt,
       })
     : undefined
 
-  const responseWorksTotalCnt = await getWorksInfos({
+  const responseWorksTotalCount = await getWorksList({
     cnt: 1,
   })
 
-  const responseWorksInfos = responseWorksTotalCnt
-    ? await getWorksInfos({
-        cnt: responseWorksTotalCnt.pageInfo.totalCnt,
+  const responseWorks = responseWorksTotalCount
+    ? await getWorksList({
+        cnt: responseWorksTotalCount.pageInfo.totalCnt,
       })
     : undefined
 
-  const responseHobbyTotalCnt = await getHobbyInfos({
+  const responseHobbyTotalCount = await getHobbyList({
     cnt: 1,
   })
 
-  const responseHobbyInfos = responseHobbyTotalCnt
-    ? await getHobbyInfos({
-        cnt: responseHobbyTotalCnt.pageInfo.totalCnt,
+  const responseHobby = responseHobbyTotalCount
+    ? await getHobbyList({
+        cnt: responseHobbyTotalCount.pageInfo.totalCnt,
       })
     : undefined
 
-  if (responseBlogsInfos && responseBlogsInfos.list.length > 0) {
+  if (responseBlogs && responseBlogs.list.length > 0) {
     for (
-      let i = 0, iLength = responseBlogsInfos.list.length;
+      let i = 0, iLength = responseBlogs.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseBlogsInfos.list[i]
+      const info = responseBlogs.list[i]
       const url = {
         ja: routes.blogsDetail.url({
           isFullPath: true,
@@ -90,13 +90,13 @@ export const GET = async () => {
     }
   }
 
-  if (responseWorksInfos && responseWorksInfos.list.length > 0) {
+  if (responseWorks && responseWorks.list.length > 0) {
     for (
-      let i = 0, iLength = responseWorksInfos.list.length;
+      let i = 0, iLength = responseWorks.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseWorksInfos.list[i]
+      const info = responseWorks.list[i]
       const url = {
         ja: routes.worksDetail.url({
           isFullPath: true,
@@ -132,13 +132,13 @@ export const GET = async () => {
     }
   }
 
-  if (responseHobbyInfos && responseHobbyInfos.list.length > 0) {
+  if (responseHobby && responseHobby.list.length > 0) {
     for (
-      let i = 0, iLength = responseHobbyInfos.list.length;
+      let i = 0, iLength = responseHobby.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseHobbyInfos.list[i]
+      const info = responseHobby.list[i]
       const url = {
         ja: routes.hobbyDetail.url({
           isFullPath: true,
