@@ -31,7 +31,7 @@
     "@inumberx/cloudflare-workers-basic-auth": "^1.0.0",
     "@opennextjs/cloudflare": "^1.19.0",
     "clsx": "^2.1.1",
-    "date-fns": "^4.3.0",
+    "date-fns": "^4.4.0",
     "framer-motion": "^12.40.0",
     "jotai": "^2.20.0",
     "keen-slider": "^6.8.6",
