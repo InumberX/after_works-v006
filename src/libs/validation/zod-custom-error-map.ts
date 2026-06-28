@@ -1,4 +1,4 @@
-import * as zod from 'zod'
+import type * as zod from 'zod'
 
 const convertTypeToNativeLanguage = (type: string): string => {
   switch (type) {

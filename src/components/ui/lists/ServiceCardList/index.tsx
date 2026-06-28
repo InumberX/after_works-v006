@@ -4,7 +4,7 @@ import styles from './index.module.css'
 
 import {
   ServiceCard,
-  ServiceCardProps,
+  type ServiceCardProps,
 } from '~/components/ui/cards/ServiceCard'
 
 export type Props = {

@@ -3,18 +3,19 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useMemo, JSX } from 'react'
+import type { JSX } from 'react'
 
 import styles from './index.module.css'
 
+import {
+  PrimitiveButton,
+  type PrimitiveButtonProps,
+} from '~/components/primitives/buttons/PrimitiveButton'
 import { BaseTagList } from '~/components/ui/lists/BaseTagList'
-import { BaseTagProps } from '~/components/ui/tags/BaseTag'
+import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 import { useCurrentLocale } from '~/locales/client'
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 type WorkCardContainerProps = {
   mainVisual?: {
@@ -30,14 +31,16 @@ type WorkCardContainerProps = {
   isButton?: boolean
 }
 
-export type WorkCardProps = {
-  url?: string
-  target?: AnchorTarget
-  rel?: AnchorRel
-  buttonType?: ButtonType
-  isDisabled?: boolean
-  className?: string
-  onClick?: EventTypes['onClickButton']
+export type WorkCardProps = Pick<
+  PrimitiveButtonProps,
+  | 'url'
+  | 'target'
+  | 'rel'
+  | 'buttonType'
+  | 'isDisabled'
+  | 'className'
+  | 'onClick'
+> & {
   isNotActiveAnimelm?: boolean
   size?: 'medium' | 'pcLarge'
 } & WorkCardContainerProps
@@ -154,11 +157,6 @@ export const WorkCard = ({
 }: WorkCardProps) => {
   const { targetRef } = useAnimelm<AnimelmElement>()
 
-  // 外部リンク判定
-  const isExternal = useMemo(() => {
-    return url ? url.startsWith('http://') || url.startsWith('https://') : false
-  }, [url])
-
   return (
     <div
       className={clsx(
@@ -168,65 +166,28 @@ export const WorkCard = ({
       )}
       ref={isNotActiveAnimelm ? null : targetRef}
     >
-      {isExternal ? (
-        <a
-          href={url}
-          target={target}
-          rel={rel}
-          className={clsx(styles.WorkCard__button, className)}
+      <PrimitiveButton
+        url={url}
+        target={target}
+        rel={rel}
+        buttonType={buttonType ?? 'button'}
+        isDisabled={isDisabled}
+        onClick={onClick}
+        className={clsx(styles.WorkCard__button, className)}
+        title={title}
+        ariaLabel={title}
+      >
+        <WorkCardContainer
+          mainVisual={mainVisual}
+          publishedAt={publishedAt}
+          startedAt={startedAt}
+          endedAt={endedAt}
           title={title}
-          aria-label={title}
-        >
-          <WorkCardContainer
-            mainVisual={mainVisual}
-            publishedAt={publishedAt}
-            startedAt={startedAt}
-            endedAt={endedAt}
-            title={title}
-            titleTag={titleTag}
-            tags={tags}
-          />
-        </a>
-      ) : url ? (
-        <Link
-          href={url}
-          target={target}
-          rel={rel}
-          className={clsx(styles.WorkCard__button, className)}
-          title={title}
-          aria-label={title}
-        >
-          <WorkCardContainer
-            mainVisual={mainVisual}
-            publishedAt={publishedAt}
-            startedAt={startedAt}
-            endedAt={endedAt}
-            title={title}
-            titleTag={titleTag}
-            tags={tags}
-          />
-        </Link>
-      ) : (
-        <button
-          type={buttonType ?? 'button'}
-          onClick={onClick}
-          disabled={isDisabled}
-          className={clsx(styles.WorkCard__button, className)}
-          title={title}
-          aria-label={title}
-        >
-          <WorkCardContainer
-            mainVisual={mainVisual}
-            publishedAt={publishedAt}
-            startedAt={startedAt}
-            endedAt={endedAt}
-            title={title}
-            titleTag={titleTag}
-            tags={tags}
-            isButton
-          />
-        </button>
-      )}
+          titleTag={titleTag}
+          tags={tags}
+          isButton={!url}
+        />
+      </PrimitiveButton>
     </div>
   )
 }

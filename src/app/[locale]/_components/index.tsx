@@ -4,8 +4,8 @@ import { Service } from './Service'
 import { Works } from './Works'
 
 import { Contact } from '~/components/common/Contact'
-import { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
-import { WorkCardProps } from '~/components/ui/cards/WorkCard'
+import type { ArticleCardProps } from '~/components/ui/cards/ArticleCard'
+import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 
 type Props = {

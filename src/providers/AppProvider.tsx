@@ -1,4 +1,4 @@
-import { StrictMode, ReactNode } from 'react'
+import { StrictMode, type ReactNode } from 'react'
 
 import { BreakpointsProvider } from '~/providers/BreakpointsProvider'
 import { JotaiProvider } from '~/providers/JotaiProvider'

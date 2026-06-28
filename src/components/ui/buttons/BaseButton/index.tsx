@@ -1,56 +1,40 @@
 'use client'
 
 import clsx from 'clsx'
-import Link from 'next/link'
-import { ReactNode, useMemo } from 'react'
+import type { ReactNode } from 'react'
 
 import styles from './index.module.css'
 
+import {
+  PrimitiveButton,
+  type PrimitiveButtonProps,
+} from '~/components/primitives/buttons/PrimitiveButton'
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
-export type BaseButtonProps = {
-  url?: string
-  target?: AnchorTarget
-  rel?: AnchorRel
-  buttonType?: ButtonType
-  isDisabled?: boolean
-  className?: string
+export type BaseButtonProps = Omit<PrimitiveButtonProps, 'children'> & {
   text: ReactNode
   leftElm?: ReactNode
   rightElm?: ReactNode
-  onClick?: EventTypes['onClickButton']
   isRightArrow?: boolean
   variant?: 'contained' | 'outlined'
   color?: 'primary' | 'light'
 }
 
 export const BaseButton = ({
-  url,
-  target,
-  rel,
-  buttonType,
-  isDisabled,
-  className,
   text,
   leftElm,
   rightElm,
-  onClick,
   isRightArrow,
   variant = 'contained',
   color = 'primary',
+  className,
+  buttonType,
+  ...rest
 }: BaseButtonProps) => {
-  // 外部リンク判定
-  const isExternal = useMemo(() => {
-    return url ? url.startsWith('http://') || url.startsWith('https://') : false
-  }, [url])
-
-  return isExternal ? (
-    <a
-      href={url}
-      target={target}
-      rel={rel}
+  return (
+    <PrimitiveButton
+      {...rest}
+      buttonType={buttonType ?? 'button'}
       className={clsx(
         styles.BaseButton,
         styles[`BaseButton--${variant}`],
@@ -68,52 +52,6 @@ export const BaseButton = ({
           className={styles.BaseButton__iconArrowRight}
         />
       )}
-    </a>
-  ) : url ? (
-    <Link
-      href={url}
-      target={target}
-      rel={rel}
-      className={clsx(
-        styles.BaseButton,
-        styles[`BaseButton--${variant}`],
-        styles[`BaseButton--${color}`],
-        className,
-        isRightArrow && styles['BaseButton--rightArrow'],
-      )}
-    >
-      {leftElm && leftElm}
-      <span className={styles.BaseButton__text}>{text}</span>
-      {rightElm && rightElm}
-      {isRightArrow && (
-        <SvgIcon
-          variant='arrowRight'
-          className={styles.BaseButton__iconArrowRight}
-        />
-      )}
-    </Link>
-  ) : (
-    <button
-      type={buttonType ?? 'button'}
-      onClick={onClick}
-      disabled={isDisabled}
-      className={clsx(
-        styles.BaseButton,
-        styles[`BaseButton--${variant}`],
-        styles[`BaseButton--${color}`],
-        className,
-        isRightArrow && styles['BaseButton--rightArrow'],
-      )}
-    >
-      {leftElm && leftElm}
-      <span className={styles.BaseButton__text}>{text}</span>
-      {rightElm && rightElm}
-      {isRightArrow && (
-        <SvgIcon
-          variant='arrowRight'
-          className={styles.BaseButton__iconArrowRight}
-        />
-      )}
-    </button>
+    </PrimitiveButton>
   )
 }

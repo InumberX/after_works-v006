@@ -3,15 +3,16 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useMemo, JSX } from 'react'
+import type { JSX } from 'react'
 
 import styles from './index.module.css'
 
+import {
+  PrimitiveButton,
+  type PrimitiveButtonProps,
+} from '~/components/primitives/buttons/PrimitiveButton'
 import { STATIC_IMAGE_DIR, CACHE_BUSTER } from '~/config/env'
 import { useCurrentLocale } from '~/locales/client'
-import { EventTypes } from '~/types/event'
-import { ButtonType, AnchorTarget, AnchorRel } from '~/types/html'
 
 type LatestArticleCardContainerProps = {
   mainVisual?: {
@@ -26,15 +27,17 @@ type LatestArticleCardContainerProps = {
   isButton?: boolean
 }
 
-export type LatestArticleCardProps = {
-  url?: string
-  target?: AnchorTarget
-  rel?: AnchorRel
-  buttonType?: ButtonType
-  isDisabled?: boolean
-  className?: string
-  onClick?: EventTypes['onClickButton']
-} & LatestArticleCardContainerProps
+export type LatestArticleCardProps = Pick<
+  PrimitiveButtonProps,
+  | 'url'
+  | 'target'
+  | 'rel'
+  | 'buttonType'
+  | 'isDisabled'
+  | 'className'
+  | 'onClick'
+> &
+  LatestArticleCardContainerProps
 
 const LatestArticleCardContainer = ({
   mainVisual,
@@ -140,55 +143,17 @@ export const LatestArticleCard = ({
   title,
   titleTag,
 }: LatestArticleCardProps) => {
-  // 外部リンク判定
-  const isExternal = useMemo(() => {
-    return url ? url.startsWith('http://') || url.startsWith('https://') : false
-  }, [url])
-
-  return isExternal ? (
-    <a
-      href={url}
+  return (
+    <PrimitiveButton
+      url={url}
       target={target}
       rel={rel}
-      className={clsx(styles.LatestArticleCard, className)}
-      title={title}
-      aria-label={title}
-    >
-      <LatestArticleCardContainer
-        mainVisual={mainVisual}
-        publishedAt={publishedAt}
-        startedAt={startedAt}
-        endedAt={endedAt}
-        title={title}
-        titleTag={titleTag}
-      />
-    </a>
-  ) : url ? (
-    <Link
-      href={url}
-      target={target}
-      rel={rel}
-      className={clsx(styles.LatestArticleCard, className)}
-      title={title}
-      aria-label={title}
-    >
-      <LatestArticleCardContainer
-        mainVisual={mainVisual}
-        publishedAt={publishedAt}
-        startedAt={startedAt}
-        endedAt={endedAt}
-        title={title}
-        titleTag={titleTag}
-      />
-    </Link>
-  ) : (
-    <button
-      type={buttonType ?? 'button'}
+      buttonType={buttonType ?? 'button'}
+      isDisabled={isDisabled}
       onClick={onClick}
-      disabled={isDisabled}
       className={clsx(styles.LatestArticleCard, className)}
       title={title}
-      aria-label={title}
+      ariaLabel={title}
     >
       <LatestArticleCardContainer
         mainVisual={mainVisual}
@@ -197,8 +162,8 @@ export const LatestArticleCard = ({
         endedAt={endedAt}
         title={title}
         titleTag={titleTag}
-        isButton
+        isButton={!url}
       />
-    </button>
+    </PrimitiveButton>
   )
 }

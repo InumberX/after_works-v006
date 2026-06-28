@@ -1,7 +1,7 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { ReactNode, useEffect } from 'react'
+import { type ReactNode, useEffect } from 'react'
 
 import {
   isBreakpointXxsAtom,
