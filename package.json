@@ -76,10 +76,10 @@
     "wrangler": "^4.105.0"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "volta": {
-    "node": "22.20.0"
+    "node": "24.16.0"
   },
   "browserslist": [
     "last 1 Chrome versions",
