@@ -28,7 +28,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@inumberx/cloudflare-workers-basic-auth": "^1.0.0",
+    "@inumberx/cloudflare-workers-basic-auth": "^1.0.1",
     "@opennextjs/cloudflare": "^1.20.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
