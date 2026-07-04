@@ -146,7 +146,7 @@ I can create various types of websites such as responsive sites that display opt
       'I am a Front-end Engineer living in Tokyo: NiNE. This is my portfolio website. On this page, you can view a list of my past achievements and creations.',
     pageTitle: 'Works',
     pageSubTitle: '',
-    lead: 'I have created a list of websites and creations I have worked on for clients and as a hobby.\nMy responsibilities range from direction, design, and coding to various other areas.',
+    lead: 'I have created a list of websites and creations I have worked on for clients.\nMy responsibilities range from direction, design, and coding to various other areas.',
     sideColumn: {
       latestArticle: {
         title: 'Recent Works',
