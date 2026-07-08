@@ -1,10 +1,10 @@
 @layer component-page {
   .Skills__container {
     display: grid;
-    gap: 40px;
+    gap: 80px 40px;
     grid-template-columns: 1fr;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       grid-template-columns: repeat(2, 1fr);
     }
   }

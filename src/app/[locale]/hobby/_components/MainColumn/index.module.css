@@ -1,4 +1,8 @@
 @layer component-page {
+  .MainColumn__container {
+    container-type: inline-size;
+  }
+
   .MainColumn__pagination {
     margin-block-start: 40px;
   }

@@ -1,1 +1,8 @@
-/* stylelint-disable no-empty-source */
+@layer component-page {
+  @mixin getContainerQueryLg {
+    .SideColumn {
+      inset-block-start: calc(var(--layout-header-height) + 24px);
+      position: sticky;
+    }
+  }
+}

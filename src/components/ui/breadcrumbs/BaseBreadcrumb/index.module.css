@@ -11,7 +11,7 @@
   .BaseBreadcrumb__wrapper {
     overflow-x: auto;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       overflow: hidden;
     }
   }
@@ -20,7 +20,7 @@
     display: flex;
     gap: 8px;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       flex-wrap: wrap;
     }
 
@@ -28,7 +28,7 @@
       &:last-of-type {
         padding-inline-end: var(--layout-inner-padding-xs);
 
-        @mixin getMediaQuerySm {
+        @mixin getContainerQuerySm {
           padding-inline-end: 0;
         }
       }
@@ -42,7 +42,7 @@
     gap: 8px;
     white-space: nowrap;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       flex-shrink: 1;
       white-space: normal;
     }
