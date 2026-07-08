@@ -3,13 +3,17 @@ import type { ReactNode } from 'react'
 
 import styles from './index.module.css'
 
-type Props = {
+export type LayoutInnerProps = {
   children: ReactNode
   className?: string
-  size?: 'small'
+  size?: 'small' | 'medium' | 'large' | 'maximum' | 'full'
 }
 
-export const LayoutInner = ({ children, className, size }: Props) => {
+export const LayoutInner = ({
+  children,
+  className,
+  size = 'medium',
+}: LayoutInnerProps) => {
   return (
     <div
       className={clsx(

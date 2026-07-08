@@ -174,7 +174,7 @@ export const LayoutHeader = () => {
   return (
     <header className={styles.LayoutHeader}>
       <div className={styles.LayoutHeader__wrapper}>
-        <LayoutInner className={styles.LayoutHeader__inner}>
+        <LayoutInner className={styles.LayoutHeader__inner} size='full'>
           <div className={styles.LayoutHeader__container}>
             <div className={styles.LayoutHeaderLogo}>
               <Link

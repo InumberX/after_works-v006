@@ -70,7 +70,6 @@
     border-radius: 0;
     color: var(--color-palette-white);
     display: flex;
-    font-weight: var(--font-weight-bold);
     text-align: start;
     text-decoration: none;
     transition:

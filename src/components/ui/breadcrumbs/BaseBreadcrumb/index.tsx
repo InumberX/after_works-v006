@@ -4,7 +4,10 @@ import Link from 'next/link'
 import styles from './index.module.css'
 
 import { SvgIcon } from '~/components/ui/icons/SvgIcon'
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import {
+  LayoutInner,
+  type LayoutInnerProps,
+} from '~/components/ui/layouts/LayoutInner'
 import { routes } from '~/config/routes'
 import { getI18n, getCurrentLocale } from '~/locales/server'
 
@@ -15,9 +18,15 @@ type Props = {
     name: string
   }[]
   isTop?: boolean
+  innerSize?: LayoutInnerProps['size']
 }
 
-export const BaseBreadcrumb = async ({ className, items, isTop }: Props) => {
+export const BaseBreadcrumb = async ({
+  className,
+  items,
+  isTop,
+  innerSize,
+}: Props) => {
   const t = await getI18n()
   const locale = await getCurrentLocale()
 
@@ -30,7 +39,7 @@ export const BaseBreadcrumb = async ({ className, items, isTop }: Props) => {
       )}
     >
       <div className={styles.BaseBreadcrumb__wrapper}>
-        <LayoutInner>
+        <LayoutInner size={innerSize}>
           <div className={styles.BaseBreadcrumb__container}>
             <ol
               className={styles.BaseBreadcrumb__items}
