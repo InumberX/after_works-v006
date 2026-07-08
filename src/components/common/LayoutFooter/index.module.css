@@ -1,6 +1,5 @@
 @layer component-common {
   .LayoutFooter {
-    container-type: inline-size;
     margin-block-start: auto;
   }
 
