@@ -40,11 +40,11 @@
     padding-block: 0;
     padding-inline: var(--layout-inner-padding-xs);
 
-    @mixin getContainerQuerySm {
+    @mixin getMediaQuerySm {
       padding-inline: var(--layout-inner-padding-sm);
     }
 
-    @mixin getContainerQueryMd {
+    @mixin getMediaQueryMd {
       padding-inline: var(--layout-inner-padding-md);
     }
   }
