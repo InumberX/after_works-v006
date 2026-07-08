@@ -39,6 +39,7 @@ export const Index = async ({
             ? scopedT('pageSubTitle')
             : ''
         }
+        innerSize='large'
       />
 
       <BaseBreadcrumb
@@ -47,10 +48,11 @@ export const Index = async ({
             name: scopedT('pageTitle'),
           },
         ]}
+        innerSize='large'
       />
 
       <LayoutSection tag='div' isNotTopMargin>
-        <LayoutInner>
+        <LayoutInner size='large'>
           <LayoutParallel
             mainColumn={
               <MainColumn

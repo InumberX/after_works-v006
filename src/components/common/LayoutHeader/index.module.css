@@ -1,5 +1,6 @@
 @layer component-common {
   .LayoutHeader {
+    container-type: inline-size;
     inline-size: 100%;
     inset-block-start: 0;
     inset-inline-start: 0;

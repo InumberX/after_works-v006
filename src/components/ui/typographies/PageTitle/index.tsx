@@ -5,7 +5,10 @@ import type { ReactNode, JSX } from 'react'
 
 import styles from './index.module.css'
 
-import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
+import {
+  LayoutInner,
+  type LayoutInnerProps,
+} from '~/components/ui/layouts/LayoutInner'
 import { useAnimelm, type AnimelmElement } from '~/hooks/use-animelm'
 
 type Props = {
@@ -13,15 +16,22 @@ type Props = {
   title?: ReactNode
   subTitle?: ReactNode
   titleTag?: keyof JSX.IntrinsicElements
+  innerSize?: LayoutInnerProps['size']
 }
 
-export const PageTitle = ({ className, title, subTitle, titleTag }: Props) => {
+export const PageTitle = ({
+  className,
+  title,
+  subTitle,
+  titleTag,
+  innerSize,
+}: Props) => {
   const Title = titleTag ?? 'h1'
   const { targetRef, isVisible } = useAnimelm<AnimelmElement>()
 
   return (
     <div className={clsx(styles.PageTitle, className)} ref={targetRef}>
-      <LayoutInner>
+      <LayoutInner size={innerSize}>
         <div className={styles.PageTitle__container}>
           {subTitle && (
             <span

@@ -7,7 +7,7 @@
       'contents';
     grid-template-columns: 1fr;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       align-items: flex-start;
       gap: 64px;
       grid-template-areas: 'icon contents';
@@ -22,7 +22,7 @@
     grid-area: icon;
     grid-template-columns: 1fr;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       @mixin getClampPx inline-size, 200, 400;
     }
   }

@@ -5,11 +5,11 @@
 
     @mixin getClampPx gap, 24, 40;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @mixin getMediaQueryMd {
+    @mixin getContainerQueryMd {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -17,11 +17,11 @@
   .WorkCardList__item.WorkCardList__item--pcLarge {
     grid-column: span 1;
 
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       grid-column: span 2;
     }
 
-    @mixin getMediaQueryMd {
+    @mixin getContainerQueryMd {
       grid-column: span 3;
     }
   }

@@ -1,4 +1,11 @@
 @layer component-page {
+  @mixin getContainerQueryLg {
+    .SideColumn {
+      inset-block-start: calc(var(--layout-header-height) + 24px);
+      position: sticky;
+    }
+  }
+
   .SideColumn__googleAdList {
     margin-block-start: 40px;
   }

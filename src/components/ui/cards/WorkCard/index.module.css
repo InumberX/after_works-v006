@@ -86,7 +86,7 @@
   }
 
   .WorkCard.WorkCard--pcLarge {
-    @mixin getMediaQuerySm {
+    @mixin getContainerQuerySm {
       .WorkCard__button {
         aspect-ratio: 16 / 9;
       }
