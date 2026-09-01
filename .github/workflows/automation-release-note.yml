@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   create-release-tag:
     runs-on: ubuntu-latest
@@ -13,37 +16,43 @@ jobs:
       TZ: 'Asia/Tokyo'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # 前回のりリースタグを取得する
+      # 前回のリリースタグを取得する（1件も無ければ空）
       - name: Get previous tag
         id: pre_tag
         run: |
-          echo "::set-output name=pre_tag::$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)"
+          pre_tag=$(gh release view \
+            --repo '${{ github.repository }}' \
+            --json tagName --jq .tagName 2>/dev/null || true)
+          echo "pre_tag=$pre_tag" >> "$GITHUB_OUTPUT"
 
-      # タグを生成する 「{YYYY.MM.DD}-{当日リリース回数}」
+      # タグを生成する 「v{YYYY.MM.DD}-{当日リリース回数}」
       - name: Generate release tag
         id: release_tag
         run: |
           today=v$(date +'%Y.%m.%d')
-          pre_release_date=$(echo ${{ steps.pre_tag.outputs.pre_tag }} | awk -F'-' '{print $1}')
-          pre_release_count=$(echo ${{ steps.pre_tag.outputs.pre_tag }} | awk -F'-' '{print $2}')
-          if [[ ! $pre_release_date = $today ]]; then
-            echo "init count"
-            pre_release_count=0
+          pre_tag='${{ steps.pre_tag.outputs.pre_tag }}'
+          count=0
+
+          # 同日の既存タグがあれば、その連番を引き継いで加算する
+          if [ -n "$pre_tag" ] && [ "${pre_tag%%-*}" = "$today" ]; then
+            count="${pre_tag##*-}"
+            case "$count" in
+              '' | *[!0-9]*) count=0 ;;
+            esac
           fi
-          echo "::set-output name=release_tag::$today-$(($pre_release_count + 1))"
 
-      # 前回リリースからの差分をもとに、リリースノートの本文を生成する
-      - name: Generate release note
-        id: release_note
-        run: |
-          echo "::set-output name=release_note::$(curl -X POST -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/generate-notes -d '{"tag_name":"${{ steps.release_tag.outputs.release_tag }}", "previous_tag_name":"${{ steps.pre_tag.outputs.pre_tag }}"}' | jq .body | sed 's/"//g')"
+          echo "release_tag=$today-$((count + 1))" >> "$GITHUB_OUTPUT"
 
-      # タグを切り、リリースノートを作成する
-      - name: Create Release
+      # タグを切り、前回リリースからの差分でリリースノートを生成する
+      # （カテゴリ分けは .github/release.yml の設定に従う）
+      - name: Create release
         run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d "{ \"tag_name\": \"${{ steps.release_tag.outputs.release_tag }}\", \"name\": \"${{ steps.release_tag.outputs.release_tag }}\", \"body\": \"${{ steps.release_note.outputs.release_note }}\"}" \
-            https://api.github.com/repos/${{ github.repository }}/releases
+          gh release create '${{ steps.release_tag.outputs.release_tag }}' \
+            --repo '${{ github.repository }}' \
+            --title '${{ steps.release_tag.outputs.release_tag }}' \
+            --target '${{ github.sha }}' \
+            --generate-notes
