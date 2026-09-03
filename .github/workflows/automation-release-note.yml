@@ -16,10 +16,6 @@ jobs:
       TZ: 'Asia/Tokyo'
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       # 前回のリリースタグを取得する（1件も無ければ空）
       - name: Get previous tag
         id: pre_tag
@@ -32,9 +28,14 @@ jobs:
       # タグを生成する 「v{YYYY.MM.DD}-{当日リリース回数}」
       - name: Generate release tag
         id: release_tag
+        # PRE_TAG は直前のステップが取得したタグ名。run: へ ${{ }} で直接展開すると
+        # シェル起動前のテキスト置換になり、`'` を含むタグ名でクォートが閉じられて
+        # 続きがコマンドとして実行される（`'` は git のタグ名として有効）。
+        env:
+          PRE_TAG: ${{ steps.pre_tag.outputs.pre_tag }}
         run: |
           today=v$(date +'%Y.%m.%d')
-          pre_tag='${{ steps.pre_tag.outputs.pre_tag }}'
+          pre_tag="$PRE_TAG"
           count=0
 
           # 同日の既存タグがあれば、その連番を引き継いで加算する

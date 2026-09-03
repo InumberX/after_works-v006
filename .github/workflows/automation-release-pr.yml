@@ -16,6 +16,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PR_TITLE: Release
       BASE_BRANCH: main
+      HEAD_BRANCH: ${{ github.ref_name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +40,7 @@ jobs:
           gh pr create \
             --repo '${{ github.repository }}' \
             --base "$BASE_BRANCH" \
-            --head '${{ github.ref_name }}' \
+            --head "$HEAD_BRANCH" \
             --title "$PR_TITLE" \
             --body '' \
             --label release
