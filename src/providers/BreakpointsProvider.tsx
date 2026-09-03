@@ -1,7 +1,7 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { type ReactNode, useEffect } from 'react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 
 import {
   isBreakpointXxsAtom,
@@ -22,14 +22,38 @@ export const BREAKPOINTS = {
   xxl: 1400,
 } as const
 
+// meta[name="viewport"] が取得できなかった場合のフォールバック
+const DEFAULT_VIEWPORT_CONTENT =
+  'width=device-width, initial-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover'
+
+// 端末の物理的な画面幅が最小ブレイクポイント未満かを判定する処理
+// meta[name="viewport"] の書き換えで変化しない window.screen.width を使うことで、
+// 「viewportを書き換える → レイアウトビューポート幅が変わる → 判定が反転する」
+// という無限ループを構造的に発生させないようにしている
+const checkNarrowDevice = (): boolean => {
+  const deviceWidth = window.screen?.width
+
+  if (typeof deviceWidth !== 'number') {
+    return false
+  }
+
+  return deviceWidth < BREAKPOINTS.xs
+}
+
 export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
-  const [isBreakpointXxs, setIsBreakpointXxs] = useAtom(isBreakpointXxsAtom)
+  const [, setIsBreakpointXxs] = useAtom(isBreakpointXxsAtom)
   const [, setIsBreakpointXs] = useAtom(isBreakpointXsAtom)
   const [, setIsBreakpointSm] = useAtom(isBreakpointSmAtom)
   const [, setIsBreakpointMd] = useAtom(isBreakpointMdAtom)
   const [, setIsBreakpointLg] = useAtom(isBreakpointLgAtom)
   const [, setIsBreakpointXl] = useAtom(isBreakpointXlAtom)
   const [, setIsBreakpointXxl] = useAtom(isBreakpointXxlAtom)
+
+  // 初回レンダー時点で確定させ、マウント直後の余計な書き換えを発生させない
+  const [isNarrowDevice, setIsNarrowDevice] = useState(() =>
+    typeof window === 'undefined' ? false : checkNarrowDevice(),
+  )
+  const defaultViewportContentRef = useRef<string | null>(null)
 
   // ブレイクポイントの各判定をセットする処理
   const setCurrentBreakPointXxs = () => {
@@ -100,7 +124,7 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
   const checkBreakPointXxs = (
     e: MediaQueryList | MediaQueryListEvent,
   ): void => {
-    if (e && e.matches) {
+    if (e.matches) {
       setCurrentBreakPointXxs()
     }
   }
@@ -137,24 +161,50 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  // 端末の物理的な画面幅の監視
   useEffect(() => {
-    if (!document) {
-      return
+    const handleCheckNarrowDevice = () => {
+      setIsNarrowDevice(checkNarrowDevice())
     }
 
+    // 初回チェック
+    handleCheckNarrowDevice()
+
+    // 画面回転などで物理的な画面幅が入れ替わった場合に追従する
+    window.addEventListener('resize', handleCheckNarrowDevice)
+    window.addEventListener('orientationchange', handleCheckNarrowDevice)
+
+    return () => {
+      window.removeEventListener('resize', handleCheckNarrowDevice)
+      window.removeEventListener('orientationchange', handleCheckNarrowDevice)
+    }
+  }, [])
+
+  // viewportの書き換え
+  useEffect(() => {
     const viewport = document.querySelector('meta[name="viewport"]')
 
     if (!viewport) {
       return
     }
 
-    viewport.setAttribute(
-      'content',
-      isBreakpointXxs
-        ? `width=${BREAKPOINTS.xs}`
-        : 'width=device-width, initial-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover',
-    )
-  }, [isBreakpointXxs])
+    // 初期状態のcontentを保持しておき、通常時はそのまま復元する
+    if (defaultViewportContentRef.current === null) {
+      defaultViewportContentRef.current =
+        viewport.getAttribute('content') ?? DEFAULT_VIEWPORT_CONTENT
+    }
+
+    const nextContent = isNarrowDevice
+      ? `width=${BREAKPOINTS.xs}`
+      : defaultViewportContentRef.current
+
+    // 同じ値での書き換えはレイアウトを揺らすだけなので行わない
+    if (viewport.getAttribute('content') === nextContent) {
+      return
+    }
+
+    viewport.setAttribute('content', nextContent)
+  }, [isNarrowDevice])
 
   useEffect(() => {
     // ブレイクポイント判定
@@ -173,7 +223,7 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
     )
     const matchMediaMd: MediaQueryList = window.matchMedia(
       `screen and (min-width: ${BREAKPOINTS.md}px) and (max-width: ${
-        BREAKPOINTS.xl - 1
+        BREAKPOINTS.lg - 1
       }px)`,
     )
     const matchMediaLg: MediaQueryList = window.matchMedia(
@@ -207,6 +257,16 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
     checkBreakPointLg(matchMediaLg)
     checkBreakPointXl(matchMediaXl)
     checkBreakPointXxl(matchMediaXxl)
+
+    return () => {
+      matchMediaXxs.removeEventListener('change', checkBreakPointXxs)
+      matchMediaXs.removeEventListener('change', checkBreakPointXs)
+      matchMediaSm.removeEventListener('change', checkBreakPointSm)
+      matchMediaMd.removeEventListener('change', checkBreakPointMd)
+      matchMediaLg.removeEventListener('change', checkBreakPointLg)
+      matchMediaXl.removeEventListener('change', checkBreakPointXl)
+      matchMediaXxl.removeEventListener('change', checkBreakPointXxl)
+    }
     // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
