@@ -4,18 +4,20 @@ on:
   push:
     branches: [main]
 
-permissions:
-  contents: write
-
 jobs:
   create-release-tag:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
 
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TZ: 'Asia/Tokyo'
 
     steps:
+      - uses: actions/checkout@v4
+
       # 前回のリリースタグを取得する（1件も無ければ空）
       - name: Get previous tag
         id: pre_tag

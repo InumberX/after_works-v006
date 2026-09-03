@@ -4,13 +4,13 @@ on:
   push:
     branches: [develop]
 
-permissions:
-  contents: read
-  pull-requests: write
-
 jobs:
   create-release-pr:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
 
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
