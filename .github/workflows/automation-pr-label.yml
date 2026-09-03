@@ -8,29 +8,34 @@ jobs:
   auto-labeling-pr:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      pull-requests: write
+
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
-
-      # ラベル名を取得する
+      # ブランチのプレフィックスからラベル名を決める
       - name: Get label name
         id: label_name
+        # HEAD_REF は PR 作成者が決められる。run: へ ${{ }} で直接展開すると
+        # シェル起動前のテキスト置換になり、`$( )` などがコマンドとして実行される。
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
-          branch_type=$(echo ${{github.head_ref}} | cut -d "/" -f1)
-          if [ $branch_type == 'feature' ]; then
-            label_name=$(echo "enhancement")
-          elif [ $branch_type == 'bugfix' ] || [ $branch_type == 'hotfix' ]; then
-            label_name=$(echo "bug")
-          else
-            label_name=""
-          fi
-          echo "::set-output name=label_name::$label_name"
+          branch_type=${HEAD_REF%%/*}
+          case "$branch_type" in
+            feature) label_name=enhancement ;;
+            bugfix|hotfix) label_name=bug ;;
+            *) label_name='' ;;
+          esac
+          echo "label_name=$label_name" >> "$GITHUB_OUTPUT"
 
       # PRにラベルを付与する
       - name: Auto labeling
-        if: ${{ steps.label_name.outputs.label_name }}
+        if: ${{ steps.label_name.outputs.label_name != '' }}
         run: |
-          number=$(echo $GITHUB_REF | sed -e 's/[^0-9]//g')
-          gh pr edit $number --add-label ${{ steps.label_name.outputs.label_name }}
+          gh pr edit '${{ github.event.pull_request.number }}' \
+            --repo '${{ github.repository }}' \
+            --add-label '${{ steps.label_name.outputs.label_name }}'
