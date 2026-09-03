@@ -26,14 +26,43 @@ export const BREAKPOINTS = {
 const DEFAULT_VIEWPORT_CONTENT =
   'width=device-width, initial-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover'
 
-// 端末の物理的な画面幅が最小ブレイクポイント未満かを判定する処理
-// meta[name="viewport"] の書き換えで変化しない window.screen.width を使うことで、
+// 端末の画面幅を取得する処理
+// meta[name="viewport"] の書き換えで変化しない window.screen を使うことで、
 // 「viewportを書き換える → レイアウトビューポート幅が変わる → 判定が反転する」
 // という無限ループを構造的に発生させないようにしている
-const checkNarrowDevice = (): boolean => {
-  const deviceWidth = window.screen?.width
+//
+// なおwindow.screenは端末の画面であってアプリのウィンドウではないため、
+// 分割画面や狭いWebViewのようにウィンドウが画面より狭いケースは検知できない。
+// これらを検知するにはレイアウトビューポート幅を読む必要があり、
+// それは上記の無限ループの原因そのものになるため、意図的に対象外としている。
+const getDeviceWidth = (): number => {
+  const deviceScreen = window.screen
 
-  if (typeof deviceWidth !== 'number') {
+  if (!deviceScreen) {
+    return 0
+  }
+
+  const { width, height } = deviceScreen
+
+  if (!Number.isFinite(width) || !Number.isFinite(height)) {
+    return 0
+  }
+
+  // iOS Safariは回転してもscreen.width/heightが入れ替わらないため、
+  // 向きに応じて短辺・長辺を選び直す
+  const isLandscape = deviceScreen.orientation
+    ? deviceScreen.orientation.type.startsWith('landscape')
+    : window.matchMedia('(orientation: landscape)').matches
+
+  return isLandscape ? Math.max(width, height) : Math.min(width, height)
+}
+
+// 端末の画面幅が最小ブレイクポイント未満かを判定する処理
+const checkNarrowDevice = (): boolean => {
+  const deviceWidth = getDeviceWidth()
+
+  // jsdomなど画面サイズを持たない環境では0になるため、狭い端末とはみなさない
+  if (deviceWidth <= 0) {
     return false
   }
 
@@ -205,6 +234,26 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
 
     viewport.setAttribute('content', nextContent)
   }, [isNarrowDevice])
+
+  // アンマウント時のviewportの復元
+  // 書き換えたまま外れると、再マウント時に `width=360` を初期状態として
+  // 記録してしまい、以降どの端末幅でも元のcontentに戻せなくなる
+  useEffect(() => {
+    return () => {
+      const viewport = document.querySelector('meta[name="viewport"]')
+      const defaultContent = defaultViewportContentRef.current
+
+      if (!viewport || defaultContent === null) {
+        return
+      }
+
+      if (viewport.getAttribute('content') === defaultContent) {
+        return
+      }
+
+      viewport.setAttribute('content', defaultContent)
+    }
+  }, [])
 
   useEffect(() => {
     // ブレイクポイント判定
