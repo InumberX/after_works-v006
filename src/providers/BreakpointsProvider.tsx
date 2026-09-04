@@ -257,7 +257,9 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
         return
       }
 
-      if (viewport.getAttribute('content') === defaultContent) {
+      // 自身が書き換えた値のままである場合だけ戻す
+      // マウント中に他の要因でcontentが変わっていた場合、それを巻き戻さない
+      if (viewport.getAttribute('content') !== `width=${BREAKPOINTS.xs}`) {
         return
       }
 

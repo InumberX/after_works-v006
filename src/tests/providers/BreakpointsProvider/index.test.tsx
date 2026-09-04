@@ -655,6 +655,23 @@ describe('BreakpointsProvider', () => {
       expect(harness.getViewportContent()).toBe(INITIAL_VIEWPORT_CONTENT)
     })
 
+    test('他の要因で変わったviewportはアンマウント時に巻き戻さない', () => {
+      const harness = setupHarness({ screenWidth: 320, screenHeight: 568 })
+      const result = renderProvider()
+
+      expect(harness.getViewportContent()).toBe(`width=${BREAKPOINTS.xs}`)
+
+      // プロバイダー以外がcontentを変更した状況を再現する
+      const other = 'width=device-width, initial-scale=2'
+      document
+        .querySelector('meta[name="viewport"]')
+        ?.setAttribute('content', other)
+
+      result.unmount()
+
+      expect(harness.getViewportContent()).toBe(other)
+    })
+
     test('再マウントしてもwidth=360が初期状態として記録されない', () => {
       // 書き換えたまま外れると、再マウント後に元のcontentへ戻せなくなる
       const harness = setupHarness({ screenWidth: 320, screenHeight: 568 })
