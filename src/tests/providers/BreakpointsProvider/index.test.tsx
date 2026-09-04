@@ -74,6 +74,7 @@ type Harness = {
   hasOverflowed: () => boolean
   getLayoutWidth: () => number
   getMediaQueryListenerCount: () => number
+  getOrientationQueryCount: () => number
   resizeWindow: (width: number) => void
   rotate: (orientation: Orientation) => void
 }
@@ -96,21 +97,24 @@ const setupHarness = ({
   orientation = 'portrait',
   withViewportMeta = true,
   withScreenOrientation = true,
+  withScreenHeight = true,
 }: {
   screenWidth: number
   screenHeight?: number
   orientation?: Orientation
   withViewportMeta?: boolean
   withScreenOrientation?: boolean
+  withScreenHeight?: boolean
 }): Harness => {
   let currentOrientation = orientation
+  let orientationQueryCount = 0
 
   Object.defineProperty(window.screen, 'width', {
     value: screenWidth,
     configurable: true,
   })
   Object.defineProperty(window.screen, 'height', {
-    value: screenHeight,
+    value: withScreenHeight ? screenHeight : undefined,
     configurable: true,
   })
   Object.defineProperty(window.screen, 'orientation', {
@@ -127,10 +131,15 @@ const setupHarness = ({
   })
 
   // 向きを考慮した実際の画面幅
-  const getEffectiveDeviceWidth = () =>
-    currentOrientation === 'landscape'
+  const getEffectiveDeviceWidth = () => {
+    if (!withScreenHeight || screenHeight <= 0) {
+      return screenWidth
+    }
+
+    return currentOrientation === 'landscape'
       ? Math.max(screenWidth, screenHeight)
       : Math.min(screenWidth, screenHeight)
+  }
 
   // viewportを書き換えていない状態でのレイアウトビューポート幅
   let windowWidth = getEffectiveDeviceWidth()
@@ -166,6 +175,10 @@ const setupHarness = ({
   }
 
   window.matchMedia = ((media: string) => {
+    if (media.includes('orientation:')) {
+      orientationQueryCount += 1
+    }
+
     const mediaQueryList: MockMediaQueryList = {
       media,
       matches: matchesQuery(media, getLayoutWidth(), currentOrientation),
@@ -237,6 +250,7 @@ const setupHarness = ({
         (count, mediaQueryList) => count + mediaQueryList.listeners.size,
         0,
       ),
+    getOrientationQueryCount: () => orientationQueryCount,
     resizeWindow: (width: number) => {
       windowWidth = width
       act(() => {
@@ -337,6 +351,41 @@ describe('BreakpointsProvider', () => {
     test('画面サイズを取得できない環境では書き換えられない', () => {
       // jsdomのscreenは既定で0を返すため、狭い端末と誤判定してはいけない
       const harness = setupHarness({ screenWidth: 0, screenHeight: 0 })
+      renderProvider()
+
+      expect(harness.getViewportContent()).toBe(INITIAL_VIEWPORT_CONTENT)
+      expect(harness.getViewportWriteCount()).toBe(0)
+    })
+
+    test('画面サイズを取得できない場合は向きの判定に到達しない', () => {
+      // 向きの判定はmatchMediaに依存するため、画面サイズが取れない環境では
+      // そこへ到達する前に打ち切る必要がある
+      const harness = setupHarness({
+        screenWidth: 0,
+        screenHeight: 0,
+        withScreenOrientation: false,
+      })
+      renderProvider()
+
+      expect(harness.getOrientationQueryCount()).toBe(0)
+      expect(harness.getViewportWriteCount()).toBe(0)
+    })
+
+    test('screen.heightが取得できなくてもwidthで判定される', () => {
+      const harness = setupHarness({
+        screenWidth: 320,
+        withScreenHeight: false,
+      })
+      renderProvider()
+
+      expect(harness.getViewportContent()).toBe(`width=${BREAKPOINTS.xs}`)
+    })
+
+    test('screen.heightが取得できない広い画面では書き換えられない', () => {
+      const harness = setupHarness({
+        screenWidth: 1440,
+        withScreenHeight: false,
+      })
       renderProvider()
 
       expect(harness.getViewportContent()).toBe(INITIAL_VIEWPORT_CONTENT)

@@ -44,8 +44,16 @@ const getDeviceWidth = (): number => {
 
   const { width, height } = deviceScreen
 
-  if (!Number.isFinite(width) || !Number.isFinite(height)) {
+  // jsdomなど画面サイズを持たない環境では0になる
+  // ここで打ち切ることで、後続の向きの判定にも到達させない
+  if (!Number.isFinite(width) || width <= 0) {
     return 0
+  }
+
+  // heightは短辺・長辺の選び分けにしか使わないため、
+  // 取得できない場合はwidthをそのまま採用する
+  if (!Number.isFinite(height) || height <= 0) {
+    return width
   }
 
   // iOS Safariは回転してもscreen.width/heightが入れ替わらないため、
@@ -78,10 +86,10 @@ export const BreakpointsProvider = ({ children }: { children: ReactNode }) => {
   const [, setIsBreakpointXl] = useAtom(isBreakpointXlAtom)
   const [, setIsBreakpointXxl] = useAtom(isBreakpointXxlAtom)
 
-  // 初回レンダー時点で確定させ、マウント直後の余計な書き換えを発生させない
-  const [isNarrowDevice, setIsNarrowDevice] = useState(() =>
-    typeof window === 'undefined' ? false : checkNarrowDevice(),
-  )
+  // 判定はレンダー中ではなくマウント後に行う
+  // 初期値と同じcontentへの書き換えは後段のガードで抑止されるため、
+  // レンダー中にwindowへ触れてまで初期値を確定させる必要はない
+  const [isNarrowDevice, setIsNarrowDevice] = useState(false)
   const defaultViewportContentRef = useRef<string | null>(null)
 
   // ブレイクポイントの各判定をセットする処理
