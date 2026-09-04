@@ -50,17 +50,19 @@ const getDeviceWidth = (): number => {
     return 0
   }
 
-  // heightは短辺・長辺の選び分けにしか使わないため、
-  // 取得できない場合はwidthをそのまま採用する
-  if (!Number.isFinite(height) || height <= 0) {
-    return width
-  }
-
   // iOS Safariは回転してもscreen.width/heightが入れ替わらないため、
   // 向きに応じて短辺・長辺を選び直す
-  const isLandscape = deviceScreen.orientation
-    ? deviceScreen.orientation.type.startsWith('landscape')
-    : window.matchMedia('(orientation: landscape)').matches
+  const orientationType = deviceScreen.orientation?.type
+  const isLandscape =
+    typeof orientationType === 'string'
+      ? orientationType.startsWith('landscape')
+      : window.matchMedia('(orientation: landscape)').matches
+
+  // heightが取得できない場合、縦向きならwidthが短辺そのものなので判定できるが、
+  // 横向きは長辺が分からず実際の幅を求められない。書き換えない側に倒す
+  if (!Number.isFinite(height) || height <= 0) {
+    return isLandscape ? 0 : width
+  }
 
   return isLandscape ? Math.max(width, height) : Math.min(width, height)
 }

@@ -1,6 +1,6 @@
 import { render, cleanup, act } from '@testing-library/react'
 import { useAtomValue } from 'jotai'
-import type { ReactNode } from 'react'
+import { StrictMode, type ReactNode } from 'react'
 import { describe, afterEach, test, expect } from 'vitest'
 
 import {
@@ -296,11 +296,15 @@ const BreakpointProbe = () => {
   return null
 }
 
+// 本番のAppProviderと同じくStrictMode下で検証する
+// エフェクトの二重実行でviewportの書き換えや復元が壊れないことを担保する
 const renderProvider = (children: ReactNode = <BreakpointProbe />) =>
   render(
-    <JotaiProvider>
-      <BreakpointsProvider>{children}</BreakpointsProvider>
-    </JotaiProvider>,
+    <StrictMode>
+      <JotaiProvider>
+        <BreakpointsProvider>{children}</BreakpointsProvider>
+      </JotaiProvider>
+    </StrictMode>,
   )
 
 // trueになっているブレイクポイントのキーを取得する処理
@@ -385,6 +389,20 @@ describe('BreakpointsProvider', () => {
       const harness = setupHarness({
         screenWidth: 1440,
         withScreenHeight: false,
+      })
+      renderProvider()
+
+      expect(harness.getViewportContent()).toBe(INITIAL_VIEWPORT_CONTENT)
+      expect(harness.getViewportWriteCount()).toBe(0)
+    })
+
+    test('screen.heightが取得できない横向きでは書き換えられない', () => {
+      // heightが無いと長辺が分からず、横向きの実際の幅(568px)を求められない
+      // widthをそのまま使うと横向きでも狭端末と誤判定してしまう
+      const harness = setupHarness({
+        screenWidth: 320,
+        withScreenHeight: false,
+        orientation: 'landscape',
       })
       renderProvider()
 
