@@ -1,6 +1,6 @@
 import { render, cleanup, act } from '@testing-library/react'
 import { useAtomValue } from 'jotai'
-import { StrictMode, type ReactNode } from 'react'
+import { StrictMode, useEffect, type ReactNode } from 'react'
 import { describe, afterEach, test, expect } from 'vitest'
 
 import {
@@ -283,7 +283,7 @@ type BreakpointState = {
 let breakpointState: BreakpointState
 
 const BreakpointProbe = () => {
-  breakpointState = {
+  const currentBreakpointState: BreakpointState = {
     xxs: useAtomValue(isBreakpointXxsAtom),
     xs: useAtomValue(isBreakpointXsAtom),
     sm: useAtomValue(isBreakpointSmAtom),
@@ -292,6 +292,11 @@ const BreakpointProbe = () => {
     xl: useAtomValue(isBreakpointXlAtom),
     xxl: useAtomValue(isBreakpointXxlAtom),
   }
+
+  // レンダー中に外部の変数を書き換えないよう、コミット後のエフェクトで公開する
+  useEffect(() => {
+    breakpointState = currentBreakpointState
+  })
 
   return null
 }
