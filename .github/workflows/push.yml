@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - '**'
+
+permissions:
+  contents: read
+
 env:
   cache-version: v1
 jobs:
