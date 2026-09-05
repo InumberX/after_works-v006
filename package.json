@@ -32,7 +32,7 @@
     "@opennextjs/cloudflare": "^1.20.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
-    "framer-motion": "^12.42.2",
+    "framer-motion": "^13.2.0",
     "jotai": "^2.20.3",
     "keen-slider": "^6.8.6",
     "next": "16.2.10",
