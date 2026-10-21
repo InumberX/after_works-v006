@@ -17,11 +17,12 @@ import { snsLinks } from '~/config/sns'
 import { useI18n, useCurrentLocale } from '~/locales/client'
 import { actSmoothScroll } from '~/utils/act-smooth-scroll'
 
+const currentYear: number = new Date().getFullYear()
+
 export const LayoutFooter = () => {
   const locale = useCurrentLocale()
   const t = useI18n()
   const router = useRouter()
-  const currentYear: number = new Date().getFullYear()
 
   const footerMenuItems: {
     id: string
