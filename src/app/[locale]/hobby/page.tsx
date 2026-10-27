@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
 
@@ -11,6 +12,7 @@ import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
+import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const [locale, scopedT] = await Promise.all([
@@ -35,17 +37,32 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
     searchParams,
   ])
 
+  // `?page=` は正の整数だけを受け付け、それ以外（`0`・`-1`・`01`・`abc` など）は 404 にする
+  const page =
+    currentSearchParams?.page === undefined
+      ? 1
+      : parsePositiveInteger(currentSearchParams.page)
+
+  if (page === undefined) {
+    notFound()
+  }
+
   const [responseHobby, responseLatestHobby] = await Promise.all([
     getHobbyList({
-      ...(currentSearchParams &&
-        currentSearchParams.page && {
-          page: parseInt(currentSearchParams.page as string, 10),
-        }),
+      page,
     }),
     getHobbyList({
       cnt: 5,
     }),
   ])
+
+  // 最後のページより後ろは 404 にする（記事が 0 件でも 1 ページ目は表示する）
+  if (
+    responseHobby &&
+    page > Math.max(responseHobby.pageInfo.totalPageCnt, 1)
+  ) {
+    notFound()
+  }
 
   const defaultHobby: WorkCardProps[] = responseHobby
     ? responseHobby.list.map((info) => {
@@ -128,11 +145,7 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
 
   return (
     <Index
-      defaultPage={
-        currentSearchParams && currentSearchParams.page
-          ? parseInt(currentSearchParams.page as string, 10)
-          : 1
-      }
+      defaultPage={page}
       defaultTotalPage={responseHobby ? responseHobby.pageInfo.totalPageCnt : 0}
       defaultArticles={defaultHobby}
       latestArticles={latestHobby}
