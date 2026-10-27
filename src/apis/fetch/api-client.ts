@@ -1,23 +1,11 @@
 // CMS（Kuroco）の API を呼ぶ共通の関数。sugidama の app/data/api-client.ts と同じ形。
 // 例外を投げずに必ず結果を返すので、失敗が何を意味するかは呼び出し側が決める。
 import { API_URL } from '~/config/env'
-import { API_ERROR_CODE, HTTP_STATUS, type ApiErrorCode } from '~/consts/api'
-
-type ApiSuccess<T> = { success: true; data: T }
-
-export type ApiError = {
-  success: false
-  /** API のエラーのステータス。応答がない、JSON でない、想定した形でないときは `null` */
-  status: number | null
-  /** 失敗の理由。Kuroco が 404 を返したときは `not_found`、それ以外は `failed` */
-  code: ApiErrorCode
-  message: string
-}
-
-export type ApiResult<T> = ApiSuccess<T> | ApiError
+import { API_ERROR_CODE, HTTP_STATUS } from '~/consts/api'
+import type { ApiError, ApiResult } from '~/types/apis/fetch/api-client'
 
 /** 見つからないときの結果。API に問い合わせる前に、見つからないと分かったときに使う */
-export const notFoundError = (): ApiError => ({
+export const createNotFoundError = (): ApiError => ({
   success: false,
   status: HTTP_STATUS.NOT_FOUND,
   code: API_ERROR_CODE.NOT_FOUND,
@@ -25,7 +13,7 @@ export const notFoundError = (): ApiError => ({
 })
 
 /** 想定した形でない応答の結果 */
-export const unexpectedResponseError = (): ApiError => ({
+export const createUnexpectedResponseError = (): ApiError => ({
   success: false,
   status: null,
   code: API_ERROR_CODE.FAILED,

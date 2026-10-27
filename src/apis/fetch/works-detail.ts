@@ -1,9 +1,9 @@
 import {
   apiClient,
-  notFoundError,
-  unexpectedResponseError,
-  type ApiResult,
+  createNotFoundError,
+  createUnexpectedResponseError,
 } from '~/apis/fetch/api-client'
+import type { ApiResult } from '~/types/apis/fetch/api-client'
 import type { WorksDetail, Details } from '~/types/apis/fetch/works-detail'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
@@ -22,7 +22,7 @@ export const getWorksDetailInfo = async ({
   // 見つからない扱いにする。そのまま URL に入れると、`x?cnt=-1` のようなクエリや
   // `..%2F` で同じ API の別のエンドポイントに届いてしまうため。
   if (parsePositiveInteger(id) === undefined) {
-    return notFoundError()
+    return createNotFoundError()
   }
 
   const result = await apiClient<WorksDetail>(`/works/${id}`)
@@ -33,5 +33,7 @@ export const getWorksDetailInfo = async ({
 
   const { details } = result.data
 
-  return details ? { success: true, data: details } : unexpectedResponseError()
+  return details
+    ? { success: true, data: details }
+    : createUnexpectedResponseError()
 }

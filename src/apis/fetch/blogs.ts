@@ -1,8 +1,8 @@
 import {
   apiClient,
-  unexpectedResponseError,
-  type ApiResult,
+  createUnexpectedResponseError,
 } from '~/apis/fetch/api-client'
+import type { ApiResult } from '~/types/apis/fetch/api-client'
 import type { Blogs, List, PageInfo } from '~/types/apis/fetch/blogs'
 
 /**
@@ -38,5 +38,5 @@ export const getBlogsList = async ({
 
   return list && pageInfo
     ? { success: true, data: { list, pageInfo } }
-    : unexpectedResponseError()
+    : createUnexpectedResponseError()
 }
