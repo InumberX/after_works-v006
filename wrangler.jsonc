@@ -33,17 +33,19 @@
   // the GitHub Actions workflow; runtime secrets (BASIC_AUTH_*) are set per
   // environment with `wrangler secret put ... --env=<environment>`.
   //
-  // Smart Placement runs the Worker near the Kuroco API rather than near each
-  // visitor. After the move from Amplify, which ran in one region, Kuroco's
-  // uncached requests rose about fourfold; run from every data center, the
-  // Worker spreads its requests over Kuroco's CDN, which is the likely cause.
+  // Smart Placement runs the production Worker near the Kuroco API rather than
+  // near each visitor. After the move from Amplify, which ran in one region,
+  // Kuroco's uncached requests rose about fourfold; run from every data center,
+  // the Worker spreads its requests over Kuroco's CDN, which is the likely
+  // cause. Staging leaves it off: its assets go through the Worker for Basic
+  // auth, which wrangler warns would slow them down once placed, and its
+  // traffic is too small for Smart Placement to move it anyway.
   //
   // An environment's `assets` replaces the top level's whole, so staging
   // repeats `binding` and `directory`.
   "env": {
     "development": {
       "name": "dev-after-works",
-      "placement": { "mode": "smart" },
       "assets": {
         "binding": "ASSETS",
         "directory": ".open-next/assets",
