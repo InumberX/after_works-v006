@@ -195,14 +195,14 @@ type BaseButtonProps = {
 src/hooks/useAnimelm.ts
 src/hooks/UseAnimelm.ts
 
-# Bad — utils が kebab-case
-src/utils/act-smooth-scroll.ts
+# Bad — utils が camelCase
+src/utils/actSmoothScroll.ts
 ```
 
 ```
 # Good
 src/hooks/use-animelm.ts
-src/utils/actSmoothScroll.ts
+src/utils/act-smooth-scroll.ts
 ```
 
 参照: `rules/style/naming.md` ファイル / ディレクトリ命名
