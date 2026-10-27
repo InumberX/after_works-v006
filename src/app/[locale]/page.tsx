@@ -42,8 +42,8 @@ const HomePage = async () => {
     }),
   ])
 
-  const latestBlogs: ArticleCardProps[] = responseLatestBlogs
-    ? responseLatestBlogs.list.map((info) => {
+  const latestBlogs: ArticleCardProps[] = responseLatestBlogs.success
+    ? responseLatestBlogs.data.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -101,8 +101,8 @@ const HomePage = async () => {
       })
     : []
 
-  const latestWorks: WorkCardProps[] = responseLatestWorks
-    ? responseLatestWorks.list.map((info) => {
+  const latestWorks: WorkCardProps[] = responseLatestWorks.success
+    ? responseLatestWorks.data.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {

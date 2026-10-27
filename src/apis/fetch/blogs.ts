@@ -1,12 +1,18 @@
-import { API_URL } from '~/config/env'
+import {
+  apiClient,
+  createUnexpectedResponseError,
+} from '~/apis/fetch/api-client'
+import type { ApiResult } from '~/types/apis/fetch/api-client'
 import type { Blogs, List, PageInfo } from '~/types/apis/fetch/blogs'
 
-export type ResponseGetBlogsList =
-  | {
-      list: List[]
-      pageInfo: PageInfo
-    }
-  | undefined
+/**
+ * 一覧の取得結果。範囲外のページでは Kuroco が 404 を返すので、`code` が
+ * `not_found` になる（`~/consts/api` の `API_ERROR_CODE`）。
+ */
+export type ResponseGetBlogsList = ApiResult<{
+  list: List[]
+  pageInfo: PageInfo
+}>
 
 export const getBlogsList = async ({
   cnt = 12,
@@ -22,29 +28,15 @@ export const getBlogsList = async ({
     `pageID=${page}`,
     `order_query=${orderQuery}`,
   ].join('&')
-  const response = await fetch(`${API_URL}/blogs?${param}`, {
-    cache: 'no-store',
-  })
+  const result = await apiClient<Blogs>(`/blogs?${param}`)
 
-  if (!response.ok) {
-    return undefined
+  if (!result.success) {
+    return result
   }
 
-  const value = await response
-    .json()
-    .then((data: Blogs) => data)
-    .catch(() => undefined)
-
-  if (!value) {
-    return undefined
-  }
-
-  const { list, pageInfo } = value
+  const { list, pageInfo } = result.data
 
   return list && pageInfo
-    ? {
-        list,
-        pageInfo,
-      }
-    : undefined
+    ? { success: true, data: { list, pageInfo } }
+    : createUnexpectedResponseError()
 }

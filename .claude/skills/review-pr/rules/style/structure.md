@@ -19,6 +19,7 @@ src/
 │   ├── common/           # レイアウト系の共有コンポーネント
 │   └── ui/               # 再利用可能な UI コンポーネント（カテゴリ分割）
 ├── config/               # 設定値（env, routes, sns 等）
+├── consts/               # 層をまたいで使う定数（api.ts: HTTP_STATUS、API_ERROR_CODE 等）
 ├── hooks/                # カスタムフック
 ├── layouts/              # ページレイアウトテンプレート
 ├── libs/                 # 外部ライブラリのラッパー（ga, validation 等）
@@ -30,7 +31,7 @@ src/
 ├── tests/                # Vitest テスト（components 構造をミラー）
 ├── types/                # TypeScript 型定義
 ├── utils/                # 純粋なユーティリティ関数
-└── proxy.ts              # next-international middleware（locale 解決）
+└── middleware.ts         # next-international middleware（locale 解決。OpenNext が Node.js の proxy.ts に未対応のため、Edge の middleware.ts のまま）
 ```
 
 > Next.js 規約: `robots.ts` / `sitemap.ts` は `app/` 直下にしか置けず、`[locale]` のような dynamic segment 配下では認識されない。`api/` も多言語非依存なので `[locale]/` の外に置く。
@@ -87,16 +88,17 @@ ui/buttons/BaseButton/
 
 ## 関連レイヤーの配置
 
-| ロジック種別             | 置き場                             | 命名                               |
-| ------------------------ | ---------------------------------- | ---------------------------------- |
-| データ取得関数           | `apis/fetch/<resource>.ts`         | camelCase                          |
-| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | camelCase                          |
-| カスタムフック           | `hooks/use-<name>.ts`              | kebab-case + `use-` プレフィックス |
-| 純粋関数ユーティリティ   | `utils/<verbName>.ts`              | camelCase（動詞起点）              |
-| 外部ライブラリラッパー   | `libs/<lib>/<file>.ts`             | ライブラリ名のディレクトリで分割   |
-| 設定値                   | `config/<topic>.ts`                | camelCase                          |
-| Jotai store              | `store/<topic>/...`                | camelCase ディレクトリ             |
-| Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス |
+| ロジック種別             | 置き場                             | 命名                                                    |
+| ------------------------ | ---------------------------------- | ------------------------------------------------------- |
+| データ取得関数           | `apis/fetch/<resource>.ts`         | kebab-case                                              |
+| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | kebab-case                                              |
+| カスタムフック           | `hooks/use-<name>.ts`              | kebab-case + `use-` プレフィックス                      |
+| 純粋関数ユーティリティ   | `utils/<verb-name>.ts`             | kebab-case（動詞起点）                                  |
+| 外部ライブラリラッパー   | `libs/<lib>/<file>.ts`             | ライブラリ名のディレクトリで分割、ファイルは kebab-case |
+| 設定値                   | `config/<topic>.ts`                | kebab-case                                              |
+| 定数                     | `consts/<topic>.ts`                | kebab-case、定数名は SCREAMING_SNAKE_CASE               |
+| Jotai store              | `store/<topic>/...`                | kebab-case ディレクトリ                                 |
+| Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス                      |
 
 ## バレルエクスポート
 
@@ -148,7 +150,7 @@ src/tests/components/ui/buttons/BaseButton/<テストファイル>.test.tsx
 - ❌ コンポーネントエントリが `index.tsx` 以外（`BaseButton.tsx`、`Component.tsx`）
 - ❌ コンポーネントスタイルが `index.module.css` 以外（`BaseButton.module.css`、`styles.module.css`）
 - ❌ hooks ファイルが `useFoo.ts`（→ `use-foo.ts`）
-- ❌ utils ファイルが `kebab-case.ts`（→ `camelCase.ts`）
+- ❌ utils ファイルが `camelCase.ts`（→ `kebab-case.ts`。`actSmoothScroll.ts` ではなく `act-smooth-scroll.ts`）
 - ❌ 廃止済みの `@/` エイリアスを使用（→ `~/` を使う）
 - ❌ `export default` でのコンポーネントエクスポート（Next.js 規約ファイル `page.tsx` / `layout.tsx` / `error.tsx` / `global-error.tsx` / `not-found.tsx` / `loading.tsx` / `template.tsx` / `sitemap.ts` / `robots.ts` は除く）
 - ❌ テストファイルが `src/components/` 内に同居（→ `src/tests/` 配下にミラー配置）

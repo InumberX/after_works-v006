@@ -110,9 +110,9 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     cnt: 1,
   })
 
-  const responseBlogs = responseBlogsTotalCount
+  const responseBlogs = responseBlogsTotalCount.success
     ? await getBlogsList({
-        cnt: responseBlogsTotalCount.pageInfo.totalCnt,
+        cnt: responseBlogsTotalCount.data.pageInfo.totalCnt,
       })
     : undefined
 
@@ -120,9 +120,9 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     cnt: 1,
   })
 
-  const responseWorks = responseWorksTotalCount
+  const responseWorks = responseWorksTotalCount.success
     ? await getWorksList({
-        cnt: responseWorksTotalCount.pageInfo.totalCnt,
+        cnt: responseWorksTotalCount.data.pageInfo.totalCnt,
       })
     : undefined
 
@@ -130,19 +130,19 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     cnt: 1,
   })
 
-  const responseHobby = responseHobbyTotalCount
+  const responseHobby = responseHobbyTotalCount.success
     ? await getHobbyList({
-        cnt: responseHobbyTotalCount.pageInfo.totalCnt,
+        cnt: responseHobbyTotalCount.data.pageInfo.totalCnt,
       })
     : undefined
 
-  if (responseBlogs && responseBlogs.list.length > 0) {
+  if (responseBlogs?.success && responseBlogs.data.list.length > 0) {
     for (
-      let i = 0, iLength = responseBlogs.list.length;
+      let i = 0, iLength = responseBlogs.data.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseBlogs.list[i]
+      const info = responseBlogs.data.list[i]
 
       sitemapEntries.push({
         url: routes.blogsDetail.url({
@@ -166,13 +166,13 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     }
   }
 
-  if (responseWorks && responseWorks.list.length > 0) {
+  if (responseWorks?.success && responseWorks.data.list.length > 0) {
     for (
-      let i = 0, iLength = responseWorks.list.length;
+      let i = 0, iLength = responseWorks.data.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseWorks.list[i]
+      const info = responseWorks.data.list[i]
 
       sitemapEntries.push({
         url: routes.worksDetail.url({
@@ -196,13 +196,13 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     }
   }
 
-  if (responseHobby && responseHobby.list.length > 0) {
+  if (responseHobby?.success && responseHobby.data.list.length > 0) {
     for (
-      let i = 0, iLength = responseHobby.list.length;
+      let i = 0, iLength = responseHobby.data.list.length;
       i < iLength;
       i = i + 1
     ) {
-      const info = responseHobby.list[i]
+      const info = responseHobby.data.list[i]
 
       sitemapEntries.push({
         url: routes.hobbyDetail.url({

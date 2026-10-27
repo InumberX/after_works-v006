@@ -158,8 +158,8 @@ className={clsx(
 
 ```
 src/hooks/use-animelm.ts            # use-kebab-case.ts
-src/utils/actSmoothScroll.ts        # camelCase.ts
-src/libs/validation/zodCustomErrorMessage.ts
+src/utils/act-smooth-scroll.ts      # kebab-case.ts
+src/libs/validation/zod-custom-error-message.ts
 src/config/routes.ts
 src/config/env.ts
 ```

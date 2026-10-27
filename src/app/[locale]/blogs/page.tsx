@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { Index } from './_components'
 
@@ -9,8 +10,10 @@ import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticle
 import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
+import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
+import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const [locale, scopedT] = await Promise.all([
@@ -29,26 +32,48 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const BlogsPage = async ({ searchParams }: NextPageProps) => {
-  const [locale, responseTagNews, currentSearchParams] = await Promise.all([
-    getCurrentLocale(),
-    getTagNews(),
-    searchParams,
-  ])
+  const currentSearchParams = await searchParams
 
-  const [responseBlogs, responseLatestBlogs] = await Promise.all([
-    getBlogsList({
-      ...(currentSearchParams &&
-        currentSearchParams.page && {
-          page: parseInt(currentSearchParams.page as string, 10),
-        }),
-    }),
-    getBlogsList({
-      cnt: 5,
-    }),
-  ])
+  // `?page=` は正の整数だけを受け付け、それ以外（`0`・`-1`・`01`・`abc` など）は
+  // Kuroco に何も問い合わせずに 404 にする
+  const page =
+    currentSearchParams?.page === undefined
+      ? 1
+      : parsePositiveInteger(currentSearchParams.page)
 
-  const defaultBlogs: WorkCardProps[] = responseBlogs
-    ? responseBlogs.list.map((info) => {
+  if (page === undefined) {
+    notFound()
+  }
+
+  const [locale, responseTagNews, responseBlogs, responseLatestBlogs] =
+    await Promise.all([
+      getCurrentLocale(),
+      getTagNews(),
+      getBlogsList({
+        page,
+      }),
+      getBlogsList({
+        cnt: 5,
+      }),
+    ])
+
+  if (!responseBlogs.success) {
+    // 最後のページより後ろは 404 にする（範囲外の pageID には Kuroco が 404 を返す）。
+    // 1 ページ目は記事が 0 件でも表示するので、見つからなくても空の一覧にする
+    if (responseBlogs.code === API_ERROR_CODE.NOT_FOUND && page > 1) {
+      notFound()
+    }
+
+    // 取得に失敗したとき（Kuroco の障害など）は、空の一覧を表示せずに 500 にする
+    if (responseBlogs.code !== API_ERROR_CODE.NOT_FOUND) {
+      throw new Error(
+        `Failed to fetch the blogs list: ${responseBlogs.message}`,
+      )
+    }
+  }
+
+  const defaultBlogs: WorkCardProps[] = responseBlogs.success
+    ? responseBlogs.data.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -103,8 +128,8 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const latestBlogs: LatestArticleCardProps[] = responseLatestBlogs
-    ? responseLatestBlogs.list.map((info) => {
+  const latestBlogs: LatestArticleCardProps[] = responseLatestBlogs.success
+    ? responseLatestBlogs.data.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
             locale,
@@ -126,12 +151,10 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
 
   return (
     <Index
-      defaultPage={
-        currentSearchParams && currentSearchParams.page
-          ? parseInt(currentSearchParams.page as string, 10)
-          : 1
+      defaultPage={page}
+      defaultTotalPage={
+        responseBlogs.success ? responseBlogs.data.pageInfo.totalPageCnt : 0
       }
-      defaultTotalPage={responseBlogs ? responseBlogs.pageInfo.totalPageCnt : 0}
       defaultArticles={defaultBlogs}
       latestArticles={latestBlogs}
       responseTagNews={responseTagNews}

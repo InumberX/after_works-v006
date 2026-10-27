@@ -16,8 +16,10 @@ import type { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
+import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
+import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
 export const generateMetadata = async ({
   params,
@@ -25,11 +27,12 @@ export const generateMetadata = async ({
   const currentParams = await params
   const id = currentParams?.id
 
-  if (!id) {
+  // id は topics_id（正の整数）だけ。それ以外は Kuroco に何も問い合わせずに 404 にする
+  if (!id || parsePositiveInteger(id) === undefined) {
     notFound()
   }
 
-  const [locale, scopedT, responseBlogsDetailInfo] = await Promise.all([
+  const [locale, scopedT, resultBlogsDetailInfo] = await Promise.all([
     getCurrentLocale(),
     getScopedI18n('blogsDetail'),
     getBlogsDetailInfo({
@@ -37,9 +40,18 @@ export const generateMetadata = async ({
     }),
   ])
 
-  if (!responseBlogsDetailInfo) {
-    notFound()
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (!resultBlogsDetailInfo.success) {
+    if (resultBlogsDetailInfo.code === API_ERROR_CODE.NOT_FOUND) {
+      notFound()
+    }
+
+    throw new Error(
+      `Failed to fetch the blogs detail: ${resultBlogsDetailInfo.message}`,
+    )
   }
+
+  const responseBlogsDetailInfo = resultBlogsDetailInfo.data
 
   const title =
     locale === 'en'
@@ -71,7 +83,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   const currentParams = await params
   const id = currentParams?.id
 
-  if (!id) {
+  // id は topics_id（正の整数）だけ。それ以外は Kuroco に何も問い合わせずに 404 にする
+  if (!id || parsePositiveInteger(id) === undefined) {
     notFound()
   }
 
@@ -84,7 +97,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     responseTagDesign,
     responseTagCms,
     responseTagOther,
-    responseBlogsDetailInfo,
+    resultBlogsDetailInfo,
     responseLatestBlogs,
   ] = await Promise.all([
     getCurrentLocale(),
@@ -103,9 +116,18 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     }),
   ])
 
-  if (!responseBlogsDetailInfo) {
-    notFound()
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (!resultBlogsDetailInfo.success) {
+    if (resultBlogsDetailInfo.code === API_ERROR_CODE.NOT_FOUND) {
+      notFound()
+    }
+
+    throw new Error(
+      `Failed to fetch the blogs detail: ${resultBlogsDetailInfo.message}`,
+    )
   }
+
+  const responseBlogsDetailInfo = resultBlogsDetailInfo.data
 
   const tagNews: BaseTagProps[] = []
   const tagPosition: BaseTagProps[] = []
@@ -315,8 +337,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
         : [],
   }
 
-  const latestBlogs: LatestArticleCardProps[] = responseLatestBlogs
-    ? responseLatestBlogs.list.map((info) => {
+  const latestBlogs: LatestArticleCardProps[] = responseLatestBlogs.success
+    ? responseLatestBlogs.data.list.map((info) => {
         return {
           url: routes.blogsDetail.url({
             locale,

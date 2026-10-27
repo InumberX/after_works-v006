@@ -15,8 +15,10 @@ import type { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
+import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
+import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
 export const generateMetadata = async ({
   params,
@@ -24,11 +26,12 @@ export const generateMetadata = async ({
   const currentParams = await params
   const id = currentParams?.id
 
-  if (!id) {
+  // id は topics_id（正の整数）だけ。それ以外は Kuroco に何も問い合わせずに 404 にする
+  if (!id || parsePositiveInteger(id) === undefined) {
     notFound()
   }
 
-  const [locale, scopedT, responseHobbyDetailInfo] = await Promise.all([
+  const [locale, scopedT, resultHobbyDetailInfo] = await Promise.all([
     getCurrentLocale(),
     getScopedI18n('hobbyDetail'),
     getHobbyDetailInfo({
@@ -36,9 +39,18 @@ export const generateMetadata = async ({
     }),
   ])
 
-  if (!responseHobbyDetailInfo) {
-    notFound()
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (!resultHobbyDetailInfo.success) {
+    if (resultHobbyDetailInfo.code === API_ERROR_CODE.NOT_FOUND) {
+      notFound()
+    }
+
+    throw new Error(
+      `Failed to fetch the hobby detail: ${resultHobbyDetailInfo.message}`,
+    )
   }
+
+  const responseHobbyDetailInfo = resultHobbyDetailInfo.data
 
   const title =
     locale === 'en'
@@ -70,7 +82,8 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
   const currentParams = await params
   const id = currentParams?.id
 
-  if (!id) {
+  // id は topics_id（正の整数）だけ。それ以外は Kuroco に何も問い合わせずに 404 にする
+  if (!id || parsePositiveInteger(id) === undefined) {
     notFound()
   }
 
@@ -82,7 +95,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     responseTagDesign,
     responseTagCms,
     responseTagOther,
-    responseHobbyDetailInfo,
+    resultHobbyDetailInfo,
     responseLatestHobby,
   ] = await Promise.all([
     getCurrentLocale(),
@@ -100,9 +113,18 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     }),
   ])
 
-  if (!responseHobbyDetailInfo) {
-    notFound()
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (!resultHobbyDetailInfo.success) {
+    if (resultHobbyDetailInfo.code === API_ERROR_CODE.NOT_FOUND) {
+      notFound()
+    }
+
+    throw new Error(
+      `Failed to fetch the hobby detail: ${resultHobbyDetailInfo.message}`,
+    )
   }
+
+  const responseHobbyDetailInfo = resultHobbyDetailInfo.data
 
   const tagPosition: BaseTagProps[] = []
   const tagProgram: BaseTagProps[] = []
@@ -294,8 +316,8 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     ],
   }
 
-  const latestHobby: LatestArticleCardProps[] = responseLatestHobby
-    ? responseLatestHobby.list.map((info) => {
+  const latestHobby: LatestArticleCardProps[] = responseLatestHobby.success
+    ? responseLatestHobby.data.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
             locale,
