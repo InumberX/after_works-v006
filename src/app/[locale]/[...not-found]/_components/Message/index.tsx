@@ -4,28 +4,29 @@ import { BaseButton } from '~/components/ui/buttons/BaseButton'
 import { LayoutInner } from '~/components/ui/layouts/LayoutInner'
 import { LayoutSection } from '~/components/ui/layouts/LayoutSection'
 import { ReplaceNewLineText } from '~/components/ui/typographies/ReplaceNewLineText'
-import { routes } from '~/config/routes'
-import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 
-export const Message = async () => {
-  const scopedT = await getScopedI18n('notFound')
-  const locale = await getCurrentLocale()
+// 404 のページと、エラーのページ（`src/app/[locale]/error.tsx`、クライアント
+// コンポーネント）で共有するため、文言は呼び出し側で翻訳して渡す
+type Props = {
+  text: string
+  buttonText: string
+  buttonUrl: string
+}
 
+export const Message = ({ text, buttonText, buttonUrl }: Props) => {
   return (
     <LayoutSection className={styles.Message} isFirst tag='div'>
       <LayoutInner size='small'>
         <div className={styles.Message__container}>
           <div className={styles.Message__contents}>
             <p className={styles.Message__text}>
-              <ReplaceNewLineText text={scopedT('message.text')} />
+              <ReplaceNewLineText text={text} />
             </p>
 
             <div className={styles.MessageButton}>
               <BaseButton
-                url={routes.home.url({
-                  locale,
-                })}
-                text={scopedT('message.buttonText')}
+                url={buttonUrl}
+                text={buttonText}
                 isRightArrow
                 className={styles.MessageButton__button}
               />

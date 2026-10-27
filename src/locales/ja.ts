@@ -184,6 +184,16 @@ export default {
       buttonText: 'トップに戻る',
     },
   },
+  error: {
+    title: 'ページを表示できませんでした',
+    pageTitle: 'ページを表示できませんでした',
+    pageSubTitle: 'ERROR',
+    message: {
+      text: `一時的な問題により、ページを表示できませんでした。
+時間をおいて、もう一度お試しください。`,
+      buttonText: 'トップに戻る',
+    },
+  },
   components: {
     contact: {
       title: `Webサイトのこと、
