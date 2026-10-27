@@ -63,6 +63,11 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
     notFound()
   }
 
+  // 取得に失敗したとき（Kuroco の障害など）は、空の一覧を表示せずに 500 にする
+  if (responseBlogs === undefined) {
+    throw new Error('Failed to fetch the blogs list')
+  }
+
   const defaultBlogs: WorkCardProps[] = responseBlogs
     ? responseBlogs.list.map((info) => {
         const tagPosition: BaseTagProps[] = []

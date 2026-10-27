@@ -38,8 +38,13 @@ export const generateMetadata = async ({
     }),
   ])
 
-  if (!responseHobbyDetailInfo) {
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (responseHobbyDetailInfo === null) {
     notFound()
+  }
+
+  if (responseHobbyDetailInfo === undefined) {
+    throw new Error('Failed to fetch the hobby detail')
   }
 
   const title =
@@ -103,8 +108,13 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     }),
   ])
 
-  if (!responseHobbyDetailInfo) {
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (responseHobbyDetailInfo === null) {
     notFound()
+  }
+
+  if (responseHobbyDetailInfo === undefined) {
+    throw new Error('Failed to fetch the hobby detail')
   }
 
   const tagPosition: BaseTagProps[] = []

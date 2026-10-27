@@ -39,8 +39,13 @@ export const generateMetadata = async ({
     }),
   ])
 
-  if (!responseBlogsDetailInfo) {
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (responseBlogsDetailInfo === null) {
     notFound()
+  }
+
+  if (responseBlogsDetailInfo === undefined) {
+    throw new Error('Failed to fetch the blogs detail')
   }
 
   const title =
@@ -106,8 +111,13 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     }),
   ])
 
-  if (!responseBlogsDetailInfo) {
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (responseBlogsDetailInfo === null) {
     notFound()
+  }
+
+  if (responseBlogsDetailInfo === undefined) {
+    throw new Error('Failed to fetch the blogs detail')
   }
 
   const tagNews: BaseTagProps[] = []

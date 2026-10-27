@@ -63,6 +63,11 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
     notFound()
   }
 
+  // 取得に失敗したとき（Kuroco の障害など）は、空の一覧を表示せずに 500 にする
+  if (responseHobby === undefined) {
+    throw new Error('Failed to fetch the hobby list')
+  }
+
   const defaultHobby: WorkCardProps[] = responseHobby
     ? responseHobby.list.map((info) => {
         const tagPosition: BaseTagProps[] = []

@@ -63,6 +63,11 @@ const WorksPage = async ({ searchParams }: NextPageProps) => {
     notFound()
   }
 
+  // 取得に失敗したとき（Kuroco の障害など）は、空の一覧を表示せずに 500 にする
+  if (responseWorks === undefined) {
+    throw new Error('Failed to fetch the works list')
+  }
+
   const defaultWorks: WorkCardProps[] = responseWorks
     ? responseWorks.list.map((info) => {
         const tagPosition: BaseTagProps[] = []

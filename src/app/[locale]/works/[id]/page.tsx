@@ -38,8 +38,13 @@ export const generateMetadata = async ({
     }),
   ])
 
-  if (!responseWorksDetailInfo) {
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (responseWorksDetailInfo === null) {
     notFound()
+  }
+
+  if (responseWorksDetailInfo === undefined) {
+    throw new Error('Failed to fetch the works detail')
   }
 
   const title =
@@ -103,8 +108,13 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     }),
   ])
 
-  if (!responseWorksDetailInfo) {
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (responseWorksDetailInfo === null) {
     notFound()
+  }
+
+  if (responseWorksDetailInfo === undefined) {
+    throw new Error('Failed to fetch the works detail')
   }
 
   const tagPosition: BaseTagProps[] = []

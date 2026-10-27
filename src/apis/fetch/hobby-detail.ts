@@ -1,8 +1,14 @@
 import { API_URL } from '~/config/env'
 import type { HobbyDetail, Details } from '~/types/apis/fetch/hobby-detail'
+import { hasApiErrorCode } from '~/utils/has-api-error-code'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
-export type ResponseGetHobbyDetailInfo = Details | undefined
+/**
+ * 詳細の取得結果。`null` は記事が見つからない（Kuroco が `not_found` を返した、
+ * または id が topics_id の形でない）、`undefined` はそれ以外の理由で取得できなかった
+ * ことを表す。
+ */
+export type ResponseGetHobbyDetailInfo = Details | null | undefined
 
 export const getHobbyDetailInfo = async ({
   id,
@@ -13,27 +19,25 @@ export const getHobbyDetailInfo = async ({
   // 見つからない扱いにする。そのまま URL に入れると、`x?cnt=-1` のようなクエリや
   // `..%2F` で同じ API の別のエンドポイントに届いてしまうため。
   if (parsePositiveInteger(id) === undefined) {
-    return undefined
+    return null
   }
 
   const response = await fetch(`${API_URL}/hobby/${id}`, {
     cache: 'no-store',
   })
 
-  if (!response.ok) {
+  const body: unknown = await response.json().catch(() => undefined)
+
+  // 存在しない記事には Kuroco が `not_found` を返す。他のエラーと区別する
+  if (hasApiErrorCode(body, 'not_found')) {
+    return null
+  }
+
+  if (!response.ok || !body) {
     return undefined
   }
 
-  const value = await response
-    .json()
-    .then((data: HobbyDetail) => data)
-    .catch(() => undefined)
-
-  if (!value) {
-    return undefined
-  }
-
-  const { details } = value
+  const { details } = body as HobbyDetail
 
   return details || undefined
 }
