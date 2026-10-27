@@ -1,11 +1,17 @@
+import { isKurocoNotFound } from '~/apis/fetch/kuroco-not-found'
 import { API_URL } from '~/config/env'
 import type { Hobby, List, PageInfo } from '~/types/apis/fetch/hobby'
 
+/**
+ * 一覧の取得結果。`null` は Kuroco が `not_found` を返した（範囲外のページなど）、
+ * `undefined` はそれ以外の理由で取得できなかったことを表す。
+ */
 export type ResponseGetHobbyList =
   | {
       list: List[]
       pageInfo: PageInfo
     }
+  | null
   | undefined
 
 export const getHobbyList = async ({
@@ -26,18 +32,18 @@ export const getHobbyList = async ({
     cache: 'no-store',
   })
 
-  if (!response.ok) {
+  const body: unknown = await response.json().catch(() => undefined)
+
+  // 範囲外のページなど、Kuroco が `not_found` を返したときは他のエラーと区別する
+  if (isKurocoNotFound(body)) {
+    return null
+  }
+
+  if (!response.ok || !body) {
     return undefined
   }
 
-  const value = await response
-    .json()
-    .then((data: Hobby) => data)
-    .catch(() => undefined)
-
-  if (!value) {
-    return undefined
-  }
+  const value = body as Hobby
 
   const { list, pageInfo } = value
 

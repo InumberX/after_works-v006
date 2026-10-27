@@ -1,11 +1,17 @@
+import { isKurocoNotFound } from '~/apis/fetch/kuroco-not-found'
 import { API_URL } from '~/config/env'
 import type { Works, List, PageInfo } from '~/types/apis/fetch/works'
 
+/**
+ * 一覧の取得結果。`null` は Kuroco が `not_found` を返した（範囲外のページなど）、
+ * `undefined` はそれ以外の理由で取得できなかったことを表す。
+ */
 export type ResponseGetWorksList =
   | {
       list: List[]
       pageInfo: PageInfo
     }
+  | null
   | undefined
 
 export const getWorksList = async ({
@@ -26,18 +32,18 @@ export const getWorksList = async ({
     cache: 'no-store',
   })
 
-  if (!response.ok) {
+  const body: unknown = await response.json().catch(() => undefined)
+
+  // 範囲外のページなど、Kuroco が `not_found` を返したときは他のエラーと区別する
+  if (isKurocoNotFound(body)) {
+    return null
+  }
+
+  if (!response.ok || !body) {
     return undefined
   }
 
-  const value = await response
-    .json()
-    .then((data: Works) => data)
-    .catch(() => undefined)
-
-  if (!value) {
-    return undefined
-  }
+  const value = body as Works
 
   const { list, pageInfo } = value
 

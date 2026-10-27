@@ -56,11 +56,10 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
       }),
     ])
 
-  // 最後のページより後ろは 404 にする（記事が 0 件でも 1 ページ目は表示する）
-  if (
-    responseHobby &&
-    page > Math.max(responseHobby.pageInfo.totalPageCnt, 1)
-  ) {
+  // 最後のページより後ろは 404 にする。範囲外の pageID には Kuroco が `not_found` を
+  // 返す。1 ページ目は記事が 0 件でも表示するので、`not_found` でも 404 にしない
+  // （API の URL の設定ミスなどで一覧そのものが 404 になるのを防ぐため）
+  if (page > 1 && responseHobby === null) {
     notFound()
   }
 
