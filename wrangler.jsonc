@@ -2,7 +2,13 @@
   // Cloudflare Workers configuration for the OpenNext build of the Next.js app.
   // Docs: https://opennext.js.org/cloudflare  |  https://developers.cloudflare.com/workers/wrangler/configuration/
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "after-works",
+  // The top level is what `wrangler dev` / `npm run preview` run. Its name must
+  // not be a deployed Worker's: a deploy without `--env` (`npm run deploy`)
+  // would otherwise replace production with the top level, which has no Smart
+  // Placement. Under this name it creates a stray Worker instead, with no route
+  // and no workers.dev URL. Deploy with `npm run deploy:staging` or
+  // `npm run deploy:production`.
+  "name": "after-works-local",
   // Custom Worker entrypoint that wraps the OpenNext handler with Basic auth.
   // It imports the generated `.open-next/worker.js` produced by the build.
   "main": "workers/app.ts",
