@@ -31,13 +31,10 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const HobbyPage = async ({ searchParams }: NextPageProps) => {
-  const [locale, responseTagPosition, currentSearchParams] = await Promise.all([
-    getCurrentLocale(),
-    getTagPosition(),
-    searchParams,
-  ])
+  const currentSearchParams = await searchParams
 
-  // `?page=` は正の整数だけを受け付け、それ以外（`0`・`-1`・`01`・`abc` など）は 404 にする
+  // `?page=` は正の整数だけを受け付け、それ以外（`0`・`-1`・`01`・`abc` など）は
+  // Kuroco に何も問い合わせずに 404 にする
   const page =
     currentSearchParams?.page === undefined
       ? 1
@@ -47,14 +44,17 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
     notFound()
   }
 
-  const [responseHobby, responseLatestHobby] = await Promise.all([
-    getHobbyList({
-      page,
-    }),
-    getHobbyList({
-      cnt: 5,
-    }),
-  ])
+  const [locale, responseTagPosition, responseHobby, responseLatestHobby] =
+    await Promise.all([
+      getCurrentLocale(),
+      getTagPosition(),
+      getHobbyList({
+        page,
+      }),
+      getHobbyList({
+        cnt: 5,
+      }),
+    ])
 
   // 最後のページより後ろは 404 にする（記事が 0 件でも 1 ページ目は表示する）
   if (

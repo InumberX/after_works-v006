@@ -18,6 +18,7 @@ import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
+import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
 export const generateMetadata = async ({
   params,
@@ -25,7 +26,8 @@ export const generateMetadata = async ({
   const currentParams = await params
   const id = currentParams?.id
 
-  if (!id) {
+  // id は topics_id（正の整数）だけ。それ以外は Kuroco に何も問い合わせずに 404 にする
+  if (!id || parsePositiveInteger(id) === undefined) {
     notFound()
   }
 
@@ -71,7 +73,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
   const currentParams = await params
   const id = currentParams?.id
 
-  if (!id) {
+  // id は topics_id（正の整数）だけ。それ以外は Kuroco に何も問い合わせずに 404 にする
+  if (!id || parsePositiveInteger(id) === undefined) {
     notFound()
   }
 
