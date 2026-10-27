@@ -141,6 +141,13 @@ Components follow a barrel export pattern with index files. UI components are ca
 - **Storybook** for component development and documentation
 - Test files in `src/tests/` mirror the component structure
 
+### Cloudflare Workers
+
+- Deployed with OpenNext to Cloudflare Workers. `wrangler.jsonc` has two environments: `development` (staging, `dev-after-works`) and `production` (`after-works`). Deploy with `npm run deploy:staging` / `npm run deploy:production` or CI, always with `--env`. The top level is named `after-works-local` so a deploy without `--env` (`npm run deploy`) creates a stray Worker instead of replacing production.
+- `workers/app.ts` wraps the OpenNext handler in a Basic auth gate, enabled only where the `BASIC_AUTH_USER` / `BASIC_AUTH_PASS` secrets are set (staging).
+- `assets.run_worker_first` is `true` on staging only, so the gate covers static assets there. Production serves matching static files from the edge without invoking the Worker. Setting the Basic auth secrets on production therefore protects its pages but not its assets: turn `run_worker_first` on there too. An environment's `assets` replaces the top level's whole, so staging repeats `binding` and `directory`.
+- Production uses Smart Placement (`"placement": { "mode": "smart" }`) so the Worker runs near the Kuroco API rather than near each visitor. After the move from AWS Amplify (one region) on 2026-05-30, Kuroco's uncached API requests and billed processing time rose about fourfold and eightfold; the likely cause is a Worker in every data center spreading its requests over Kuroco's CDN. Staging is not placed: its assets go through the Worker, which wrangler warns would slow them down once placed.
+
 ## Environment Requirements
 
 - **Node.js**: >= 24.0.0 (managed with Volta at 24.16.0)
