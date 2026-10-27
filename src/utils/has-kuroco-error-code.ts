@@ -1,13 +1,17 @@
 /**
- * Kuroco の応答が `not_found` のエラーかどうか。
+ * Kuroco の応答の `errors` に、指定したコードのエラーがあるかどうか。
  *
- * 一覧の範囲外の pageID には、次のエラーが返る（ステージングの API で確認）。
+ * 例: 一覧の範囲外の pageID には、次のエラーが返る（ステージングの API で確認）。
  *
  * ```json
  * {"errors":[{"code":"not_found","message":"pageID is too big."}]}
  * ```
+ *
+ * ```ts
+ * hasKurocoErrorCode(body, 'not_found') // true
+ * ```
  */
-export const isKurocoNotFound = (value: unknown): boolean => {
+export const hasKurocoErrorCode = (value: unknown, code: string): boolean => {
   if (typeof value !== 'object' || value === null || !('errors' in value)) {
     return false
   }
@@ -21,7 +25,7 @@ export const isKurocoNotFound = (value: unknown): boolean => {
         typeof error === 'object' &&
         error !== null &&
         'code' in error &&
-        error.code === 'not_found',
+        error.code === code,
     )
   )
 }
