@@ -30,7 +30,7 @@ src/
 ├── tests/                # Vitest テスト（components 構造をミラー）
 ├── types/                # TypeScript 型定義
 ├── utils/                # 純粋なユーティリティ関数
-└── proxy.ts              # next-international middleware（locale 解決）
+└── middleware.ts         # next-international middleware（locale 解決。OpenNext が Node.js の proxy.ts に未対応のため、Edge の middleware.ts のまま）
 ```
 
 > Next.js 規約: `robots.ts` / `sitemap.ts` は `app/` 直下にしか置けず、`[locale]` のような dynamic segment 配下では認識されない。`api/` も多言語非依存なので `[locale]/` の外に置く。
