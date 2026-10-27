@@ -1,6 +1,6 @@
 import { API_URL } from '~/config/env'
 import type { Blogs, List, PageInfo } from '~/types/apis/fetch/blogs'
-import { hasKurocoErrorCode } from '~/utils/has-kuroco-error-code'
+import { hasApiErrorCode } from '~/utils/has-api-error-code'
 
 /**
  * 一覧の取得結果。`null` は Kuroco が `not_found` を返した（範囲外のページなど）、
@@ -35,7 +35,7 @@ export const getBlogsList = async ({
   const body: unknown = await response.json().catch(() => undefined)
 
   // 範囲外のページなど、Kuroco が `not_found` を返したときは他のエラーと区別する
-  if (hasKurocoErrorCode(body, 'not_found')) {
+  if (hasApiErrorCode(body, 'not_found')) {
     return null
   }
 

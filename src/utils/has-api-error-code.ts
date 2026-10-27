@@ -1,5 +1,8 @@
 /**
- * Kuroco の応答の `errors` に、指定したコードのエラーがあるかどうか。
+ * API の応答の `errors` に、指定したコードのエラーがあるかどうか。
+ *
+ * `errors: [{ code, message }]` はヘッドレス CMS（Kuroco）の応答の形。別の形式で
+ * エラーを返す API には使えない。
  *
  * 例: 一覧の範囲外の pageID には、次のエラーが返る（ステージングの API で確認）。
  *
@@ -8,10 +11,10 @@
  * ```
  *
  * ```ts
- * hasKurocoErrorCode(body, 'not_found') // true
+ * hasApiErrorCode(body, 'not_found') // true
  * ```
  */
-export const hasKurocoErrorCode = (value: unknown, code: string): boolean => {
+export const hasApiErrorCode = (value: unknown, code: string): boolean => {
   if (typeof value !== 'object' || value === null || !('errors' in value)) {
     return false
   }
