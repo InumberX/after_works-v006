@@ -6,6 +6,12 @@
  * are left unset, so the gate is disabled and every request passes straight
  * through to Next.js.
  *
+ * The gate only sees static assets where `assets.run_worker_first` is true,
+ * which `wrangler.jsonc` sets for staging alone. Setting the secrets on
+ * production protects its pages but not its images, CSS or JS: turn
+ * `run_worker_first` on there too (and expect slower assets while Smart
+ * Placement is on).
+ *
  * @see https://opennext.js.org/cloudflare
  * @see @inumberx/cloudflare-workers-basic-auth
  */
