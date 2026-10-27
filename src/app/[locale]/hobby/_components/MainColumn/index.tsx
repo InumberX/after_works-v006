@@ -45,8 +45,8 @@ export const MainColumn = ({
       page: newPage,
     })
 
-    const items: WorkCardProps[] = responseHobby
-      ? responseHobby.list.map((info) => {
+    const items: WorkCardProps[] = responseHobby.success
+      ? responseHobby.data.list.map((info) => {
           const tagPosition: BaseTagProps[] = []
 
           for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -108,7 +108,9 @@ export const MainColumn = ({
 
     setArticles(items)
     setCurrentPage(newPage)
-    setTotalPage(responseHobby ? responseHobby.pageInfo.totalPageCnt : 0)
+    setTotalPage(
+      responseHobby.success ? responseHobby.data.pageInfo.totalPageCnt : 0,
+    )
 
     router.push(
       `${routes.hobby.url({

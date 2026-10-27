@@ -10,6 +10,7 @@ import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticle
 import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
+import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
@@ -56,16 +57,23 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
       }),
     ])
 
-  // 最後のページより後ろは 404 にする（記事が 0 件でも 1 ページ目は表示する）
-  if (
-    responseHobby &&
-    page > Math.max(responseHobby.pageInfo.totalPageCnt, 1)
-  ) {
-    notFound()
+  if (!responseHobby.success) {
+    // 最後のページより後ろは 404 にする（範囲外の pageID には Kuroco が 404 を返す）。
+    // 1 ページ目は記事が 0 件でも表示するので、見つからなくても空の一覧にする
+    if (responseHobby.code === API_ERROR_CODE.NOT_FOUND && page > 1) {
+      notFound()
+    }
+
+    // 取得に失敗したとき（Kuroco の障害など）は、空の一覧を表示せずに 500 にする
+    if (responseHobby.code !== API_ERROR_CODE.NOT_FOUND) {
+      throw new Error(
+        `Failed to fetch the hobby list: ${responseHobby.message}`,
+      )
+    }
   }
 
-  const defaultHobby: WorkCardProps[] = responseHobby
-    ? responseHobby.list.map((info) => {
+  const defaultHobby: WorkCardProps[] = responseHobby.success
+    ? responseHobby.data.list.map((info) => {
         const tagPosition: BaseTagProps[] = []
 
         for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -121,8 +129,8 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
       })
     : []
 
-  const latestHobby: LatestArticleCardProps[] = responseLatestHobby
-    ? responseLatestHobby.list.map((info) => {
+  const latestHobby: LatestArticleCardProps[] = responseLatestHobby.success
+    ? responseLatestHobby.data.list.map((info) => {
         return {
           url: routes.hobbyDetail.url({
             locale,
@@ -146,7 +154,9 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
   return (
     <Index
       defaultPage={page}
-      defaultTotalPage={responseHobby ? responseHobby.pageInfo.totalPageCnt : 0}
+      defaultTotalPage={
+        responseHobby.success ? responseHobby.data.pageInfo.totalPageCnt : 0
+      }
       defaultArticles={defaultHobby}
       latestArticles={latestHobby}
       responseTagPosition={responseTagPosition}

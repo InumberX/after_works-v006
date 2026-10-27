@@ -1,8 +1,17 @@
-import { API_URL } from '~/config/env'
+import {
+  apiClient,
+  createNotFoundError,
+  createUnexpectedResponseError,
+} from '~/apis/fetch/api-client'
+import type { ApiResult } from '~/types/apis/fetch/api-client'
 import type { WorksDetail, Details } from '~/types/apis/fetch/works-detail'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
-export type ResponseGetWorksDetailInfo = Details | undefined
+/**
+ * 詳細の取得結果。存在しない記事では Kuroco が 404 を返すので、`code` が
+ * `not_found` になる（`~/consts/api` の `API_ERROR_CODE`）。
+ */
+export type ResponseGetWorksDetailInfo = ApiResult<Details>
 
 export const getWorksDetailInfo = async ({
   id,
@@ -13,27 +22,18 @@ export const getWorksDetailInfo = async ({
   // 見つからない扱いにする。そのまま URL に入れると、`x?cnt=-1` のようなクエリや
   // `..%2F` で同じ API の別のエンドポイントに届いてしまうため。
   if (parsePositiveInteger(id) === undefined) {
-    return undefined
+    return createNotFoundError()
   }
 
-  const response = await fetch(`${API_URL}/works/${id}`, {
-    cache: 'no-store',
-  })
+  const result = await apiClient<WorksDetail>(`/works/${id}`)
 
-  if (!response.ok) {
-    return undefined
+  if (!result.success) {
+    return result
   }
 
-  const value = await response
-    .json()
-    .then((data: WorksDetail) => data)
-    .catch(() => undefined)
+  const { details } = result.data
 
-  if (!value) {
-    return undefined
-  }
-
-  const { details } = value
-
-  return details || undefined
+  return details
+    ? { success: true, data: details }
+    : createUnexpectedResponseError()
 }

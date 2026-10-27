@@ -15,6 +15,7 @@ import type { BaseArticleInfo } from '~/components/ui/articles/BaseArticle'
 import type { LatestArticleCardProps } from '~/components/ui/cards/LatestArticleCard'
 import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
+import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
@@ -30,7 +31,7 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const [locale, scopedT, responseWorksDetailInfo] = await Promise.all([
+  const [locale, scopedT, resultWorksDetailInfo] = await Promise.all([
     getCurrentLocale(),
     getScopedI18n('worksDetail'),
     getWorksDetailInfo({
@@ -38,9 +39,18 @@ export const generateMetadata = async ({
     }),
   ])
 
-  if (!responseWorksDetailInfo) {
-    notFound()
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (!resultWorksDetailInfo.success) {
+    if (resultWorksDetailInfo.code === API_ERROR_CODE.NOT_FOUND) {
+      notFound()
+    }
+
+    throw new Error(
+      `Failed to fetch the works detail: ${resultWorksDetailInfo.message}`,
+    )
   }
+
+  const responseWorksDetailInfo = resultWorksDetailInfo.data
 
   const title =
     locale === 'en'
@@ -85,7 +95,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     responseTagDesign,
     responseTagCms,
     responseTagOther,
-    responseWorksDetailInfo,
+    resultWorksDetailInfo,
     responseLatestWorks,
   ] = await Promise.all([
     getCurrentLocale(),
@@ -103,9 +113,18 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     }),
   ])
 
-  if (!responseWorksDetailInfo) {
-    notFound()
+  // 記事が見つからなければ 404、取得に失敗したとき（Kuroco の障害など）は 500 にする
+  if (!resultWorksDetailInfo.success) {
+    if (resultWorksDetailInfo.code === API_ERROR_CODE.NOT_FOUND) {
+      notFound()
+    }
+
+    throw new Error(
+      `Failed to fetch the works detail: ${resultWorksDetailInfo.message}`,
+    )
   }
+
+  const responseWorksDetailInfo = resultWorksDetailInfo.data
 
   const tagPosition: BaseTagProps[] = []
   const tagProgram: BaseTagProps[] = []
@@ -297,8 +316,8 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     ],
   }
 
-  const latestWorks: LatestArticleCardProps[] = responseLatestWorks
-    ? responseLatestWorks.list.map((info) => {
+  const latestWorks: LatestArticleCardProps[] = responseLatestWorks.success
+    ? responseLatestWorks.data.list.map((info) => {
         return {
           url: routes.worksDetail.url({
             locale,

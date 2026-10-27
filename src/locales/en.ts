@@ -184,6 +184,16 @@ Please check if the URL of the page you are looking for is correct.`,
       buttonText: 'Return to Top',
     },
   },
+  error: {
+    title: 'The Page Could Not Be Displayed',
+    pageTitle: 'The Page Could Not Be Displayed',
+    pageSubTitle: 'ERROR',
+    message: {
+      text: `The page could not be displayed due to a temporary problem.
+Please wait a moment and try again.`,
+      buttonText: 'Return to Top',
+    },
+  },
   components: {
     contact: {
       title: `If you have any questions about websites,
