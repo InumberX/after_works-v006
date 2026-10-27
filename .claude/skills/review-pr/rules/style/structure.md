@@ -87,16 +87,16 @@ ui/buttons/BaseButton/
 
 ## 関連レイヤーの配置
 
-| ロジック種別             | 置き場                             | 命名                               |
-| ------------------------ | ---------------------------------- | ---------------------------------- |
-| データ取得関数           | `apis/fetch/<resource>.ts`         | kebab-case                         |
-| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | kebab-case                         |
-| カスタムフック           | `hooks/use-<name>.ts`              | kebab-case + `use-` プレフィックス |
-| 純粋関数ユーティリティ   | `utils/<verb-name>.ts`             | kebab-case（動詞起点）             |
+| ロジック種別             | 置き場                             | 命名                                                    |
+| ------------------------ | ---------------------------------- | ------------------------------------------------------- |
+| データ取得関数           | `apis/fetch/<resource>.ts`         | kebab-case                                              |
+| データ型定義（宣言のみ） | `types/apis/fetch/<resource>.d.ts` | kebab-case                                              |
+| カスタムフック           | `hooks/use-<name>.ts`              | kebab-case + `use-` プレフィックス                      |
+| 純粋関数ユーティリティ   | `utils/<verb-name>.ts`             | kebab-case（動詞起点）                                  |
 | 外部ライブラリラッパー   | `libs/<lib>/<file>.ts`             | ライブラリ名のディレクトリで分割、ファイルは kebab-case |
-| 設定値                   | `config/<topic>.ts`                | kebab-case                         |
-| Jotai store              | `store/<topic>/...`                | kebab-case ディレクトリ            |
-| Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス |
+| 設定値                   | `config/<topic>.ts`                | kebab-case                                              |
+| Jotai store              | `store/<topic>/...`                | kebab-case ディレクトリ                                 |
+| Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス                      |
 
 ## バレルエクスポート
 
