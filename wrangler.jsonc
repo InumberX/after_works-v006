@@ -14,10 +14,11 @@
   "assets": {
     "binding": "ASSETS",
     "directory": ".open-next/assets",
-    // Run the Worker first so the Basic auth gate also covers static assets on
-    // staging. Authenticated GET/HEAD requests are then served from ASSETS by
-    // the custom Worker before falling through to the Next.js handler.
-    "run_worker_first": true,
+    // Production has no Basic auth, so matching static files are served from
+    // the edge without invoking the Worker. With Smart Placement the Worker may
+    // run far from the visitor, and routing assets through it would slow them
+    // down. Staging turns this on in `env.development`.
+    "run_worker_first": false,
   },
   "observability": {
     "enabled": true,
@@ -25,12 +26,29 @@
   // Environment-specific names. Build-time NEXT_PUBLIC_* values are injected by
   // the GitHub Actions workflow; runtime secrets (BASIC_AUTH_*) are set per
   // environment with `wrangler secret put ... --env=<environment>`.
+  //
+  // Smart Placement runs the Worker near the Kuroco API rather than near each
+  // visitor. Run from every data center, the Worker spread its requests over
+  // Kuroco's CDN and most of them missed its cache.
+  //
+  // An environment's `assets` replaces the top level's whole, so staging
+  // repeats `binding` and `directory`.
   "env": {
     "development": {
       "name": "dev-after-works",
+      "placement": { "mode": "smart" },
+      "assets": {
+        "binding": "ASSETS",
+        "directory": ".open-next/assets",
+        // Run the Worker first so the Basic auth gate also covers static
+        // assets. Authenticated GET/HEAD requests are then served from ASSETS
+        // by the custom Worker before falling through to the Next.js handler.
+        "run_worker_first": true,
+      },
     },
     "production": {
       "name": "after-works",
+      "placement": { "mode": "smart" },
     },
   },
 }
