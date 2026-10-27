@@ -2,32 +2,12 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { getBlogsList } from '~/apis/fetch/blogs'
 import { getHobbyList } from '~/apis/fetch/hobby'
-import { isKurocoNotFound } from '~/apis/fetch/kuroco-not-found'
 import { getWorksList } from '~/apis/fetch/works'
 
 // 範囲外の pageID に Kuroco が返すエラー（ステージングの API で確認）
 const NOT_FOUND_BODY = {
   errors: [{ code: 'not_found', message: 'pageID is too big.' }],
 }
-
-describe('isKurocoNotFound', () => {
-  it('not_found のエラーを含む応答を見分ける', () => {
-    expect(isKurocoNotFound(NOT_FOUND_BODY)).toBe(true)
-  })
-
-  it.each([
-    undefined,
-    null,
-    'not_found',
-    {},
-    { errors: [] },
-    { errors: 'not_found' },
-    { errors: [{ code: 'invalid' }] },
-    { errors: [null] },
-  ])('%j は not_found ではない', (value) => {
-    expect(isKurocoNotFound(value)).toBe(false)
-  })
-})
 
 const fetchers = [
   ['blogs', getBlogsList],

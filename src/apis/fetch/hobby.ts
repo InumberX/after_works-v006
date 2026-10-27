@@ -1,6 +1,6 @@
-import { isKurocoNotFound } from '~/apis/fetch/kuroco-not-found'
 import { API_URL } from '~/config/env'
 import type { Hobby, List, PageInfo } from '~/types/apis/fetch/hobby'
+import { isKurocoNotFound } from '~/utils/is-kuroco-not-found'
 
 /**
  * 一覧の取得結果。`null` は Kuroco が `not_found` を返した（範囲外のページなど）、
