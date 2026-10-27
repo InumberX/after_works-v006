@@ -2,7 +2,13 @@
   // Cloudflare Workers configuration for the OpenNext build of the Next.js app.
   // Docs: https://opennext.js.org/cloudflare  |  https://developers.cloudflare.com/workers/wrangler/configuration/
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "after-works",
+  // The top level is what `wrangler dev` / `npm run preview` run. Its name must
+  // not be a deployed Worker's: a deploy without `--env` (`npm run deploy`)
+  // would otherwise replace production with the top level, which has no Smart
+  // Placement. Under this name it creates a stray Worker instead, with no route
+  // and no workers.dev URL. Deploy with `npm run deploy:staging` or
+  // `npm run deploy:production`.
+  "name": "after-works-local",
   // Custom Worker entrypoint that wraps the OpenNext handler with Basic auth.
   // It imports the generated `.open-next/worker.js` produced by the build.
   "main": "workers/app.ts",
@@ -14,10 +20,11 @@
   "assets": {
     "binding": "ASSETS",
     "directory": ".open-next/assets",
-    // Run the Worker first so the Basic auth gate also covers static assets on
-    // staging. Authenticated GET/HEAD requests are then served from ASSETS by
-    // the custom Worker before falling through to the Next.js handler.
-    "run_worker_first": true,
+    // Production has no Basic auth, so matching static files are served from
+    // the edge without invoking the Worker. With Smart Placement the Worker may
+    // run far from the visitor, and routing assets through it would slow them
+    // down. Staging turns this on in `env.development`.
+    "run_worker_first": false,
   },
   "observability": {
     "enabled": true,
@@ -25,12 +32,32 @@
   // Environment-specific names. Build-time NEXT_PUBLIC_* values are injected by
   // the GitHub Actions workflow; runtime secrets (BASIC_AUTH_*) are set per
   // environment with `wrangler secret put ... --env=<environment>`.
+  //
+  // Smart Placement runs the production Worker near the Kuroco API rather than
+  // near each visitor. After the move from Amplify, which ran in one region,
+  // Kuroco's uncached requests rose about fourfold; run from every data center,
+  // the Worker spreads its requests over Kuroco's CDN, which is the likely
+  // cause. Staging leaves it off: its assets go through the Worker for Basic
+  // auth, which wrangler warns would slow them down once placed, and its
+  // traffic is too small for Smart Placement to move it anyway.
+  //
+  // An environment's `assets` replaces the top level's whole, so staging
+  // repeats `binding` and `directory`.
   "env": {
     "development": {
       "name": "dev-after-works",
+      "assets": {
+        "binding": "ASSETS",
+        "directory": ".open-next/assets",
+        // Run the Worker first so the Basic auth gate also covers static
+        // assets. Authenticated GET/HEAD requests are then served from ASSETS
+        // by the custom Worker before falling through to the Next.js handler.
+        "run_worker_first": true,
+      },
     },
     "production": {
       "name": "after-works",
+      "placement": { "mode": "smart" },
     },
   },
 }
