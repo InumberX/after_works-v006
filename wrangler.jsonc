@@ -34,8 +34,9 @@
   // environment with `wrangler secret put ... --env=<environment>`.
   //
   // Smart Placement runs the Worker near the Kuroco API rather than near each
-  // visitor. Run from every data center, the Worker spread its requests over
-  // Kuroco's CDN and most of them missed its cache.
+  // visitor. After the move from Amplify, which ran in one region, Kuroco's
+  // uncached requests rose about fourfold; run from every data center, the
+  // Worker spreads its requests over Kuroco's CDN, which is the likely cause.
   //
   // An environment's `assets` replaces the top level's whole, so staging
   // repeats `binding` and `directory`.
