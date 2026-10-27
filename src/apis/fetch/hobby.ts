@@ -43,9 +43,7 @@ export const getHobbyList = async ({
     return undefined
   }
 
-  const value = body as Hobby
-
-  const { list, pageInfo } = value
+  const { list, pageInfo } = body as Hobby
 
   return list && pageInfo
     ? {

@@ -43,9 +43,7 @@ export const getWorksList = async ({
     return undefined
   }
 
-  const value = body as Works
-
-  const { list, pageInfo } = value
+  const { list, pageInfo } = body as Works
 
   return list && pageInfo
     ? {

@@ -43,9 +43,7 @@ export const getBlogsList = async ({
     return undefined
   }
 
-  const value = body as Blogs
-
-  const { list, pageInfo } = value
+  const { list, pageInfo } = body as Blogs
 
   return list && pageInfo
     ? {
