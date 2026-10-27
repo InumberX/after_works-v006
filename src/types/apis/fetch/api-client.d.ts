@@ -1,6 +1,5 @@
 import type { ApiErrorCode } from '~/consts/api'
 
-/** API の取得結果（`~/apis/fetch/api-client` の `apiClient`）。sugidama と同じ形 */
 export type ApiSuccess<T> = { success: true; data: T }
 
 export type ApiError = {
@@ -12,4 +11,5 @@ export type ApiError = {
   message: string
 }
 
+/** API の取得結果（`~/apis/fetch/api-client` の `apiClient`）。sugidama と同じ形 */
 export type ApiResult<T> = ApiSuccess<T> | ApiError
