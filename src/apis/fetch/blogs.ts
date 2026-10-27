@@ -1,18 +1,18 @@
-import { API_URL } from '~/config/env'
+import {
+  apiClient,
+  unexpectedResponseError,
+  type ApiResult,
+} from '~/apis/fetch/api-client'
 import type { Blogs, List, PageInfo } from '~/types/apis/fetch/blogs'
-import { hasApiErrorCode } from '~/utils/has-api-error-code'
 
 /**
- * 一覧の取得結果。`null` は Kuroco が `not_found` を返した（範囲外のページなど）、
- * `undefined` はそれ以外の理由で取得できなかったことを表す。
+ * 一覧の取得結果。範囲外のページでは Kuroco が 404 を返すので、`code` が
+ * `not_found` になる（`~/consts/api` の `API_ERROR_CODE`）。
  */
-export type ResponseGetBlogsList =
-  | {
-      list: List[]
-      pageInfo: PageInfo
-    }
-  | null
-  | undefined
+export type ResponseGetBlogsList = ApiResult<{
+  list: List[]
+  pageInfo: PageInfo
+}>
 
 export const getBlogsList = async ({
   cnt = 12,
@@ -28,27 +28,15 @@ export const getBlogsList = async ({
     `pageID=${page}`,
     `order_query=${orderQuery}`,
   ].join('&')
-  const response = await fetch(`${API_URL}/blogs?${param}`, {
-    cache: 'no-store',
-  })
+  const result = await apiClient<Blogs>(`/blogs?${param}`)
 
-  const body: unknown = await response.json().catch(() => undefined)
-
-  // 範囲外のページなど、Kuroco が `not_found` を返したときは他のエラーと区別する
-  if (hasApiErrorCode(body, 'not_found')) {
-    return null
+  if (!result.success) {
+    return result
   }
 
-  if (!response.ok || !body) {
-    return undefined
-  }
-
-  const { list, pageInfo } = body as Blogs
+  const { list, pageInfo } = result.data
 
   return list && pageInfo
-    ? {
-        list,
-        pageInfo,
-      }
-    : undefined
+    ? { success: true, data: { list, pageInfo } }
+    : unexpectedResponseError()
 }

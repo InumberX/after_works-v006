@@ -1,14 +1,17 @@
-import { API_URL } from '~/config/env'
+import {
+  apiClient,
+  notFoundError,
+  unexpectedResponseError,
+  type ApiResult,
+} from '~/apis/fetch/api-client'
 import type { BlogsDetail, Details } from '~/types/apis/fetch/blogs-detail'
-import { hasApiErrorCode } from '~/utils/has-api-error-code'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
 
 /**
- * 詳細の取得結果。`null` は記事が見つからない（Kuroco が `not_found` を返した、
- * または id が topics_id の形でない）、`undefined` はそれ以外の理由で取得できなかった
- * ことを表す。
+ * 詳細の取得結果。存在しない記事では Kuroco が 404 を返すので、`code` が
+ * `not_found` になる（`~/consts/api` の `API_ERROR_CODE`）。
  */
-export type ResponseGetBlogsDetailInfo = Details | null | undefined
+export type ResponseGetBlogsDetailInfo = ApiResult<Details>
 
 export const getBlogsDetailInfo = async ({
   id,
@@ -19,25 +22,16 @@ export const getBlogsDetailInfo = async ({
   // 見つからない扱いにする。そのまま URL に入れると、`x?cnt=-1` のようなクエリや
   // `..%2F` で同じ API の別のエンドポイントに届いてしまうため。
   if (parsePositiveInteger(id) === undefined) {
-    return null
+    return notFoundError()
   }
 
-  const response = await fetch(`${API_URL}/blogs/${id}`, {
-    cache: 'no-store',
-  })
+  const result = await apiClient<BlogsDetail>(`/blogs/${id}`)
 
-  const body: unknown = await response.json().catch(() => undefined)
-
-  // 存在しない記事には Kuroco が `not_found` を返す。他のエラーと区別する
-  if (hasApiErrorCode(body, 'not_found')) {
-    return null
+  if (!result.success) {
+    return result
   }
 
-  if (!response.ok || !body) {
-    return undefined
-  }
+  const { details } = result.data
 
-  const { details } = body as BlogsDetail
-
-  return details || undefined
+  return details ? { success: true, data: details } : unexpectedResponseError()
 }

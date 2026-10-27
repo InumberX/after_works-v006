@@ -49,8 +49,8 @@ export const MainColumn = ({
       page: newPage,
     })
 
-    const items: WorkCardProps[] = responseWorks
-      ? responseWorks.list.map((info) => {
+    const items: WorkCardProps[] = responseWorks.success
+      ? responseWorks.data.list.map((info) => {
           const tagPosition: BaseTagProps[] = []
 
           for (let i = 0, iLength = info.tags.length; i < iLength; i = i + 1) {
@@ -112,7 +112,9 @@ export const MainColumn = ({
 
     setArticles(items)
     setCurrentPage(newPage)
-    setTotalPage(responseWorks ? responseWorks.pageInfo.totalPageCnt : 0)
+    setTotalPage(
+      responseWorks.success ? responseWorks.data.pageInfo.totalPageCnt : 0,
+    )
 
     router.push(
       `${routes.works.url({

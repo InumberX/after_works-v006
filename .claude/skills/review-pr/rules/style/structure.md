@@ -19,6 +19,7 @@ src/
 │   ├── common/           # レイアウト系の共有コンポーネント
 │   └── ui/               # 再利用可能な UI コンポーネント（カテゴリ分割）
 ├── config/               # 設定値（env, routes, sns 等）
+├── consts/               # 層をまたいで使う定数（api.ts: HTTP_STATUS、API_ERROR_CODE 等）
 ├── hooks/                # カスタムフック
 ├── layouts/              # ページレイアウトテンプレート
 ├── libs/                 # 外部ライブラリのラッパー（ga, validation 等）
@@ -95,6 +96,7 @@ ui/buttons/BaseButton/
 | 純粋関数ユーティリティ   | `utils/<verb-name>.ts`             | kebab-case（動詞起点）                                  |
 | 外部ライブラリラッパー   | `libs/<lib>/<file>.ts`             | ライブラリ名のディレクトリで分割、ファイルは kebab-case |
 | 設定値                   | `config/<topic>.ts`                | kebab-case                                              |
+| 定数                     | `consts/<topic>.ts`                | kebab-case、定数名は SCREAMING_SNAKE_CASE               |
 | Jotai store              | `store/<topic>/...`                | kebab-case ディレクトリ                                 |
 | Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス                      |
 

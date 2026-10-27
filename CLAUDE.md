@@ -78,10 +78,11 @@ The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
 - `src/app/[locale]/` - Next.js App Router pages with dynamic locale routing
 - `src/components/common/` - Shared layout components (Header, Footer, etc.)
 - `src/components/ui/` - Reusable UI components organized by type (buttons, cards, etc.)
-- `src/apis/fetch/` - API client functions for headless CMS
+- `src/apis/fetch/` - API client functions for headless CMS. `api-client.ts` (`apiClient`) fetches and returns an `ApiResult` (`success: true` with `data`, or `success: false` with `status`, `code` and `message`) instead of throwing, as sugidama's `app/data/api-client.ts` does. The list and detail fetchers of blogs, works and hobby use it: a `code` of `not_found` (Kuroco's 404: a page past the last, an article that does not exist) becomes a 404 page, any other failure a 500. The other fetchers (tags, about) still call `fetch` directly
 - `src/types/apis/fetch/` - TypeScript type definitions for API responses
 - `src/layouts/` - Page layout templates
 - `src/config/` - Configuration files (env, routes, SNS links)
+- `src/consts/` - Constants shared across layers (e.g. `api.ts`: `HTTP_STATUS`, `API_ERROR_CODE`)
 - `src/libs/` - Utility libraries (Google Analytics, validation)
 - `src/hooks/` - Custom React hooks
 - `src/utils/` - Utility functions
