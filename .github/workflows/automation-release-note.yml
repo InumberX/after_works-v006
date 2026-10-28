@@ -1,61 +1,127 @@
-name: Create release tag and release note.
+name: Release Note
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# タグはコミットごとに 1 本作る非冪等な処理なので、group にコミットを含める。
+# workflow 単位にすると、連続リリース時に pending の run がキャンセルされてタグが欠ける。
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: false
+
+env:
+  TZ: Asia/Tokyo
+  BASE_BRANCH: main
+  # Release PR ワークフローが本文に埋めるマーカー。リリースノートからは取り除く。
+  BEGIN_MARKER: '<!-- release-pr:begin -->'
+  END_MARKER: '<!-- release-pr:end -->'
 
 jobs:
-  create-release-tag:
+  release-note:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      TZ: 'Asia/Tokyo'
-
+    timeout-minutes: 5
+    # workflow_dispatch は任意のブランチから実行できるので、main 以外では何もしない
+    if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
-
-      # 前回のリリースタグを取得する（1件も無ければ空）
-      - name: Get previous tag
-        id: pre_tag
-        run: |
-          pre_tag=$(gh release view \
-            --repo '${{ github.repository }}' \
-            --json tagName --jq .tagName 2>/dev/null || true)
-          echo "pre_tag=$pre_tag" >> "$GITHUB_OUTPUT"
-
-      # タグを生成する 「v{YYYY.MM.DD}-{当日リリース回数}」
-      - name: Generate release tag
-        id: release_tag
-        # PRE_TAG は直前のステップが取得したタグ名。run: へ ${{ }} で直接展開すると
-        # シェル起動前のテキスト置換になり、`'` を含むタグ名でクォートが閉じられて
-        # 続きがコマンドとして実行される（`'` は git のタグ名として有効）。
+      # タグを切ってリリースを作るだけなので GITHUB_TOKEN で足りる
+      # （App トークンが要るのは、作った PR で CI を発火させたい Release PR 側だけ）。
+      - name: Create release tag and note
         env:
-          PRE_TAG: ${{ steps.pre_tag.outputs.pre_tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
         run: |
-          today=v$(date +'%Y.%m.%d')
-          pre_tag="$PRE_TAG"
-          count=0
+          set -euo pipefail
 
-          # 同日の既存タグがあれば、その連番を引き継いで加算する
-          if [ -n "$pre_tag" ] && [ "${pre_tag%%-*}" = "$today" ]; then
-            count="${pre_tag##*-}"
-            case "$count" in
-              '' | *[!0-9]*) count=0 ;;
-            esac
+          # 同じコミットに対して二重にリリースを作らない（手動実行と push が重なった場合など）。
+          # --jq 'length' はページごとに数値を出すので、件数ではなく行数で数える
+          # （matching-refs は現状ページ分割しないが、それに依存しない形にしておく）。
+          released=$(
+            gh api "repos/$REPO/git/matching-refs/tags/v" --paginate \
+              --jq '.[] | select(.object.sha == env.SHA) | .ref' \
+              | wc -l | tr -d ' '
+          )
+          if [ "$released" != '0' ]; then
+            echo "すでにリリース済みのコミットです: $SHA"
+            exit 0
           fi
 
-          echo "release_tag=$today-$((count + 1))" >> "$GITHUB_OUTPUT"
+          today="v$(date +'%Y.%m.%d')"
 
-      # タグを切り、前回リリースからの差分でリリースノートを生成する
-      # （カテゴリ分けは .github/release.yml の設定に従う）
-      - name: Create release
-        run: |
-          gh release create '${{ steps.release_tag.outputs.release_tag }}' \
-            --repo '${{ github.repository }}' \
-            --title '${{ steps.release_tag.outputs.release_tag }}' \
-            --target '${{ github.sha }}' \
-            --generate-notes
+          # リリースノートは、この push を生んだリリース PR の本文をそのまま使う。
+          # 手書きの概要も残したいので本文全体を使い、マーカー行だけを取り除く。
+          number=$(
+            gh api "repos/$REPO/commits/$SHA/pulls" \
+              --jq '[.[] | select(.base.ref == env.BASE_BRANCH)][0].number // empty'
+          )
+
+          if [ -n "$number" ]; then
+            gh pr view "$number" --repo "$REPO" --json body --jq '.body // ""' \
+              | awk -v begin="$BEGIN_MARKER" -v end="$END_MARKER" '
+                  !index($0, begin) && !index($0, end)
+                ' > notes.md
+          fi
+
+          if grep -q '[^[:space:]]' notes.md 2> /dev/null; then
+            note_args=(--notes-file notes.md)
+          else
+            # PR が見つからない / 本文が空のときだけ GitHub の自動生成に任せる
+            note_args=(--generate-notes)
+          fi
+
+          # タグは v{YYYY.MM.DD}-{当日の通し番号}。連番は既存の最大値 + 1 にする
+          # （件数 + 1 だと、途中のタグを消したときに既存の番号と重なる）。
+          # concurrency はコミット単位なので main への push が重なると同じ番号を
+          # 計算しうる。負けた側は採番し直す。
+          for attempt in 1 2 3 4 5; do
+            # 取得と絞り込みを分ける。ひとつの式にすると gh api の失敗まで
+            # 「タグが無い」と同じ扱いになり、原因が採番の衝突に化ける。
+            refs=$(gh api "repos/$REPO/git/matching-refs/tags/$today-" --paginate --jq '.[].ref')
+            latest=$(
+              printf '%s\n' "$refs" \
+                | sed 's|.*-||' \
+                | grep -E '^[0-9]+$' \
+                | sort -n | tail -1
+            ) || latest=''
+            tag="$today-$(( ${latest:-0} + 1 ))"
+
+            if gh release create "$tag" "${note_args[@]}" \
+                 --repo "$REPO" \
+                 --title "$tag" \
+                 --target "$SHA" 2> release-err.txt; then
+              echo "$tag を作成しました"
+              exit 0
+            fi
+
+            # 失敗の理由は、gh のエラー文言ではなくタグの実在と指し先で決める。
+            # matching-refs はプレフィックス一致なので、-1 に -10 や -11 が
+            # 混ざらないよう完全一致で絞る。
+            tagged_sha=$(
+              TAG="$tag" gh api "repos/$REPO/git/matching-refs/tags/$tag" --paginate \
+                --jq '.[] | select(.ref == "refs/tags/" + env.TAG) | .object.sha'
+            )
+
+            # タグが無い = 作成そのものが通らなかった
+            if [ -z "$tagged_sha" ]; then
+              cat release-err.txt >&2
+              exit 1
+            fi
+
+            # 自分のコミットを指している = 応答を取りこぼしただけで作成は成功している。
+            # ここで採番し直すと、同じコミットにリリースが 2 本できる。
+            if [ "$tagged_sha" = "$SHA" ]; then
+              echo "$tag は作成済みでした（応答を取りこぼしただけ）"
+              exit 0
+            fi
+
+            echo "$tag は別の run が取得済みでした。採番し直します（$attempt 回目）" >&2
+          done
+
+          echo "タグの採番が $attempt 回とも衝突しました" >&2
+          exit 1
