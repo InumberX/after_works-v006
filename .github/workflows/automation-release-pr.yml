@@ -1,46 +1,182 @@
-name: Create a pull request for release.
+name: Release PR
 
 on:
   push:
-    branches: [develop]
+    branches:
+      - develop
+  workflow_dispatch:
+
+# gh は App トークンで叩くため GITHUB_TOKEN は使わない
+permissions: {}
+
+# develop への push が連続しても PR の作成と本文更新が競合しないよう直列化する。
+# 本文は毎回フルで作り直す冪等な処理なので、中間の run がキャンセルされても最終状態は正しくなる。
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+env:
+  BASE_BRANCH: main
+  HEAD_BRANCH: develop
+  PR_TITLE: Release
+  # 自動生成するのはこのマーカーの内側だけ。外側に人が書いた内容は上書きしない。
+  BEGIN_MARKER: '<!-- release-pr:begin -->'
+  END_MARKER: '<!-- release-pr:end -->'
 
 jobs:
-  create-release-pr:
+  release-pr:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      pull-requests: write
-
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PR_TITLE: Release
-      BASE_BRANCH: main
-      HEAD_BRANCH: ${{ github.ref_name }}
-
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      # GITHUB_TOKEN で PR を作ると CI の pull_request イベントが発火しないため App トークンを使う
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          # owner と repositories は省く。repositories の既定値が
+          # 「owner 未指定時のカレントリポジトリ」なので、これだけでこのリポジトリに
+          # 絞ったトークンになり、リポジトリ名を書かずに済む。
+          app-id: ${{ vars.GHA_APP_ID }}
+          private-key: ${{ secrets.GHA_PRIVATE_PEM }}
 
-      # リリース用PRが既に存在するかどうかをチェック
-      - name: Check if pr exists
-        id: check_pr
+      # 未リリースのコミットから PR 番号を拾い、PR ごとに関係者を並べた一覧を組み立てる。
+      # 件名を読むだけなのでリポジトリの checkout はしない。
+      - name: Build pull request body
+        id: body
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          REPO: ${{ github.repository }}
         run: |
-          count=$(gh pr list \
-            --repo '${{ github.repository }}' \
-            --search "$PR_TITLE in:title" \
-            --base "$BASE_BRANCH" \
-            --state open \
-            --json number --jq 'length')
+          set -euo pipefail
+
+          # compare の三点リーダは merge base からの差分なので main..develop と等価。
+          # squash マージの "title (#123)" と、マージコミットの "Merge pull request #123 from ..." を拾う。
+          # 件名だけを見るのは、本文に書かれた別の (#123) を誤って拾わないため。
+          # --paginate が無いと 250 コミットで打ち切られる。
+          pr_numbers=$(
+            gh api "repos/$REPO/compare/$BASE_BRANCH...$HEAD_BRANCH" --paginate \
+              --jq '.commits[].commit.message | split("\n")[0]' \
+              | sed -n \
+                -e 's/.*(#\([0-9]\{1,\}\))$/\1/p' \
+                -e 's/^Merge pull request #\([0-9]\{1,\}\) .*/\1/p' \
+              | awk 'NF && !seen[$0]++'
+          )
+
+          owner=${REPO%%/*}
+          name=${REPO##*/}
+
+          : > list.md
+          count=0
+          for number in $pr_numbers; do
+            # (#123) は PR とは限らず、Issue 番号や他リポジトリの番号、打ち間違いのこともある。
+            # issues API は PR も Issue も引けるのでこれで種別を判定し、
+            # 引けない番号（404）は番号だけの行にする。
+            # 404 以外の失敗（レート制限・一時障害など）は握りつぶさず job を止める。
+            logins=''
+
+            if ! gh api "repos/$REPO/issues/$number" > issue.json 2> api-err.txt; then
+              grep -q '(HTTP 404)' api-err.txt || { cat api-err.txt >&2; exit 1; }
+            elif [ "$(jq -r 'if .pull_request then "pr" else "issue" end' issue.json)" = 'pr' ]; then
+              # PR 作成者と各コミットの author を出現順に並べる。
+              # GraphQL の Commit.authors は Co-Authored-By トレーラーの相手も解決するので、
+              # REST の pulls/{n}/commits とは違い共著者が落ちない。
+              # committer は見ない（authors には Web UI マージの web-flow が現れない）。
+              logins=$(
+                {
+                  jq -r '.user.login // empty' issue.json
+                  # query 内の $owner などは GraphQL の変数なので、展開させない
+                  # shellcheck disable=SC2016
+                  gh api graphql \
+                    -F owner="$owner" -F name="$name" -F number="$number" \
+                    -f query='
+                      query ($owner: String!, $name: String!, $number: Int!) {
+                        repository(owner: $owner, name: $name) {
+                          pullRequest(number: $number) {
+                            commits(first: 100) {
+                              nodes {
+                                commit {
+                                  authors(first: 20) { nodes { user { login } } }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ' \
+                    --jq '.data.repository.pullRequest.commits.nodes[].commit.authors.nodes[].user.login // empty'
+                } | sed 's/\[bot\]$//' | awk 'NF && !seen[$0]++'
+              )
+            fi
+
+            printf -- '- #%s' "$number" >> list.md
+            for login in $logins; do
+              printf ' @%s' "$login" >> list.md
+            done
+            printf '\n' >> list.md
+            count=$((count + 1))
+          done
+
+          # 新規作成用の本文。マーカーで囲んでおくと次回以降は内側だけ差し替えられる。
+          {
+            printf '%s\n' "$BEGIN_MARKER"
+            cat list.md
+            printf '%s\n' "$END_MARKER"
+          } > body.md
+
           echo "count=$count" >> "$GITHUB_OUTPUT"
 
-      # リリース用PRを作成
-      - name: Create release pr
-        if: ${{ steps.check_pr.outputs.count == '0' }}
+      # 未リリースの PR があるときだけ、リリース PR を作るか既存の本文を更新する
+      - name: Create or update release pull request
+        if: steps.body.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          REPO: ${{ github.repository }}
         run: |
-          gh pr create \
-            --repo '${{ github.repository }}' \
-            --base "$BASE_BRANCH" \
-            --head "$HEAD_BRANCH" \
-            --title "$PR_TITLE" \
-            --body '' \
-            --label release
+          set -euo pipefail
+          number=$(
+            gh pr list \
+              --repo "$REPO" \
+              --base "$BASE_BRANCH" \
+              --head "$HEAD_BRANCH" \
+              --state open \
+              --json number --jq '.[0].number // empty'
+          )
+
+          if [ -z "$number" ]; then
+            gh pr create \
+              --repo "$REPO" \
+              --base "$BASE_BRANCH" \
+              --head "$HEAD_BRANCH" \
+              --title "$PR_TITLE" \
+              --body-file body.md
+            exit 0
+          fi
+
+          gh pr view "$number" --repo "$REPO" --json body --jq '.body // ""' > current.md
+
+          if ! grep -q '[^[:space:]]' current.md; then
+            # 本文が実質空なら丸ごと入れ替えてよい。
+            # gh は空の body でも改行 1 バイトを出すので、サイズではなく中身で判定する。
+            cp body.md new-body.md
+          elif grep -qF "$BEGIN_MARKER" current.md && grep -qF "$END_MARKER" current.md; then
+            # マーカーの内側だけ差し替え、前後に人が書いた内容はそのまま残す
+            awk -v begin="$BEGIN_MARKER" -v end="$END_MARKER" '
+              index($0, begin) {
+                print
+                while ((getline line < "list.md") > 0) print line
+                close("list.md")
+                skip = 1
+                next
+              }
+              index($0, end) { skip = 0 }
+              !skip { print }
+            ' current.md > new-body.md
+          else
+            # 手で作られた既存 PR。元の本文を壊さず末尾に追記する
+            {
+              cat current.md
+              printf '\n'
+              cat body.md
+            } > new-body.md
+          fi
+
+          gh pr edit "$number" --repo "$REPO" --body-file new-body.md
