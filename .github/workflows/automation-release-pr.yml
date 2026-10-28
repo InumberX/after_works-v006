@@ -6,8 +6,15 @@ on:
       - develop
   workflow_dispatch:
 
-# gh は App トークンで叩くため GITHUB_TOKEN は使わない
-permissions: {}
+# PR の作成と本文の更新に pull-requests: write、compare API に contents: read、
+# 件名の (#123) が Issue かどうかの判定に issues: read が要る。
+# GITHUB_TOKEN で作った PR では pull_request イベントのワークフローが走らないが、
+# CI は develop への push で走り、その結果が同じコミットのリリース PR にも出るので問題ない。
+# pull_request で動く CI を足すときは、App トークンに切り替える。
+permissions:
+  contents: read
+  pull-requests: write
+  issues: read
 
 # develop への push が連続しても PR の作成と本文更新が競合しないよう直列化する。
 # 本文は毎回フルで作り直す冪等な処理なので、中間の run がキャンセルされても最終状態は正しくなる。
@@ -28,22 +35,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      # GITHUB_TOKEN で PR を作ると CI の pull_request イベントが発火しないため App トークンを使う
-      - uses: actions/create-github-app-token@v3
-        id: app-token
-        with:
-          # owner と repositories は省く。repositories の既定値が
-          # 「owner 未指定時のカレントリポジトリ」なので、これだけでこのリポジトリに
-          # 絞ったトークンになり、リポジトリ名を書かずに済む。
-          app-id: ${{ vars.GHA_APP_ID }}
-          private-key: ${{ secrets.GHA_PRIVATE_PEM }}
-
       # 未リリースのコミットから PR 番号を拾い、PR ごとに関係者を並べた一覧を組み立てる。
       # 件名を読むだけなのでリポジトリの checkout はしない。
       - name: Build pull request body
         id: body
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
@@ -128,7 +125,7 @@ jobs:
       - name: Create or update release pull request
         if: steps.body.outputs.count != '0'
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
