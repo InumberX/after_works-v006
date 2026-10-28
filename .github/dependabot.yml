@@ -1,0 +1,21 @@
+version: 2
+
+updates:
+  # Actions are pinned to a floating major tag (actions/checkout@v7), which
+  # absorbs minor and patch releases, so a major is the only update Dependabot
+  # can offer. Without this ecosystem nothing raises them: actions/cache@v2
+  # stopped every run once GitHub removed it.
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: monday
+      time: '06:00'
+      timezone: Asia/Tokyo
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+    groups:
+      actions:
+        patterns:
+          - '*'
