@@ -37,10 +37,10 @@ jobs:
       NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
       NEXT_PUBLIC_STATIC_IMAGE_DIR: ${{ vars.NEXT_PUBLIC_STATIC_IMAGE_DIR }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '24.x'
           cache: npm
