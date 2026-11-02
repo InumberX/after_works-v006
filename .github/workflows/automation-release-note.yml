@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: write
+  # リリースノートの本文を、マージ元のリリース PR から読むため
+  pull-requests: read
 
 # タグはコミットごとに 1 本作る非冪等な処理なので、group にコミットを含める。
 # workflow 単位にすると、連続リリース時に pending の run がキャンセルされてタグが欠ける。
@@ -56,9 +58,14 @@ jobs:
 
           # リリースノートは、この push を生んだリリース PR の本文をそのまま使う。
           # 手書きの概要も残したいので本文全体を使い、マーカー行だけを取り除く。
+          # PR はマージ後の main のコミット (merge_commit_sha) で引く。commits/{sha}/pulls は
+          # デフォルトブランチ (develop) に無いコミットだと open の PR しか返さず、
+          # fast-forward でマージされると develop 側の PR しか返さないので、
+          # どちらもリリース PR が見つからない。
+          # マージ直後の PR は更新順の先頭に来るので、最初のページだけを見れば足りる。
           number=$(
-            gh api "repos/$REPO/commits/$SHA/pulls" \
-              --jq '[.[] | select(.base.ref == env.BASE_BRANCH)][0].number // empty'
+            gh api "repos/$REPO/pulls?state=closed&base=$BASE_BRANCH&sort=updated&direction=desc&per_page=30" \
+              --jq '[.[] | select(.merge_commit_sha == env.SHA)][0].number // empty'
           )
 
           if [ -n "$number" ]; then
@@ -71,8 +78,18 @@ jobs:
           if grep -q '[^[:space:]]' notes.md 2> /dev/null; then
             note_args=(--notes-file notes.md)
           else
-            # PR が見つからない / 本文が空のときだけ GitHub の自動生成に任せる
-            note_args=(--generate-notes)
+            # PR が見つからない / 本文が空のときだけ GitHub の自動生成に任せる。
+            # 起点のタグを渡さないと全履歴が並ぶので、前のリリースが無ければ自動生成しない。
+            previous=$(
+              gh api "repos/$REPO/git/matching-refs/tags/v" --paginate --jq '.[].ref' \
+                | sed 's|^refs/tags/||' \
+                | sort -V | tail -1
+            )
+            if [ -n "$previous" ]; then
+              note_args=(--generate-notes --notes-start-tag "$previous")
+            else
+              note_args=(--notes "リリース PR が見つからないか本文が空だったため、リリースノートを作成できませんでした（$SHA）")
+            fi
           fi
 
           # タグは v{YYYY.MM.DD}-{当日の通し番号}。連番は既存の最大値 + 1 にする
