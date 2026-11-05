@@ -3,7 +3,6 @@
 import { API_URL, CACHE_BUSTER, SITE_URL } from '~/config/env'
 import {
   API_CACHE_MAX_AGE_SECONDS,
-  API_CACHE_PATH,
   API_ERROR_CODE,
   HTTP_STATUS,
 } from '~/consts/api'
@@ -12,6 +11,9 @@ import type {
   ApiParams,
   ApiResult,
 } from '~/types/apis/fetch/api-client'
+
+/** キャッシュのキーの接頭辞。サイトのどのページの URL ともぶつからない */
+const API_CACHE_PATH = '/__cache'
 
 /** 見つからないときの結果。API に問い合わせる前に、見つからないと分かったときに使う */
 export const createNotFoundError = (): ApiError => ({
@@ -70,7 +72,8 @@ type ApiCache = Pick<Cache, 'match' | 'put'>
 
 /**
  * リクエストを処理しているデータセンターの Workers のキャッシュ（Cache API）。
- * Workers の外（テスト、`next dev`）にはないので、そこでは毎回 API に問い合わせる。
+ * Workers の外（テスト、`next dev`、ブラウザ）にはないので、そこでは毎回 API に
+ * 問い合わせる。ブラウザにも `caches` はあるが、`caches.default` はない。
  */
 const getApiCache = (): ApiCache | undefined =>
   (globalThis as { caches?: { default?: ApiCache } }).caches?.default

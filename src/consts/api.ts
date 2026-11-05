@@ -16,6 +16,3 @@ export type ApiErrorCode = (typeof API_ERROR_CODE)[keyof typeof API_ERROR_CODE]
 
 /** API の成功した応答を Workers のキャッシュに保存しておく秒数（5 分） */
 export const API_CACHE_MAX_AGE_SECONDS = 300
-
-/** キャッシュのキーの接頭辞。サイトのどのページの URL ともぶつからない */
-export const API_CACHE_PATH = '/__cache'
