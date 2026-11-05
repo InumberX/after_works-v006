@@ -27,9 +27,8 @@ describe.each(fetchers)('%s の詳細の取得', (endpoint, getDetailInfo) => {
       success: true,
       data: details,
     })
-    expect(fetchMock).toHaveBeenCalledWith(
+    expect(String(fetchMock.mock.calls[0]?.[0])).toBe(
       `${API_URL}/${endpoint}/12`,
-      expect.anything(),
     )
   })
 

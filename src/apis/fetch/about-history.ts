@@ -1,4 +1,4 @@
-import { API_URL } from '~/config/env'
+import { apiClient } from '~/apis/fetch/api-client'
 import type { AboutHistory, List } from '~/types/apis/fetch/about-history'
 
 export type ResponseGetAboutHistoryInfo = List[] | undefined
@@ -12,23 +12,17 @@ export const getAboutHistoryInfo = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetAboutHistoryInfo> => {
-  const param = [
-    `category_parent_id[]=${categoryId}`,
-    `cnt=${cnt}`,
-    `pageID=${page}`,
-  ].join('&')
-  const response = await fetch(`${API_URL}/about-history?${param}`, {
-    cache: 'no-store',
+  const response = await apiClient<AboutHistory[]>('/about-history', {
+    'category_parent_id[]': categoryId,
+    cnt,
+    pageID: page,
   })
 
-  if (!response.ok) {
+  if (!response.success) {
     return undefined
   }
 
-  const value = await response
-    .json()
-    .then((data: AboutHistory[]) => data)
-    .catch(() => undefined)
+  const value = response.data
 
   if (!value || value.length === 0) {
     return undefined

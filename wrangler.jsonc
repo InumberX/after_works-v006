@@ -4,9 +4,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   // The top level is what `wrangler dev` / `npm run preview` run. Its name must
   // not be a deployed Worker's: a deploy without `--env` (`npm run deploy`)
-  // would otherwise replace production with the top level, which has no Smart
-  // Placement. Under this name it creates a stray Worker instead, with no route
-  // and no workers.dev URL. Deploy with `npm run deploy:staging` or
+  // would otherwise replace production with the top level. Under this name it
+  // creates a stray Worker instead, with no route and no workers.dev URL. Deploy with `npm run deploy:staging` or
   // `npm run deploy:production`.
   "name": "after-works-local",
   // Custom Worker entrypoint that wraps the OpenNext handler with Basic auth.
@@ -21,9 +20,8 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets",
     // Production has no Basic auth, so matching static files are served from
-    // the edge without invoking the Worker. With Smart Placement the Worker may
-    // run far from the visitor, and routing assets through it would slow them
-    // down. Staging turns this on in `env.development`.
+    // the edge without invoking the Worker. Staging turns this on in
+    // `env.development`.
     "run_worker_first": false,
   },
   "observability": {
@@ -33,13 +31,10 @@
   // the GitHub Actions workflow; runtime secrets (BASIC_AUTH_*) are set per
   // environment with `wrangler secret put ... --env=<environment>`.
   //
-  // Smart Placement runs the production Worker near the Kuroco API rather than
-  // near each visitor. After the move from Amplify, which ran in one region,
-  // Kuroco's uncached requests rose about fourfold; run from every data center,
-  // the Worker spreads its requests over Kuroco's CDN, which is the likely
-  // cause. Staging leaves it off: its assets go through the Worker for Basic
-  // auth, which wrangler warns would slow them down once placed, and its
-  // traffic is too small for Smart Placement to move it anyway.
+  // No environment uses Smart Placement: it was tried on production and did
+  // not lower Kuroco's usage, while pages got slower from Japan (see
+  // CLAUDE.md, Cloudflare Workers). The Worker keeps Kuroco's answers in the
+  // Workers cache instead (src/apis/fetch/api-client.ts).
   //
   // An environment's `assets` replaces the top level's whole, so staging
   // repeats `binding` and `directory`.
@@ -57,7 +52,6 @@
     },
     "production": {
       "name": "after-works",
-      "placement": { "mode": "smart" },
     },
   },
 }

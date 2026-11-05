@@ -1,4 +1,4 @@
-import { API_URL } from '~/config/env'
+import { apiClient } from '~/apis/fetch/api-client'
 import type { TagOther, Tag } from '~/types/apis/fetch/tag-other'
 
 export type ResponseGetTagOther = Tag[]
@@ -6,18 +6,13 @@ export type ResponseGetTagOther = Tag[]
 export const getTagOther = async (): Promise<ResponseGetTagOther> => {
   const result: ResponseGetTagOther = []
 
-  const response = await fetch(`${API_URL}/tags/other`, {
-    cache: 'no-store',
-  })
+  const response = await apiClient<TagOther>('/tags/other')
 
-  if (!response.ok) {
+  if (!response.success) {
     return result
   }
 
-  const value = await response
-    .json()
-    .then((data: TagOther) => data)
-    .catch(() => undefined)
+  const value = response.data
 
   if (!value || value.list.length === 0) {
     return result

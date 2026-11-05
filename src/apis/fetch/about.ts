@@ -1,4 +1,4 @@
-import { API_URL } from '~/config/env'
+import { apiClient } from '~/apis/fetch/api-client'
 import type { About, List } from '~/types/apis/fetch/about'
 
 export type ResponseGetAboutInfo = List | undefined
@@ -10,19 +10,13 @@ export const getAboutInfo = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetAboutInfo> => {
-  const param = [`cnt=${cnt}`, `pageID=${page}`].join('&')
-  const response = await fetch(`${API_URL}/about?${param}`, {
-    cache: 'no-store',
-  })
+  const response = await apiClient<About[]>('/about', { cnt, pageID: page })
 
-  if (!response.ok) {
+  if (!response.success) {
     return undefined
   }
 
-  const value = await response
-    .json()
-    .then((data: About[]) => data)
-    .catch(() => undefined)
+  const value = response.data
 
   if (!value || value.length === 0) {
     return undefined
