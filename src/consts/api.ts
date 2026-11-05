@@ -1,5 +1,7 @@
 /** API の応答の HTTP ステータスのうち、アプリが扱うもの */
 export const HTTP_STATUS = {
+  /** 中継（`API_PROXY_PATH`）が受け付けないクエリを受け取ったときに返す */
+  BAD_REQUEST: 400,
   /** 一覧の範囲外の pageID や、存在しない記事に Kuroco が返す */
   NOT_FOUND: 404,
   /** 中継（`API_PROXY_PATH`）が API から使える応答を得られなかったときに返す */
@@ -21,15 +23,7 @@ export const API_CACHE_MAX_AGE_SECONDS = 300
 
 /**
  * ブラウザからの API の呼び出しを中継する Route Handler のパス
- * （`src/app/api/cms/[...path]/route.ts`）。ブラウザは Kuroco に直接問い合わせず、
+ * （`src/app/api/cms/<endpoint>/route.ts`）。ブラウザは Kuroco に直接問い合わせず、
  * ここを通すので、サーバーの Workers のキャッシュが効く
  */
 export const API_PROXY_PATH = '/api/cms'
-
-/** 中継が受け付ける API のエンドポイント。ブラウザから呼ぶものだけ */
-export const API_PROXY_ENDPOINTS = [
-  '/blogs',
-  '/works',
-  '/hobby',
-  '/about-history',
-] as const

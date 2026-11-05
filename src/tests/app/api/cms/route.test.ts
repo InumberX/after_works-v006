@@ -1,51 +1,67 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { GET } from '~/app/api/cms/[...path]/route'
+import { GET as getAboutHistory } from '~/app/api/cms/about-history/route'
+import { GET as getBlogs } from '~/app/api/cms/blogs/route'
+import { GET as getHobby } from '~/app/api/cms/hobby/route'
+import { GET as getWorks } from '~/app/api/cms/works/route'
 import { API_URL } from '~/config/env'
 
-const get = (path: string) => {
-  const url = new URL(path, 'http://localhost')
-  const segments = url.pathname.replace(/^\/api\/cms\//, '').split('/')
+const request = (query: string) =>
+  new Request(`http://localhost/api/cms/x${query}`)
 
-  return GET(new Request(url), {
-    params: Promise.resolve({ path: segments }),
-  })
-}
+const listRoutes = [
+  ['blogs', getBlogs],
+  ['works', getWorks],
+  ['hobby', getHobby],
+] as const
 
 describe('API の中継（/api/cms）', () => {
   afterEach(() => {
     vi.restoreAllMocks()
   })
 
-  it('受け付けるエンドポイントを、同じクエリで Kuroco に問い合わせて JSON を返す', async () => {
-    const value = { list: [{ topics_id: 1 }], pageInfo: { totalCnt: 1 } }
+  it.each(listRoutes)(
+    '%s は一覧のクエリで Kuroco に問い合わせて JSON を返す',
+    async (endpoint, GET) => {
+      const value = { list: [], pageInfo: { totalCnt: 0 } }
+      const fetchMock = vi
+        .spyOn(globalThis, 'fetch')
+        .mockImplementation(async () => Response.json(value))
+      const query = '?cnt=12&pageID=2&order_query=inst_ymdhi%3DDESC'
+
+      const response = await GET(request(query))
+
+      expect(response.status).toBe(200)
+      await expect(response.json()).resolves.toEqual(value)
+      expect(String(fetchMock.mock.calls[0]?.[0])).toBe(
+        `${API_URL}/${endpoint}${query}`,
+      )
+    },
+  )
+
+  it('about-history は category_parent_id[] を含むクエリで問い合わせる', async () => {
     const fetchMock = vi
       .spyOn(globalThis, 'fetch')
-      .mockImplementation(async () => Response.json(value))
+      .mockImplementation(async () => Response.json([]))
+    const query = '?category_parent_id%5B%5D=3&cnt=0&pageID=1'
 
-    const response = await get(
-      '/api/cms/about-history?category_parent_id%5B%5D=3&cnt=0&tag_id=1&tag_id=2',
-    )
-
-    expect(response.status).toBe(200)
-    await expect(response.json()).resolves.toEqual(value)
+    expect((await getAboutHistory(request(query))).status).toBe(200)
     expect(String(fetchMock.mock.calls[0]?.[0])).toBe(
-      `${API_URL}/about-history?category_parent_id%5B%5D=3&cnt=0&tag_id=1&tag_id=2`,
+      `${API_URL}/about-history${query}`,
     )
   })
 
   it.each([
-    '/api/cms/blogs/1',
-    '/api/cms/tags/cms',
-    '/api/cms/about',
-    '/api/cms/..',
-  ])(
-    '受け付けないエンドポイント %s は Kuroco に問い合わせずに 404 を返す',
-    async (path) => {
+    ['blogs', getBlogs, '?cnt=12&filter=x'],
+    ['works', getWorks, '?category_parent_id%5B%5D=3'],
+    ['about-history', getAboutHistory, '?order_query=x'],
+  ] as const)(
+    '%s は受け付けないクエリ %s があれば Kuroco に問い合わせずに 400 を返す',
+    async (_endpoint, GET, query) => {
       const fetchMock = vi.spyOn(globalThis, 'fetch')
 
-      expect((await get(path)).status).toBe(404)
+      expect((await GET(request(query))).status).toBe(400)
       expect(fetchMock).not.toHaveBeenCalled()
     },
   )
@@ -54,11 +70,11 @@ describe('API の中継（/api/cms）', () => {
     vi.spyOn(globalThis, 'fetch').mockImplementation(
       async () => new Response(null, { status: 404 }),
     )
-    expect((await get('/api/cms/works?pageID=999')).status).toBe(404)
+    expect((await getWorks(request('?pageID=999'))).status).toBe(404)
 
     vi.spyOn(globalThis, 'fetch').mockImplementation(
       async () => new Response(null, { status: 500 }),
     )
-    expect((await get('/api/cms/works')).status).toBe(502)
+    expect((await getWorks(request(''))).status).toBe(502)
   })
 })
