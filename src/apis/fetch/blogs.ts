@@ -23,12 +23,11 @@ export const getBlogsList = async ({
   page?: number
   orderQuery?: string
 }): Promise<ResponseGetBlogsList> => {
-  const param = [
-    `cnt=${cnt}`,
-    `pageID=${page}`,
-    `order_query=${orderQuery}`,
-  ].join('&')
-  const result = await apiClient<Blogs>(`/blogs?${param}`)
+  const result = await apiClient<Blogs>('/blogs', {
+    cnt,
+    pageID: page,
+    order_query: orderQuery,
+  })
 
   if (!result.success) {
     return result
