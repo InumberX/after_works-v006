@@ -1,3 +1,5 @@
+// @vitest-environment node
+// サーバーで動く API の呼び出し（ブラウザでは中継を通す。api-client.browser.test.ts）
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { getBlogsDetailInfo } from '~/apis/fetch/blogs-detail'

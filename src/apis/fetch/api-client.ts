@@ -4,6 +4,7 @@ import { API_URL, CACHE_BUSTER, SITE_URL } from '~/config/env'
 import {
   API_CACHE_MAX_AGE_SECONDS,
   API_ERROR_CODE,
+  API_PROXY_PATH,
   HTTP_STATUS,
 } from '~/consts/api'
 import type {
@@ -68,12 +69,24 @@ export const toApiUrl = (endpoint: string, params: ApiParams = {}): URL => {
 export const toCacheUrl = (apiUrl: URL): string =>
   `${new URL(SITE_URL).origin}${API_CACHE_PATH}/${CACHE_BUSTER}${apiUrl.pathname}${apiUrl.search}`
 
+/**
+ * ブラウザから問い合わせる URL。サイトの中継（`API_PROXY_PATH`）の下の `endpoint` に、
+ * `toApiUrl()` と同じクエリを付ける。中継はサーバーで同じ `endpoint` と `params` の
+ * `apiClient()` を呼ぶので、サーバーで描画したページと同じキャッシュを使う。
+ */
+export const toProxyUrl = (endpoint: string, params?: ApiParams): string =>
+  `${API_PROXY_PATH}${endpoint}${toApiUrl(endpoint, params).search}`
+
+/** ブラウザで実行しているか */
+const isBrowser = (): boolean => typeof window !== 'undefined'
+
 type ApiCache = Pick<Cache, 'match' | 'put'>
 
 /**
  * リクエストを処理しているデータセンターの Workers のキャッシュ（Cache API）。
- * Workers の外（テスト、`next dev`、ブラウザ）にはないので、そこでは毎回 API に
- * 問い合わせる。ブラウザにも `caches` はあるが、`caches.default` はない。
+ * Workers の外（テスト、`next dev`、ブラウザ）にはないので、そこでは毎回問い合わせる。
+ * ブラウザにも `caches` はあるが、`caches.default` はない。ブラウザの問い合わせは
+ * 中継に届き、中継がこのキャッシュを使う。
  */
 const getApiCache = (): ApiCache | undefined =>
   (globalThis as { caches?: { default?: ApiCache } }).caches?.default
@@ -115,7 +128,8 @@ const writeCache = async (
 /**
  * `API_URL` の下の `endpoint` を `params` 付きで GET し、JSON の本文を返す。成功した
  * 応答は Workers のキャッシュに `API_CACHE_MAX_AGE_SECONDS` 秒保存し、その間は
- * そこから返す。エラーは保存しないので、API が直ればすぐ元に戻る。
+ * そこから返す。エラーは保存しないので、API が直ればすぐ元に戻る。ブラウザでは
+ * Kuroco に直接問い合わせず、サイトの中継（`toProxyUrl()`）を通す。
  */
 export const apiClient = async <T>(
   endpoint: string,
@@ -137,7 +151,10 @@ export const apiClient = async <T>(
 
   try {
     // Next.js の fetch のキャッシュは使わない。キャッシュは上の Workers のキャッシュだけ
-    response = await fetch(apiUrl, { cache: 'no-store' })
+    response = await fetch(
+      isBrowser() ? toProxyUrl(endpoint, params) : apiUrl,
+      { cache: 'no-store' },
+    )
   } catch (error) {
     return {
       success: false,
