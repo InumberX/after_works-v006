@@ -66,7 +66,7 @@ npm run upgrade         # Upgrade all packages (use with caution)
 
 ### Providers Architecture
 
-The app uses a nested provider pattern in `src/providers/AppProvider.tsx`:
+The app uses a nested provider pattern in `src/providers/AppProvider/index.tsx`:
 
 1. LocaleProvider (i18n context)
 2. JotaiProvider (state management)
