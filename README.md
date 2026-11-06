@@ -11,7 +11,10 @@ This repository is my portfolio site.
 
 ## Structure Diagram
 
-![Structure Diagram](readme/img/configuration_diagram.jpg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/architecture-dark.png">
+  <img alt="Structure Diagram" src="docs/architecture.png">
+</picture>
 
 ## Development with Node.js
 
