@@ -12,7 +12,7 @@ This package is a Next.js 16 frontend rooted at `src/`. Main areas are `src/app`
 - `npm run lint`, `npm run stylelint`, `npm run format`: check TS/JS, styles, and formatting.
 - `npm run pre-commit`: run the full local cleanup sequence before pushing.
 
-Use Node `22.20.0` via Volta, or any Node `>=22` compatible with `package.json`.
+Use Node `26.13.0` (pinned in `.node-version`), or any Node `>=26` compatible with `package.json`.
 
 ## Coding Style & Naming Conventions
 TypeScript is strict and uses the path alias `~/*` for `src/*`. Follow the existing style: 2-space indentation, no semicolons, single quotes, and named exports for reusable components. Keep component directories flat with `index.tsx` and optional `index.module.css`. CSS Modules use PascalCase-style class names such as `.BaseButton` and modifier forms like `.BaseButton--rightArrow`. Run `oxlint`, `oxfmt`, and `stylelint` instead of hand-formatting.
