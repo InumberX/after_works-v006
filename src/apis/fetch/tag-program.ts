@@ -1,4 +1,4 @@
-import { API_URL } from '~/config/env'
+import { apiClient } from '~/apis/fetch/api-client'
 import type { TagProgram, Tag } from '~/types/apis/fetch/tag-program'
 
 export type ResponseGetTagProgram = Tag[]
@@ -6,18 +6,13 @@ export type ResponseGetTagProgram = Tag[]
 export const getTagProgram = async (): Promise<ResponseGetTagProgram> => {
   const result: ResponseGetTagProgram = []
 
-  const response = await fetch(`${API_URL}/tags/program`, {
-    cache: 'no-store',
-  })
+  const response = await apiClient<TagProgram>('/tags/program')
 
-  if (!response.ok) {
+  if (!response.success) {
     return result
   }
 
-  const value = await response
-    .json()
-    .then((data: TagProgram) => data)
-    .catch(() => undefined)
+  const value = response.data
 
   if (!value || value.list.length === 0) {
     return result

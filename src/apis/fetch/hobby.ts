@@ -23,12 +23,11 @@ export const getHobbyList = async ({
   page?: number
   orderQuery?: string
 }): Promise<ResponseGetHobbyList> => {
-  const param = [
-    `cnt=${cnt}`,
-    `pageID=${page}`,
-    `order_query=${orderQuery}`,
-  ].join('&')
-  const result = await apiClient<Hobby>(`/hobby?${param}`)
+  const result = await apiClient<Hobby>('/hobby', {
+    cnt,
+    pageID: page,
+    order_query: orderQuery,
+  })
 
   if (!result.success) {
     return result

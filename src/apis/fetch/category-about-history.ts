@@ -1,4 +1,4 @@
-import { API_URL } from '~/config/env'
+import { apiClient } from '~/apis/fetch/api-client'
 import type {
   CategoryAboutHistory,
   List,
@@ -19,19 +19,16 @@ export const getCategoryAboutHistoryList = async ({
   cnt?: number
   page?: number
 }): Promise<ResponseGetCategoryAboutHistory> => {
-  const param = [`cnt=${cnt}`, `pageID=${page}`].join('&')
-  const response = await fetch(`${API_URL}/categories/about-history?${param}`, {
-    cache: 'no-store',
-  })
+  const response = await apiClient<CategoryAboutHistory>(
+    '/categories/about-history',
+    { cnt, pageID: page },
+  )
 
-  if (!response.ok) {
+  if (!response.success) {
     return undefined
   }
 
-  const value = await response
-    .json()
-    .then((data: CategoryAboutHistory) => data)
-    .catch(() => undefined)
+  const value = response.data
 
   if (!value) {
     return undefined

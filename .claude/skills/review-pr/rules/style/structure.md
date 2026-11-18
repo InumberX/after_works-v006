@@ -78,7 +78,7 @@ ui/
 ```
 ui/buttons/BaseButton/
 ├── index.tsx              # メインのコンポーネント実装（必須）
-└── index.module.css       # スタイル（必須・スタイルなしの場合は空でも作成）
+└── index.module.css       # スタイル（必須。ただし tsx がクラスを一つも持たない場合は作成しない）
 ```
 
 派生:
@@ -98,7 +98,7 @@ ui/buttons/BaseButton/
 | 設定値                   | `config/<topic>.ts`                | kebab-case                                              |
 | 定数                     | `consts/<topic>.ts`                | kebab-case、定数名は SCREAMING_SNAKE_CASE               |
 | Jotai store              | `store/<topic>/...`                | kebab-case ディレクトリ                                 |
-| Provider                 | `providers/<Name>Provider.tsx`     | PascalCase + Provider サフィックス                      |
+| Provider                 | `providers/<Name>Provider/index.tsx` | PascalCase + Provider サフィックスのディレクトリ        |
 
 ## バレルエクスポート
 
@@ -149,6 +149,8 @@ src/tests/components/ui/buttons/BaseButton/<テストファイル>.test.tsx
 - ❌ カテゴリディレクトリが単数形（`button/`、`card/`） や PascalCase（`Buttons/`）
 - ❌ コンポーネントエントリが `index.tsx` 以外（`BaseButton.tsx`、`Component.tsx`）
 - ❌ コンポーネントスタイルが `index.module.css` 以外（`BaseButton.module.css`、`styles.module.css`）
+- ❌ クラスを一つも持たない tsx の横に空の `index.module.css` を置く（`ReplaceNewLineText`、`AppHead`、`GoogleAnalytics` のように作らない）
+- ❌ Provider を単一ファイルで置く（`providers/FooProvider.tsx` → `providers/FooProvider/index.tsx`）
 - ❌ hooks ファイルが `useFoo.ts`（→ `use-foo.ts`）
 - ❌ utils ファイルが `camelCase.ts`（→ `kebab-case.ts`。`actSmoothScroll.ts` ではなく `act-smooth-scroll.ts`）
 - ❌ 廃止済みの `@/` エイリアスを使用（→ `~/` を使う）

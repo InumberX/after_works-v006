@@ -39,7 +39,8 @@
 |---|---|---|
 | コンポーネントディレクトリ | PascalCase | `BaseButton/`、`ArticleCard/` |
 | コンポーネントエントリファイル | `index.tsx` 固定 | `BaseButton/index.tsx` |
-| コンポーネントスタイル | `index.module.css` 固定 | `BaseButton/index.module.css` |
+| コンポーネントスタイル | `index.module.css` 固定（クラスを持たない tsx には作らない） | `BaseButton/index.module.css` |
+| Provider | PascalCase ディレクトリ + `index.tsx` | `providers/BreakpointsProvider/index.tsx` |
 | UIカテゴリディレクトリ | 複数形 kebab-case | `buttons/`、`cards/`、`lists/`、`typographies/` |
 | hooks | `use-kebab-case.ts` | `use-animelm.ts` |
 | utils / libs / config / apis 関数ファイル | kebab-case.ts | `act-smooth-scroll.ts`、`zod-custom-error-message.ts`、`works-detail.ts`、`routes.ts` |
