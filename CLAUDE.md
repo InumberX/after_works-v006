@@ -151,7 +151,7 @@ Components follow a barrel export pattern with index files. UI components are ca
 
 ## Environment Requirements
 
-- **Node.js**: >= 24.0.0 (managed with Volta at 24.16.0)
+- **Node.js**: >= 26.0.0 (pinned to 26.13.0 in `.node-version`)
 - **Package manager**: npm
 - Browser support: Last 1 version of major browsers (Chrome, Edge, Firefox, Safari, iOS, Chrome Android)
 
