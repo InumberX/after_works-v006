@@ -78,9 +78,6 @@
   "engines": {
     "node": ">=26.0.0"
   },
-  "volta": {
-    "node": "26.13.0"
-  },
   "browserslist": [
     "last 1 Chrome versions",
     "last 1 Edge versions",
