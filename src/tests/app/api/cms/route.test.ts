@@ -28,7 +28,7 @@ describe('API の中継（/api/cms）', () => {
       const fetchMock = vi
         .spyOn(globalThis, 'fetch')
         .mockImplementation(async () => Response.json(value))
-      const query = '?cnt=12&pageID=2&order_query=inst_ymdhi%3DDESC'
+      const query = '?_lang=en&cnt=12&pageID=2&order_query=inst_ymdhi%3DDESC'
 
       const response = await GET(request(query))
 
@@ -44,7 +44,7 @@ describe('API の中継（/api/cms）', () => {
     const fetchMock = vi
       .spyOn(globalThis, 'fetch')
       .mockImplementation(async () => Response.json([]))
-    const query = '?category_parent_id%5B%5D=3&cnt=0&pageID=1'
+    const query = '?_lang=en&category_parent_id%5B%5D=3&cnt=0&pageID=1'
 
     expect((await getAboutHistory(request(query))).status).toBe(200)
     expect(String(fetchMock.mock.calls[0]?.[0])).toBe(

@@ -12,7 +12,12 @@ import { GET as getBlogs } from '~/app/api/cms/blogs/route'
 import { GET as getHobby } from '~/app/api/cms/hobby/route'
 import { GET as getWorks } from '~/app/api/cms/works/route'
 
-const listOptions = { cnt: 12, page: 2, orderQuery: 'inst_ymdhi=DESC' }
+const listOptions = {
+  lang: 'en',
+  cnt: 12,
+  page: 2,
+  orderQuery: 'inst_ymdhi=DESC',
+} as const
 const listBody = { list: [], pageInfo: { totalCnt: 0 } }
 
 const cases = [
@@ -21,7 +26,7 @@ const cases = [
   ['hobby', () => getHobbyList(listOptions), getHobby, listBody],
   [
     'about-history',
-    () => getAboutHistoryInfo({ categoryId: '3', cnt: 0, page: 1 }),
+    () => getAboutHistoryInfo({ lang: 'en', categoryId: '3', cnt: 0, page: 1 }),
     getAboutHistory,
     [{ list: [] }],
   ],

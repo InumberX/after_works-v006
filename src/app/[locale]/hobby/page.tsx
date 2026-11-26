@@ -14,6 +14,7 @@ import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
+import { toTagName } from '~/utils/to-tag-name'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const [locale, scopedT] = await Promise.all([
@@ -45,14 +46,17 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
     notFound()
   }
 
-  const [locale, responseTagPosition, responseHobby, responseLatestHobby] =
+  const locale = await getCurrentLocale()
+
+  const [responseTagPosition, responseHobby, responseLatestHobby] =
     await Promise.all([
-      getCurrentLocale(),
-      getTagPosition(),
+      getTagPosition({ lang: locale }),
       getHobbyList({
+        lang: locale,
         page,
       }),
       getHobbyList({
+        lang: locale,
         cnt: 5,
       }),
     ])
@@ -87,22 +91,9 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
-
               tagPosition.push({
                 id: String(target.tag_id),
-                name,
+                name: toTagName(target),
               })
               break
             }
@@ -123,7 +114,7 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
             }),
           startedAt: info.started_at,
           endedAt: info.ended_at,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           tags: tagPosition,
         }
       })
@@ -145,7 +136,7 @@ const HobbyPage = async ({ searchParams }: NextPageProps) => {
             }),
           startedAt: info.started_at,
           endedAt: info.ended_at,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           titleTag: 'h3',
         }
       })

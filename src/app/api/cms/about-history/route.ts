@@ -5,5 +5,5 @@ export const dynamic = 'force-dynamic'
 
 export const GET = createProxyHandler({
   endpoint: '/about-history',
-  allowedParams: ['category_parent_id[]', 'cnt', 'pageID'],
+  allowedParams: ['_lang', 'category_parent_id[]', 'cnt', 'pageID'],
 })

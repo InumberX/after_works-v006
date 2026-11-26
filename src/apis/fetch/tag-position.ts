@@ -1,12 +1,20 @@
 import { apiClient } from '~/apis/fetch/api-client'
+import type { Locale } from '~/consts/locale'
 import type { TagPosition, Tag } from '~/types/apis/fetch/tag-position'
 
 export type ResponseGetTagPosition = Tag[]
 
-export const getTagPosition = async (): Promise<ResponseGetTagPosition> => {
+/** タグの一覧。その言語の版が無いタグは入らない */
+export const getTagPosition = async ({
+  lang,
+}: {
+  lang: Locale
+}): Promise<ResponseGetTagPosition> => {
   const result: ResponseGetTagPosition = []
 
-  const response = await apiClient<TagPosition>('/tags/position')
+  const response = await apiClient<TagPosition>('/tags/position', {
+    _lang: lang,
+  })
 
   if (!response.success) {
     return result
