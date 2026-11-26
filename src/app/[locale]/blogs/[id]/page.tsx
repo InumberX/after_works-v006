@@ -146,11 +146,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagNews[j]
 
       if (tag.tag_id === target.tag_id) {
-        const name = toTagName(target)
-
         tagNews.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -164,11 +162,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
-        const name = toTagName(target)
-
         tagPosition.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -182,11 +178,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
-        const name = toTagName(target)
-
         tagProgram.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -200,11 +194,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
-        const name = toTagName(target)
-
         tagDesign.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -214,11 +206,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
-        const name = toTagName(target)
-
         tagCms.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -228,11 +218,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
-        const name = toTagName(target)
-
         tagOther.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }

@@ -91,9 +91,7 @@ export const History = ({
               const target = responseTagPosition[j]
 
               if (tag.tag_id === target.tag_id) {
-                const name = toTagName(target)
-
-                tagPosition.push(name)
+                tagPosition.push(toTagName(target))
                 break
               }
             }
@@ -106,9 +104,7 @@ export const History = ({
               const target = responseTagProgram[j]
 
               if (tag.tag_id === target.tag_id) {
-                const name = toTagName(target)
-
-                tagSkill.push(name)
+                tagSkill.push(toTagName(target))
                 break
               }
             }
@@ -121,9 +117,7 @@ export const History = ({
               const target = responseTagCms[j]
 
               if (tag.tag_id === target.tag_id) {
-                const name = toTagName(target)
-
-                tagSkill.push(name)
+                tagSkill.push(toTagName(target))
                 break
               }
             }
@@ -136,9 +130,7 @@ export const History = ({
               const target = responseTagDesign[j]
 
               if (tag.tag_id === target.tag_id) {
-                const name = toTagName(target)
-
-                tagSkill.push(name)
+                tagSkill.push(toTagName(target))
                 break
               }
             }
@@ -151,9 +143,7 @@ export const History = ({
               const target = responseTagOther[j]
 
               if (tag.tag_id === target.tag_id) {
-                const name = toTagName(target)
-
-                tagSkill.push(name)
+                tagSkill.push(toTagName(target))
                 break
               }
             }

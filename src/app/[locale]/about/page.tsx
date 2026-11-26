@@ -118,9 +118,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
-              const name = toTagName(target)
-
-              tagPosition.push(name)
+              tagPosition.push(toTagName(target))
               break
             }
           }
@@ -133,9 +131,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagProgram[j]
 
             if (tag.tag_id === target.tag_id) {
-              const name = toTagName(target)
-
-              tagSkill.push(name)
+              tagSkill.push(toTagName(target))
               break
             }
           }
@@ -148,9 +144,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagCms[j]
 
             if (tag.tag_id === target.tag_id) {
-              const name = toTagName(target)
-
-              tagSkill.push(name)
+              tagSkill.push(toTagName(target))
               break
             }
           }
@@ -163,9 +157,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagDesign[j]
 
             if (tag.tag_id === target.tag_id) {
-              const name = toTagName(target)
-
-              tagSkill.push(name)
+              tagSkill.push(toTagName(target))
               break
             }
           }
@@ -178,9 +170,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagOther[j]
 
             if (tag.tag_id === target.tag_id) {
-              const name = toTagName(target)
-
-              tagSkill.push(name)
+              tagSkill.push(toTagName(target))
               break
             }
           }

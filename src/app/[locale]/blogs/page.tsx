@@ -91,11 +91,9 @@ const BlogsPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagNews[j]
 
             if (tag.tag_id === target.tag_id) {
-              const name = toTagName(target)
-
               tagPosition.push({
                 id: String(target.tag_id),
-                name,
+                name: toTagName(target),
               })
               break
             }

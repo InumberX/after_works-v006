@@ -40,6 +40,7 @@ export const GET = async () => {
     },
   ]
 
+  // 種類ごとに、日本語の全件、英語の全件の順に並べる（記事ごとに日英を並べていたのをやめた）
   for (const feed of feeds) {
     for (const info of feed.ja.list) {
       const url = feed.route.url({

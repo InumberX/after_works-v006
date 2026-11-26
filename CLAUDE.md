@@ -82,7 +82,7 @@ The app uses a nested provider pattern in `src/providers/AppProvider/index.tsx`:
 - `src/types/apis/fetch/` - TypeScript type definitions for API responses
 - `src/layouts/` - Page layout templates
 - `src/config/` - Configuration files (env, routes, SNS links)
-- `src/consts/` - Constants shared across layers (e.g. `api.ts`: `HTTP_STATUS`, `API_ERROR_CODE`, `API_CACHE_MAX_AGE_SECONDS`)
+- `src/consts/` - Constants shared across layers (e.g. `api.ts`: `HTTP_STATUS`, `API_ERROR_CODE`, `API_CACHE_MAX_AGE_SECONDS`; `locale.ts`: `LOCALES` and the `Locale` type derived from it, kept beside the constant it is derived from rather than in `src/types/`)
 - `src/libs/` - Utility libraries (Google Analytics, validation)
 - `src/hooks/` - Custom React hooks
 - `src/utils/` - Utility functions
