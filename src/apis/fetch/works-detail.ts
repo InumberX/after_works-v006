@@ -3,6 +3,7 @@ import {
   createNotFoundError,
   createUnexpectedResponseError,
 } from '~/apis/fetch/api-client'
+import type { Locale } from '~/consts/locale'
 import type { ApiResult } from '~/types/apis/fetch/api-client'
 import type { WorksDetail, Details } from '~/types/apis/fetch/works-detail'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
@@ -15,8 +16,11 @@ export type ResponseGetWorksDetailInfo = ApiResult<Details>
 
 export const getWorksDetailInfo = async ({
   id,
+  lang,
 }: {
   id: string
+  /** 取得する言語。その言語の版が無い記事は 404（`not_found`）になる */
+  lang: Locale
 }): Promise<ResponseGetWorksDetailInfo> => {
   // 詳細ページの id は topics_id（正の整数）だけ。それ以外は Kuroco に問い合わせずに
   // 見つからない扱いにする。そのまま URL に入れると、`x?cnt=-1` のようなクエリや
@@ -25,7 +29,7 @@ export const getWorksDetailInfo = async ({
     return createNotFoundError()
   }
 
-  const result = await apiClient<WorksDetail>(`/works/${id}`)
+  const result = await apiClient<WorksDetail>(`/works/${id}`, { _lang: lang })
 
   if (!result.success) {
     return result

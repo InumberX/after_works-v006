@@ -7,8 +7,11 @@ export type Tag = {
   update_ymdhi: Date
   tag_category_id: number
   tag_comment: null
-  ext_col_01: string
-  ext_col_02: string
+  /**
+   * 表示名。タイトル（`tag_nm`）に入れられない、空白を含む名前のときだけ入れる。
+   * 空か空白だけならタイトルを表示する（`~/utils/to-tag-name`）
+   */
+  ext_col_01: string | null
   ext_col_03: string
   ext_col_04: string
   ext_col_05: string

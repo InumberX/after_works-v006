@@ -2,9 +2,8 @@
 
 import { usePathname } from 'next/navigation'
 
+import type { Locale } from '~/consts/locale'
 import { useCurrentLocale } from '~/locales/client'
-
-type Locale = 'ja' | 'en'
 
 const DEFAULT_LOCALE: Locale = 'ja'
 

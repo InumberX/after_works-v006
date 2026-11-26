@@ -64,9 +64,6 @@ export type Details = {
   ended_at: Date
   url: string
   description: string
-  subject_en: string
-  description_en: string
-  contents_en: string
 }
 
 export type HobbyDetail = {

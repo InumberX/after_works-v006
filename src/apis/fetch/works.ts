@@ -2,6 +2,7 @@ import {
   apiClient,
   createUnexpectedResponseError,
 } from '~/apis/fetch/api-client'
+import type { Locale } from '~/consts/locale'
 import type { ApiResult } from '~/types/apis/fetch/api-client'
 import type { Works, List, PageInfo } from '~/types/apis/fetch/works'
 
@@ -15,15 +16,19 @@ export type ResponseGetWorksList = ApiResult<{
 }>
 
 export const getWorksList = async ({
+  lang,
   cnt = 12,
   page = 1,
   orderQuery = 'inst_ymdhi=DESC',
 }: {
+  /** 取得する言語。その言語の版が無い記事は一覧に入らない */
+  lang: Locale
   cnt?: number
   page?: number
   orderQuery?: string
 }): Promise<ResponseGetWorksList> => {
   const result = await apiClient<Works>('/works', {
+    _lang: lang,
     cnt,
     pageID: page,
     order_query: orderQuery,

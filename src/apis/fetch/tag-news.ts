@@ -1,12 +1,18 @@
 import { apiClient } from '~/apis/fetch/api-client'
+import type { Locale } from '~/consts/locale'
 import type { TagNews, Tag } from '~/types/apis/fetch/tag-news'
 
 export type ResponseGetTagNews = Tag[]
 
-export const getTagNews = async (): Promise<ResponseGetTagNews> => {
+/** タグの一覧。その言語の版が無いタグは入らない */
+export const getTagNews = async ({
+  lang,
+}: {
+  lang: Locale
+}): Promise<ResponseGetTagNews> => {
   const result: ResponseGetTagNews = []
 
-  const response = await apiClient<TagNews>('/tags/news')
+  const response = await apiClient<TagNews>('/tags/news', { _lang: lang })
 
   if (!response.success) {
     return result

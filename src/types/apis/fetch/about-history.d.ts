@@ -73,7 +73,6 @@ export type List = {
   tags: Tag[]
   started_at: Date
   ended_at: string
-  subject_en: string
 }
 
 export type AboutHistory = {

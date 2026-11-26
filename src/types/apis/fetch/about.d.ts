@@ -20,7 +20,6 @@ export type Category = {
 
 export type Certification = {
   certification_name: string
-  certification_name_en: string
   certification_url: string
 }
 
@@ -53,7 +52,6 @@ export type List = {
   lead: string
   certifications: Certification[]
   skills: string[]
-  lead_en: string
 }
 
 export type About = {

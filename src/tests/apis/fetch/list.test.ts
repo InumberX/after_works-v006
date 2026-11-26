@@ -22,11 +22,28 @@ describe.each(fetchers)('%s の一覧の取得', (_, getList) => {
     const value = { list: [], pageInfo: { totalCnt: 0 } }
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(Response.json(value))
 
-    await expect(getList({ page: 1 })).resolves.toEqual({
+    await expect(getList({ lang: 'ja', page: 1 })).resolves.toEqual({
       success: true,
       data: value,
     })
   })
+
+  it.each(['ja', 'en'] as const)(
+    '%s でも _lang を付けて問い合わせる',
+    async (lang) => {
+      const fetchMock = vi
+        .spyOn(globalThis, 'fetch')
+        .mockResolvedValue(
+          Response.json({ list: [], pageInfo: { totalCnt: 0 } }),
+        )
+
+      await getList({ lang, page: 1 })
+
+      expect(
+        new URL(String(fetchMock.mock.calls[0]?.[0])).searchParams.get('_lang'),
+      ).toBe(lang)
+    },
+  )
 
   it('範囲外のページで Kuroco が 404 を返したら code が not_found になる', async () => {
     // 範囲外の pageID に Kuroco が返す応答（ステージングの API で確認）
@@ -37,7 +54,7 @@ describe.each(fetchers)('%s の一覧の取得', (_, getList) => {
       ),
     )
 
-    await expect(getList({ page: 999 })).resolves.toMatchObject({
+    await expect(getList({ lang: 'ja', page: 999 })).resolves.toMatchObject({
       success: false,
       code: API_ERROR_CODE.NOT_FOUND,
     })
@@ -50,7 +67,7 @@ describe.each(fetchers)('%s の一覧の取得', (_, getList) => {
   ])('%s なら code が failed になる', async (_label, createResponse) => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse())
 
-    await expect(getList({ page: 2 })).resolves.toMatchObject({
+    await expect(getList({ lang: 'ja', page: 2 })).resolves.toMatchObject({
       success: false,
       code: API_ERROR_CODE.FAILED,
     })

@@ -171,6 +171,27 @@ describe('apiClient と Workers のキャッシュ', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })
 
+  it('言語（_lang）が違えば別に保存し、日本語の応答を英語に返さない', async () => {
+    const cache = stubApiCache()
+    const fetchMock = vi
+      .spyOn(globalThis, 'fetch')
+      .mockImplementation(async (input) =>
+        Response.json({
+          lang: new URL(String(input)).searchParams.get('_lang'),
+        }),
+      )
+
+    await apiClient('/works', { _lang: 'ja', cnt: 1 })
+    await expect(apiClient('/works', { _lang: 'en', cnt: 1 })).resolves.toEqual(
+      { success: true, data: { lang: 'en' } },
+    )
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    expect([...cache.store.keys()]).toEqual([
+      toCacheUrl(toApiUrl('/works', { _lang: 'ja', cnt: 1 })),
+      toCacheUrl(toApiUrl('/works', { _lang: 'en', cnt: 1 })),
+    ])
+  })
+
   it.each([
     ['404', async () => new Response(null, { status: 404 })],
     ['500', async () => new Response(null, { status: 500 })],

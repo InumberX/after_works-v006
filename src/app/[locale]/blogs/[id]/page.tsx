@@ -20,6 +20,7 @@ import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
+import { toTagName } from '~/utils/to-tag-name'
 
 export const generateMetadata = async ({
   params,
@@ -32,10 +33,12 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const [locale, scopedT, resultBlogsDetailInfo] = await Promise.all([
-    getCurrentLocale(),
+  const locale = await getCurrentLocale()
+
+  const [scopedT, resultBlogsDetailInfo] = await Promise.all([
     getScopedI18n('blogsDetail'),
     getBlogsDetailInfo({
+      lang: locale,
       id: String(id),
     }),
   ])
@@ -53,15 +56,9 @@ export const generateMetadata = async ({
 
   const responseBlogsDetailInfo = resultBlogsDetailInfo.data
 
-  const title =
-    locale === 'en'
-      ? responseBlogsDetailInfo.subject_en
-      : responseBlogsDetailInfo.subject
+  const title = responseBlogsDetailInfo.subject
 
-  const description =
-    locale === 'en'
-      ? responseBlogsDetailInfo.description_en
-      : responseBlogsDetailInfo.description
+  const description = responseBlogsDetailInfo.description
 
   return AppHead({
     title: `${title} - ${scopedT('title')}`,
@@ -88,8 +85,9 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
+  const locale = await getCurrentLocale()
+
   const [
-    locale,
     scopedT,
     responseTagNews,
     responseTagPosition,
@@ -100,18 +98,19 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
     resultBlogsDetailInfo,
     responseLatestBlogs,
   ] = await Promise.all([
-    getCurrentLocale(),
     getScopedI18n('blogsDetail'),
-    getTagNews(),
-    getTagPosition(),
-    getTagProgram(),
-    getTagDesign(),
-    getTagCms(),
-    getTagOther(),
+    getTagNews({ lang: locale }),
+    getTagPosition({ lang: locale }),
+    getTagProgram({ lang: locale }),
+    getTagDesign({ lang: locale }),
+    getTagCms({ lang: locale }),
+    getTagOther({ lang: locale }),
     getBlogsDetailInfo({
+      lang: locale,
       id: String(id),
     }),
     getBlogsList({
+      lang: locale,
       cnt: 5,
     }),
   ])
@@ -147,16 +146,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagNews[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagNews.push({
           id: String(target.tag_id),
@@ -174,16 +164,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagPosition.push({
           id: String(target.tag_id),
@@ -201,16 +182,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagProgram.push({
           id: String(target.tag_id),
@@ -228,16 +200,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagDesign.push({
           id: String(target.tag_id),
@@ -251,16 +214,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagCms.push({
           id: String(target.tag_id),
@@ -274,16 +228,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagOther.push({
           id: String(target.tag_id),
@@ -311,14 +256,8 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
         alt: responseBlogsDetailInfo.main_visual.desc,
       },
     }),
-    title:
-      locale === 'en'
-        ? responseBlogsDetailInfo.subject_en
-        : responseBlogsDetailInfo.subject,
-    body:
-      locale === 'en'
-        ? responseBlogsDetailInfo.contents_en
-        : responseBlogsDetailInfo.contents,
+    title: responseBlogsDetailInfo.subject,
+    body: responseBlogsDetailInfo.contents,
     dateTitle: scopedT('dateTitle'),
     startedAt: responseBlogsDetailInfo.ymd,
     bottomLink: {
@@ -352,7 +291,7 @@ const BlogsDetailPage = async ({ params }: NextPageProps) => {
               },
             }),
           publishedAt: info.ymd,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           titleTag: 'h3',
         }
       })

@@ -19,6 +19,7 @@ import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
+import { toTagName } from '~/utils/to-tag-name'
 
 export const generateMetadata = async ({
   params,
@@ -31,10 +32,12 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const [locale, scopedT, resultWorksDetailInfo] = await Promise.all([
-    getCurrentLocale(),
+  const locale = await getCurrentLocale()
+
+  const [scopedT, resultWorksDetailInfo] = await Promise.all([
     getScopedI18n('worksDetail'),
     getWorksDetailInfo({
+      lang: locale,
       id: String(id),
     }),
   ])
@@ -52,15 +55,9 @@ export const generateMetadata = async ({
 
   const responseWorksDetailInfo = resultWorksDetailInfo.data
 
-  const title =
-    locale === 'en'
-      ? responseWorksDetailInfo.subject_en
-      : responseWorksDetailInfo.subject
+  const title = responseWorksDetailInfo.subject
 
-  const description =
-    locale === 'en'
-      ? responseWorksDetailInfo.description_en
-      : responseWorksDetailInfo.description
+  const description = responseWorksDetailInfo.description
 
   return AppHead({
     title: `${title} - ${scopedT('title')}`,
@@ -87,8 +84,9 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
+  const locale = await getCurrentLocale()
+
   const [
-    locale,
     scopedT,
     responseTagPosition,
     responseTagProgram,
@@ -98,17 +96,18 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
     resultWorksDetailInfo,
     responseLatestWorks,
   ] = await Promise.all([
-    getCurrentLocale(),
     getScopedI18n('worksDetail'),
-    getTagPosition(),
-    getTagProgram(),
-    getTagDesign(),
-    getTagCms(),
-    getTagOther(),
+    getTagPosition({ lang: locale }),
+    getTagProgram({ lang: locale }),
+    getTagDesign({ lang: locale }),
+    getTagCms({ lang: locale }),
+    getTagOther({ lang: locale }),
     getWorksDetailInfo({
+      lang: locale,
       id: String(id),
     }),
     getWorksList({
+      lang: locale,
       cnt: 5,
     }),
   ])
@@ -147,16 +146,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagPosition.push({
           id: String(target.tag_id),
@@ -174,16 +164,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagProgram.push({
           id: String(target.tag_id),
@@ -201,16 +182,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagDesign.push({
           id: String(target.tag_id),
@@ -224,16 +196,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagCms.push({
           id: String(target.tag_id),
@@ -247,16 +210,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
+        const name = toTagName(target)
 
         tagOther.push({
           id: String(target.tag_id),
@@ -278,14 +232,8 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
         alt: responseWorksDetailInfo.main_visual.desc,
       },
     }),
-    title:
-      locale === 'en'
-        ? responseWorksDetailInfo.subject_en
-        : responseWorksDetailInfo.subject,
-    body:
-      locale === 'en'
-        ? responseWorksDetailInfo.contents_en
-        : responseWorksDetailInfo.contents,
+    title: responseWorksDetailInfo.subject,
+    body: responseWorksDetailInfo.contents,
     dateTitle: scopedT('dateTitle'),
     startedAt: responseWorksDetailInfo.started_at,
     endedAt: responseWorksDetailInfo.ended_at,
@@ -332,7 +280,7 @@ const WorksDetailPage = async ({ params }: NextPageProps) => {
             }),
           startedAt: info.started_at,
           endedAt: info.ended_at,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           titleTag: 'h3',
         }
       })

@@ -14,6 +14,7 @@ import { AppHead } from '~/components/common/AppHead'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
+import { toTagName } from '~/utils/to-tag-name'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const [locale, scopedT] = await Promise.all([
@@ -32,8 +33,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const AboutPage = async ({ searchParams }: NextPageProps) => {
+  const locale = await getCurrentLocale()
+
   const [
-    locale,
     aboutInfo,
     currentSearchParams,
     responseTagPosition,
@@ -42,23 +44,19 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
     responseTagDesign,
     responseTagOther,
   ] = await Promise.all([
-    getCurrentLocale(),
-    getAboutInfo({}),
+    getAboutInfo({ lang: locale }),
     searchParams,
-    getTagPosition(),
-    getTagProgram(),
-    getTagCms(),
-    getTagDesign(),
-    getTagOther(),
+    getTagPosition({ lang: locale }),
+    getTagProgram({ lang: locale }),
+    getTagCms({ lang: locale }),
+    getTagDesign({ lang: locale }),
+    getTagOther({ lang: locale }),
   ])
 
   const certifications = aboutInfo
     ? aboutInfo.certifications.map((info) => {
         return {
-          name:
-            locale === 'en'
-              ? info.certification_name_en
-              : info.certification_name,
+          name: info.certification_name,
           url: info.certification_url,
         }
       })
@@ -66,7 +64,9 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
 
   const skills = aboutInfo ? aboutInfo.skills : []
 
-  const categoryAboutHistory = await getCategoryAboutHistoryList({})
+  const categoryAboutHistory = await getCategoryAboutHistoryList({
+    lang: locale,
+  })
 
   const years = categoryAboutHistory
     ? categoryAboutHistory.list
@@ -98,6 +98,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
   }
 
   const defaultAboutHistoryInfo = await getAboutHistoryInfo({
+    lang: locale,
     categoryId: defaultYearId,
   })
 
@@ -117,18 +118,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
+              const name = toTagName(target)
 
               tagPosition.push(name)
               break
@@ -143,18 +133,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagProgram[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
+              const name = toTagName(target)
 
               tagSkill.push(name)
               break
@@ -169,18 +148,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagCms[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
+              const name = toTagName(target)
 
               tagSkill.push(name)
               break
@@ -195,18 +163,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagDesign[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
+              const name = toTagName(target)
 
               tagSkill.push(name)
               break
@@ -221,18 +178,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
             const target = responseTagOther[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
+              const name = toTagName(target)
 
               tagSkill.push(name)
               break
@@ -251,7 +197,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
         }
 
         return {
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           startedAt: info.started_at,
           endedAt: info.ended_at,
           tags,
@@ -262,11 +208,7 @@ const AboutPage = async ({ searchParams }: NextPageProps) => {
   return (
     <Index
       profileInfo={{
-        lead: aboutInfo
-          ? locale === 'en'
-            ? aboutInfo.lead_en
-            : aboutInfo.lead
-          : '',
+        lead: aboutInfo ? aboutInfo.lead : '',
       }}
       historyInfo={{
         defaultYearId,

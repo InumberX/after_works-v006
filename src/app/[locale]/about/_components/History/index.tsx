@@ -21,6 +21,7 @@ import type { Tag as ApiResponseTagDesignTag } from '~/types/apis/fetch/tag-desi
 import type { Tag as ApiResponseTagOtherTag } from '~/types/apis/fetch/tag-other'
 import type { Tag as ApiResponseTagPositionTag } from '~/types/apis/fetch/tag-position'
 import type { Tag as ApiResponseTagProgramTag } from '~/types/apis/fetch/tag-program'
+import { toTagName } from '~/utils/to-tag-name'
 
 export type HistoryItem = {
   title: string
@@ -70,6 +71,7 @@ export const History = ({
     setIsSending(true)
 
     const aboutHistoryInfo = await getAboutHistoryInfo({
+      lang: locale,
       categoryId: id,
     })
 
@@ -89,22 +91,7 @@ export const History = ({
               const target = responseTagPosition[j]
 
               if (tag.tag_id === target.tag_id) {
-                let name = ''
-
-                switch (locale) {
-                  case 'en':
-                    name =
-                      target.ext_col_02 !== ''
-                        ? target.ext_col_02
-                        : target.tag_nm
-                    break
-                  default:
-                    name =
-                      target.ext_col_01 !== ''
-                        ? target.ext_col_01
-                        : target.tag_nm
-                    break
-                }
+                const name = toTagName(target)
 
                 tagPosition.push(name)
                 break
@@ -119,22 +106,7 @@ export const History = ({
               const target = responseTagProgram[j]
 
               if (tag.tag_id === target.tag_id) {
-                let name = ''
-
-                switch (locale) {
-                  case 'en':
-                    name =
-                      target.ext_col_02 !== ''
-                        ? target.ext_col_02
-                        : target.tag_nm
-                    break
-                  default:
-                    name =
-                      target.ext_col_01 !== ''
-                        ? target.ext_col_01
-                        : target.tag_nm
-                    break
-                }
+                const name = toTagName(target)
 
                 tagSkill.push(name)
                 break
@@ -149,22 +121,7 @@ export const History = ({
               const target = responseTagCms[j]
 
               if (tag.tag_id === target.tag_id) {
-                let name = ''
-
-                switch (locale) {
-                  case 'en':
-                    name =
-                      target.ext_col_02 !== ''
-                        ? target.ext_col_02
-                        : target.tag_nm
-                    break
-                  default:
-                    name =
-                      target.ext_col_01 !== ''
-                        ? target.ext_col_01
-                        : target.tag_nm
-                    break
-                }
+                const name = toTagName(target)
 
                 tagSkill.push(name)
                 break
@@ -179,22 +136,7 @@ export const History = ({
               const target = responseTagDesign[j]
 
               if (tag.tag_id === target.tag_id) {
-                let name = ''
-
-                switch (locale) {
-                  case 'en':
-                    name =
-                      target.ext_col_02 !== ''
-                        ? target.ext_col_02
-                        : target.tag_nm
-                    break
-                  default:
-                    name =
-                      target.ext_col_01 !== ''
-                        ? target.ext_col_01
-                        : target.tag_nm
-                    break
-                }
+                const name = toTagName(target)
 
                 tagSkill.push(name)
                 break
@@ -209,22 +151,7 @@ export const History = ({
               const target = responseTagOther[j]
 
               if (tag.tag_id === target.tag_id) {
-                let name = ''
-
-                switch (locale) {
-                  case 'en':
-                    name =
-                      target.ext_col_02 !== ''
-                        ? target.ext_col_02
-                        : target.tag_nm
-                    break
-                  default:
-                    name =
-                      target.ext_col_01 !== ''
-                        ? target.ext_col_01
-                        : target.tag_nm
-                    break
-                }
+                const name = toTagName(target)
 
                 tagSkill.push(name)
                 break
@@ -243,7 +170,7 @@ export const History = ({
           }
 
           return {
-            title: locale === 'en' ? info.subject_en : info.subject,
+            title: info.subject,
             startedAt: info.started_at,
             endedAt: info.ended_at,
             tags,

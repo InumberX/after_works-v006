@@ -1,10 +1,9 @@
 import type { MetadataRoute } from 'next'
 
-import { getBlogsList } from '~/apis/fetch/blogs'
-import { getHobbyList } from '~/apis/fetch/hobby'
-import { getWorksList } from '~/apis/fetch/works'
+import { getAllArticles } from '~/apis/fetch/all-articles'
 import { LASTMOD } from '~/config/env'
 import { routes } from '~/config/routes'
+import { LOCALES } from '~/consts/locale'
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const sitemapEntries: MetadataRoute.Sitemap = [
@@ -106,123 +105,27 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     },
   ]
 
-  const responseBlogsTotalCount = await getBlogsList({
-    cnt: 1,
-  })
+  // 詳細ページは言語ごとに一覧を取得し、その言語の版がある記事だけを載せる
+  for (const locale of LOCALES) {
+    const { blogs, works, hobby } = await getAllArticles(locale)
+    const details = [
+      { route: routes.blogsDetail, list: blogs },
+      { route: routes.worksDetail, list: works },
+      { route: routes.hobbyDetail, list: hobby },
+    ]
 
-  const responseBlogs = responseBlogsTotalCount.success
-    ? await getBlogsList({
-        cnt: responseBlogsTotalCount.data.pageInfo.totalCnt,
-      })
-    : undefined
-
-  const responseWorksTotalCount = await getWorksList({
-    cnt: 1,
-  })
-
-  const responseWorks = responseWorksTotalCount.success
-    ? await getWorksList({
-        cnt: responseWorksTotalCount.data.pageInfo.totalCnt,
-      })
-    : undefined
-
-  const responseHobbyTotalCount = await getHobbyList({
-    cnt: 1,
-  })
-
-  const responseHobby = responseHobbyTotalCount.success
-    ? await getHobbyList({
-        cnt: responseHobbyTotalCount.data.pageInfo.totalCnt,
-      })
-    : undefined
-
-  if (responseBlogs?.success && responseBlogs.data.list.length > 0) {
-    for (
-      let i = 0, iLength = responseBlogs.data.list.length;
-      i < iLength;
-      i = i + 1
-    ) {
-      const info = responseBlogs.data.list[i]
-
-      sitemapEntries.push({
-        url: routes.blogsDetail.url({
-          isFullPath: true,
-          locale: 'ja',
-          id: String(info.topics_id),
-        }),
-        lastModified: info.update_ymdhi,
-        priority: 0.5,
-      })
-
-      sitemapEntries.push({
-        url: routes.blogsDetail.url({
-          isFullPath: true,
-          locale: 'en',
-          id: String(info.topics_id),
-        }),
-        lastModified: info.update_ymdhi,
-        priority: 0.5,
-      })
-    }
-  }
-
-  if (responseWorks?.success && responseWorks.data.list.length > 0) {
-    for (
-      let i = 0, iLength = responseWorks.data.list.length;
-      i < iLength;
-      i = i + 1
-    ) {
-      const info = responseWorks.data.list[i]
-
-      sitemapEntries.push({
-        url: routes.worksDetail.url({
-          isFullPath: true,
-          locale: 'ja',
-          id: String(info.topics_id),
-        }),
-        lastModified: info.update_ymdhi,
-        priority: 0.5,
-      })
-
-      sitemapEntries.push({
-        url: routes.worksDetail.url({
-          isFullPath: true,
-          locale: 'en',
-          id: String(info.topics_id),
-        }),
-        lastModified: info.update_ymdhi,
-        priority: 0.5,
-      })
-    }
-  }
-
-  if (responseHobby?.success && responseHobby.data.list.length > 0) {
-    for (
-      let i = 0, iLength = responseHobby.data.list.length;
-      i < iLength;
-      i = i + 1
-    ) {
-      const info = responseHobby.data.list[i]
-
-      sitemapEntries.push({
-        url: routes.hobbyDetail.url({
-          isFullPath: true,
-          locale: 'ja',
-          id: String(info.topics_id),
-        }),
-        lastModified: info.update_ymdhi,
-        priority: 0.5,
-      })
-
-      sitemapEntries.push({
-        url: routes.hobbyDetail.url({
-          isFullPath: true,
-          locale: 'en',
-          id: String(info.topics_id),
-        }),
-        lastModified: info.update_ymdhi,
-        priority: 0.5,
-      })
+    for (const { route, list } of details) {
+      for (const info of list) {
+        sitemapEntries.push({
+          url: route.url({
+            isFullPath: true,
+            locale,
+            id: String(info.topics_id),
+          }),
+          lastModified: info.update_ymdhi,
+          priority: 0.5,
+        })
+      }
     }
   }
 
