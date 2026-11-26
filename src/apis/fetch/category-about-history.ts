@@ -1,4 +1,5 @@
 import { apiClient } from '~/apis/fetch/api-client'
+import type { Locale } from '~/consts/locale'
 import type {
   CategoryAboutHistory,
   List,
@@ -13,15 +14,18 @@ export type ResponseGetCategoryAboutHistory =
   | undefined
 
 export const getCategoryAboutHistoryList = async ({
+  lang,
   cnt = 0,
   page = 1,
 }: {
+  /** カテゴリに英語版が無いときは、`en` でも日本語版が返る */
+  lang: Locale
   cnt?: number
   page?: number
 }): Promise<ResponseGetCategoryAboutHistory> => {
   const response = await apiClient<CategoryAboutHistory>(
     '/categories/about-history',
-    { cnt, pageID: page },
+    { _lang: lang, cnt, pageID: page },
   )
 
   if (!response.success) {

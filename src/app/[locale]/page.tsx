@@ -11,6 +11,7 @@ import type { WorkCardProps } from '~/components/ui/cards/WorkCard'
 import type { BaseTagProps } from '~/components/ui/tags/BaseTag'
 import { routes } from '~/config/routes'
 import { getCurrentLocale } from '~/locales/server'
+import { toTagName } from '~/utils/to-tag-name'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,21 +27,20 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const HomePage = async () => {
-  const [
-    locale,
-    responseTagPosition,
-    responseLatestBlogs,
-    responseLatestWorks,
-  ] = await Promise.all([
-    getCurrentLocale(),
-    getTagPosition(),
-    getBlogsList({
-      cnt: 5,
-    }),
-    getWorksList({
-      cnt: 4,
-    }),
-  ])
+  const locale = await getCurrentLocale()
+
+  const [responseTagPosition, responseLatestBlogs, responseLatestWorks] =
+    await Promise.all([
+      getTagPosition({ lang: locale }),
+      getBlogsList({
+        lang: locale,
+        cnt: 5,
+      }),
+      getWorksList({
+        lang: locale,
+        cnt: 4,
+      }),
+    ])
 
   const latestBlogs: ArticleCardProps[] = responseLatestBlogs.success
     ? responseLatestBlogs.data.list.map((info) => {
@@ -57,22 +57,9 @@ const HomePage = async () => {
             const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
-
               tagPosition.push({
                 id: String(target.tag_id),
-                name,
+                name: toTagName(target),
               })
               break
             }
@@ -93,7 +80,7 @@ const HomePage = async () => {
               },
             }),
           publishedAt: info.ymd,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           titleTag: 'h3',
           tags: tagPosition,
           isNotActiveAnimelm: true,
@@ -116,22 +103,9 @@ const HomePage = async () => {
             const target = responseTagPosition[j]
 
             if (tag.tag_id === target.tag_id) {
-              let name = ''
-
-              switch (locale) {
-                case 'en':
-                  name =
-                    target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-                  break
-                default:
-                  name =
-                    target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-                  break
-              }
-
               tagPosition.push({
                 id: String(target.tag_id),
-                name,
+                name: toTagName(target),
               })
               break
             }
@@ -152,7 +126,7 @@ const HomePage = async () => {
               },
             }),
           publishedAt: info.ymd,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           titleTag: 'h3',
           tags: tagPosition,
           isNotActiveAnimelm: true,

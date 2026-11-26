@@ -25,13 +25,15 @@ describe.each(fetchers)('%s の詳細の取得', (endpoint, getDetailInfo) => {
       .spyOn(globalThis, 'fetch')
       .mockResolvedValue(Response.json({ details }))
 
-    await expect(getDetailInfo({ id: '12' })).resolves.toEqual({
+    await expect(getDetailInfo({ id: '12', lang: 'ja' })).resolves.toEqual({
       success: true,
       data: details,
     })
-    expect(String(fetchMock.mock.calls[0]?.[0])).toBe(
-      `${API_URL}/${endpoint}/12`,
-    )
+    await getDetailInfo({ id: '12', lang: 'en' })
+    expect(fetchMock.mock.calls.map((call) => String(call[0]))).toEqual([
+      `${API_URL}/${endpoint}/12?_lang=ja`,
+      `${API_URL}/${endpoint}/12?_lang=en`,
+    ])
   })
 
   it.each(['x?cnt=-1', '../works', '..%2Fworks', '0', '01', '1abc', ''])(
@@ -39,7 +41,7 @@ describe.each(fetchers)('%s の詳細の取得', (endpoint, getDetailInfo) => {
     async (id) => {
       const fetchMock = vi.spyOn(globalThis, 'fetch')
 
-      await expect(getDetailInfo({ id })).resolves.toMatchObject({
+      await expect(getDetailInfo({ id, lang: 'ja' })).resolves.toMatchObject({
         success: false,
         status: HTTP_STATUS.NOT_FOUND,
         code: API_ERROR_CODE.NOT_FOUND,
@@ -57,7 +59,9 @@ describe.each(fetchers)('%s の詳細の取得', (endpoint, getDetailInfo) => {
       ),
     )
 
-    await expect(getDetailInfo({ id: '99999' })).resolves.toMatchObject({
+    await expect(
+      getDetailInfo({ id: '99999', lang: 'en' }),
+    ).resolves.toMatchObject({
       success: false,
       code: API_ERROR_CODE.NOT_FOUND,
     })
@@ -70,7 +74,9 @@ describe.each(fetchers)('%s の詳細の取得', (endpoint, getDetailInfo) => {
   ])('%s なら code が failed になる', async (_label, createResponse) => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse())
 
-    await expect(getDetailInfo({ id: '12' })).resolves.toMatchObject({
+    await expect(
+      getDetailInfo({ id: '12', lang: 'ja' }),
+    ).resolves.toMatchObject({
       success: false,
       code: API_ERROR_CODE.FAILED,
     })

@@ -19,7 +19,7 @@ src/
 │   ├── common/           # レイアウト系の共有コンポーネント
 │   └── ui/               # 再利用可能な UI コンポーネント（カテゴリ分割）
 ├── config/               # 設定値（env, routes, sns 等）
-├── consts/               # 層をまたいで使う定数（api.ts: HTTP_STATUS、API_ERROR_CODE 等）
+├── consts/               # 層をまたいで使う定数（api.ts: HTTP_STATUS、API_ERROR_CODE 等。locale.ts: LOCALES と、そこから作る Locale 型）
 ├── hooks/                # カスタムフック
 ├── layouts/              # ページレイアウトテンプレート
 ├── libs/                 # 外部ライブラリのラッパー（ga, validation 等）

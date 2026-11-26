@@ -82,7 +82,7 @@ The app uses a nested provider pattern in `src/providers/AppProvider/index.tsx`:
 - `src/types/apis/fetch/` - TypeScript type definitions for API responses
 - `src/layouts/` - Page layout templates
 - `src/config/` - Configuration files (env, routes, SNS links)
-- `src/consts/` - Constants shared across layers (e.g. `api.ts`: `HTTP_STATUS`, `API_ERROR_CODE`, `API_CACHE_MAX_AGE_SECONDS`)
+- `src/consts/` - Constants shared across layers (e.g. `api.ts`: `HTTP_STATUS`, `API_ERROR_CODE`, `API_CACHE_MAX_AGE_SECONDS`; `locale.ts`: `LOCALES` and the `Locale` type derived from it, kept beside the constant it is derived from rather than in `src/types/`)
 - `src/libs/` - Utility libraries (Google Analytics, validation)
 - `src/hooks/` - Custom React hooks
 - `src/utils/` - Utility functions
@@ -107,6 +107,9 @@ The app uses a nested provider pattern in `src/providers/AppProvider/index.tsx`:
 - Content types: blogs, works, hobby, about
 - Each content type has dedicated fetch functions and TypeScript types
 - API responses are strongly typed in `src/types/apis/fetch/`
+- **Every fetcher takes the page's language (`lang`, a `Locale` from `src/consts/locale.ts`) and sends it as `_lang`, Japanese included.** Kuroco keeps each language as a version of the same record under the same field names, so the answer is already in the page's language and nothing picks between `x` and `x_en` (the `*_en` fields and the tags' `ext_col_02` are no longer read). Without `_lang`, Kuroco picks the language from `Accept-Language`, and the Workers cache would keep that answer for the other language too; with it, the two languages are two URLs and so two cache keys (`toCacheUrl()`). A record or tag without a version in the language asked for is left out of a list (a detail is Kuroco's 404); a content category without one comes back in Japanese. The browser proxy's `allowedParams` include `_lang`.
+- **A tag is named by its title, `tag_nm`, kept readable in each language** because the admin screens list tags by it. A title cannot hold a space, so a name that needs one goes in `ext_col_01`, which is otherwise left empty; `toTagName()` (`src/utils/to-tag-name.ts`) shows `ext_col_01`, trimmed, and falls back to the title when it is empty or only spaces. Tags are matched to records by `tag_id`.
+- The sitemap and the RSS feed list each language's detail pages from a list fetched in that language (`getAllArticles()`, `src/apis/fetch/all-articles.ts`), so an article without an English version is not listed under `/en`.
 
 ### Key Features
 

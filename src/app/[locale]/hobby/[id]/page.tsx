@@ -19,6 +19,7 @@ import { API_ERROR_CODE } from '~/consts/api'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 import type { NextPageProps } from '~/types/next'
 import { parsePositiveInteger } from '~/utils/parse-positive-integer'
+import { toTagName } from '~/utils/to-tag-name'
 
 export const generateMetadata = async ({
   params,
@@ -31,10 +32,12 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const [locale, scopedT, resultHobbyDetailInfo] = await Promise.all([
-    getCurrentLocale(),
+  const locale = await getCurrentLocale()
+
+  const [scopedT, resultHobbyDetailInfo] = await Promise.all([
     getScopedI18n('hobbyDetail'),
     getHobbyDetailInfo({
+      lang: locale,
       id: String(id),
     }),
   ])
@@ -52,15 +55,9 @@ export const generateMetadata = async ({
 
   const responseHobbyDetailInfo = resultHobbyDetailInfo.data
 
-  const title =
-    locale === 'en'
-      ? responseHobbyDetailInfo.subject_en
-      : responseHobbyDetailInfo.subject
+  const title = responseHobbyDetailInfo.subject
 
-  const description =
-    locale === 'en'
-      ? responseHobbyDetailInfo.description_en
-      : responseHobbyDetailInfo.description
+  const description = responseHobbyDetailInfo.description
 
   return AppHead({
     title: `${title} - ${scopedT('title')}`,
@@ -87,8 +84,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     notFound()
   }
 
+  const locale = await getCurrentLocale()
+
   const [
-    locale,
     scopedT,
     responseTagPosition,
     responseTagProgram,
@@ -98,17 +96,18 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
     resultHobbyDetailInfo,
     responseLatestHobby,
   ] = await Promise.all([
-    getCurrentLocale(),
     getScopedI18n('hobbyDetail'),
-    getTagPosition(),
-    getTagProgram(),
-    getTagDesign(),
-    getTagCms(),
-    getTagOther(),
+    getTagPosition({ lang: locale }),
+    getTagProgram({ lang: locale }),
+    getTagDesign({ lang: locale }),
+    getTagCms({ lang: locale }),
+    getTagOther({ lang: locale }),
     getHobbyDetailInfo({
+      lang: locale,
       id: String(id),
     }),
     getHobbyList({
+      lang: locale,
       cnt: 5,
     }),
   ])
@@ -147,20 +146,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagPosition[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
-
         tagPosition.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -174,20 +162,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagProgram[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
-
         tagProgram.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -201,20 +178,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagDesign[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
-
         tagDesign.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -224,20 +190,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagCms[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
-
         tagCms.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -247,20 +202,9 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
       const target = responseTagOther[j]
 
       if (tag.tag_id === target.tag_id) {
-        let name = ''
-
-        switch (locale) {
-          case 'en':
-            name = target.ext_col_02 !== '' ? target.ext_col_02 : target.tag_nm
-            break
-          default:
-            name = target.ext_col_01 !== '' ? target.ext_col_01 : target.tag_nm
-            break
-        }
-
         tagOther.push({
           id: String(target.tag_id),
-          name,
+          name: toTagName(target),
         })
         break
       }
@@ -278,14 +222,8 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
         alt: responseHobbyDetailInfo.main_visual.desc,
       },
     }),
-    title:
-      locale === 'en'
-        ? responseHobbyDetailInfo.subject_en
-        : responseHobbyDetailInfo.subject,
-    body:
-      locale === 'en'
-        ? responseHobbyDetailInfo.contents_en
-        : responseHobbyDetailInfo.contents,
+    title: responseHobbyDetailInfo.subject,
+    body: responseHobbyDetailInfo.contents,
     dateTitle: scopedT('dateTitle'),
     startedAt: responseHobbyDetailInfo.started_at,
     endedAt: responseHobbyDetailInfo.ended_at,
@@ -332,7 +270,7 @@ const HobbyDetailPage = async ({ params }: NextPageProps) => {
             }),
           startedAt: info.started_at,
           endedAt: info.ended_at,
-          title: locale === 'en' ? info.subject_en : info.subject,
+          title: info.subject,
           titleTag: 'h3',
         }
       })

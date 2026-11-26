@@ -1,18 +1,22 @@
 import { apiClient } from '~/apis/fetch/api-client'
+import type { Locale } from '~/consts/locale'
 import type { AboutHistory, List } from '~/types/apis/fetch/about-history'
 
 export type ResponseGetAboutHistoryInfo = List[] | undefined
 
 export const getAboutHistoryInfo = async ({
+  lang,
   categoryId,
   cnt = 0,
   page = 1,
 }: {
+  lang: Locale
   categoryId: string
   cnt?: number
   page?: number
 }): Promise<ResponseGetAboutHistoryInfo> => {
   const response = await apiClient<AboutHistory[]>('/about-history', {
+    _lang: lang,
     'category_parent_id[]': categoryId,
     cnt,
     pageID: page,

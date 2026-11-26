@@ -5,5 +5,5 @@ export const dynamic = 'force-dynamic'
 
 export const GET = createProxyHandler({
   endpoint: '/hobby',
-  allowedParams: ['cnt', 'pageID', 'order_query'],
+  allowedParams: ['_lang', 'cnt', 'pageID', 'order_query'],
 })

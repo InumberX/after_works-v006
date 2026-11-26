@@ -61,9 +61,6 @@ export type Details = {
   contents_type_list: number[]
   main_visual: MainVisual
   description: string
-  subject_en: string
-  description_en: string
-  contents_en: string
 }
 
 export type BlogsDetail = {

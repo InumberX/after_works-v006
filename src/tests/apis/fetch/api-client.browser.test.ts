@@ -17,11 +17,11 @@ describe('ブラウザでの apiClient', () => {
         Response.json({ list: [], pageInfo: { totalCnt: 0 } }),
       )
 
-    await expect(getBlogsList({ page: 2 })).resolves.toMatchObject({
+    await expect(getBlogsList({ lang: 'en', page: 2 })).resolves.toMatchObject({
       success: true,
     })
     expect(String(fetchMock.mock.calls[0]?.[0])).toBe(
-      '/api/cms/blogs?cnt=12&pageID=2&order_query=inst_ymdhi%3DDESC',
+      '/api/cms/blogs?_lang=en&cnt=12&pageID=2&order_query=inst_ymdhi%3DDESC',
     )
   })
 
