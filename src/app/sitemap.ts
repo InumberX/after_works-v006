@@ -106,8 +106,14 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   ]
 
   // 詳細ページは言語ごとに一覧を取得し、その言語の版がある記事だけを載せる
-  for (const locale of LOCALES) {
-    const { blogs, works, hobby } = await getAllArticles(locale)
+  const articles = await Promise.all(
+    LOCALES.map(async (locale) => ({
+      locale,
+      ...(await getAllArticles(locale)),
+    })),
+  )
+
+  for (const { locale, blogs, works, hobby } of articles) {
     const details = [
       { route: routes.blogsDetail, list: blogs },
       { route: routes.worksDetail, list: works },
