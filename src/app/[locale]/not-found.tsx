@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 
-import { Index } from './[...not-found]/_components'
-
 import { AppHead } from '~/components/common/AppHead'
+import { NotFound } from '~/components/common/NotFound'
 import { routes } from '~/config/routes'
 import { getScopedI18n, getCurrentLocale } from '~/locales/server'
 
@@ -21,7 +20,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const NotFoundPage = () => {
-  return <Index />
+  return <NotFound />
 }
 
 export default NotFoundPage

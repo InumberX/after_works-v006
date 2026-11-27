@@ -72,6 +72,22 @@ describe('apiClient', () => {
     })
   })
 
+  it('エラーの本文の cancel が終わらなくても、結果を返す', async () => {
+    // Next.js が差し替えた fetch では、本文を tee() で分けるため cancel() の
+    // Promise が解決しないことがある。待つとページの描画が止まる（#284）
+    const body = new ReadableStream({
+      cancel: () => new Promise<void>(() => {}),
+    })
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(body, { status: HTTP_STATUS.NOT_FOUND }),
+    )
+
+    await expect(apiClient('/blogs/1')).resolves.toMatchObject({
+      success: false,
+      code: API_ERROR_CODE.NOT_FOUND,
+    })
+  })
+
   it.each([
     ['500 のエラー', () => Response.json({ errors: [] }, { status: 500 }), 500],
     ['400 のエラー', () => Response.json({ errors: [] }, { status: 400 }), 400],

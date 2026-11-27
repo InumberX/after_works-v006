@@ -13,22 +13,22 @@ type Props = {
   buttonUrl: string
 }
 
-export const Message = ({ text, buttonText, buttonUrl }: Props) => {
+export const NotFoundMessage = ({ text, buttonText, buttonUrl }: Props) => {
   return (
-    <LayoutSection className={styles.Message} isFirst tag='div'>
+    <LayoutSection className={styles.NotFoundMessage} isFirst tag='div'>
       <LayoutInner size='small'>
-        <div className={styles.Message__container}>
-          <div className={styles.Message__contents}>
-            <p className={styles.Message__text}>
+        <div className={styles.NotFoundMessage__container}>
+          <div className={styles.NotFoundMessage__contents}>
+            <p className={styles.NotFoundMessage__text}>
               <ReplaceNewLineText text={text} />
             </p>
 
-            <div className={styles.MessageButton}>
+            <div className={styles.NotFoundMessageButton}>
               <BaseButton
                 url={buttonUrl}
                 text={buttonText}
                 isRightArrow
-                className={styles.MessageButton__button}
+                className={styles.NotFoundMessageButton__button}
               />
             </div>
           </div>

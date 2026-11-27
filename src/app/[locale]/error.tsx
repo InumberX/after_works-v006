@@ -1,8 +1,7 @@
 'use client'
 
-import { Message } from './[...not-found]/_components/Message'
-
 import { Contact } from '~/components/common/Contact'
+import { NotFoundMessage } from '~/components/common/NotFoundMessage'
 import { LayoutPageWrapper } from '~/components/ui/layouts/LayoutPageWrapper'
 import { PageTitle } from '~/components/ui/typographies/PageTitle'
 import { SITE_NAME } from '~/config/env'
@@ -26,7 +25,7 @@ const ErrorPage = () => {
           subTitle={scopedT('pageSubTitle')}
         />
 
-        <Message
+        <NotFoundMessage
           text={scopedT('message.text')}
           buttonText={scopedT('message.buttonText')}
           buttonUrl={routes.home.url({

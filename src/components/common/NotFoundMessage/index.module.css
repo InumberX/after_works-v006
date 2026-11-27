@@ -1,5 +1,5 @@
-@layer component-page {
-  .Message__contents {
+@layer component-common {
+  .NotFoundMessage__contents {
     backdrop-filter: blur(20px);
     background-color: rgb(var(--color-palette-blue-charcoal-rgb) / 32%);
 
@@ -8,11 +8,11 @@
     @mixin getClampPx padding-inline, 24, 40;
   }
 
-  .Message__text {
+  .NotFoundMessage__text {
     text-align: center;
   }
 
-  .MessageButton {
+  .NotFoundMessageButton {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
     @mixin getClampPx margin-block-start, 24, 40;
   }
 
-  .MessageButton__button {
+  .NotFoundMessageButton__button {
     inline-size: 100%;
     max-inline-size: 320px;
   }

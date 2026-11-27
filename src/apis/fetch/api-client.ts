@@ -165,10 +165,12 @@ export const apiClient = async <T>(
   }
 
   if (!response.ok) {
-    // エラーの本文は読まないので、接続を解放する。完了は待たない。Next.js の fetch は
-    // 本文を tee() で分けて持つため、こちらの分だけを cancel しても Promise が解決せず、
-    // 待つとページの描画が止まる（next start で、Kuroco が 404 を返す詳細ページが
-    // 応答を返さなくなった。#284）
+    // エラーの本文は読まないので、接続を解放する。完了は待たない。Next.js が差し替えた
+    // fetch は本文を tee() で分けて持つ（next/dist/server/lib/clone-response.js）ため、
+    // こちらの分だけを cancel しても Promise が解決しないことがある。next start では
+    // 待つとページの描画が止まり、Kuroco が 404 を返す詳細ページが応答を返さなくなった
+    // （#284）。Workers（本番）で止まるかは確かめていない。待たないので、Node では
+    // 分けたもう片方の本文が解放されずに残ることがある
     void response.body?.cancel().catch(() => {})
 
     return {
