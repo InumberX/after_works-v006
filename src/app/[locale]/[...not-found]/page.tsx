@@ -1,27 +1,9 @@
-import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
-import { Index } from './_components'
-
-import { AppHead } from '~/components/common/AppHead'
-import { routes } from '~/config/routes'
-import { getScopedI18n, getCurrentLocale } from '~/locales/server'
-
-export const generateMetadata = async (): Promise<Metadata> => {
-  const scopedT = await getScopedI18n('notFound')
-  const locale = await getCurrentLocale()
-
-  return AppHead({
-    title: scopedT('title'),
-    canonical: routes.notFound.url({
-      isFullPath: true,
-      locale,
-    }),
-    robots: 'noindex, nofollow',
-  })
+// どのルートにも当たらないパスを受け、404 のステータスで not-found.tsx を表示する。
+// ここでページを描画すると、表示は Not Found でもステータスが 200 になる（#284）
+const CatchAllPage = () => {
+  notFound()
 }
 
-const NotFoundPage = () => {
-  return <Index />
-}
-
-export default NotFoundPage
+export default CatchAllPage
